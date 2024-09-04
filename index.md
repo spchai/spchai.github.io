@@ -1,4 +1,15 @@
-## Welcome to GitHub Pages
+## Shupeng CHAI (柴术鹏)
+
+Hi!  My name is Shupeng Chai. I am a PhD student majoring in geotechnical engineering at The Hong Kong Polytechnic University. My research interests include
+
+    • Rock mechanics and physics
+    
+    • Lunar landslides
+    
+    • Mining backfill
+    
+    • Geotechnical engineering
+
 
 You can use the [editor on GitHub](https://github.com/spchai/spchai.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
 
