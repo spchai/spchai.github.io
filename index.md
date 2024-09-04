@@ -1,9 +1,15 @@
-## Welcome to GitHub Pages
+## Shupeng CHAI (柴术鹏)
 
-You can use the [editor on GitHub](https://github.com/spchai/spchai.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+Hi!  My name is Shupeng Chai. I am a PhD student majoring in geotechnical engineering at The Hong Kong Polytechnic University. My research interests include
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
+    • Rock mechanics and physics
+    
+    • Lunar landslides
+    
+    • Mining backfill
+    
+    • Geotechnical engineering
+    
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
