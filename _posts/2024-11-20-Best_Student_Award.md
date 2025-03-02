@@ -11,6 +11,6 @@ Won **Best Student Award** for the oral presentation entitled **New insights int
 
 <img src='/images/Awards/2024-11-20-Awarding_2nd_place.jpg'>
 
-<img src='/images/Awards/2023-11-20-Best_Student_Award.png'>
+<img src='/images/Awards/2024-11-20-Best_Student_Award.png'>
 
 Reported by PolyU CEE: [CEE PhD Student Received “Best Student Award” at the 2024 International Geomechanics Conference](https://www.polyu.edu.hk/cee/news-and-events/news/2024/20241206_news/)

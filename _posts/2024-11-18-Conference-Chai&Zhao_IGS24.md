@@ -1,5 +1,5 @@
 ---
-title: 'Conference: Possible moonquakes and tectonic activities inferred from crater landslides'
+title: 'Oral presentation on heterogenous stress conditions on rock discontinuities in laboratory shear tests'
 date: 2024-11-18
 permalink: /posts/2024/11/Chai&Zhao_IGS24/
 tags:
