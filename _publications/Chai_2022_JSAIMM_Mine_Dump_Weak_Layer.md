@@ -1,10 +1,7 @@
 ---
 title: "Maximum height estimation for mine waste dumps"
 collection: publications
-category: 
-    - Mining engineering
-    - Slope
-    - Numerical simulations
+category: manuscripts
 permalink: /publication/Chai_et_al_2022_deviation_rectification
 excerpt: 'Estimation of the maximum dumping height is crucial to the life-cycle use of a waste dump. In this study, the maximum dumping height is estimated based on the strength-reduction technique by numerical simulations. The influences of dump geometry and properties on the maximum height are investigated.'
 date: 2022-10-22
