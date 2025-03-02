@@ -1,13 +1,13 @@
 ---
 layout: archive
-title: "[CV](https://github.com/academicpages/academicpages.github.io/commits/master)"
+title: ""
 permalink: /cv/
 author_profile: true
 redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+# [CV](https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing)
 
 Education
 ======
