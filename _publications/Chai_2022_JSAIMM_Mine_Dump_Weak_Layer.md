@@ -5,7 +5,7 @@ category: manuscripts
 permalink: /publication/Chai_2022_JSAIMM
 excerpt: 'Estimation of the maximum dumping height is crucial to the life-cycle use of a waste dump. In this study, the maximum dumping height is estimated based on the strength-reduction technique by numerical simulations. The influences of dump geometry and properties on the maximum height are investigated.'
 date: 2022-10-22
-venue: ''
+venue: 'Journal of the Southern African Institute of Mining and Metallurgy'
 slidesurl: ''
 paperurl: 'https://doi.org/10.17159/2411-9717/1947/2022'
 citation: 'Chai S (2022). Maximum height estimation for mine waste dumps. _Journal of the Southern African Institute of Mining and Metallurgy_. 122(10):579-586. https://doi.org/10.17159/2411-9717/1947/2022.'
