@@ -9,7 +9,7 @@ tags:
 ---
 
 
-
+**Chai S*** (2022). Maximum height estimation for mine waste dumps. _Journal of the Southern African Institute of Mining and Metallurgy_. 122(10):579-586. https://doi.org/10.17159/2411-9717/1947/2022. ([Link](http://dx.doi.org/10.17159/2411-9717/1947/2022), [PDF](https://www.saimm.co.za/Journal/v122n10p579.pdf))
 
 
 

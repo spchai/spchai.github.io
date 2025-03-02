@@ -9,7 +9,7 @@ tags:
 ---
 
 
-
+**Chai S***, Fan L and Liang H (2022). Required jacking force for deviation rectification of inclined structures supported with rigid piles. _Frontiers in Earth Science_. 10:998798. https://doi.org/10.3389/feart.2022.998798 ([Link](https://www.frontiersin.org/articles/10.3389/feart.2022.998798)).
 
 
 

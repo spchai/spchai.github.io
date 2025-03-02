@@ -10,7 +10,7 @@ tags:
 ---
 
 
-
+**Chai S**, Zheng J*, and Li L (2023). Kink effect on the stress distribution in 2D backfilled stopes. _Geotechnical and Geological Engineering_. https://doi.org/10.1007/s10706-023-02434-4 ([Link](https://doi.org/10.1007/s10706-023-02434-4)).
 
 
 Abstract

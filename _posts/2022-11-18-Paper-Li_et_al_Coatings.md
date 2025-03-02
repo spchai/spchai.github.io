@@ -9,7 +9,7 @@ tags:
 ---
 
 
-
+Li X, Fan L and **Chai S*** (2022). An Experimental Study on Strengthening Recycled Aggregates Considering Dry Mixing before Slurry Coating. _Coatings_. 12(11):1702. https://doi.org/10.3390/coatings12111702 ([Link](https://www.mdpi.com/2079-6412/12/11/1702/htm)).
 
 
 Abstract
