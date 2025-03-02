@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "[CV](https://github.com/academicpages/academicpages.github.io/commits/master)"
+title: "CV"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -8,6 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
+<div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
 
 Education
 ======
