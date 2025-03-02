@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "CV"
+title: "[CV](https://github.com/academicpages/academicpages.github.io/commits/master)"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -11,27 +11,19 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D in Geotechnical Engineering, the Hong Kong Polytechnic University, 2023–2026 (expected)
+* M.A.Sc in Mineral Engineering, University of Montreal (Polytechnique Montréal), 2018-2020
+* B.Eng. in Civil Engineering, Wuhan University, 2014-2018
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * Github University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
-
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+* University teacher: Zhengzhou University of Science and Technology, 2021-2023
+  * Teaching in Geotechnical Engineering
+    * Courses: Soil Mechanics, Road Engineering
+    * Supervision in Final year project or thesis
+  * Research 
+    * Slope stability analyses
+ 
 Skills
 ======
 * Skill 1
