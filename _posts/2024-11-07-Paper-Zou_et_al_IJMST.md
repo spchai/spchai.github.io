@@ -3,6 +3,7 @@ title: 'Paper: Development and characterization of the PolyU-1 lunar regolith si
 date: 2024-11-07
 permalink: /posts/2024/11/Zou_et_al_2024_IJMST/
 tags:
+  - Journal articles
   - Planetary science
   - Experiments
   - Lunar soil

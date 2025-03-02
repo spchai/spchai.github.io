@@ -3,6 +3,7 @@ title: 'Paper: Two-wedge slope stability analysis considering a nonvertical wedg
 date: 2023-02-27
 permalink: /posts/2023/02/Chai_2023_BEGE/
 tags:
+  - Journal articles
   - Geotechnical engineering
   - Numerical simulations
   - Slope
@@ -19,4 +20,4 @@ Two-wedge slope failure can occur in various geotechnical issues. The analytical
 
 <img src='/images/Papers/Chai2023.png'>
 
-[View on publisher](https://link.springer.com/article/10.1007/s10064-023-03126-2) | [Download Paper](https://rdcu.be/c6wDg) 
+[View on publisher](https://link.springer.com/article/10.1007/s10064-023-03126-2), [Download Paper](https://rdcu.be/c6wDg) 

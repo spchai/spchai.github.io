@@ -3,6 +3,7 @@ title: 'Paper on strengthening recycled aggregates by dry mixing before slurry c
 date: 2022-11-18
 permalink: /posts/2022/11/Li_et_al_2022_Coatings/
 tags:
+  - Journal articles
   - Geotechnical engineering
   - Experiments
   - Materials

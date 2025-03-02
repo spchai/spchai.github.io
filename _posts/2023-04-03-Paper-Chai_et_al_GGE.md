@@ -3,6 +3,7 @@ title: 'Paper: Kink effect on the stress distribution in 2D backfilled stopes'
 date: 2023-04-03
 permalink: /posts/2023/04/Chai_et_al_2023_GGE/
 tags:
+  - Journal articles
   - Mining engineering
   - Numerical simulations
   - Underground stopes

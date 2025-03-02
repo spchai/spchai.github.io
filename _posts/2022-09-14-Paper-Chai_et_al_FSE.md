@@ -3,6 +3,7 @@ title: 'Paper: Required jacking force for deviation rectification of inclined st
 date: 2022-09-14
 permalink: /posts/2022/09/Chai_et_al_2022_FES/
 tags:
+  - Journal articles
   - Geotechnical engineering
   - Numerical simulations
   - Pile

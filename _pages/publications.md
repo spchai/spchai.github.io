@@ -39,4 +39,6 @@ redirect_from:
 
 1. **Chai S**, and Zhao Q. (2023). New insights into stress conditions of laboratory shear tests. _The Greater Bay Earth & Environmental Sciences Young Scholars Symposium (GESS) 2023_. Hong Kong.
 
+1. **Chai S**, and Zhao Q. (2023). Stress analyses of laboratory shear tests. _ARMA East Asia Geomechanics Workshop_. Hong Kong.
+
 1. **Chai S*** (2022). Stability evaluation of slopes containing a weak layer using artificial neural networks. _The 8th International Conference on Hydraulic and Civil Engineering & Deep Space Intelligent Development and Utilization Forum (ICHCE 2022 & DSIDU 2022)_ ([Link](https://doi.org/10.1109/ICHCE57331.2022.10042656)).
