@@ -27,7 +27,7 @@ redirect_from:
 
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
 
-1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link]https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
+1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
   
 1. **Chai S**, and Zhao Q. (2024). 断层滑移及地震中剪胀行为的实验室研究. _粤港澳大湾区地球与环境科学青年学者论坛 (GESS) 2024_. 中国珠海.
 
