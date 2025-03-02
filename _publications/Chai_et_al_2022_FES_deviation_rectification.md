@@ -1,10 +1,7 @@
 ---
 title: "Required jacking force for deviation rectification of inclined structures supported with rigid piles"
 collection: publications
-category: 
-    - Geotechnical engineering
-    - Pile
-    - Numerical simulations
+category: manuscripts
 permalink: /publication/Chai_et_al_2022_deviation_rectification
 excerpt: 'In this study, a numerical method using FLAC3D is proposed to estimate the required jacking force at the pile top to plumb inclined piles in cohesive soils.'
 date: 2022-09-14
