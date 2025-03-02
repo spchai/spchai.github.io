@@ -1,5 +1,5 @@
 ---
-title: 'Paper: An Experimental Study on Strengthening Recycled Aggregates Considering Dry Mixing before Slurry Coating'
+title: 'Paper on strengthening recycled aggregates by dry mixing before slurry coating'
 date: 2022-11-18
 permalink: /posts/2022/11/Li_et_al_2022_Coatings/
 tags:
@@ -7,6 +7,10 @@ tags:
   - Experiments
   - Materials
 ---
+
+
+
+
 
 Abstract
 ======
