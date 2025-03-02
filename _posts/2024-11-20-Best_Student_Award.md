@@ -7,14 +7,9 @@ tags:
 ---
 
 
-Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests**.
+Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia.
 
-
-Best Student Award in IGS2024
-======
-In the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
-
-**Presentation title**: New insights into stress conditions on rock discontinuities in laboratory shear tests.
+<img src='/images/Awards/2024-11-20-Awarding_2nd_place.jpg'>
 
 <img src='/images/Awards/2023-11-20-Best_Student_Award.png'>
 

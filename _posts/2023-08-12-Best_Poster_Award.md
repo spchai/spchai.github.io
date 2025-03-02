@@ -7,13 +7,6 @@ tags:
 ---
 
 
-Won **Best Poster Award** for the poster presentation entitled **Stress analyses of laboratory shear tests**.
-
-
-Best Poster Award in 2023 ARMA East Asia Geomechanics Workshop
-======
-In 2023 ARMA East Asia Geomechanics Workshop held on 11 – 12 August in Hong Kong
-
-**Presentation title**: Stress analyses of laboratory shear tests.
+Won **Best Poster Award** for the poster presentation entitled **Stress analyses of laboratory shear tests** in _2023 ARMA East Asia Geomechanics Workshop_ held on 11 – 12 August in Hong Kong
 
 <img src='/images/Awards/2023-08-12-Best_Poster_Award.jpg'>

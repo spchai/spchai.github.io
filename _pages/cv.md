@@ -16,12 +16,12 @@ redirect_from:
 Education
 ======
 * PhD in Geotechnical Engineering, **the Hong Kong Polytechnic University**, 2023–2026 (expected)
-* MASc in Mineral Engineering, **University of Montreal (Polytechnique Montréal)**, 2018-2020
-* BEng in Civil Engineering, **Wuhan University**, 2014-2018
+* MASc in Mineral Engineering, **University of Montreal (Polytechnique Montréal)**, 2018–2020
+* BEng in Civil Engineering, **Wuhan University**, 2014–2018
 
 Work experience
 ======
-* University teacher: Zhengzhou University of Science and Technology, 2021-2023
+* University teacher: Zhengzhou University of Science and Technology, 2021–2023
   * Teaching in Geotechnical Engineering
     * Courses: Soil Mechanics, Road Engineering
     * Supervision in Final year project or thesis
