@@ -9,11 +9,21 @@ redirect_from:
 
 # [CV](https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing)
 
+
+<p style="text-align: right">
+  <a href="https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing">CV</a>
+</p>
+
+
+<div style="text-align: right">
+  <a href="https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing">CV</a>
+</div>
+
 Education
 ======
-* Ph.D in Geotechnical Engineering, the Hong Kong Polytechnic University, 2023–2026 (expected)
-* M.A.Sc in Mineral Engineering, University of Montreal (Polytechnique Montréal), 2018-2020
-* B.Eng. in Civil Engineering, Wuhan University, 2014-2018
+* PhD in Geotechnical Engineering, **the Hong Kong Polytechnic University**, 2023–2026 (expected)
+* MASc in Mineral Engineering, **University of Montreal (Polytechnique Montréal)**, 2018-2020
+* BEng in Civil Engineering, **Wuhan University**, 2014-2018
 
 Work experience
 ======
