@@ -1,14 +1,17 @@
 ---
 title: "Required jacking force for deviation rectification of inclined structures supported with rigid piles"
 collection: publications
-category: manuscripts
+category: 
+    - Geotechnical engineering
+    - Pile
+    - Numerical simulations
 permalink: /publication/Chai_et_al_2022_deviation_rectification
-excerpt: 'This paper is about the number 1. The number 2 is left for future work.'
+excerpt: 'In this study, a numerical method using FLAC3D is proposed to estimate the required jacking force at the pile top to plumb inclined piles in cohesive soils.'
 date: 2022-09-14
-venue: 'Journal 1'
+venue: ''
 slidesurl: ''
 paperurl: 'https://doi.org/10.3389/feart.2022.998798'
-citation: 'Chai S*, Fan L and Liang H (2022). Required jacking force for deviation rectification of inclined structures supported with rigid piles. Frontiers in Earth Science. 10:998798. https://doi.org/10.3389/feart.2022.998798.'
+citation: 'Chai S, Fan L and Liang H (2022). Required jacking force for deviation rectification of inclined structures supported with rigid piles. Frontiers in Earth Science. 10:998798. https://doi.org/10.3389/feart.2022.998798.'
 ---
 
 Light poles or transmission towers may become tilted over the design life, which needs rectifying considering safety and continued use. 
