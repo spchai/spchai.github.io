@@ -7,16 +7,8 @@ redirect_from:
   - /resume
 ---
 
-# [CV](https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing)
-
-
-<p style="text-align: right">
-  <a href="https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing">CV</a>
-</p>
-
-
 <div style="text-align: right">
-  <a href="https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing">CV</a>
+  <a href="https://drive.google.com/file/d/15jdtPBZQSvsyJlsDOEdW746rarphocPl/view?usp=sharing">Download CV</a>
 </div>
 
 Education
