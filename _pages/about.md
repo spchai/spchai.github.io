@@ -49,7 +49,7 @@ Publications
 
 1. **Chai S*** (2022). Stability evaluation of slopes containing a weak layer using artificial neural networks. _The 8th International Conference on Hydraulic and Civil Engineering & Deep Space Intelligent Development and Utilization Forum (ICHCE 2022 & DSIDU 2022)_ ([Link](https://doi.org/10.1109/ICHCE57331.2022.10042656)).
 
-1. Li X, Fan L and **Chai S*** (2022). An Experimental Study on Strengthening Recycled Aggregates Considering Dry Mixing before Slurry Coating. _Coatings_. 12(11):1702. https://doi.org/10.3390/coatings12111702 ([Link](https://www.mdpi.com/2079-6412/12/11/1702/htm)).
+1. Li X, Fan L and **Chai S*** (2022). An experimental study on strengthening recycled aggregates considering dry mixing before slurry coating. _Coatings_. 12(11):1702. https://doi.org/10.3390/coatings12111702 ([Link](https://www.mdpi.com/2079-6412/12/11/1702/htm)).
 
 1. **Chai S*** (2022). Maximum height estimation for mine waste dumps. _Journal of the Southern African Institute of Mining and Metallurgy_. 122(10):579-586. https://doi.org/10.17159/2411-9717/1947/2022. ([Link](http://dx.doi.org/10.17159/2411-9717/1947/2022), [PDF](https://www.saimm.co.za/Journal/v122n10p579.pdf))
 

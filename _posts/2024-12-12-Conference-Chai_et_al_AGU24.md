@@ -18,4 +18,4 @@ Millions of impact craters on the Moon form a large number of slopes. Crater lan
 
 <img src='/images/Conferences/Chai_et_al_AGU24.png'>
 
-[View on publisher](https://doi.org/10.1016/j.ijmst.2024.08.006)
+[View on publisher](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)
