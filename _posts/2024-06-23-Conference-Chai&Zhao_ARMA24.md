@@ -1,5 +1,5 @@
 ---
-title: 'Conference: Possible moonquakes and tectonic activities inferred from crater landslides'
+title: 'Poster presentation on Possible moonquakes and tectonic activities inferred from crater landslides'
 date: 2024-06-23
 permalink: /posts/2024/06/Chai&Zhao_ARMA24/
 tags:

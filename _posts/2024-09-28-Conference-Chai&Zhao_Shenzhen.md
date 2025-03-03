@@ -1,5 +1,5 @@
 ---
-title: 'Conference: 实验室粘滑中的剪缩与剪胀研究'
+title: 'Oral presentation on 实验室粘滑中的剪缩与剪胀研究'
 date: 2024-09-28
 permalink: /posts/2024/09/Chai_Zhao_2024_Shenzhen/
 tags:

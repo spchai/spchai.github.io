@@ -1,5 +1,5 @@
 ---
-title: 'Conference: Stability evaluation of slopes containing a weak layer using artificial neural networks'
+title: 'Conference presentation on Slope stability evaluation using artificial neural networks'
 date: 2022-11-25
 permalink: /posts/2022/11/Chai_ICHCE/
 tags:

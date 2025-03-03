@@ -1,5 +1,5 @@
 ---
-title: 'Paper: Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples'
+title: 'Paper on PolyU-1 lunar regolith simulant'
 date: 2024-11-07
 permalink: /posts/2024/11/Zou_et_al_2024_IJMST/
 tags:

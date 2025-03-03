@@ -1,5 +1,5 @@
 ---
-title: 'Paper: Maximum height estimation for mine waste dumps'
+title: 'Paper on Maximum height estimation for mine waste dumps'
 date: 2022-10-22
 permalink: /posts/2022/10/Chai_et_al_2022_JSAIMM/
 tags:

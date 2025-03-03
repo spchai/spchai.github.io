@@ -1,5 +1,5 @@
 ---
-title: 'Paper: Required jacking force for deviation rectification of inclined structures supported with rigid piles'
+title: 'Paper on deviation rectification of inclined piles'
 date: 2022-09-14
 permalink: /posts/2022/09/Chai_et_al_2022_FES/
 tags:
