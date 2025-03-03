@@ -10,10 +10,8 @@ tags:
 ---
 
 <div style="text-align: center;">
-  <img src='/images/Conferences/Chai_et_al_AGU24.png' style="width: 50%;" />
+  <img src='/images/Conferences/Chai_et_al_AGU24.png' style="width: 90%;" />
 </div>
-
-
 
 **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
 
