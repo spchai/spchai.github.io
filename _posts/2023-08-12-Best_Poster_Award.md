@@ -6,9 +6,13 @@ tags:
   - Award
 ---
 
-<img src='/images/Awards/2023-08-12-Best_Poster_Award.jpg'>
+<div style="text-align: center;">
+  <img src='/images/Awards/2023-08-12-Best_Poster_Award.jpg' style="width: 80%;" />
+</div>
 
-<img src='/images/Awards/2023-08-12-Awarding_Best_Poster_Award.png'>
+<div style="text-align: center;">
+  <img src='/images/Awards/2023-08-12-Awarding_Best_Poster_Award.png' style="width: 80%;" />
+</div>
 
 Won **Best Poster Award** for the poster presentation entitled **Stress analyses of laboratory shear tests** in _2023 ARMA East Asia Geomechanics Workshop_ held on 11 – 12 August in Hong Kong
 
