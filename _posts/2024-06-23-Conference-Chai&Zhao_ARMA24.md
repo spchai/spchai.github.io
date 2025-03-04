@@ -1,5 +1,5 @@
 ---
-title: 'Poster presentation on Possible moonquakes and tectonic activities inferred from crater landslides'
+title: 'Poster presentation on stress conditions of laboratory shear tests in ARMA 2024'
 date: 2024-06-23
 permalink: /posts/2024/06/Chai&Zhao_ARMA24/
 tags:
