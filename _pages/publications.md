@@ -25,9 +25,9 @@ redirect_from:
 
 # Conferences
 
-1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 [Link](https://doi.org/10.5194/egusphere-egu25-7873).
+1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 
-1. Zou Y, Wu H, **Chai S**, Yang W, Zhao Q (2025). Geomechanical assessment of Chang’e-5 lunar regolith using high-fidelity simulant. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-9509 [Link](https://doi.org/10.5194/egusphere-egu25-9509).
+1. Zou Y, Wu H, **Chai S**, Yang W, Zhao Q (2025). Geomechanical assessment of Chang’e-5 lunar regolith using high-fidelity simulant. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-9509 ([Link](https://doi.org/10.5194/egusphere-egu25-9509)).
 
 1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
 

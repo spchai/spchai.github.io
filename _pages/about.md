@@ -36,11 +36,7 @@ Work experience
  
 Selected Publications 
 ------
-
-<div style="text-align: right;">
-<p style="font-size: smaller"> See [full list of publications](https://spchai.github.io/publications/)
-</div>
-
+#### See [full list of publications](https://spchai.github.io/publications/)
 
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
 
