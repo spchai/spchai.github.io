@@ -1,6 +1,6 @@
 ---
 title: 'Conference: Dilation or compaction? Laboratory insights into the role of fault roughness'
-date: 2025-04-27
+date: 2025-04-29
 permalink: /posts/2025/04/Chai_et_al_2024_EGU25/
 tags:
   - Conference
@@ -11,7 +11,7 @@ tags:
 ---
 
 
-**Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
+**Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 [Link](https://doi.org/10.5194/egusphere-egu25-7873).
 
 
 ## Abstract
@@ -21,4 +21,4 @@ Here, we perform laboratory shear tests on rough faults with millimeter-scale as
 
 The experimental results provide new insights into the effects of fault roughness on shear-induced dilatancy behavior and serve as valuable benchmarks for our numerical simulations considering visible contact evolutions during shear sliding on rough faults.
 
-<!--[View on publisher](https://doi.org/10.1016/j.ijmst.2024.08.006)-->
+[View on publisher](https://doi.org/10.5194/egusphere-egu25-7873)

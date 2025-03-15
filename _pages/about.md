@@ -8,8 +8,12 @@ redirect_from:
   - /about.html
 ---
 
-Hi, I'm Shupeng Chai. I am a PhD candidate majoring in geotechnical engineering at the Hong Kong Polytechnic University. 
-My research interests include
+<div style="text-align: center;">
+A data-driven personal website
+======
+</div>
+
+Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the influences of fault roughness on rupture dynamics and stick-slip behavior through integrated laboratory experiments and numerical simulations. My interdisciplinary academic foundation spanning geotechnical engineering, mining engineering, and geophysics, and two years of experience in university-level teaching bring a unique perspective to my research. My research interests include
 
 * Rock mechanics and physics
 * Lunar landslides
@@ -17,13 +21,13 @@ My research interests include
 * Geotechnical engineering
 
 Education
-======
-* PhD in Geotechnical Engineering, **the Hong Kong Polytechnic University**, 2023–2026 (expected)
-* MASc in Mineral Engineering, **University of Montreal (Polytechnique Montréal)**, 2018–2020
-* BEng in Civil Engineering, **Wuhan University**, 2014–2018
+------
+* PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/), 2023–2026 (expected)
+* MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](http://www.polymtl.ca/), 2018–2020
+* BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/), 2014–2018
 
 Work experience
-======
+------
 * University teacher: Zhengzhou University of Science and Technology, 2021–2023
   * Teaching in Geotechnical Engineering
     * Courses: Soil Mechanics, Road Engineering
@@ -31,8 +35,9 @@ Work experience
   * Research 
     * Slope stability analyses
  
-Publications
-======
+Selected Publications 
+------
+: See [full list of publications](https://spchai.github.io/publications/)
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
 
 1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
@@ -72,7 +77,7 @@ Teaching
   {% endfor %}</ul>-->
   
 Awards
-======
+------
 * 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
 * 11/2024: [Second Prize](https://spchai.github.io/posts/2024/11/2nd_place/) in the Student Contest in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
