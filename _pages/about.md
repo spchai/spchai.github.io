@@ -9,8 +9,7 @@ redirect_from:
 ---
 
 <div style="text-align: center;">
-A data-driven personal website
-======
+Welcome to my website!
 </div>
 
 Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the influences of fault roughness on rupture dynamics and stick-slip behavior through integrated laboratory experiments and numerical simulations. My interdisciplinary academic foundation spanning geotechnical engineering, mining engineering, and geophysics, and two years of experience in university-level teaching bring a unique perspective to my research. My research interests include
@@ -37,7 +36,11 @@ Work experience
  
 Selected Publications 
 ------
-#### See [full list of publications](https://spchai.github.io/publications/)
+
+<div style="text-align: right;">
+<p style="font-size: smaller"> See [full list of publications](https://spchai.github.io/publications/)
+</div>
+
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
 
 1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
