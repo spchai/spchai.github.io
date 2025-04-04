@@ -9,7 +9,19 @@ redirect_from:
 
 {% include base_path %}
 
-# Journals
+# Peer-reviewed journal articles
+
+### (To be) Submitted
+
+1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across rock discontinuities: new insights from numerical simulations.
+
+1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
+
+### Published
 
 1. Zou Y, Wu H, **Chai S**, Yang W, Ruan R, & Zhao Q (2024). Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples. _International Journal of Mining Science and Technology_. https://doi.org/10.1016/j.ijmst.2024.08.006 ([Link](https://doi.org/10.1016/j.ijmst.2024.08.006)).
 
@@ -22,6 +34,7 @@ redirect_from:
 1. **Chai S*** (2022). Maximum height estimation for mine waste dumps. _Journal of the Southern African Institute of Mining and Metallurgy_. 122(10):579-586. https://doi.org/10.17159/2411-9717/1947/2022. ([Link](http://dx.doi.org/10.17159/2411-9717/1947/2022), [PDF](https://www.saimm.co.za/Journal/v122n10p579.pdf))
 
 1. **Chai S***, Fan L and Liang H (2022). Required jacking force for deviation rectification of inclined structures supported with rigid piles. _Frontiers in Earth Science_. 10:998798. https://doi.org/10.3389/feart.2022.998798 ([Link](https://www.frontiersin.org/articles/10.3389/feart.2022.998798)).
+
 
 # Conferences
 

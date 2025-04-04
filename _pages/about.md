@@ -8,9 +8,8 @@ redirect_from:
   - /about.html
 ---
 
-<div style="text-align: center;">
-  <strong>Welcome to my website!</strong>
-</div>
+Overview
+------
 
 Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the influences of fault roughness on rupture dynamics and stick-slip behavior through integrated laboratory experiments and numerical simulations. My interdisciplinary academic foundation spanning geotechnical engineering, mining engineering, and geophysics, and two years of experience in university-level teaching bring a unique perspective to my research. My research interests include
 
@@ -21,22 +20,16 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 Education
 ------
-* PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/), 2023–2026 (expected)
-* MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](http://www.polymtl.ca/), 2018–2020
-* BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/), 2014–2018
+* 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
+* 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](http://www.polymtl.ca/)
+* 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
 
-Work experience
+Employment
 ------
-* University teacher: Zhengzhou University of Science and Technology, 2021–2023
-  * Teaching in Geotechnical Engineering
-    * Courses: Soil Mechanics, Road Engineering
-    * Supervision in Final year project or thesis
-  * Research 
-    * Slope stability analyses
+* 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
  
-Selected Publications 
+Selected Publications ([See full list](https://spchai.github.io/publications/))
 ------
-#### See [full list of publications](https://spchai.github.io/publications/)
 
 ### (To be) Submitted
 
@@ -89,7 +82,7 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>-->
   
-Awards
+Honors & Awards
 ------
 * 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
