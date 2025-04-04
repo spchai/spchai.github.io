@@ -38,6 +38,19 @@ Selected Publications
 ------
 #### See [full list of publications](https://spchai.github.io/publications/)
 
+### (To be) Submitted
+
+1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across rock discontinuities: new insights from numerical simulations.
+
+1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
+
+
+### Published
+
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
 
 1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
