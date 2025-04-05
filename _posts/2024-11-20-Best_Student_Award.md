@@ -14,6 +14,9 @@ tags:
 
 <div style="text-align: center;line-height: 1.5;">
   <img src='/images/Awards/2024-11-20-Best_Student_Award.png' style="width: 80%;" />
+</div>  
+
+<div style="text-align: center;line-height: 1.5;">
   <p style="font-size: smaller">Certificate</p>
 </div>  
 
