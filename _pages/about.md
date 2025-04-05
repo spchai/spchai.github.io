@@ -21,7 +21,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 Education
 ------
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
-* 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](http://www.polymtl.ca/)
+* 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 * 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
 
 Employment
@@ -44,7 +44,7 @@ Selected Publications ([See full list](https://spchai.github.io/publications/))
 
 ### Published
 
-1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_.
+1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 
 1. **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).
 
