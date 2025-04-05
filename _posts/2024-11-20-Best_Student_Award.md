@@ -14,17 +14,17 @@ tags:
 
 <div style="text-align: center;line-height: 1.5;">
   <img src='/images/Awards/2024-11-20-Best_Student_Award.png' style="width: 80%;" />
-  <p style="font-size: smaller">Certificate
+  <p style="font-size: smaller">Certificate</p>
 </div>  
 
 <div style="text-align: center;line-height: 1.5;"> 
   <img src='/images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg' style="width: 80%;" />
-  <p style="font-size: smaller">Awarding
+  <p style="font-size: smaller">Awarding</p>
 </div>  
 
 <div style="text-align: center;line-height: 1.5;"> 
    <img src='/images/Conferences/Chai2024_IGS.jpg' style="width: 80%;" >
-   <p style="font-size: smaller">Presenting
+   <p style="font-size: smaller">Presenting</p>
 </div>
 
 
