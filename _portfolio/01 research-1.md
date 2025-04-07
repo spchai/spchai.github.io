@@ -31,3 +31,11 @@ The results indicated that stress heterogeneity generally exists in all laborato
 <div style="text-align: center;line-height: 1.5;">
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the rotary shear (RS) test</p>
 </div>  
+
+<br/>
+
+### Related paper:
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across rock discontinuities: new insights from numerical simulations.
