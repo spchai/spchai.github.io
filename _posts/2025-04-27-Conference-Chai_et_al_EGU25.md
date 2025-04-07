@@ -11,7 +11,7 @@ tags:
 ---
 
 
-**Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 [Link](https://doi.org/10.5194/egusphere-egu25-7873).
+**Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 
 
 ## Abstract
