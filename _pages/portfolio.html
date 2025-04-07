@@ -8,13 +8,13 @@ author_profile: true
 {% include base_path %}
 
 
-{% capture written_collection %}'None'{% endcapture %}
+{% capture written_tag %}'None'{% endcapture %}
 
 {% for post in site.portfolio %}
-  {% capture collection %}{{ post.collection }}{% endcapture %}
-  {% if collection != written_collection %}
-    <h2 id="{{ collection | slugify }}" class="archive__subtitle">{{ collection }}</h2>
-    {% capture written_collection %}{{ collection }}{% endcapture %}
+  {% capture tag %}{{ post.tag }}{% endcapture %}
+  {% if tag != written_tag %}
+    <h2 id="{{ tag | slugify }}" class="archive__subtitle">{{ tag }}</h2>
+    {% capture written_tag %}{{ tag }}{% endcapture %}
   {% endif %}
   {% include archive-single.html %}
 {% endfor %}
