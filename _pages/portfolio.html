@@ -8,7 +8,18 @@ author_profile: true
 {% include base_path %}
 
 
-{% for post in site.portfolio %}
+
+
+
+
+{% capture written_collection %}'None'{% endcapture %}
+
+{% for research in site.portfolio %}
+  {% capture collection %}{{ portfolio.collection }}{% endcapture %}
+  {% if collection != written_collection %}
+    <h2 id="{{ collection | slugify }}" class="archive__subtitle">{{ collection }}</h2>
+    {% capture written_collection %}{{ collection }}{% endcapture %}
+  {% endif %}
   {% include archive-single.html %}
 {% endfor %}
 

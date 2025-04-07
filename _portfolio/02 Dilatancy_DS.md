@@ -9,9 +9,7 @@ In the stick phases, dilatancy behavior inferred from the asperity contacts agre
 <br/><img src='/images/Research/Dilatancy_DS.png' style='width: 95%;' />
 <br/>
 
-<video width="100%" controls>
-  <source src="/images/Research/Dilatancy_Contact_GS02.mp4" type="video/mp4">
-</video>
+[Video, Click here to view via OneDrive](https://connectpolyu-my.sharepoint.com/:v:/g/personal/22124299r_connect_polyu_hk/EatUICLWpnRAsOfxRaNewvkBGh6phe_aO6eSG5fgFNZEkQ)
 
 <div style="text-align: center;line-height: 1.5;">
   <p style="font-size: smaller">Contact evolution in GS02</p>
