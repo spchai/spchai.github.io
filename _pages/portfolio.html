@@ -10,8 +10,8 @@ author_profile: true
 
 {% capture written_collection %}'None'{% endcapture %}
 
-{% for research in site.portfolio %}
-  {% capture collection %}{{ research.collection }}{% endcapture %}
+{% for post in site.portfolio %}
+  {% capture collection %}{{ post.collection }}{% endcapture %}
   {% if collection != written_collection %}
     <h2 id="{{ collection | slugify }}" class="archive__subtitle">{{ collection }}</h2>
     {% capture written_collection %}{{ collection }}{% endcapture %}
