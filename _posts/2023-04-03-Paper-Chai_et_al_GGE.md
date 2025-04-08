@@ -7,7 +7,7 @@ tags:
   - Mining engineering
   - Numerical simulations
   - Underground stopes
-  - Analytical solotions
+  - Analytical solutions
 ---
 
 

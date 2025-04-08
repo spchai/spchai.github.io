@@ -7,7 +7,7 @@ tags:
   - Geotechnical engineering
   - Numerical simulations
   - Slope
-  - Analytical solotions
+  - Analytical solutions
 ---
 
 <img src='/images/Papers/Chai2023.png'>
