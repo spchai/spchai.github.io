@@ -157,6 +157,10 @@
       {% if author.zhihu %}
       <li><a href="{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>Zhihu</a></li>
       {% endif %}      
+
+      {% if author.CV %}
+      <li><a href="{{ author.CV }}"><i class="fa-light fa-file icon-pad-right" aria-hidden="true"></i>Download CV</a></li>
+      {% endif %}    
     </ul>
   </div>
 </div>

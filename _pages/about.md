@@ -83,9 +83,9 @@ Teaching
   
 Honors & Awards
 ------
-* 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
+* 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) at the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
-* 11/2024: [Second Prize](https://spchai.github.io/posts/2024/11/2nd_place/) in the Student Contest in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
+* 11/2024: [Second Prize](https://spchai.github.io/posts/2024/11/2nd_place/) at the Student Contest in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
 * 10/2024: 2024 IGS Student Sponsorship
 
