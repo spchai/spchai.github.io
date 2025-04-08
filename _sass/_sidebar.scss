@@ -88,17 +88,16 @@
     display: block;
     width: auto;
     height: auto;
-    margin: 0 auto;
+
   }
 
   img {
     max-width: 175px;
-    margin: 0 auto;
   // Add following script to show circle images
   //  border-radius: 50%;
     
-    @include breakpoint($large) {
-      padding: 5px;
+  //  @include breakpoint($large) {
+  //    padding: 5px;
   //    border: 1px solid $border-color;
     }
   }
