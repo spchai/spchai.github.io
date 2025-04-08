@@ -7,7 +7,6 @@ redirect_from:
   - /about/
   - /about.html
 ---
-
 Overview
 ------
 Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the **influences of fault roughness on rupture dynamics and stick-slip behavior** through integrated **laboratory experiments** and **numerical simulations** (shown in the figure). 
@@ -31,6 +30,7 @@ Education
 
 Employment
 ------
+* 2024-Present, Teaching Assistant, The Hong Kong Polytechnic University
 * 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
  
 Selected Publications ([See full list](https://spchai.github.io/publications/))
