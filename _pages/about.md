@@ -30,7 +30,7 @@ Education
 
 Employment
 ------
-* 2024-Present, Teaching Assistant, The Hong Kong Polytechnic University
+* 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
 * 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
  
 Selected Publications ([See full list](https://spchai.github.io/publications/))
