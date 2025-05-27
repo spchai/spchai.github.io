@@ -12,8 +12,10 @@ header:
     - label: "<i class='fas fa-download'></i> Install now"
       url: "/docs/quick-start-guide/"
 excerpt: >
-  PhD candidate at the Hong Kong Polytechnic University.<br />
-  <small>Rock mechanics and geophysics | Geotechnical engineering | Planetary Geomechanics | Mining backfill </small> 
+  PhD candidate at the Hong Kong Polytechnic University<br />
+  <br />
+  <small>Rock mechanics and geophysics | Geotechnical engineering </small> <br />
+  <small>Planetary Geomechanics | Mining backfill </small> 
   
 feature_row:
   - image_path: /assets/images/mm-customizable-feature.png

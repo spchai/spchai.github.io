@@ -10,9 +10,11 @@ redirect_from:
 
 {% include base_path %}
 
+<!-- 
 <div style="text-align: right">
   <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf">Download CV</a>
 </div>
+-->
 
 Overview
 ------
