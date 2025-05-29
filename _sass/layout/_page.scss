@@ -73,8 +73,9 @@
   }
 
   a {
-    text-decoration: underline;
-
+    text-decoration: none;
+    color: #0070C0;
+    
     &:hover {
       text-decoration: underline;
 
