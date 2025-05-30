@@ -5,7 +5,7 @@ hidden: true
 redirect_from: 
   - /about/
   - /about.html
-title:
+
 header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/mm-home-page-feature.jpg
@@ -15,13 +15,13 @@ header:
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
-      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 500px;" >
+      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 500px; border-radius: 50%;" >
     </div>
     <div class="profile-content">
       <h2 class="archive__item-title" itemprop="headline">
-        **Shupeng CHAI (柴术鹏)**
+        Shupeng CHAI (柴术鹏)
       </h2>  
-      **PhD candidate at the Hong Kong Polytechnic University**<br />
+      PhD candidate at the Hong Kong Polytechnic University<br />
       <br />
       <small>Rock mechanics and geophysics | Geotechnical engineering </small> <br />
       <small>Planetary Geomechanics | Mining backfill </small>
