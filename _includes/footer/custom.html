@@ -7,9 +7,9 @@
 
 <div itemscope itemtype="http://schema.org/Person">
 
-  <div class="author__urls-wrapper">
-    <button class="btn btn--inverse">Follow</button>
-    <ul class="author__urls social-icons">
+  <div class="social-links">
+
+
       <!-- Font Awesome icons / Biographic information  -->
       {% if author.email %}
         <a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
@@ -139,7 +139,7 @@
       {% if author.CV %}
       <a href="{{ author.CV }}"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
       {% endif %}    
-    </ul>
+
   </div>
 </div>
 
