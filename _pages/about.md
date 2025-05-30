@@ -5,7 +5,7 @@ hidden: true
 redirect_from: 
   - /about/
   - /about.html
-
+title: Shupeng CHAI (柴术鹏)
 header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/mm-home-page-feature.jpg
@@ -15,7 +15,7 @@ header:
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
-      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 500px; border-radius: 50%;" >
+      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 300px; border-radius: 50%;" >
     </div>
     <div class="profile-content">
       <h2 class="archive__item-title" itemprop="headline">
