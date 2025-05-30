@@ -15,7 +15,7 @@ header:
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
-      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" >
+      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 500px;" >
     </div>
     <div class="profile-content">
       <h2 class="archive__item-title" itemprop="headline">
