@@ -400,3 +400,31 @@
   font-size: $type-size-6;
   text-transform: uppercase;
 }
+
+
+/*
+   Added for home page: Introduction
+   ========================================================================== */
+.profile-columns {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin: 1.5rem 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.profile-image {
+  flex: 0 0 auto;
+  
+  img {
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+}
+
+.profile-content {
+  flex: 1;
+}

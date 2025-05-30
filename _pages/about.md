@@ -13,10 +13,18 @@ header:
     - label: "<i class='fas fa-download'></i> Install now"
       url: "/docs/quick-start-guide/"
 excerpt: >
-  PhD candidate at the Hong Kong Polytechnic University<br />
-  <br />
-  <small>Rock mechanics and geophysics | Geotechnical engineering </small> <br />
-  <small>Planetary Geomechanics | Mining backfill </small> 
+  <div class="profile-columns">
+    <div class="profile-image">
+      <img src="/assets/images/your-photo.jpg" alt="Shupeng CHAI" style="max-width: 200px; border-radius: 50%;">
+    </div>
+    <div class="profile-content">
+      PhD candidate at the Hong Kong Polytechnic University<br />
+      <br />
+      <small>Rock mechanics and geophysics | Geotechnical engineering </small> <br />
+      <small>Planetary Geomechanics | Mining backfill </small>
+    </div>
+  </div>
+
   
 feature_row:
   - image_path: /assets/images/mm-customizable-feature.png
