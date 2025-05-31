@@ -24,31 +24,29 @@ excerpt: >
         <br />
         I am also interested in Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
       </div>      
-      
-      <div itemscope itemtype="http://schema.org/Person">
-        <div class="social-links">
-          <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
-          <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i>
-          <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
-          <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
-          <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
-          <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
-          <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
-        </div>
+            
+      <div class="social-links">
+        <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
+        <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i>
+        <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
+        <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
+        <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
+        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
       </div>
     </div>
   </div>
 
   
 feature_row:
-  - image_path: /images/Research/Dilatancy_DS.png
+  - image_path: /Research/Dilatancy_DS.png
     alt: "Dilantancy during laboratory stick-slips"
     title: "Dilantancy during laboratory stick-slips"
     excerpt: "New results presented at EGU25"
     url: "https://spchai.github.io/portfolio/02_Dilatancy_DS/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
-  - image_path: /images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
+  - image_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
     alt: "Best Student Award in IGS2024"
     title: "Best Student Award in IGS2024"
     excerpt: "Shupeng won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the _2024 International Geomechanics Conference"
