@@ -27,42 +27,13 @@ excerpt: >
       
       <div itemscope itemtype="http://schema.org/Person">
         <div class="social-links">
-          {% if author.email %}
-            <a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.googlescholar %}
-            <a href="{{ author.googlescholar }}"><i class="ai ai-google-scholar icon-pad-right"></i>
-          {% endif %}
-          {% if author.orcid %}
-            <a href="{{ author.orcid }}"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
-          {% endif %}
-          {% if author.researchgate %}
-            <a href="{{ author.researchgate }}"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.scopus %}
-            <a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
-          {% endif %}
-          {% if author.facebook %}
-            <a href="https://www.facebook.com/{{ author.facebook }}"><i class="fab fa-fw fa-facebook-f icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.instagram %}
-            <a href="https://instagram.com/{{ author.instagram }}"><i class="fab fa-fw fa-instagram icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.linkedin %}
-            <a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
-          {% endif %} 
-          {% if author.twitter %}
-            <a href="https://twitter.com/{{ author.twitter }}"><i class="fab fa-fw fa-x-twitter icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.youtube %}
-            <a href="https://www.youtube.com/user/{{ author.youtube }}"><i class="fab fa-fw fa-youtube icon-pad-right" aria-hidden="true"></i>
-          {% endif %}
-          {% if author.zhihu %}
-          <a href="{{ author.zhihu }}"><i class="fab fa-fw fa-zhihu icon-pad-right" aria-hidden="true"></i>
-          {% endif %}      
-          {% if author.CV %}
+          <a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
+          <a href="{{ author.googlescholar }}"><i class="ai ai-google-scholar icon-pad-right"></i>
+          <a href="{{ author.orcid }}"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
+          <a href="{{ author.researchgate }}"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
+          <a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
+          <a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
           <a href="{{ author.CV }}"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
-          {% endif %} 
         </div>
       </div>
     </div>
