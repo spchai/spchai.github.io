@@ -26,13 +26,13 @@ excerpt: >
       </div>      
             
       <div class="social-links">
-        <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
-        <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i>
-        <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
-        <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
-        <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
-        <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
-        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i><br /> 
+        <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i></a>
+        <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i></a>
+        <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i></a>
+        <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i></a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i></a>
+        <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i></a>
+        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
@@ -49,7 +49,7 @@ feature_row:
   - image_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
     alt: "Best Student Award in IGS2024"
     title: "Best Student Award in IGS2024"
-    excerpt: "Shupeng won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the <em>2024 International Geomechanics</em> Conference_"
+    excerpt: "Shupeng won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the <em>2024 International Geomechanics</em> Conference"
     url: "https://spchai.github.io/posts/2024/11/Best_Student_Award/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
