@@ -25,7 +25,7 @@ excerpt: >
         I am also interested in Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
       </div>      
             
-      <div class="social-links">
+      <div class="body-social-links">
         <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i></a>
         <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i></a>
         <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i></a>

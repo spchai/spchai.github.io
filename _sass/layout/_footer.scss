@@ -120,3 +120,30 @@
     font-weight: 600;
     color: inherit;
 }
+
+
+.body-social-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    justify-items: center;
+    margin-top: 20px;
+}
+
+.body-social-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.body-social-links img {
+    width:150px;
+}
+
+.body-social-links p {
+    font-size: .875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: inherit;
+}
