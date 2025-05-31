@@ -5,7 +5,6 @@ hidden: true
 redirect_from: 
   - /about/
   - /about.html
-title: Shupeng CHAI (柴术鹏)
 header:
   overlay_color: "#5e616c"
   overlay_image: /assets/images/mm-home-page-feature.jpg
