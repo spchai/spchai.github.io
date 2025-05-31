@@ -26,13 +26,13 @@ excerpt: >
       </div>      
       <br />      
       <div class="body-social-links">
-        <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i></a>
+        <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-regular fa-envelope icon-pad-right" aria-hidden="true"></i></a>
         <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i></a>
         <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i></a>
         <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i></a>
         <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i></a>
-        <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i></a>
-        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-regular fa-linkedin icon-pad-right" aria-hidden="true"></i></a>
+        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-regular fa-file icon-pad-right" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
