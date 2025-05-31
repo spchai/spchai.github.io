@@ -32,7 +32,8 @@ excerpt: >
         <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
         <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
         <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
-        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
+        <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i><br /> 
+
       </div>
     </div>
   </div>
