@@ -20,11 +20,11 @@ excerpt: >
       </div>
       <br /> 
       <div class="archive__item-body">
-        I am currently working on the <strong>influences of fault roughness on rupture dynamics and stick-slip behavior</strong> through integrated <strong>laboratory experiments</strong> and <strong>numerical simulations</strong>  <br /> 
+        I am currently working on the <strong>earthquake mechanics</strong> through integrated <em>laboratory experiments</em> and <em>numerical simulations</em>.  <br /> 
         <br />
-        I am also interested in Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
+        <strong>Interests on</strong> Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
       </div>      
-            
+      <br />      
       <div class="body-social-links">
         <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i></a>
         <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i></a>
