@@ -10,15 +10,17 @@ header:
   overlay_image: /assets/images/mm-home-page-feature.jpg
 excerpt: >
   <div class="profile-columns">
-    <div class="profile-content">
-      <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
-      <h3> PhD candidate at the Hong Kong Polytechnic University </h3> <br /> 
-      <br />
-      <h3>Rock mechanics and geophysics | Geotechnical engineering </h3> <br />
-      <h3>Planetary Geomechanics | Mining backfill </h3>
-    </div>
     <div class="profile-image">
       <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 300px; border-radius: 50%;" >
+    </div>
+    <div class="profile-content">
+      <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
+      <div class="archive__item-excerpt">
+        PhD candidate at the Hong Kong Polytechnic University <br /> 
+        <br />
+      </div>
+      <h3>Rock mechanics and geophysics | Geotechnical engineering </h3> <br />
+      <h3>Planetary Geomechanics | Mining backfill </h3>
     </div>
   </div>
 
