@@ -15,7 +15,7 @@ excerpt: >
     </div>
     <div class="profile-content">
       <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
-      <div class="archive__item-excerpt">
+      <div class="archive__subtitle">
         PhD candidate at the Hong Kong Polytechnic University <br /> 
         <br />
       </div>
