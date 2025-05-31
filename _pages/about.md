@@ -27,13 +27,13 @@ excerpt: >
       
       <div itemscope itemtype="http://schema.org/Person">
         <div class="social-links">
-          <a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
-          <a href="{{ author.googlescholar }}"><i class="ai ai-google-scholar icon-pad-right"></i>
-          <a href="{{ author.orcid }}"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
-          <a href="{{ author.researchgate }}"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
-          <a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
-          <a href="https://www.linkedin.com/in/{{ author.linkedin }}"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
-          <a href="{{ author.CV }}"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
+          <a href="mailto:shupeng.chai@connect.polyu.hk"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i>
+          <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en"><i class="ai ai-google-scholar icon-pad-right"></i>
+          <a href="https://orcid.org/0000-0003-3600-6132"><i class="ai ai-orcid ai-fw icon-pad-right"></i>
+          <a href="https://www.researchgate.net/profile/Shupeng-Chai"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i>
+          <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600"><i class="ai ai-scopus ai-fw icon-pad-right"></i>
+          <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US"><i class="fab fa-fw fa-linkedin icon-pad-right" aria-hidden="true"></i>
+          <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i>
         </div>
       </div>
     </div>
@@ -41,18 +41,18 @@ excerpt: >
 
   
 feature_row:
-  - image_path: /assets/images/mm-customizable-feature.png
-    alt: "customizable"
-    title: "Super customizable"
-    excerpt: "Everything from the menus, sidebars, comments, and more can be configured or set with YAML Front Matter."
-    url: "/docs/configuration/"
+  - image_path: /images/Research/Dilatancy_DS.png
+    alt: "Dilantancy during laboratory stick-slips"
+    title: "Dilantancy during laboratory stick-slips"
+    excerpt: "New results presented at EGU25"
+    url: "https://spchai.github.io/portfolio/02_Dilatancy_DS/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
-  - image_path: /assets/images/mm-responsive-feature.png
-    alt: "fully responsive"
-    title: "Responsive layouts"
-    excerpt: "Built with HTML5 + CSS3. All layouts are fully responsive with helpers to augment your content."
-    url: "/docs/layouts/"
+  - image_path: /images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
+    alt: "Best Student Award in IGS2024"
+    title: "Best Student Award in IGS2024"
+    excerpt: "Shupeng won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the _2024 International Geomechanics Conference"
+    url: "https://spchai.github.io/posts/2024/11/Best_Student_Award/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
   - image_path: /assets/images/mm-free-feature.png
