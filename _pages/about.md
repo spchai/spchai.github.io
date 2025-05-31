@@ -17,8 +17,8 @@ excerpt: >
       <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
       <div class="archive__subtitle">
         PhD candidate at the Hong Kong Polytechnic University <br /> 
-        <br />
       </div>
+      <br /> 
       <div class="archive__item-body">
         I am currently working on the <strong>influences of fault roughness on rupture dynamics and stick-slip behavior</strong> through integrated <strong>laboratory experiments</strong> and <strong>numerical simulations</strong>  <br /> 
         <br />
