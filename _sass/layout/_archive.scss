@@ -161,6 +161,13 @@
   @include clearfix();
   margin-bottom: 2em;
   border-bottom: 1px solid var(--global-border-color);
+
+  @include breakpoint($small) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    gap: 20px;
+  }
 }
 
 .feature__item {
@@ -169,11 +176,20 @@
 
   @include breakpoint($small) {
     margin-bottom: 0;
-    @include gallery(4 of 12);
-
+    display: flex;
+    flex-direction: column;
+    // @include gallery(4 of 12);
+    
     .feature__item-teaser {
-      max-height: 200px;
+      flex: 1;
+      max-height: none;    // 200px;
       overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 
