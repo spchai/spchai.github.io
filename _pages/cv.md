@@ -34,6 +34,7 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 Education
 ------
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
+* 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 * 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
 
@@ -57,6 +58,7 @@ Selected Publications ([See full list](https://spchai.github.io/publications/))
 
 
 ### Published
+1. Liu S, Wu B, Krasilnikov S, Zhu J, Chen Z, **Chai S**, Zhao Q, Li Y, Michalski J. Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting. _Scientific Reports_. 15(1): 25555. https://doi.org/10.1038/s41598-025-11171-y. ([Link](https://doi.org/10.1038/s41598-025-11171-y)).
 
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 

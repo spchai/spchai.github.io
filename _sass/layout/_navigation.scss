@@ -203,7 +203,12 @@
   }
 
   .visible-links {
-    display: table;
+    // display: table;
+
+    // Align right
+    display: flex;
+    justify-content: flex-end;  
+    margin-left: auto;          
 
     li {
       display: table-cell;
@@ -212,7 +217,7 @@
       &:first-child {
         font-weight: bold;
         text-wrap: wrap;
-
+        margin-right: auto;     // added
         a {
           margin-left: 0;
         }
