@@ -203,50 +203,40 @@
   }
 
   .visible-links {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    
+    display: table;
+
     li {
-      flex: none;
-      white-space: nowrap; // 防止文字换行
-      
-      // 第一个项目左对齐
+      display: table-cell;
+      vertical-align: middle;
+
       &:first-child {
-        margin-right: auto; // 推动其他项目到右边
         font-weight: bold;
-        
+        text-wrap: wrap;
+
         a {
           margin-left: 0;
         }
       }
-      
-      // 其余项目右对齐
-      &:not(:first-child) {
-        margin-left: 1.5rem; // 项目间距
-      }
-      
-      // 最后一个项目调整右边距
+
       &:last-child {
         a {
           margin-right: 0;
         }
       }
     }
-    
-    // 保持原有的悬停效果
+
+    #theme-toggle {
+      a {
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        cursor: pointer;
+      }
+    }
+
     a {
       position: relative;
-      display: block;
-      margin: 0 1rem;
-      padding: 0.5rem 0;
-      color: var(--global-masthead-link-color);
-      text-decoration: none;
-      
-      &:hover {
-        color: var(--global-masthead-link-color-hover);
-      }
-      
+
       &:before {
         content: "";
         position: absolute;
@@ -255,74 +245,20 @@
         height: 4px;
         background: var(--global-border-color);
         width: 100%;
+        -webkit-transition: $global-transition;
         transition: $global-transition;
-        transform: scaleX(0);
+        -webkit-transform: scaleX(0);
+            -ms-transform: scaleX(0);
+                transform: scaleX(0); /* hide*/
       }
-      
+
       &:hover:before {
-        transform: scaleX(1);
+        -webkit-transform: scaleX(1);
+            -ms-transform: scaleX(1);
+                transform: scaleX(1); /* reveal*/
       }
     }
   }
-
-  // .visible-links {
-  //   display: table;
-
-  //   li {
-  //     display: table-cell;
-  //     vertical-align: middle;
-
-  //     &:first-child {
-  //       font-weight: bold;
-  //       text-wrap: wrap;
-
-  //       a {
-  //         margin-left: 0;
-  //       }
-  //     }
-
-  //     &:last-child {
-  //       a {
-  //         margin-right: 0;
-  //       }
-  //     }
-      
-  //   }
-
-  //   #theme-toggle {
-  //     a {
-  //       width: 25px;
-  //       display: flex;
-  //       justify-content: center;
-  //       cursor: pointer;
-  //     }
-  //   }
-
-  //   a {
-  //     position: relative;
-
-  //     &:before {
-  //       content: "";
-  //       position: absolute;
-  //       left: 0;
-  //       bottom: 0;
-  //       height: 4px;
-  //       background: var(--global-border-color);
-  //       width: 100%;
-  //       -webkit-transition: $global-transition;
-  //       transition: $global-transition;
-  //       -webkit-transform: scaleX(0);
-  //           -ms-transform: scaleX(0);
-  //               transform: scaleX(0); /* hide*/
-  //     }
-
-  //     &:hover:before {
-  //       -webkit-transform: scaleX(1);
-  //           -ms-transform: scaleX(1);
-  //               transform: scaleX(1); /* reveal*/
-  //     }
-  //   }
-  // }
 
   .hidden-links {
     position: absolute;
