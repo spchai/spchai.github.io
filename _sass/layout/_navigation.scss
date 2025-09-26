@@ -203,12 +203,24 @@
   }
 
   .visible-links {
-    // display: table;
-
-    // Align right
-    display: flex;
-    justify-content: flex-end;  
-    margin-left: auto;          
+    display: table;
+    width: 100%;
+    
+    .nav-right-container {
+      display: table-cell;
+      text-align: right;
+      width: 1%; 
+      white-space: nowrap;
+      
+      .nav-right {
+        display: inline-block;
+        margin-left: 1rem;
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
 
     li {
       display: table-cell;
@@ -217,7 +229,7 @@
       &:first-child {
         font-weight: bold;
         text-wrap: wrap;
-        margin-right: auto;     // added
+
         a {
           margin-left: 0;
         }
