@@ -6,7 +6,7 @@ redirect_from:
   - /about/
   - /about.html
 header:
-  overlay_color: "#ffffffff"
+  overlay_color: "#5e616c"
   overlay_image: /assets/images/mm-home-page-feature.jpg
 excerpt: >
   <div class="profile-columns">
