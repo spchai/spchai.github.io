@@ -49,7 +49,7 @@ feature_row:
   - image_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
     alt: "Best Student Award in IGS2024"
     title: "Best Student Award in IGS2024"
-    excerpt: "Shupeng won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the <em>2024 International Geomechanics</em> Conference"
+    excerpt: "Won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the <em>2024 International Geomechanics</em> Conference"
     url: "https://spchai.github.io/posts/2024/11/Best_Student_Award/"
     btn_class: "btn--primary"
     btn_label: "Learn more"

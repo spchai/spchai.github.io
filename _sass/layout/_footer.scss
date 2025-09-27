@@ -142,8 +142,12 @@
 }
 
 .body-social-links p {
-    font-size: 2rem;
+    font-size: .875rem;
     line-height: 1rem;
     font-weight: 600;
     color: inherit;
+}
+
+.body-social-links i {
+    font-size: 2.2em; // 或 32px、40px，根据需要调整
 }
