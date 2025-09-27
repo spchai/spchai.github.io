@@ -1,11 +1,10 @@
 ---
 layout: splash
-permalink: 
+permalink: /
 hidden: true
 redirect_from: 
   - /about/
   - /about.html
-  - /home
 header:
   overlay_color: "#ffffffff"
   overlay_image: /assets/images/mm-home-page-feature.jpg
