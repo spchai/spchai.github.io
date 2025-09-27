@@ -53,7 +53,13 @@ feature_row:
     url: "https://spchai.github.io/posts/2024/11/Best_Student_Award/"
     btn_class: "btn--primary"
     btn_label: "Learn more"
- 
+  - image_path: /Awards/2023-08-12-Awarding_Best_Poster_Award.png
+    alt: "Best Poster Award in 2023 ARMA East Asia workshop"
+    title: "Best Poster Award in 2023 ARMA East Asia workshop"
+    excerpt: "Won Best Poster Award for the poster presentation entitled Stress analyses of laboratory shear tests in <em>2023 ARMA East Asia Geomechanics Workshop</em> held on 11 – 12 August in Hong Kong"
+    url: "https://spchai.github.io/posts/2023/08/Best_Poster_Award/"
+    btn_class: "btn--primary"
+    btn_label: "Learn more"
 ---
 
 {% include feature_row %}
