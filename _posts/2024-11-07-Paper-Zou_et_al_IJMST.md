@@ -10,7 +10,7 @@ tags:
 ---
 
 
-Zou Y, Wu H, **Chai S**, Yang W, Ruan R, & Zhao Q (2024). Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples. _International Journal of Mining Science and Technology_. https://doi.org/10.1016/j.ijmst.2024.08.006 ([Link](https://doi.org/10.1016/j.ijmst.2024.08.006)).
+Zou Y, Wu H, **Chai S**, Yang W, Ruan R, & Zhao Q (2024). Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples. _International Journal of Mining Science and Technology_. 2024, 34(9): 1317-1326. https://doi.org/10.1016/j.ijmst.2024.08.006 ([Link](https://doi.org/10.1016/j.ijmst.2024.08.006)).
 
 
 
