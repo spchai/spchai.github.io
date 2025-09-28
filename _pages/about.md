@@ -6,8 +6,8 @@ redirect_from:
   - /about/
   - /about.html
 header:
-  overlay_color: 
-  overlay_image: 
+  overlay_color: "#ffffff"
+  overlay_image: "/images/home-page.jpg"
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
