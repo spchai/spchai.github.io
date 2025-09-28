@@ -24,33 +24,8 @@ excerpt: >
         <br />
         <strong>Interests on</strong> Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
       </div>      
-      <br />      
-    <div class="body-social-links">
-      <a href="mailto:shupeng.chai@connect.polyu.hk">
-        <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">
-        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://orcid.org/0000-0003-3600-6132">
-        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.researchgate.net/profile/Shupeng-Chai">
-        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600">
-        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US">
-        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf">
-        <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
-      </a>
-    </div>
     </div>
   </div>
-
   
 feature_row:
   - image_path: /Research/Dilatancy_DS.png
@@ -80,3 +55,27 @@ feature_row:
 
 <!-- <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.27.1">Latest release v4.27.1</a></small> -->
 
+<!-- <br />      
+    <div class="body-social-links">
+      <a href="mailto:shupeng.chai@connect.polyu.hk">
+        <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">
+        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://orcid.org/0000-0003-3600-6132">
+        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://www.researchgate.net/profile/Shupeng-Chai">
+        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600">
+        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US">
+        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
+      </a>
+      <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf">
+        <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
+      </a>
+    </div> -->
