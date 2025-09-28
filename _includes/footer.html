@@ -25,10 +25,6 @@
 -->
 
 <div class="footer-flex">
-  <div class="page__footer-copyright">
-    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} 
-    <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.
-  </div>
   <div class="body-social-links">
     {% if author.email %}
       <a href="mailto:{{ author.email }}">
@@ -66,5 +62,9 @@
       </a>
     {% endif %}
   </div>
-
+  
+  <div class="page__footer-copyright">
+    &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} 
+    <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.
+  </div>
 </div>
