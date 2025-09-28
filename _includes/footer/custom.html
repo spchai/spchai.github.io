@@ -8,15 +8,50 @@
 <div itemscope itemtype="http://schema.org/Person">
 
   <div class="body-social-links">
+    {% if author.email %}
+      <a href="mailto:{{ author.email }}">
+        <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.googlescholar %}
+      <a href="{{ author.googlescholar }}">
+        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.orcid %}
+      <a href="{{ author.orcid }}">
+        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.researchgate %}
+      <a href="{{ author.researchgate }}">
+        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.scopus %}
+      <a href="{{ author.scopus }}">
+        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.linkedin %}
+      <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
+        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
+    {% if author.CV %}
+      <a href="{{ author.CV }}">
+        <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
+      </a>
+    {% endif %}
 
 
       <!-- Font Awesome icons / Biographic information  -->
-      {% if author.email %}
+      <!-- {% if author.email %}
         <a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope icon-pad-right" aria-hidden="true"></i></a>
-      {% endif %}
+      {% endif %} -->
 
       <!-- Font Awesome and Academicons icons / Academic websites -->
-      {% if author.arxiv %}
+      <!-- {% if author.arxiv %}
         <a href="{{ author.arxiv }}"><i class="ai ai-arxiv ai-fw icon-pad-right"></i></a>
       {% endif %}      
       {% if author.googlescholar %}
@@ -35,15 +70,17 @@
         <a href="{{ author.pubmed }}"><i class="ai ai-pubmed ai-fw icon-pad-right"></i></a>
       {% endif %}                        
       {% if author.researchgate %}
- <!--       <a href="{{ author.researchgate }}"><i class="fab fa-fw fa-researchgate icon-pad-right" aria-hidden="true"></i></a>ResearchGate</a>    -->
         <a href="{{ author.researchgate }}"><i class="ai ai-researchgate ai-fw icon-pad-right" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.scopus %}
         <a href="{{ author.scopus }}"><i class="ai ai-scopus ai-fw icon-pad-right"></i></a>
       {% endif %}
+ -->
 
+
+      
       <!-- Font Awesome icons / Repositories and software development -->
-      {% if author.bitbucket %}
+      <!-- {% if author.bitbucket %}
         <a href="https://bitbucket.org/{{ author.bitbucket }}"><i class="fab fa-fw fa-bitbucket icon-pad-right" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.codepen %}
@@ -60,10 +97,10 @@
       {% endif %}      
       {% if author.stackoverflow %}
         <a href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}"><i class="fab fa-fw fa-stack-overflow icon-pad-right" aria-hidden="true"></i></a>
-      {% endif %}      
+      {% endif %}       -->
 
       <!-- Font Awesome icons / Social media -->
-      {% if author.bluesky %}
+      <!-- {% if author.bluesky %}
         <a href="https://bsky.app/profile/{{ author.bluesky }}"><i class="fab fa-fw fa-bluesky icon-pad-right" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.facebook %}
@@ -138,7 +175,7 @@
 
       {% if author.CV %}
       <a href="{{ author.CV }}"><i class="fa-solid fa-file icon-pad-right" aria-hidden="true"></i></a>
-      {% endif %}    
+      {% endif %}     -->
 
   </div>
 </div>
