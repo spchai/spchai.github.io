@@ -45,22 +45,7 @@
 }
 
 .masthead__menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 
-  .nav-left {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-  }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-  
   ul {
     margin: 0;
     padding: 0;
