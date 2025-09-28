@@ -6,8 +6,8 @@ redirect_from:
   - /about/
   - /about.html
 header:
-  overlay_color: "#5e616c"
-  overlay_image: "/images/home-page.jpg"
+  overlay_color: 
+  overlay_image: 
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
@@ -53,9 +53,13 @@ feature_row:
 
 {% include feature_row %}
 
-<!-- <small><a href="https://github.com/mmistakes/minimal-mistakes/releases/tag/4.27.1">Latest release v4.27.1</a></small> -->
 
-<!-- <br />      
+<!-- 
+header:
+  overlay_color: "#5e616c"
+  overlay_image: "/images/home-page.jpg"
+
+<br />      
     <div class="body-social-links">
       <a href="mailto:shupeng.chai@connect.polyu.hk">
         <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
