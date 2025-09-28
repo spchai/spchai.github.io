@@ -159,7 +159,12 @@
 .footer-flex {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.footer-flex .body-social-links {
+flex: 1 1 360px; 
+min-width: 320px; 
 }
