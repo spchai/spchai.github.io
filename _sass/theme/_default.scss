@@ -44,4 +44,12 @@ $sidebar-screen-min-width   : 1024px;
     --global-text-color                 : #{$dark-gray};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$lighter-gray};
+
+    --email-icon                        : url("/images/icons/email.svg");
+    --google-scholar-icon               : url("/images/icons/google-scholar.svg");
+    --orcid-icon                        : url("/images/icons/orcid.svg");
+    --researchgate-icon                 : url("/images/icons/researchgate.svg");
+    --scopus-icon                       : url("/images/icons/scopus.svg");
+    --linkedin-icon                     : url("/images/icons/linkedin.svg");    
+    --CV-icon                           : url("/images/icons/cv.svg");
 }
