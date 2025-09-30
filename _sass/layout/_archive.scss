@@ -32,7 +32,7 @@
   margin: 1.414em 0 0;
   padding-bottom: 0.5em;
   font-size: $type-size-5;
-  color: mix(#000, $gray, 60%)   // var(--global-text-color-light);
+  color: #777777   // var(--global-text-color-light);
   border-bottom: 1px solid var(--global-border-color);
 
   + .list__item .archive__item-title {
