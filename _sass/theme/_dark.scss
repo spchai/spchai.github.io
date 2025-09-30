@@ -51,12 +51,4 @@ html[data-theme="dark"] {
     --global-text-color                 : #{$text};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$background-lighter};
-
-    --email-icon                        : url("/images/icons/email_d.svg");
-    --google-scholar-icon               : url("/images/icons/google-scholar_d.svg");
-    --orcid-icon                        : url("/images/icons/orcid_d.svg");
-    --researchgate-icon                 : url("/images/icons/researchgate_d.svg");
-    --scopus-icon                       : url("/images/icons/scopus_d.svg");
-    --linkedin-icon                     : url("/images/icons/linkedin_d.svg");    
-    --CV-icon                           : url("/images/icons/cv_d.svg");
 }
