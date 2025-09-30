@@ -155,6 +155,12 @@
     font-size: 32px; // 或 32px、40px，根据需要调整
 }
 
+.icon-dark { display: none; }
+
+/* Shown at dark theme */
+[data-theme="dark"] .icon-light { display: none; }
+
+
 
 .footer-flex {
   display: flex;
