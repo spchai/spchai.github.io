@@ -159,7 +159,7 @@
 
 /* Shown at dark theme */
 [data-theme="dark"] .icon-light { display: none; }
-
+[data-theme="dark"] .icon-dark { display: flex; }
 
 
 .footer-flex {
