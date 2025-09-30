@@ -139,13 +139,13 @@
       }
     }
 
-    .page__title,
-    .page__meta,
-    .page__lead,
-    .btn {
-      color: #fff;
-      text-shadow: 1px 1px 4px rgba(#000, 0.5);
-    }
+    // .page__title,
+    // .page__meta,
+    // .page__lead,
+    // .btn {
+    //   color: #fff;
+    //   text-shadow: 1px 1px 4px rgba(#000, 0.5);
+    // }
 
     .page__lead {
       max-width: $medium;
@@ -427,5 +427,5 @@
 
 .profile-content {
   flex: 1;
-  color: #ffffff !important;
+  // color: #ffffff !important;
 }

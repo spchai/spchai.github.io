@@ -7,7 +7,8 @@ redirect_from:
   - /about.html
 header:
   overlay_color: "#5e616c"
-  overlay_image: images/home-page.jpg
+  overlay_image: "https://spchai.github.io/images/home-page.jpg"
+  overlay_filter: "rgba(255, 255, 255, 0.7)"
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
