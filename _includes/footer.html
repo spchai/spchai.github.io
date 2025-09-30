@@ -24,7 +24,7 @@
 <div class="page__footer-copyright">&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.</div>
 -->
 
-<!-- <div class="footer-flex">
+<div class="footer-flex">
   <div class="body-social-links">
     {% if author.email %}
       <a href="mailto:{{ author.email }}">
@@ -61,50 +61,11 @@
         <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
       </a>
     {% endif %}
-  </div> -->
-
-<div class="footer-flex">
-  <div class="body-social-links">
-    {% if author.email %}
-      <a href="mailto:{{ author.email }}">
-        <img src=var(--email-icon) alt="Email" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.googlescholar %}
-      <a href="{{ author.googlescholar }}">
-        <img src=var(--google-scholar) alt="Google Scholar" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.orcid %}
-      <a href="{{ author.orcid }}">
-        <img src=var(--orcid-icon) alt="ORCID" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.researchgate %}
-      <a href="{{ author.researchgate }}">
-        <img src=var(--researchgate-icon) alt="ResearchGate" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.scopus %}
-      <a href="{{ author.scopus }}">
-        <img src=var(--scopus-icon) alt="Scopus" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.linkedin %}
-      <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
-        <img src=var(--linkedin-icon) alt="LinkedIn" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
-    {% if author.CV %}
-      <a href="{{ author.CV }}">
-        <img src=var(--CV-icon) alt="CV" class="icon-pad-right" style="height:32px;">
-      </a>
-    {% endif %}
   </div>
   
-
   <div class="page__footer-copyright">
     &copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}. {{ site.data.ui-text[site.locale].powered_by | default: "Powered by" }} 
     <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.
+    Last updated {{ "now" | date: '%Y-%m-%d' }}
   </div>
 </div>
