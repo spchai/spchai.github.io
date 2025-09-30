@@ -8,7 +8,7 @@ redirect_from:
 header:
   overlay_color: "#5e616c"
   overlay_image: "https://spchai.github.io/images/home-page.jpg"
-  overlay_filter: "rgba(255, 255, 255, 0.8)"
+  overlay_filter: "rgba(255, 255, 255, 0.75)"
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
