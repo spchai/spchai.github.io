@@ -6,10 +6,10 @@ author_profile: false
 sidebar:
   title: "Research"
   nav: 
-    - url: /research/#stress-heterogeneity-on-faults
-      title: "Stress heterogeneity"
-    - url: /research/#planetary-science
-      title: "Planetary science"
+    {% for item in site.data.research_nav %}
+    - title: "{{ item.title }}"
+      url: /research/#{{ item.slug }}
+    {% endfor %}
 ---
 
 {% include base_path %}
