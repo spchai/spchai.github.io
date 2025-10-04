@@ -5,11 +5,6 @@ permalink: /research/
 author_profile: false
 sidebar:
   title: "Research"
-  nav: 
-    - title: "Stress heterogeneity"
-      url: "/research/#stress-heterogeneity-on-faults"
-    - title: "Planetary science"
-      url: "/research/#planetary-science"
 ---
 
 {% include base_path %}
@@ -24,3 +19,7 @@ sidebar:
   {% endif %}
   {% include archive-single.html %}
 {% endfor %}
+
+<div class="sidebar sticky"></div>
+  {% include nav_list nav=site.data.research_nav %}
+</div>
