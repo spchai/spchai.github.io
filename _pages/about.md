@@ -34,22 +34,16 @@ feature_row:
     title: "Dilantancy during laboratory stick-slips"
     excerpt: "New results presented at EGU25 on the effects of fault roughness on dilatancy behavior observed from controlled laboratory experiments"
     url: "https://spchai.github.io/portfolio/02_Dilatancy_DS/"
-    btn_class: "btn--primary"
-    btn_label: "Learn more"
   - image_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
     alt: "Best Student Award in IGS2024"
     title: "Best Student Award in IGS2024"
     excerpt: "Won Best Student Award for the oral presentation entitled New insights into stress conditions on rock discontinuities in laboratory shear tests in the <em>2024 International Geomechanics</em> Conference"
     url: "https://spchai.github.io/posts/2024/11/Best_Student_Award/"
-    btn_class: "btn--primary"
-    btn_label: "Learn more"
   - image_path: /Awards/2023-08-12-Awarding_Best_Poster_Award.png
     alt: "Best Poster Award in 2023 ARMA East Asia workshop"
     title: "Best Poster Award in 2023 ARMA East Asia workshop"
     excerpt: "Won Best Poster Award for the poster presentation entitled Stress analyses of laboratory shear tests in <em>2023 ARMA East Asia Geomechanics Workshop</em> held on 11 – 12 August in Hong Kong"
     url: "https://spchai.github.io/posts/2023/08/Best_Poster_Award/"
-    btn_class: "btn--primary"
-    btn_label: "Learn more"
 ---
 
 {% include feature_row %}
