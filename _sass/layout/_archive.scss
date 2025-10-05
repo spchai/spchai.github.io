@@ -124,18 +124,6 @@
   }
 }
 
-.archive__item {
-  @include breakpoint($small) {
-    margin-bottom: 0;
-    @include gallery(4 of 12);
-
-    .feature__item-teaser {
-      max-height: 200px;
-      overflow: hidden;
-    }
-  }
-}
-
 /*
    Grid view
    ========================================================================== */
