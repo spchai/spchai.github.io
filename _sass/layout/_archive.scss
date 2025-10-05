@@ -99,6 +99,26 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   align-items: start;
+  
+  /* 平板端：2列 */
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  /* 手机端：1列 */
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* 小手机端优化 */
+  @media (max-width: 480px) {
+    gap: 10px;
+    max-width: 100%;
+  }
 }
 
 
