@@ -58,7 +58,7 @@ redirect_from:
           {% endif %}
 
           {% if post.excerpt %}
-          <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
         </article>
 
@@ -77,6 +77,6 @@ redirect_from:
     {% capture written_year %}{{ year }}{% endcapture %}
   {% endif %}
 
-  {% include archive-single.html %}
+  {% include archive-single.html type="grid" %}
 {% endfor %} -->
 {% endcomment %}
