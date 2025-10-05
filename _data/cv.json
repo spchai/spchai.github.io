@@ -1,15 +1,15 @@
 {
   "basics": {
-    "name": "Your Sidebar Name",
-    "email": "none@example.org",
-    "phone": "",
-    "website": "https://academicpages.github.io",
-    "summary": "Currently employed at Red Brick University. Short biography for the left-hand sidebar",
+    "name": "Shupeng Chai (柴术鹏)",
+    "email": "shupeng.chai@outlook.com",
+    "phone": "+852-9586 5934",
+    "website": "https://spchai.github.io/",
+    "summary": "PhD candidate at the Hong Kong Polytechnic University. I am currently working on the <strong>earthquake mechanics</strong> through integrated <em>laboratory experiments</em> and <em>numerical simulations",
     "location": {
       "address": "",
       "postalCode": "",
-      "city": "Earth",
-      "countryCode": "US",
+      "city": "Hong Kong",
+      "countryCode": "China",
       "region": ""
     },
     "profiles": [
