@@ -21,6 +21,20 @@ redirect_from:
     <div class="grid__wrapper">
       {% for post in year_group.items %}
         <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+          {% if post.image_path %}
+            <div class="archive__item-teaser">
+              <img 
+                style="height:270px;object-fit:cover;" 
+                src=
+                {% if f.image_path contains "://" %}
+                  "{{ f.image_path }}"
+                {% else %}
+                  "{{ f.image_path | prepend: "/images/" | prepend: base_path }}"
+                {% endif %}
+              alt="{% if f.alt %}{{ f.alt }}{% endif %}">
+            </div>
+          {% endif %}
+
           {% if post.id %}
             {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
           {% else %}
