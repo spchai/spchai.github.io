@@ -2,6 +2,7 @@
 title: 'Conference: Possible moonquakes and tectonic activities inferred from crater landslides'
 date: 2024-12-12
 permalink: /posts/2024/12/Chai_et_al_AGU25/
+image_path: /Conferences/Chai_et_al_AGU24.png
 tags:
   - Conference
   - Planetary science
