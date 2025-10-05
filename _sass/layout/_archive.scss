@@ -125,22 +125,13 @@
 }
 
 .archive__item {
-  margin-bottom: 2em;
-
   @include breakpoint($small) {
-    @include gallery(5 of 10);
-    .archive__item-teaser {
+    margin-bottom: 0;
+    @include gallery(4 of 12);
+
+    .feature__item-teaser {
       max-height: 200px;
-    }
-  }
-
-  @include breakpoint($medium) {
-    margin-left: 0; /* reset before mixin does its thing*/
-    margin-right: 0; /* reset before mixin does its thing*/
-    @include gallery(2.5 of 10);
-
-    .archive__item-teaser {
-      max-height: 120px;
+      overflow: hidden;
     }
   }
 }
