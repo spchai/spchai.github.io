@@ -8,8 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
-{% comment %}
-<!--
+
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
 {% for year_group in posts_by_year %}
@@ -59,7 +58,7 @@ redirect_from:
           {% endif %}
 
           {% if post.excerpt %}
-            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
+            <p class="archive__item-excerpt" itemprop="description" style="font-size: 1em;">{{ post.excerpt | markdownify }}</p>
           {% endif %}
         </article>
 
@@ -67,10 +66,10 @@ redirect_from:
     </div>
   </section>
 {% endfor %}
--->
-{% endcomment %}
 
-{% capture written_year %}'None'{% endcapture %}
+
+{% comment %}
+<!-- {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
   {% if year != written_year %}
@@ -79,4 +78,5 @@ redirect_from:
   {% endif %}
 
   {% include archive-single.html type="grid" %}
-{% endfor %} 
+{% endfor %} -->
+{% endcomment %}
