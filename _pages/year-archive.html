@@ -15,7 +15,7 @@ redirect_from:
   <section class="year-section">
     <h2 id="{{ year_group.name | slugify }}" class="archive__subtitle">
       {{ year_group.name }}
-      <span class="archive__item-title">({{ year_group.items.size }} artiles)</span>
+      <span class="archive__item-title">({{ year_group.items.size }})</span>
     </h2>
     
     <div class="grid__wrapper">
@@ -58,7 +58,7 @@ redirect_from:
           {% endif %}
 
           {% if post.excerpt %}
-            <p class="archive__item-excerpt" itemprop="description" style="font-size: 16;">{{ post.excerpt | markdownify }}</p>
+            <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
           {% endif %}
         </article>
 
