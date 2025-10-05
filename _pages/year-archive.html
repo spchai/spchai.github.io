@@ -26,12 +26,12 @@ redirect_from:
               <img 
                 style="height:270px;object-fit:cover;" 
                 src=
-                {% if f.image_path contains "://" %}
-                  "{{ f.image_path }}"
+                {% if post.image_path contains "://" %}
+                  "{{ post.image_path }}"
                 {% else %}
-                  "{{ f.image_path | prepend: "/images/" | prepend: base_path }}"
+                  "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
                 {% endif %}
-              alt="{% if f.alt %}{{ f.alt }}{% endif %}">
+              alt="{% if post.alt %}{{ post.alt }}{% endif %}">
             </div>
           {% endif %}
 
