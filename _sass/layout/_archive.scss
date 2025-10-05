@@ -29,6 +29,10 @@
 }
 
 .archive__subtitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
   margin: 1.414em 0 0;
   padding-bottom: 0.5em;
   font-size: $type-size-5;
@@ -83,6 +87,16 @@
   .archive__item-title {
     text-decoration: underline;
   }
+}
+
+.year-section {
+  margin-bottom: 3em;
+}
+
+.grid__wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 
