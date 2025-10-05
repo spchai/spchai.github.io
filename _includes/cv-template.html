@@ -1,42 +1,44 @@
 {% assign cv = site.data.cv %}
 
+{% assign author = site.author %}
+
 <div class="cv-container">
   <!-- Basic Information -->
   <div class="cv-section cv-header">
-    <h1>{{ cv.basics.name }}</h1>
-    {% if cv.basics.label %}
-    <h2>{{ cv.basics.label }}</h2>
+    <h1>{{ author.name }}</h1>
+    {% if author.label %}
+    <h2>{{ author.label }}</h2>
     {% endif %}
     
     <div class="cv-contact">
-      {% if cv.basics.email %}
+      {% if author.email %}
       <div class="cv-contact-item">
-        <i class="fas fa-envelope"></i> {{ cv.basics.email }}
+        <i class="fas fa-envelope"></i> {{ author.email }}
       </div>
       {% endif %}
       
-      {% if cv.basics.phone %}
+      {% if author.phone %}
       <div class="cv-contact-item">
-        <i class="fas fa-phone"></i> {{ cv.basics.phone }}
+        <i class="fas fa-phone"></i> {{ author.phone }}
       </div>
       {% endif %}
       
-      {% if cv.basics.website %}
+      {% if author.website %}
       <div class="cv-contact-item">
-        <i class="fas fa-globe"></i> <a href="{{ cv.basics.website }}" target="_blank">{{ cv.basics.website }}</a>
+        <i class="fas fa-globe"></i> <a href="{{ author.website }}" target="_blank">{{ author.website }}</a>
       </div>
       {% endif %}
       
-      {% if cv.basics.location.city %}
+      {% if author.location.city %}
       <div class="cv-contact-item">
-        <i class="fas fa-map-marker-alt"></i> {{ cv.basics.location.city }}{% if cv.basics.location.region %}, {{ cv.basics.location.region }}{% endif %}{% if cv.basics.location.countryCode %}, {{ cv.basics.location.countryCode }}{% endif %}
+        <i class="fas fa-map-marker-alt"></i> {{ author.location.city }}{% if author.location.region %}, {{ author.location.region }}{% endif %}{% if author.location.countryCode %}, {{ author.location.countryCode }}{% endif %}
       </div>
       {% endif %}
     </div>
     
-    {% if cv.basics.profiles.size > 0 %}
+    {% if author.profiles.size > 0 %}
     <div class="cv-profiles">
-      {% for profile in cv.basics.profiles %}
+      {% for profile in author.profiles %}
       <a href="{{ profile.url }}" target="_blank" class="cv-profile-link">
         <i class="fab fa-{{ profile.network | downcase }}"></i> {{ profile.network }}
       </a>
@@ -45,11 +47,11 @@
     {% endif %}
   </div>
   
-  {% if cv.basics.summary %}
+  {% if author.summary %}
   <!-- Summary -->
   <div class="cv-section">
     <h2>Summary</h2>
-    <p>{{ cv.basics.summary }}</p>
+    <p>{{ author.summary }}</p>
   </div>
   {% endif %}
   
