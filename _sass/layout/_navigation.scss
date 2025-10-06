@@ -193,17 +193,7 @@
   }
 
   button {
-    position: absolute;
-    height: 2.5rem;
-    // right: 0;
-    padding: 0 0.5rem;
-    border: 0;
-    outline: none;
-    background-color: var(--global-base-color);
-    color: #fff;
-    cursor: pointer;
-    z-index: 100;
-    margin-left: 1rem; 
+    display: none;
   }
 
   .visible-links {
@@ -217,7 +207,7 @@
 
       &:first-child {
         position: absolute;
-        left: 0;
+        left: 1rem;
         top: 50%;
         transform: translateY(-50%);        
         font-weight: bold;
@@ -280,7 +270,11 @@
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 0 10px rgba(#000, 0.25);
+    display: none;
 
+    &.visible {
+      display: block; 
+    }    
     a {
       margin: 0;
       padding: 10px 20px;
@@ -329,26 +323,15 @@
   }
 
   @media (max-width: 1024px) {
-    position: relative;
-    min-width: 250px;
-    background: var(--global-bg-color);
-
-    a {
-      display: block;
-      margin: 0 1rem;
-      padding: 0.5rem 0;
-      color: var(--global-masthead-link-color);
-      text-decoration: none;
-
-      &:hover {
-        color: var(--global-masthead-link-color-hover);
-      }
-    }
+    justify-content: flex-start; 
+    padding: 0 60px 0 80px; 
+    min-height: 60px;
 
     button {
+      display: block;
       position: absolute;
       height: 2.5rem;
-      right: 0;
+      right: 1rem;
       padding: 0 0.5rem;
       border: 0;
       outline: none;
@@ -359,117 +342,30 @@
     }
 
     .visible-links {
-      display: table;
+      width: 100%;
+      margin-left: 0; 
+      overflow: hidden; 
+      padding-right: 50px; 
+      flex-wrap: nowrap;
 
       li {
-        display: table-cell;
-        vertical-align: middle;
+        flex-shrink: 0; 
+        white-space: nowrap;
 
         &:first-child {
-          font-weight: bold;
-          text-wrap: wrap;
-
-          a {
-            margin-left: 0;
-          }
+          left: 1rem; 
+          display: flex !important;
         }
-
+        &.hidden {
+          display: none !important;
+        }
         &:last-child {
           a {
-            margin-right: 0;
+            margin-right: 0.5rem;
           }
         }
-      }
-
-      #theme-toggle {
         a {
-          width: 25px;
-          display: flex;
-          justify-content: center;
-          cursor: pointer;
-        }
-      }
-
-      a {
-        position: relative;
-
-        &:before {
-          content: "";
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          height: 4px;
-          background: var(--global-border-color);
-          width: 100%;
-          -webkit-transition: $global-transition;
-          transition: $global-transition;
-          -webkit-transform: scaleX(0);
-              -ms-transform: scaleX(0);
-                  transform: scaleX(0); /* hide*/
-        }
-
-        &:hover:before {
-          -webkit-transform: scaleX(1);
-              -ms-transform: scaleX(1);
-                  transform: scaleX(1); /* reveal*/
-        }
-      }
-    }
-
-    .hidden-links {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      margin-top: 15px;
-      padding: 5px;
-      border: 1px solid var(--global-border-color);
-      border-radius: $border-radius;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(#000, 0.25);
-
-      a {
-        margin: 0;
-        padding: 10px 20px;
-        font-size: $type-size-5;
-
-        &:hover {
-          color: var(--global-masthead-link-color-hover);
-          background: var(--global-border-color);
-        }
-      }
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: -11px;
-        right: 10px;
-        width: 0;
-        border-style: solid;
-        border-width: 0 10px 10px;
-        border-color: var(--global-border-color) transparent;
-        display: block;
-        z-index: 0;
-      }
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: -10px;
-        right: 10px;
-        width: 0;
-        border-style: solid;
-        border-width: 0 10px 10px;
-        border-color: #fff transparent;
-        display: block;
-        z-index: 1;
-      }
-
-      li {
-        display: block;
-        border-bottom: 1px solid var(--global-border-color);
-
-        &:last-child {
-          border-bottom: none;
+        margin: 0 0.75rem;
         }
       }
     }
