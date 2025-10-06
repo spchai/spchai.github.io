@@ -43,6 +43,18 @@
   }
 }
 
+.page__subtitle {
+  margin: 1.414em 0 0;
+  padding-bottom: 0.5em;
+  font-size: $type-size-5;
+  color: #505355;
+  border-bottom: 1px solid #505355;
+
+  + .list__item .archive__item-title {
+    margin-top: 0.5em;
+  }
+}
+
 .page__lead {
   font-family: $global-font-family;
   font-size: $type-size-4;
