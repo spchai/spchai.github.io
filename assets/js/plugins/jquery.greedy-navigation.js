@@ -4,83 +4,119 @@
 * http://codepen.io/lukejacksonn/pen/PwmwWV
 *
 */
+/*
+* Greedy Navigation - Fixed for Mobile
+*/
 
 var $nav = $('#site-nav');
 var $btn = $('#site-nav button');
 var $vlinks = $('#site-nav .visible-links');
-var $vlinks_persist_tail = $vlinks.children("*.persist.tail");
 var $hlinks = $('#site-nav .hidden-links');
 
+// 获取所有可移动的导航项（不包括持久化的项）
+var $movableLinks = $vlinks.children('li:not(.persist)');
 var breaks = [];
 
 function updateNav() {
-
+  // 重置状态
+  $movableLinks.appendTo($vlinks);
+  $hlinks.empty().addClass('hidden');
+  $btn.removeClass('close');
+  
   var availableSpace = $btn.hasClass('hidden') ? $nav.width() : $nav.width() - $btn.width() - 30;
 
-  // The visible list is overflowing the nav
+  // 如果可见列表溢出导航栏
   if ($vlinks.width() > availableSpace) {
+    breaks = []; // 重置断点记录
 
-    while ($vlinks.width() > availableSpace && $vlinks.children("*:not(.persist)").length > 0) {
-      // Record the width of the list
+    // 移动项目到隐藏列表，直到不再溢出
+    while ($vlinks.width() > availableSpace && $vlinks.children('li:not(.persist)').length > 0) {
+      // 记录当前宽度
       breaks.push($vlinks.width());
-
-      // Move item to the hidden list
-      $vlinks.children("*:not(.persist)").last().prependTo($hlinks);
-
-      availableSpace = $btn.hasClass("hidden") ? $nav.width() : $nav.width() - $btn.width() - 30;
-
-      // Show the dropdown btn
-      $btn.removeClass("hidden");
+      
+      // 移动最后一个非持久化项目到隐藏列表
+      $vlinks.children('li:not(.persist)').last().prependTo($hlinks);
+      
+      // 重新计算可用空间
+      availableSpace = $nav.width() - $btn.width() - 30;
     }
 
-    // The visible list is not overflowing
-  } else {
+    // 显示下拉按钮
+    $btn.removeClass('hidden');
 
-    // There is space for another item in the nav
-    while (breaks.length > 0 && availableSpace > breaks[breaks.length - 1]) {
-      // Move the item to the visible list
-      if ($vlinks_persist_tail.children().length > 0) {
-        $hlinks.children().first().insertBefore($vlinks_persist_tail);
-      } else {
-        $hlinks.children().first().appendTo($vlinks);
-      }
+  } else {
+    // 有空间可以移动项目回可见列表
+    while ($hlinks.children().length > 0 && availableSpace > breaks[breaks.length - 1]) {
+      // 移动项目回可见列表
+      $hlinks.children().first().appendTo($vlinks);
       breaks.pop();
     }
 
-    // Hide the dropdown btn if hidden list is empty
-    if (breaks.length < 1) {
+    // 如果隐藏列表为空，隐藏下拉按钮
+    if ($hlinks.children().length === 0) {
       $btn.addClass('hidden');
-      $btn.removeClass('close');
       $hlinks.addClass('hidden');
     }
   }
 
-  // Keep counter updated
-  $btn.attr("count", breaks.length);
+  // 更新计数器
+  $btn.attr('count', $hlinks.children().length);
 
-  // update masthead height and the body/sidebar top padding
-  var mastheadHeight = $('.masthead').height();
+  // 更新 masthead 高度和 body/sidebar 顶部内边距
+  updateLayout();
+}
+
+function updateLayout() {
+  var mastheadHeight = $('.masthead').outerHeight(true);
   $('body').css('padding-top', mastheadHeight + 'px');
+  
   if ($(".author__urls-wrapper button").is(":visible")) {
     $(".sidebar").css("padding-top", "");
   } else {
     $(".sidebar").css("padding-top", mastheadHeight + "px");
   }
-
 }
 
-// Window listeners
-
-$(window).on('resize', function () {
-  updateNav();
-});
-screen.orientation.addEventListener("change", function () {
+// 事件监听器
+$(window).on('resize', function() {
   updateNav();
 });
 
-$btn.on('click', function () {
+// 处理屏幕方向变化
+if (screen.orientation) {
+  screen.orientation.addEventListener('change', function() {
+    setTimeout(updateNav, 100);
+  });
+}
+
+// 按钮点击事件
+$btn.on('click', function() {
   $hlinks.toggleClass('hidden');
   $(this).toggleClass('close');
 });
 
-updateNav();
+// 点击外部区域关闭下拉菜单
+$(document).on('click', function(event) {
+  if (!$(event.target).closest('#site-nav').length) {
+    $hlinks.addClass('hidden');
+    $btn.removeClass('close');
+  }
+});
+
+// 初始化
+$(document).ready(function() {
+  // 等待字体和资源加载完成
+  setTimeout(function() {
+    updateNav();
+  }, 100);
+  
+  // 确保图片加载后也更新导航
+  $('img').on('load', function() {
+    updateNav();
+  });
+});
+
+// 在页面完全加载后再次更新
+$(window).on('load', function() {
+  updateNav();
+});

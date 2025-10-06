@@ -194,6 +194,18 @@
 
   button {
     display: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2.5rem;
+    padding: 0 0.5rem;
+    border: 0;
+    outline: none;
+    background-color: var(--global-base-color);
+    color: #fff;
+    cursor: pointer;
+    z-index: 100;
   }
 
   .visible-links {
@@ -329,16 +341,6 @@
 
     button {
       display: block;
-      position: absolute;
-      height: 2.5rem;
-      right: 1rem;
-      padding: 0 0.5rem;
-      border: 0;
-      outline: none;
-      background-color: var(--global-base-color);
-      color: #fff;
-      cursor: pointer;
-      z-index: 100;
     }
 
     .visible-links {
@@ -347,6 +349,7 @@
       overflow: hidden; 
       padding-right: 50px; 
       flex-wrap: nowrap;
+      justify-content: flex-end;
 
       li {
         flex-shrink: 0; 
@@ -356,17 +359,32 @@
           left: 1rem; 
           display: flex !important;
         }
-        &.hidden {
-          display: none !important;
+        
+        &:not(:first-child):not(.persist) {
+          display: none;
         }
+        
+        &.persist {
+          display: flex !important;
+        }
+        
         &:last-child {
           a {
             margin-right: 0.5rem;
           }
         }
+        
         a {
-        margin: 0 0.75rem;
+          margin: 0 0.75rem;
         }
+      }
+    }
+    
+    .hidden-links {
+      display: none;
+      
+      &.visible {
+        display: block;
       }
     }
   }
