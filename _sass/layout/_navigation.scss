@@ -227,7 +227,27 @@
     margin-left: auto;
 
     @media (max-width: 1024px) {
-      display: none;
+      width: 100%;
+      padding-right: 50px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+
+    li {
+      flex-shrink: 0; 
+      white-space: nowrap;
+      
+      &:first-child {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex !important;
+      }
+
+      &.js-hidden {
+        display: none !important;
+      }
+    }      
     }
 
     li {
@@ -243,13 +263,19 @@
         text-wrap: wrap;
 
         @media (max-width: 1024px) {
-          display: block !important; // 确保Logo在移动端显示
+          display: flex !important;
+          left: 1rem;
         }
 
         a {
           margin-left: 0;
         }
       }
+
+      @media (max-width: 1024px) {
+        &.hidden {
+          display: none;
+        }
 
       &:last-child {
         a {
@@ -303,6 +329,10 @@
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 0 10px rgba(#000, 0.25);
+    display: none;
+    &.visible {
+      display: block; 
+    }
 
     a {
       margin: 0;
