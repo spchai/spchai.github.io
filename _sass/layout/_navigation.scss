@@ -177,13 +177,8 @@
   min-width: 250px;
   background: var(--global-bg-color);
   display: flex; 
-  // justify-content: space-between; 
+  justify-content: space-between; 
   align-items: center; 
-
-  @media (max-width: 1024px) {
-    padding: 0 60px 0 80px;
-    min-height: 60px;
-  }
 
   a {
     display: block;
@@ -195,10 +190,6 @@
     &:hover {
       color: var(--global-masthead-link-color-hover);
     }
-
-    @media (max-width: 1024px) {
-      margin: 0 0.75rem;
-    }    
   }
 
   button {
@@ -213,32 +204,16 @@
     cursor: pointer;
     z-index: 100;
     margin-left: 1rem;
-
-    display: none;
-    @media (max-width: 1024px) {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 0;
-    }    
   }
 
   .visible-links {
     display: flex; 
     align-items: center; 
     margin-left: auto; 
-    width: 100%;
-
-    @media (max-width: 1024px) {
-      overflow: hidden;
-      padding-right: 50px; 
-    }
-
+    width: 70%;
     li {
       display: flex;
       align-items: center;
-      white-space: nowrap;
 
       &:first-child {
         position: absolute; 
@@ -248,11 +223,6 @@
         font-weight: bold;
         text-wrap: wrap;
 
-        @media (max-width: 1024px) {
-          display: flex !important;
-          z-index: 10;
-        }
-
         a {
           margin-left: 0;
         }
@@ -261,18 +231,8 @@
       &:last-child {
         a {
           margin-right: 1rem;
-          
-          @media (max-width: 1024px) {
-            margin-right: 0.5rem;
-          }          
         }
       }
-
-      @media (max-width: 1024px) {
-        &.hidden {
-          display: none;
-        }
-      }      
     }
 
     #theme-toggle {
@@ -282,10 +242,6 @@
         justify-content: center;
         cursor: pointer;
       }
-
-      @media (max-width: 1024px) {
-        display: flex !important;
-      }      
     }
 
     a {
@@ -324,11 +280,7 @@
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 0 10px rgba(#000, 0.25);
-    display: none;
 
-    &.visible {
-      display: block;
-    }
     a {
       margin: 0;
       padding: 10px 20px;
