@@ -3,6 +3,7 @@ title: 'Oral presentation on stress conditions of laboratory shear tests in GESS
 covertitle: Presentation in GESS
 date: 2023-11-30
 permalink: /posts/2023/Chai_GESS/
+image_path: /Conferences/Chai2023_GESS.jpg
 tags:
   - Conference
   - Laboratory shear tests
