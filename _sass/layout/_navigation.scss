@@ -176,9 +176,15 @@
   position: relative;
   min-width: 250px;
   background: var(--global-bg-color);
-  // display: flex; 
-  // justify-content: space-between; 
-  // align-items: center; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+
+  @media (max-width: 1024px) {
+    justify-content: flex-start;
+    padding-left: 80px; 
+    padding-right: 50px; 
+  }
 
   a {
     display: block;
@@ -195,7 +201,7 @@
   button {
     position: relative;
     height: 2.5rem;
-    right: 0;
+    // right: 0;
     padding: 0 0.5rem;
     border: 0;
     outline: none;
@@ -203,17 +209,30 @@
     color: #fff;
     cursor: pointer;
     z-index: 100;
-    // margin-left: 1rem;
+    margin-left: 1rem;
+
+    @media (max-width: 1024px) {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0;
+      display: block !important; // 确保按钮显示
+    }
   }
 
   .visible-links {
-    display: table; 
-    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
 
     li {
-      display: table-cell;
-      vertical-align: middle;
-      white-space: nowrap;
+      display: flex;
+      align-items: center;
 
       &:first-child {
         position: absolute; 
@@ -221,14 +240,17 @@
         top: 50%;
         transform: translateY(-50%);
         font-weight: bold;
-      }
-      &.spacer {
-        width: 100%;
+        text-wrap: wrap;
+
+        @media (max-width: 1024px) {
+          display: block !important; // 确保Logo在移动端显示
+        }
+
+        a {
+          margin-left: 0;
+        }
       }
 
-      &.right-align {
-        text-align: right;
-      }
       &:last-child {
         a {
           margin-right: 0;
