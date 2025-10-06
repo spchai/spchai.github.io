@@ -1,6 +1,6 @@
 ---
 title: 'Best Student Award in IGS2024 (Kuala Lumpur, Malaysia) for oral presentation on heterogenous stress conditions on rock discontinuities in laboratory shear tests'
-covertitle: Best Student Award (IGS2024)
+covertitle: IGS2024 Best Student Award 
 date: 2024-11-20
 permalink: /posts/2024/Best_Student_Award/
 image_path: /Awards/2024-11-20-Best_Student_Award.png
@@ -14,7 +14,7 @@ tags:
   - Stick-slip
 ---
 
-Shupeng won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia. 
+Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia. 
 
 <div style="text-align: center;line-height: 1.5;">
   <img src='/images/Awards/2024-11-20-Best_Student_Award.png' style="width: 80%;" />

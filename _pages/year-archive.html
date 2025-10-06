@@ -23,15 +23,17 @@ redirect_from:
         <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
           {% if post.image_path %}
             <div class="archive__item-teaser">
-              <img 
-                style="height:210px;object-fit:cover;" 
-                src=
-                {% if post.image_path contains "://" %}
-                  "{{ post.image_path }}"
-                {% else %}
-                  "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
-                {% endif %}
-              alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img 
+                  style="height:210px;object-fit:cover;" 
+                  src=
+                  {% if post.image_path contains "://" %}
+                    "{{ post.image_path }}"
+                  {% else %}
+                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
+                  {% endif %}
+                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              </a>
             </div>
           {% endif %}
 
@@ -54,7 +56,7 @@ redirect_from:
           {% elsif post.collection == 'publications' %}
             <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
           {% elsif post.date %}
-            <p class="page__meta">{{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
+            <p class="page__meta"><i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
           {% endif %}
 
           {% if post.excerpt %}

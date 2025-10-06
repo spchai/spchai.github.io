@@ -1,6 +1,6 @@
 ---
 title: 'Oral presentation on 断层滑移及地震中剪胀行为的实验室研究'
-covertitle: Dilation on rough faults (Zhuhai)
+covertitle: Fault dilation (Zhuhai)
 date: 2024-11-03
 permalink: /posts/2024/11/Chai_Zhuhai/
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 'Oral presentation on 实验室粘滑中的剪缩与剪胀研究'
-covertitle: Labortaory stick-slips (Shenzhen)
+covertitle: Lab stick-slips (Shenzhen)
 date: 2024-09-28
 permalink: /posts/2024/Chai_Shenzhen/
 tags:

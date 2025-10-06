@@ -1,6 +1,6 @@
 ---
 title: 'Conference: Dilation or compaction? Laboratory insights into the role of fault roughness'
-covertitle: Dilation on rough faults (EGU25)
+covertitle: Fault dilation (EGU25)
 date: 2025-04-29
 permalink: /posts/2025/Chai_EGU25/
 image_path: /Research/Dilatancy_DS.png
