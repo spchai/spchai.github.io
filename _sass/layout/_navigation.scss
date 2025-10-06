@@ -207,14 +207,14 @@
   }
 
   .visible-links {
-    display: flex; 
-    align-items: center; 
+    display: table; 
+    width: 100%;
     margin-left: auto; 
-    justify-content: flex-end;
-    width: 70%;
+
     li {
-      display: flex;
-      align-items: center;
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
 
       &:first-child {
         position: absolute; 
