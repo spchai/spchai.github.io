@@ -176,9 +176,6 @@
   position: relative;
   min-width: 250px;
   background: var(--global-bg-color);
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center;
 
   a {
     display: block;
@@ -193,12 +190,9 @@
   }
 
   button {
-    display: none;
     position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     height: 2.5rem;
+    right: 0;
     padding: 0 0.5rem;
     border: 0;
     outline: none;
@@ -209,24 +203,18 @@
   }
 
   .visible-links {
-    display: flex; 
-    align-items: center; 
-    margin-left: auto;
+    display: table;
 
     li {
-      display: flex;
-      align-items: center;
+      display: table-cell;
+      vertical-align: middle;
 
       &:first-child {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);        
         font-weight: bold;
         text-wrap: wrap;
 
         a {
-          margin-left: 1rem;
+          margin-left: 0;
         }
       }
 
@@ -282,11 +270,7 @@
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 0 10px rgba(#000, 0.25);
-    display: none;
 
-    &.visible {
-      display: block; 
-    }    
     a {
       margin: 0;
       padding: 10px 20px;
@@ -331,68 +315,6 @@
       &:last-child {
         border-bottom: none;
       }
-    }
-  }
-
-  @media (max-width: 1024px) {
-    justify-content: flex-start; 
-    padding: 0 60px 0 80px; 
-    min-height: 60px;
-
-    button {
-      display: block;
-      position: absolute;
-      height: 2.5rem;
-      right: 1rem;
-      padding: 0 0.5rem;
-      border: 0;
-      outline: none;
-      background-color: var(--global-base-color);
-      color: #fff;
-      cursor: pointer;
-      z-index: 100;
-    }
-
-    .visible-links {
-      width: 100%;
-      margin-left: 0; 
-      overflow: hidden; 
-      padding-right: 50px; 
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-
-      li {
-        flex-shrink: 0; 
-        white-space: nowrap;
-
-        &:first-child {
-          left: 0; 
-          display: flex !important;
-        }
-        
-        /* 在移动端默认隐藏所有非持久化项目 */
-        &:not(.persist):not(:first-child) {
-          display: none !important;
-        }
-        
-        &.persist {
-          display: flex !important;
-        }
-        
-        &:last-child {
-          a {
-            margin-right: 0.5rem;
-          }
-        }
-        a {
-        margin: 0 0.75rem;
-        }
-      }
-    }
-    
-    /* 当有隐藏项目时显示按钮 */
-    button:not(.hidden) {
-      display: block;
     }
   }
 }
