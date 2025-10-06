@@ -14,8 +14,7 @@ redirect_from:
 {% for year_group in posts_by_year %}
   <section class="year-section">
     <h2 id="{{ year_group.name | slugify }}" class="archive__subtitle">
-      {{ year_group.name }}
-      <span class="archive__item-title">({{ year_group.items.size }})</span>
+      {{ year_group.name }} ({{ year_group.items.size }})
     </h2>
     
     <div class="grid__wrapper">
