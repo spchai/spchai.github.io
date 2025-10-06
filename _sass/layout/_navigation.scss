@@ -208,12 +208,12 @@
 
   .visible-links {
     display: table; 
-    // width: 100%;
+    width: 100%;
 
     li {
       display: table-cell;
       vertical-align: middle;
-      // width: 100%;
+      white-space: nowrap;
 
       &:first-child {
         position: absolute; 
@@ -221,13 +221,14 @@
         top: 50%;
         transform: translateY(-50%);
         font-weight: bold;
-        text-wrap: wrap;
-
-        a {
-          margin-left: 0;
-        }
+      }
+      &.spacer {
+        width: 100%;
       }
 
+      &.right-align {
+        text-align: right;
+      }
       &:last-child {
         a {
           margin-right: 0;
