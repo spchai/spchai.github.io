@@ -176,15 +176,6 @@
   position: relative;
   min-width: 250px;
   background: var(--global-bg-color);
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-
-  @media (max-width: 1024px) {
-    justify-content: flex-start;
-    padding-left: 80px; 
-    padding-right: 50px; 
-  }
 
   a {
     display: block;
@@ -199,9 +190,9 @@
   }
 
   button {
-    position: relative;
+    position: absolute;
     height: 2.5rem;
-    // right: 0;
+    right: 0;
     padding: 0 0.5rem;
     border: 0;
     outline: none;
@@ -209,67 +200,27 @@
     color: #fff;
     cursor: pointer;
     z-index: 100;
-    margin-left: 1rem;
-
-    @media (max-width: 1024px) {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      margin-left: 0;
-      display: block !important; // 确保按钮显示
-    }
   }
 
   .visible-links {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-
-    @media (max-width: 1024px) {
-      width: 100%;
-      padding-right: 50px;
-      flex-wrap: nowrap;
-      overflow: hidden;    
-    }
+    display: table;
 
     li {
-      display: flex;
-      align-items: center;
-      flex-shrink: 0; 
-      white-space: nowrap;    
+      display: table-cell;
+      vertical-align: middle;
 
       &:first-child {
-        position: absolute; 
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
         font-weight: bold;
         text-wrap: wrap;
-
-        @media (max-width: 1024px) {
-          display: flex !important;
-          left: 1rem;
-        }
 
         a {
           margin-left: 0;
         }
       }
 
-      @media (max-width: 1024px) {
-        &.hidden,
-        &.js-hidden {
-          display: none !important;
-        }
-      }
-
       &:last-child {
         a {
           margin-right: 0;
-          @media (max-width: 1024px) {
-            margin-right: 0.5rem;
-          }
         }
       }
     }
@@ -319,10 +270,6 @@
     border-radius: $border-radius;
     background: #fff;
     box-shadow: 0 0 10px rgba(#000, 0.25);
-    display: none;
-    &.visible {
-      display: block; 
-    }
 
     a {
       margin: 0;
