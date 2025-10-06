@@ -1,7 +1,8 @@
 ---
 title: 'Poster presentation on stress conditions of laboratory shear tests in ARMA 2024'
+covertitle: Poster in ARMA 2024
 date: 2024-06-23
-permalink: /posts/2024/06/Chai&Zhao_ARMA24/
+permalink: /posts/2024/Chai_ARMA24/
 tags:
   - Conference
   - Laboratory shear tests

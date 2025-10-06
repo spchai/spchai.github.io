@@ -1,7 +1,8 @@
 ---
 title: 'Conference presentation on Slope stability evaluation using artificial neural networks'
+covertitle: ANN for slope stability
 date: 2022-11-25
-permalink: /posts/2022/11/Chai_ICHCE/
+permalink: /posts/2022/Chai_ICHCE/
 tags:
   - Conference
   - Slope

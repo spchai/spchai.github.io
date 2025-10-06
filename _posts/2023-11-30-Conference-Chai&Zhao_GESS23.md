@@ -1,7 +1,8 @@
 ---
 title: 'Oral presentation on stress conditions of laboratory shear tests in GESS (Hong Kong)'
+covertitle: Presentation in GESS
 date: 2023-11-30
-permalink: /posts/2023/11/Chai_Zhao_2023_GESS/
+permalink: /posts/2023/Chai_GESS/
 tags:
   - Conference
   - Laboratory shear tests

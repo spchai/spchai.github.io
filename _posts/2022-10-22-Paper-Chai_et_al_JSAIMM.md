@@ -1,7 +1,8 @@
 ---
 title: 'Paper on Maximum height estimation for mine waste dumps'
+covertitle: Maximum dump height
 date: 2022-10-22
-permalink: /posts/2022/10/Chai_et_al_2022_JSAIMM/
+permalink: /posts/2022/Chai_JSAIMM/
 tags:
   - Journal articles
   - Mining engineering

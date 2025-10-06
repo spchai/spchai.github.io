@@ -1,7 +1,8 @@
 ---
 title: 'Best Poster Award in ARMA East Asia Geomechanics Workshop (Hong Kong)'
+covertitle: Best Poster Award
 date: 2023-08-12
-permalink: /posts/2023/08/Best_Poster_Award/
+permalink: /posts/2023/Best_Poster_Award/
 image_path: /Awards/2023-08-12-Best_Poster_Award.jpg
 tags:
   - Award

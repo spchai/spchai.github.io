@@ -1,7 +1,8 @@
 ---
 title: 'Paper on deviation rectification of inclined piles'
+covertitle: Pile deviation rectification
 date: 2022-09-14
-permalink: /posts/2022/09/Chai_et_al_2022_FES/
+permalink: /posts/2022/Chai_FES/
 tags:
   - Journal articles
   - Geotechnical engineering

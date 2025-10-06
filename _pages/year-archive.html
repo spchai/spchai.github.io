@@ -36,9 +36,9 @@ redirect_from:
           {% endif %}
 
           {% if post.id %}
-            {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
           {% else %}
-            {% assign title = post.title %}
+            {% assign title = post.covertitle %}
           {% endif %}
 
           <div class="archive__item-title">
@@ -58,7 +58,7 @@ redirect_from:
           {% endif %}
 
           {% if post.excerpt %}
-            <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
         </article>
 

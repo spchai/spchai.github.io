@@ -1,7 +1,8 @@
 ---
 title: 'Paper on strengthening recycled aggregates by dry mixing before slurry coating'
+covertitle: Strengthen recycled aggregates
 date: 2022-11-18
-permalink: /posts/2022/11/Li_et_al_2022_Coatings/
+permalink: /posts/2022/Li_Coatings/
 tags:
   - Journal articles
   - Geotechnical engineering

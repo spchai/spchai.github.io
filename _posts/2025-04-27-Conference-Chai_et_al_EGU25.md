@@ -1,7 +1,8 @@
 ---
 title: 'Conference: Dilation or compaction? Laboratory insights into the role of fault roughness'
+covertitle: Dilation on rough faults (EGU25)
 date: 2025-04-29
-permalink: /posts/2025/04/Chai_et_al_2024_EGU25/
+permalink: /posts/2025/Chai_EGU25/
 image_path: /Research/Dilatancy_DS.png
 tags:
   - Conference
@@ -11,9 +12,9 @@ tags:
   - Stick-slip
 ---
 
+Laboratory shear tests on rough faults with millimeter-scale asperity heights were conducted to analyze the four types of dilation or compaction behavior observed during stick-slip cycles. 
 
-**Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
-
+See more: **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 
 ## Abstract
 The geometrical roughness of faults results in significant stress heterogeneity across various length scales, thus affecting rupture and sliding behavior during earthquakes. The dilatancy behavior on rough joints also becomes much more complicated than on planar faults. Whether dilation or compaction will occur on rough faults, especially those with large asperity heights, during interseismic and seismic slips is still an open question. 

@@ -1,7 +1,8 @@
 ---
 title: 'Paper on Two-wedge slope stability analysis considering a nonvertical wedge interface'
+covertitle: Two-wedge slope stability
 date: 2023-02-27
-permalink: /posts/2023/02/Chai_2023_BEGE/
+permalink: /posts/2023/Chai_BEGE/
 image_path: /Papers/Chai2023.png
 tags:
   - Journal articles
