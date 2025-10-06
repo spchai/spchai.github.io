@@ -195,7 +195,7 @@
   button {
     position: relative;
     height: 2.5rem;
-    // right: 0;
+    right: 0;
     padding: 0 0.5rem;
     border: 0;
     outline: none;
@@ -203,17 +203,17 @@
     color: #fff;
     cursor: pointer;
     z-index: 100;
-    margin-left: 1rem;
+    // margin-left: 1rem;
   }
 
   .visible-links {
     display: table; 
-    width: 100%;
+    // width: 100%;
 
     li {
       display: table-cell;
       vertical-align: middle;
-      width: 100%;
+      // width: 100%;
 
       &:first-child {
         position: absolute; 
@@ -230,7 +230,7 @@
 
       &:last-child {
         a {
-          margin-right: 1rem;
+          margin-right: 0;
         }
       }
     }
