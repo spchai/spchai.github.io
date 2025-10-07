@@ -8,6 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
+{% include toc %}
 
 # Peer-reviewed journal articles
 

@@ -385,10 +385,10 @@
 }
 
 .nav__title {
-  margin: 0;
+  margin: 0.8rem 0;
   padding: 0.5rem 1rem;
   font-family: $sans-serif-narrow;
-  font-size: $type-size-5;
+  font-size: $type-size-4;
   font-weight: bold;
 }
 
@@ -399,7 +399,7 @@
   font-family: $sans-serif-narrow;
   font-size: $type-size-6;
   font-weight: bold;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   border-bottom: 1px solid var(--global-border-color);
 }
 
