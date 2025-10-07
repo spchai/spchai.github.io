@@ -27,3 +27,10 @@ main:
     
 #  - title: "Guide"
 #    url: /markdown/
+
+
+Research:
+  - title: "Stress heterogeneity"
+    url: /research/#stress-heterogeneity-on-faults
+  - title: "Planetary science"
+    url: /research/#planetary-science

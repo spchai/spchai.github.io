@@ -2,6 +2,7 @@
 title: "Delayed seismicity caused by stress heterogeneity"
 excerpt: "We observed staged friction/stress drop during the slip phases of stick-slip cycles on rough laboratory faults. Numerical simulations were conducted to investigated the effect of stress heterogeneity. Two-dimensional ruptures on the heterogenous fault were analyzed via the distribution of local shear slip and stress."
 image_path: "/Research/SH_rupture_R5.png"
+anchor: "staged-rupture"
 collection: Research
 ResearchTag: Stress heterogeneity on faults
 ---
