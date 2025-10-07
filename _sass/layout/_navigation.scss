@@ -470,3 +470,64 @@
     }
   }
 }
+
+
+
+/* 层级目录样式 */
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-list ul {
+  list-style: none;
+  margin: 0.3rem 0 0.3rem 1.2rem;
+  padding: 0;
+  border-left: 1px solid #e8e8e8;
+}
+
+.toc-list li {
+  margin: 0.25rem 0;
+  line-height: 1.4;
+}
+
+.toc-list a {
+  display: block;
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  color: #333;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  border-left: 3px solid transparent;
+}
+
+.toc-list a:hover {
+  background-color: #f5f5f5;
+  color: #007acc;
+  border-left-color: #007acc;
+}
+
+/* 不同层级的视觉区分 */
+.toc-list > li > a {
+  font-weight: 600;
+  border-left-width: 4px;
+}
+
+.toc-list ul li a {
+  font-weight: normal;
+  color: #555;
+}
+
+.toc-list ul ul li a {
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.toc-empty {
+  color: #999;
+  font-style: italic;
+  text-align: center;
+  padding: 1rem;
+}
