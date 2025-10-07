@@ -34,6 +34,18 @@
       {% endif %}
     </h2>
     
+    {% if post.image_path %}
+      <img 
+        style='width: 95%;' 
+        src=
+        {% if post.image_path contains "://" %}
+          "{{ post.image_path }}"
+        {% else %}
+          "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
+        {% endif %}
+      alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+    {% endif %}
+
     {% comment %}
     <!--
     {% if post.read_time %}
@@ -58,9 +70,9 @@
     {% endif %}
 
     {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="page__content">{{ post.excerpt | markdownify }}</p>
+    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
     {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="page__content"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
+    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
     {% endif %}
     
     {% if post.citation and post.paperurl and post.slidesurl %}

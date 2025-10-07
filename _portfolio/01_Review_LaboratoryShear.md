@@ -1,6 +1,7 @@
 ---
 title: "Stress heterogeneity in ten laboratory shear configurations"
-excerpt: "Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Instead, the average stress on rock joints was usually taken as an indicator. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors.  <br/><br/><img src='/images/Research/RS_Stress.png' style='width: 95%;' />"
+excerpt: "Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Instead, the average stress on rock joints was usually taken as an indicator. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors."
+image_path: "/Research/RS_Stress.png"
 collection: Research
 ResearchTag: Stress heterogeneity on faults
 ---
