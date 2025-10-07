@@ -8,7 +8,7 @@ redirect_from:
 ---
 
 {% include base_path %}
-{% include toc %}
+{% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
 
 ## Locations of key files/directories
 
