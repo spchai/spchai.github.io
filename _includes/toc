@@ -2,7 +2,25 @@
     <nav class="toc" markdown="1">
         <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
         <div class="toc__menu">
-        {{ include.content | tocify }}
+            {% assign headings = include.content | split: '<h' %}
+            <ul>
+            {% for heading in headings %}
+                {% if heading contains 'id="' %}
+                    {% assign level_char = heading | slice: 0 %}
+                    {% assign level = level_char | plus: 0 %}
+                    
+                    {% assign id_parts = heading | split: 'id="' %}
+                    {% assign id_rest = id_parts[1] %}
+                    {% assign id = id_rest | split: '"' | first %}
+                    
+                    {% assign text_parts = heading | split: '>' %}
+                    {% assign text_rest = text_parts[1] %}
+                    {% assign text = text_rest | split: '</h' | first | strip_html | strip %}
+                    
+                    <li><a href="#{{ id }}">{{ text }}</a></li>
+                {% endif %}
+            {% endfor %}
+            </ul>
         </div>
     </nav>
 </aside>
