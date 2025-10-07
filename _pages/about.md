@@ -31,7 +31,7 @@ excerpt: >
 feature_row:
   - image_path: /Research/Dilatancy_DS.png
     alt: "Dilantancy during laboratory stick-slips (EGU25)"
-    title: "Dilantancy during laboratory stick-slips (EGU25)"
+    title: "Dilantancy during lab stick-slips (EGU25)"
     excerpt: "New results presented at EGU25 on the effects of fault roughness on dilatancy behavior observed from controlled laboratory experiments"
     url: "https://spchai.github.io/portfolio/02_Dilatancy_DS/"
   - image_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg

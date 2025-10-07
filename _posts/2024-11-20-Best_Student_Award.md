@@ -1,6 +1,6 @@
 ---
 title: 'Best Student Award in IGS2024 (Kuala Lumpur, Malaysia) for oral presentation on heterogenous stress conditions on rock discontinuities in laboratory shear tests'
-covertitle: IGS2024 Best Student Award 
+covertitle: IGS24 Best Student Award 
 date: 2024-11-20
 permalink: /posts/2024/Best_Student_Award/
 image_path: /Awards/2024-11-20-Best_Student_Award.png
