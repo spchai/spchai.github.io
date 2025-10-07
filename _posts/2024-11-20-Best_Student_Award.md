@@ -17,7 +17,9 @@ tags:
 Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia. 
 
 <div style="text-align: center;line-height: 1.5;">
-  <img src='/images/Awards/2024-11-20-Best_Student_Award.png' style="width: 80%;" />
+  <a class="image-popup" href = '/images/Awards/2024-11-20-Best_Student_Award.png'>
+    <img src='/images/Awards/2024-11-20-Best_Student_Award.png' style="width: 80%;" />  
+  </a>
 </div>  
 
 <div style="text-align: center;line-height: 1.5;">
@@ -25,13 +27,17 @@ Won **Best Student Award** for the oral presentation entitled **New insights int
 </div>  
 
 <div style="text-align: center;line-height: 1.5;"> 
-  <img src='/images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg' style="width: 80%;" />
+  <a class="image-popup" href = '/images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg'>
+    <img src='/images/Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg' style="width: 80%;" />  
+  </a>
   <p style="font-size: smaller">Awarding</p>
 </div>  
 
 <div style="text-align: center;line-height: 1.5;"> 
-   <img src='/images/Conferences/Chai2024_IGS.jpg' style="width: 80%;" >
-   <p style="font-size: smaller">Presenting</p>
+  <a class="image-popup" href = '/images/Conferences/Chai2024_IGS.jpg'>
+    <img src='/images/Conferences/Chai2024_IGS.jpg' style="width: 80%;" />  
+  </a>
+  <p style="font-size: smaller">Presenting</p>
 </div>
 
 
