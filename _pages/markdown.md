@@ -7,6 +7,9 @@ redirect_from:
   - /markdown.html
 ---
 
+{% include base_path %}
+{% include toc %}
+
 ## Locations of key files/directories
 
 * Basic config options: _config.yml
