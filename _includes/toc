@@ -3,24 +3,38 @@
         <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
         <div class="toc__menu">
             {% assign headings = include.content | split: '<h' %}
-            <ul>
-            {% for heading in headings %}
-                {% if heading contains 'id="' %}
-                    {% assign level_char = heading | slice: 0 %}
-                    {% assign level = level_char | plus: 0 %}
-                    
-                    {% assign id_parts = heading | split: 'id="' %}
-                    {% assign id_rest = id_parts[1] %}
-                    {% assign id = id_rest | split: '"' | first %}
-                    
-                    {% assign text_parts = heading | split: '>' %}
-                    {% assign text_rest = text_parts[1] %}
-                    {% assign text = text_rest | split: '</h' | first | strip_html | strip %}
-                    
-                    <li><a href="#{{ id }}">{{ text }}</a></li>
+            {% assign result = '' %}
+            {% assign last_level = 1 %}
+            
+            {% for fragment in headings %}
+                {% if fragment contains 'id="' %}
+                    {% assign level = fragment | slice: 0 | plus: 0 %}
+                    {% if level >= 1 and level <= 6 %}
+                        {% assign id_start = fragment | split: 'id="' | last %}
+                        {% assign id = id_start | split: '"' | first %}
+                        {% assign text_start = fragment | split: '>' | last %}
+                        {% assign text = text_start | split: '</h' | first | strip_html | strip %}
+                        {% if level > last_level %}
+                            {% assign result = result | append: '<ul>' %}
+                        {% elsif level < last_level %}
+                            {% assign result = result | append: '</ul></li>' %}
+                        {% else %}
+                            {% unless forloop.first %}
+                                {% assign result = result | append: '</li>' %}
+                            {% endunless %}
+                        {% endif %}
+                        {% assign result = result | append: '<li><a href="#' | append: id | append: '">' | append: text | append: '</a>' %}
+                        {% assign last_level = level %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
-            </ul>
+            
+            {% if result != '' %}
+                {% assign result = result | append: '</li></ul>' %}
+                <ul>{{ result }}</ul>
+            {% else %}
+                <p>No contents</p>
+            {% endif %}
         </div>
     </nav>
 </aside>
