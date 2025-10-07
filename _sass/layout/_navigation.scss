@@ -319,6 +319,34 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .greedy-nav {
+    justify-content: flex-start !important;
+    position: relative !important;
+  }
+  
+  .greedy-nav .visible-links {
+    margin-left: auto !important; 
+    justify-content: flex-end !important;
+  }
+  
+  /* 确保logo保持在左侧 */
+  .greedy-nav .visible-links li:first-child {
+    position: absolute !important;
+    left: 0 !important;
+    margin-right: auto !important;
+  }
+  
+  .greedy-nav .visible-links li:not(:first-child) {
+    margin-left: 0 !important;
+  }
+  
+  /* 主题切换按钮保持在最右侧 */
+  .greedy-nav .visible-links li.persist.tail {
+    margin-left: 1.5rem !important;
+  }
+}
+
 
 /*
    Navigation list
