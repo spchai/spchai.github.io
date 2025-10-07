@@ -34,6 +34,15 @@ redirect_from:
                 alt="{% if post.alt %}{{ post.alt }}{% endif %}">
               </a>
             </div>
+          {% else %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img 
+                  style="height:210px;object-fit:cover;" 
+                  src="{{ '/images/Loading.png' | prepend: base_path }}" 
+                  alt="Default image">
+              </a>
+            </div>
           {% endif %}
 
           {% if post.id %}
