@@ -44,17 +44,18 @@
   display: flex;
   height: 100%;
   padding: 0.5rem;
+  margin: 10px 0;
   flex-direction: column;
   border-radius: 16px;
-  box-shadow: 0 10px 25px var(--global-grid-color);
+  box-shadow: 0 10px 20px var(--global-grid-color);
   color: inherit;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .archive__item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px var(--global-border-color);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px var(--global-border-color);
 }
 
 .archive__item-title {
