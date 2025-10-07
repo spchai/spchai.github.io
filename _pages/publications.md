@@ -3,6 +3,7 @@ layout: archive
 title: ""
 permalink: /publications/
 author_profile: false
+toc: true
 redirect_from:
   - /publications
 ---

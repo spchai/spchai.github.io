@@ -3,6 +3,7 @@ layout: archive
 permalink: /markdown/
 title: "Markdown"
 author_profile: false
+toc: true
 redirect_from: 
   - /md/
   - /markdown.html
