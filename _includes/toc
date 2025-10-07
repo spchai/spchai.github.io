@@ -17,11 +17,10 @@
                         {% assign id_start = fragment | split: 'id="' | last %}
                         {% assign id = id_start | split: '"' | first %}
 
-                        {% assign text_start = fragment | split: '>' | last %}
-                        {% assign text = text_start | split: '</h' | first | strip_html | strip %}
-                        {% assign text1 = fragment | split: '>' | last | split: '</h' | first %}
-                        {% assign text2 = fragment | remove: '<h' | remove: 'id="' | split: '">' | last | split: '</h' | first %}
-                        {% assign final_text = text1 | default: text2 | strip_html | strip %}
+                        {% assign text_parts = fragment | split: '>' %}
+                        {% assign text_content = text_parts[1] %}
+                        {% assign text_clean = text_content | split: '</h' | first %}
+                        {% assign text = text_clean | strip %}
 
                         {% if level > last_level %}
                             {% for i in (last_level..level) %}
