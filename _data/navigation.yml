@@ -29,8 +29,18 @@ main:
 #    url: /markdown/
 
 
-Research:
+research:
   - title: "Stress heterogeneity"
     url: /research/#stress-heterogeneity-on-faults
+    children:
+      - title: "In lab setups"
+        url: /research/#in-lab-setups
+      - title: "Dilatancy patterns"
+        url: /research/#dilatancy-patterns
+      - title: "Staged rupture"
+        url: /research/#staged-rupture
   - title: "Planetary science"
     url: /research/#planetary-science
+    children:
+      - title: "Lunar seismicity"
+        url: /research/#lunar-seismicity
