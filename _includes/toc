@@ -17,10 +17,22 @@
                         {% assign id_start = fragment | split: 'id="' | last %}
                         {% assign id = id_start | split: '"' | first %}
 
-                        {% assign text_parts = fragment | split: '>' %}
-                        {% assign text_content = text_parts[1] %}
-                        {% assign text_clean = text_content | split: '</h' | first %}
-                        {% assign text = text_clean | strip %}
+                        {% assign text = id %}
+                        {% if text contains 'header-' %}
+                        {% assign text = text | remove: 'header-' %}
+                        {% endif %}
+                        {% assign text = text | replace: '-', ' ' %}
+                        {% assign words = text | split: ' ' %}
+                        {% assign formatted_text = '' %}
+                        {% for word in words %}
+                        {% assign first_letter = word | slice: 0 | upcase %}
+                        {% assign rest_letters = word | slice: 1, word.size %}
+                        {% assign capitalized_word = first_letter | append: rest_letters %}
+                        {% assign formatted_text = formatted_text | append: capitalized_word %}
+                        {% unless forloop.last %}
+                            {% assign formatted_text = formatted_text | append: ' ' %}
+                        {% endunless %}
+                        {% endfor %}
 
                         {% if level > last_level %}
                             {% for i in (last_level..level) %}
