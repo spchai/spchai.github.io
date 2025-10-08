@@ -1,11 +1,12 @@
 {% include base_path %}
 {% assign navigation = site.data.navigation[include.nav] %}
 
-<nav class="nav__list">
-  {% if page.sidebar.title %}<header><h2 class="nav__title" style="padding: 0;">{{ page.sidebar.title }}</h2></header>{% endif %}
-  <ul>
+<nav class="toc">
+  <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ "Contents" | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
+  <div class="toc__menu">
+    <ul class="toc-list">
     {% for nav in navigation %}
-      <li>
+      <li class="toc-level-1">
         {% if nav.url %}
           {% comment %}internal/external URL check{% endcomment %}
           {% if nav.url contains "://" %}
@@ -13,10 +14,7 @@
           {% else %}
             {% assign domain = base_path %}
           {% endif %}
-
-          <a href="{{ domain }}{{ nav.url }}"><span class="nav__sub-title">{{ nav.title }}</span></a>
-        {% else %}
-          <span class="nav__sub-title">{{ nav.title }}</span>
+          <a href="{{ domain }}{{ nav.url }}">{{ nav.title }}</a>
         {% endif %}
 
         {% if nav.children != null %}
@@ -36,11 +34,11 @@
               {% assign active = "" %}
             {% endif %}
 
-            <li><a href="{{ domain }}{{ child.url }}" class="{{ active }}">{{ child.title }}</a></li>
+            <li class="toc-level-2"><a href="{{ domain }}{{ child.url }}" class="{{ active }}">{{ child.title }}</a></li>
           {% endfor %}
         </ul>
         {% endif %}
       </li>
     {% endfor %}
-  </ul>
+    </div>
 </nav>
