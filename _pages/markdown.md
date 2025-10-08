@@ -1,8 +1,8 @@
 ---
-layout: archive
+layout: single
 permalink: /markdown/
 title: "Markdown"
-author_profile: false
+author_profile: true
 toc: true
 redirect_from: 
   - /md/
