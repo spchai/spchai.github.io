@@ -38,6 +38,7 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 * Geotechnical engineering
 * Planetary Geomechanics (e.g., Lunar landslides)
 * Interaction between rock and mining backfill
+<br/>
 
 # Education
 
@@ -45,13 +46,48 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 * 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 * 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
+<br/>
 
 #  Employment
 
 * 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
 * 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
- 
-# Selected Publications ([See full list](https://spchai.github.io/publications/))
+<br/>
+
+# Selected Publications 
+<!-- ([See full list](https://spchai.github.io/publications/)) -->
+
+<div class="footer-flex">
+  <div>
+    <a href="https://spchai.github.io/publications/">See full list</a> or via 
+  </div>
+  <div class="body-social-links">
+    {% if author.googlescholar %}
+      <a href="{{ author.googlescholar }}">
+        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-light icon-pad-right" style="height:45px;">
+        <img src="/images/icons/google-scholar_d.svg" alt="Google Scholar" class="icon-dark icon-pad-right" style="height:45px;">
+      </a>
+    {% endif %}
+    {% if author.orcid %}
+      <a href="{{ author.orcid }}">
+        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-light icon-pad-right" style="height:45px;">
+        <img src="/images/icons/orcid_d.svg" alt="ORCID" class="icon-dark icon-pad-right" style="height:45px;">
+      </a>
+    {% endif %}
+    {% if author.researchgate %}
+      <a href="{{ author.researchgate }}">
+        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-light icon-pad-right" style="height:45px;">
+        <img src="/images/icons/researchgate_d.svg" alt="ResearchGate" class="icon-dark icon-pad-right" style="height:45px;">
+      </a>
+    {% endif %}
+    {% if author.scopus %}
+      <a href="{{ author.scopus }}">
+        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-light icon-pad-right" style="height:45px;">
+        <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:45px;">
+      </a>
+    {% endif %}
+  </div>
+</div>
 
 ## (To be) Submitted
 
@@ -104,7 +140,8 @@ Teaching
   <ul>{% for post in site.teaching reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>-->
-  
+<br/>
+
 # Honors & Awards
 
 * 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) at the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
