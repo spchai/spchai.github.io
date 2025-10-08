@@ -22,9 +22,7 @@
     {% endif %}
   {% endif %}
   {% if page.toc %}
-    {% if page.layout != "single" %}
-      {% include toc content=content title="Contents" %}
-    {% endif %} 
+    {% include toc content=content title="Contents" %}
   {% endif %}  
   </div>
 {% endif %}
