@@ -41,12 +41,11 @@
                         {% for i in (level..last_level) %}
                         {% if i < last_level %}</ul></li>{% endif %}
                         {% endfor %}
-                        </li>
                     {% else %}
                         </li>
                     {% endif %}
-                    {% assign titlelevel = last_level + 1 %}
-                    <li class="toc-level-{{ titlelevel }}">
+
+                    <li class="toc-level-{{ level }}">
                         <a href="#{{ id }}">
                             {% if formatted_text != "" %}
                             {{ formatted_text }}
