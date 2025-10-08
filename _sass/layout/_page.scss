@@ -37,6 +37,7 @@
 .page_twosidebar {
   @include breakpoint($large) {
     @include span(7 of 12);
+    @include prefix(-0.5 of 12);
   }
 
   .page__inner-wrap {
