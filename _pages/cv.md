@@ -3,6 +3,7 @@ layout: archive
 title: ""
 permalink: /me/
 author_profile: true
+toc: true
 redirect_from:
   - /resume
   - /cv
