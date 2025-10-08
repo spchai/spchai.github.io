@@ -2,7 +2,7 @@
 {% assign navigation = site.data.navigation[include.nav] %}
 
 <nav class="toc">
-  <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ "Contents" | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
+  <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'columns' }}"></i> {{ "Contents" | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
   <div class="toc__menu">
     <ul class="toc-list">
     {% for nav in navigation %}
