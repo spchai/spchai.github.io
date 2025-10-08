@@ -16,8 +16,8 @@ redirect_from:
 </div>
 -->
 
-Overview
-------
+# Overview
+
 Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the **influences of fault roughness on rupture dynamics and stick-slip behavior** through integrated **laboratory experiments** and **numerical simulations** (shown in the figure). 
 
 <!-- 
@@ -39,22 +39,21 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 * Planetary Geomechanics (e.g., Lunar landslides)
 * Interaction between rock and mining backfill
 
-Education
-------
+# Education
+
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
 * 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 * 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
 
-Employment
-------
+#  Employment
+
 * 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
 * 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
  
-Selected Publications ([See full list](https://spchai.github.io/publications/))
-------
+# Selected Publications ([See full list](https://spchai.github.io/publications/))
 
-### (To be) Submitted
+## (To be) Submitted
 
 1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
 
@@ -65,7 +64,7 @@ Selected Publications ([See full list](https://spchai.github.io/publications/))
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
 
 
-### Published
+## Published
 1. Liu S, Wu B, Krasilnikov S, Zhu J, Chen Z, **Chai S**, Zhao Q, Li Y, Michalski J. Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting. _Scientific Reports_. 15(1): 25555. https://doi.org/10.1038/s41598-025-11171-y. ([Link](https://doi.org/10.1038/s41598-025-11171-y)).
 
 1. **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
@@ -106,8 +105,8 @@ Teaching
     {% include archive-single-cv.html %}
   {% endfor %}</ul>-->
   
-Honors & Awards
-------
+# Honors & Awards
+
 * 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/11/Best_Student_Award/) at the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
 * 11/2024: [Second Prize](https://spchai.github.io/posts/2024/11/2nd_place/) at the Student Contest in the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
