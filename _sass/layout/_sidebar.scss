@@ -69,45 +69,15 @@
   margin-bottom: 1em;
 
   @include breakpoint($large) {
-    position: absolute;
-    top: 0;
-    inset-inline-end: 0;
+    position: relative;
+    float: right;
     width: $right-sidebar-width-narrow;
-    // margin-inline-end: -1 * $right-sidebar-width-narrow;
-    padding-inline-start: 1em;
+    margin-left: span(0.5 of 12);
     z-index: 10;
-
-    &.sticky {
-      @include clearfix();
-      position: -webkit-sticky;
-      position: sticky;
-      top: 2em;
-      float: inline-end;
-
-      .toc {
-        .toc__menu {
-          overflow-y: auto;
-          max-height: calc(100vh - 7em);
-        }
-      }
-    }
   }
 
   @include breakpoint($x-large) {
     width: $right-sidebar-width;
-    margin-inline-end: -1 * $right-sidebar-width;
-  }
-}
-
-.splash .sidebar__right {
-  @include breakpoint($large) {
-    position: relative;
-    float: inline-end;
-    margin-inline-end: 0;
-  }
-
-  @include breakpoint($x-large) {
-    margin-inline-end: 0;
   }
 }
 
