@@ -36,8 +36,9 @@
 
 .page_twosidebar {
   @include breakpoint($large) {
-    @include span(7 of 12);
-    @include prefix(-0.5 of 12);
+    @include span(6.95 of 12);
+    margin-left: span(2.5 of 12);
+    margin-right: span(2.5 of 12);
   }
 
   .page__inner-wrap {
