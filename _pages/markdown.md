@@ -1,8 +1,8 @@
 ---
-layout: twosidebar
+layout: single
 permalink: /markdown/
 title: "Markdown"
-author_profile: true
+author_profile: false
 toc: true
 redirect_from: 
   - /md/
