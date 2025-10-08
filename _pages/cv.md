@@ -29,7 +29,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 -->
 
 <div style="text-align: center;line-height: 1.5;">
-  <img src='/images/Research/PhD.png' style="width: 95%;" />
+  <img src='/images/Research/PhD.png' style="width: 95%; max-width: 850px"/>
 </div>  
 
 My interdisciplinary academic foundation spanning geotechnical engineering, mining engineering, and geophysics, and two years of experience in university-level teaching bring a unique perspective to my research. My research interests include
@@ -37,7 +37,8 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 * Rock mechanics and geophysics
 * Geotechnical engineering
 * Planetary Geomechanics (e.g., Lunar landslides)
-* Interaction between rock and mining backfill
+* Interaction between rock and mining backfill  
+
 <br>
 
 # Education
@@ -45,17 +46,19 @@ My interdisciplinary academic foundation spanning geotechnical engineering, mini
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
 * 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
-* 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)
+* 2014–2018, BEng in Civil Engineering, [Wuhan University](https://www.whu.edu.cn/)  
+
 <br>
 
 #  Employment
 
 * 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
-* 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology
+* 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology  
+
 <br>
 
 # Selected Publications 
-([See full list](https://spchai.github.io/publications/) or via [Google scholar](https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en).)
+(See [full list](https://spchai.github.io/publications/) or via [Google scholar](https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en))
 
 ## (To be) Submitted
 

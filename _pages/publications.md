@@ -12,7 +12,7 @@ redirect_from:
 
 # Peer-reviewed journal articles
 
-### (To be) Submitted
+## (To be) Submitted
 
 1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
 
@@ -22,7 +22,7 @@ redirect_from:
 
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
 
-### Published
+## Published
 1. Liu S, Wu B, Krasilnikov S, Zhu J, Chen Z, **Chai S**, Zhao Q, Li Y, Michalski J. Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting. _Scientific Reports_. 15(1): 25555. https://doi.org/10.1038/s41598-025-11171-y. ([Link](https://doi.org/10.1038/s41598-025-11171-y)).
 
 1. Zou Y, Wu H, **Chai S**, Yang W, Ruan R, & Zhao Q (2024). Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples. _International Journal of Mining Science and Technology_. https://doi.org/10.1016/j.ijmst.2024.08.006 ([Link](https://doi.org/10.1016/j.ijmst.2024.08.006)).
