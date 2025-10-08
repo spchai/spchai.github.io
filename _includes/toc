@@ -1,77 +1,75 @@
-<aside class="sidebar sticky">
-    <nav class="toc" markdown="1">
-        <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
-        <div class="toc__menu">
-            {% assign headings = include.content | split: '<h' %}
-            
-            {% if headings.size > 1 %}
-                {% capture toc_content %}
-                {% assign last_level = 1 %}
-                {% for fragment in headings %}
-                    {% unless forloop.first %}
-                    {% if fragment contains 'id="' %}
-                        {% assign level_char = fragment | slice: 0 %}
-                        {% assign level = level_char | plus: 0 %}
-                        
-                        {% if level >= 1 and level <= 6 %}
-                        {% assign id_start = fragment | split: 'id="' | last %}
-                        {% assign id = id_start | split: '"' | first %}
+<nav class="toc" markdown="1">
+    <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
+    <div class="toc__menu">
+        {% assign headings = include.content | split: '<h' %}
+        
+        {% if headings.size > 1 %}
+            {% capture toc_content %}
+            {% assign last_level = 1 %}
+            {% for fragment in headings %}
+                {% unless forloop.first %}
+                {% if fragment contains 'id="' %}
+                    {% assign level_char = fragment | slice: 0 %}
+                    {% assign level = level_char | plus: 0 %}
+                    
+                    {% if level >= 1 and level <= 6 %}
+                    {% assign id_start = fragment | split: 'id="' | last %}
+                    {% assign id = id_start | split: '"' | first %}
 
-                        {% assign text = id %}
-                        {% if text contains 'header-' %}
-                        {% assign text = text | remove: 'header-' %}
-                        {% endif %}
-                        {% assign text = text | replace: '-', ' ' %}
-                        {% assign words = text | split: ' ' %}
-                        {% assign formatted_text = '' %}
-                        {% for word in words %}
-                        {% assign first_letter = word | slice: 0 | upcase %}
-                        {% assign rest_letters = word | slice: 1, word.size %}
-                        {% assign capitalized_word = first_letter | append: rest_letters %}
-                        {% assign formatted_text = formatted_text | append: capitalized_word %}
-                        {% unless forloop.last %}
-                            {% assign formatted_text = formatted_text | append: ' ' %}
-                        {% endunless %}
-                        {% endfor %}
-
-                        {% if level > last_level %}
-                            {% for i in (last_level..level) %}
-                            {% if i > last_level %}<ul>{% endif %}
-                            {% endfor %}
-                        {% elsif level < last_level %}
-                            {% for i in (level..last_level) %}
-                            {% if i < last_level %}</ul></li>{% endif %}
-                            {% endfor %}
-                            </li>
-                        {% else %}
-                            </li>
-                        {% endif %}
-
-                        <li class="toc-level-{{ level }}">
-                            <a href="#{{ id }}">
-                                {% if formatted_text != "" %}
-                                {{ formatted_text }}
-                                {% else %}
-                                Title {{ forloop.index0 }}
-                                {% endif %}
-                            </a>
-                        {% assign last_level = level %}
-                        {% endif %}
+                    {% assign text = id %}
+                    {% if text contains 'header-' %}
+                    {% assign text = text | remove: 'header-' %}
                     {% endif %}
+                    {% assign text = text | replace: '-', ' ' %}
+                    {% assign words = text | split: ' ' %}
+                    {% assign formatted_text = '' %}
+                    {% for word in words %}
+                    {% assign first_letter = word | slice: 0 | upcase %}
+                    {% assign rest_letters = word | slice: 1, word.size %}
+                    {% assign capitalized_word = first_letter | append: rest_letters %}
+                    {% assign formatted_text = formatted_text | append: capitalized_word %}
+                    {% unless forloop.last %}
+                        {% assign formatted_text = formatted_text | append: ' ' %}
                     {% endunless %}
-                {% endfor %}
-                
-                {% for i in (1..last_level) %}
-                    {% if i > 1 %}</ul></li>{% endif %}
-                {% endfor %}
-                {% endcapture %}
-                
-                <ul class="toc-list">
-                {{ toc_content }}
-                </ul>
-            {% else %}
-                <p class="toc-empty">No contents</p>
-            {% endif %}
-        </div>
-    </nav>
-</aside>
+                    {% endfor %}
+
+                    {% if level > last_level %}
+                        {% for i in (last_level..level) %}
+                        {% if i > last_level %}<ul>{% endif %}
+                        {% endfor %}
+                    {% elsif level < last_level %}
+                        {% for i in (level..last_level) %}
+                        {% if i < last_level %}</ul></li>{% endif %}
+                        {% endfor %}
+                        </li>
+                    {% else %}
+                        </li>
+                    {% endif %}
+
+                    <li class="toc-level-{{ level }}">
+                        <a href="#{{ id }}">
+                            {% if formatted_text != "" %}
+                            {{ formatted_text }}
+                            {% else %}
+                            Title {{ forloop.index0 }}
+                            {% endif %}
+                        </a>
+                    {% assign last_level = level %}
+                    {% endif %}
+                {% endif %}
+                {% endunless %}
+            {% endfor %}
+            
+            {% for i in (1..last_level) %}
+                {% if i > 1 %}</ul></li>{% endif %}
+            {% endfor %}
+            {% endcapture %}
+            
+            <ul class="toc-list">
+            {{ toc_content }}
+            </ul>
+        {% else %}
+            <p class="toc-empty">No contents</p>
+        {% endif %}
+    </div>
+</nav>
