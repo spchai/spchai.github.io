@@ -1,5 +1,5 @@
 <nav class="toc" markdown="1">
-    <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'file-text' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
+    <header><h2 class="nav__title"><i class="fa fa-{{ include.icon | default: 'columns' }}"></i> {{ include.title | default: site.data.ui-text[site.locale].toc_label }}</h2></header>
     <div class="toc__menu">
         {% assign headings = include.content | split: '<h' %}
         
