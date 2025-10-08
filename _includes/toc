@@ -45,8 +45,8 @@
                     {% else %}
                         </li>
                     {% endif %}
-
-                    <li class="toc-level-{{ level }}">
+                    {% assign titlelevel = last_level + 1 %}
+                    <li class="toc-level-{{ titlelevel }}">
                         <a href="#{{ id }}">
                             {% if formatted_text != "" %}
                             {{ formatted_text }}
