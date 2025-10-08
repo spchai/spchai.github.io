@@ -34,6 +34,24 @@
   }
 }
 
+.page_twosidebar {
+  @include breakpoint($large) {
+    @include span(7 of 12);
+    @include prefix(2.5 of 12);
+    @include suffix(2.5 of 12);
+  }
+
+  .page__inner-wrap {
+    @include full();
+
+    .page__content,
+    .page__meta,
+    .page__share {
+      @include full();
+    }
+  }
+}
+
 .page__title {
   margin: 0.5em 0;
   line-height: 1.25;

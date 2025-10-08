@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: twosidebar
 permalink: /markdown/
 title: "Markdown"
 author_profile: true
