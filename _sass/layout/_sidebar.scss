@@ -92,7 +92,7 @@
   vertical-align: top;
   width: 36px;
   // set width only, for non-square avatars
-  // height: 36px;
+  height: 36px;
 
   @include breakpoint($large) {
     display: block;
@@ -101,15 +101,15 @@
   }
 
   img {
-    max-width: 175px;
+    max-width: 250px;
     display: inline-block;
 
   // Add following script to show circle images
-   border-radius: 50%;
+   border-radius: 10%;
 
    @include breakpoint($large) {
      padding: 5px;
-     border: 1px solid var(--global-dark-border-color);
+     border: 1px solid transparent;   // var(--global-dark-border-color)
    }
   }
 }
@@ -120,7 +120,8 @@
   padding-left: 15px;
   padding-right: 25px;
   line-height: 1;
-
+  text-align: center;
+  
   @include breakpoint($large) {
     display: block;
     width: 100%;
@@ -140,6 +141,7 @@
 .sidebar .author__name {
   font-family: $sans-serif;
   font-size: $type-size-5;
+  margin-bottom: 10px;
 }
 
 .sidebar .author__desktop {
@@ -162,8 +164,8 @@
   margin: 0;
 
   @include breakpoint($large) {
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-top: 0px;
+    margin-bottom: 5px;
   }
 }
 
