@@ -89,7 +89,7 @@
 
 .author__avatar {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
   width: 36px;
   // set width only, for non-square avatars
   height: 36px;
@@ -98,7 +98,6 @@
     display: block;
     width: auto;
     height: auto;
-    vertical-align: top;
   }
 
   img {
@@ -304,7 +303,8 @@
     grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
     justify-items: center;
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 25px;
+    padding-bottom: 1em;
 
     a {
       display: flex;
