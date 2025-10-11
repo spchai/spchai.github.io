@@ -89,7 +89,7 @@
 
 .author__avatar {
   display: table-cell;
-  vertical-align: top;
+  vertical-align: middle;
   width: 36px;
   // set width only, for non-square avatars
   height: 36px;
@@ -98,6 +98,7 @@
     display: block;
     width: auto;
     height: auto;
+    vertical-align: top;
   }
 
   img {
@@ -120,7 +121,23 @@
   padding-left: 15px;
   padding-right: 25px;
   line-height: 1;
-  text-align: center;
+  text-align: left;
+  
+  @include breakpoint($large) {
+    display: block;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.author__employer {
+  display: table-cell;
+  vertical-align: top;
+  padding-left: 15px;
+  padding-right: 25px;
+  line-height: 1;
+  text-align: left;
   
   @include breakpoint($large) {
     display: block;
@@ -136,6 +153,7 @@
   @include breakpoint($large) {
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
   }
 }
 .sidebar .author__name {
@@ -166,6 +184,17 @@
   @include breakpoint($large) {
     margin-top: 0px;
     margin-bottom: 5px;
+    text-align: center;
+  }
+}
+
+.author__employer {
+  margin: 0;
+
+  @include breakpoint($large) {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    text-align: center;
   }
 }
 
