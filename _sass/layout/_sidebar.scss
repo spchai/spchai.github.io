@@ -132,10 +132,8 @@
 }
 
 .author__employer {
-  display: table-cell;
+  display: none;
   vertical-align: top;
-  padding-left: 15px;
-  padding-right: 25px;
   line-height: 1;
   text-align: left;
   
@@ -144,6 +142,9 @@
     width: 100%;
     padding-left: 0;
     padding-right: 0;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: center;    
   }
 }
 
@@ -188,16 +189,6 @@
   }
 }
 
-.author__employer {
-  margin: 0;
-
-  @include breakpoint($large) {
-    margin-top: 0px;
-    margin-bottom: 5px;
-    text-align: center;
-  }
-}
-
 .author__urls-wrapper {
   position: relative;
   display: table-cell;
@@ -215,7 +206,7 @@
   }
 
   @include breakpoint($large) {
-    display: block;
+    display: none;
   }
 
   button {
@@ -301,6 +292,43 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+.author-social-links-desktop {
+  display: none;
+
+  @include breakpoint($large) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    justify-items: center;
+    margin-top: 5px;
+    margin-left: 5px;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1px;
+    }
+
+    img {
+      height: 32px;      // 固定高度
+      width: auto;       // 宽度自动，保持比例
+      object-fit: contain; // 图片完整显示，不裁剪
+    }
+
+    p {
+      font-size: .875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    i {
+      font-size: 32px; // 或 32px、40px，根据需要调整
     }
   }
 }
