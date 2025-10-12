@@ -52,5 +52,5 @@ html[data-theme="dark"] {
     --global-text-color                 : #{$text};
     --global-text-color-light           : #{$light-gray};
     --global-thead-color                : #{$background-lighter};
-    --overlay_filter_color              : #00000099;    // rgba(0, 0, 0, 0.6)
+    --overlay_filter_color              : rgba(0, 0, 0, 0.6)
 }
