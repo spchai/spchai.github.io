@@ -12,7 +12,7 @@ header:
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
-      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 300px; border-radius: 50%;" >
+      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 250px; border-radius: 50%;" >
     </div>
     <div class="profile-content">
       <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
