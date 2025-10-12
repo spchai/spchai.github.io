@@ -1,5 +1,7 @@
 ---
 layout: archive
+title: About me
+titleshow: false
 permalink: /me/
 author_profile: true
 toc: true

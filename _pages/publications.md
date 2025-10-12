@@ -1,6 +1,7 @@
 ---
 layout: archive
-title: ""
+title: "Publications"
+titleshow: false
 permalink: /publications/
 author_profile: false
 toc: true
