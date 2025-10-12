@@ -29,7 +29,7 @@
 }
 
 .archive__subtitle {
-  margin: 1.414em 0 0;
+  margin: 1.414em 0 0.5em;
   padding-bottom: 0.5em;
   font-size: $type-size-4;
   color: var(--global-base-color);
@@ -43,8 +43,8 @@
 .archive__item {
   display: flex;
   height: 100%;
-  padding: 0.5rem;
-  margin: 15px 0;
+  padding: 1rem;
+  margin: 0;
   flex-direction: column;
   border-radius: 16px;
   box-shadow: 0 5px 10px var(--global-grid-color);
@@ -120,7 +120,7 @@
 .grid__wrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 15px;
   align-items: start;
   
   @media (max-width: 1024px) {
