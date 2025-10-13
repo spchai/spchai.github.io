@@ -33,30 +33,30 @@
   "work": [],
   "education": [
     {
-      "institution": "GitHub University",
-      "area": "Ph.D in Version Control Theory",
+      "institution": "Hong Kong Polytechnic University",
+      "area": "PhD candidate in Geotechnical Engineering",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "2026 (expected)",
+      "gpa": null,
+      "courses": []
+    },
+    {
+      "institution": "University of Montreal (Polytechnique Montréal)",
+      "area": "MASc in Mineral Engineering",
+      "studyType": "",
+      "startDate": "",
+      "endDate": "2020",
+      "gpa": "3.91/4.0",
+      "courses": []
+    },
+    {
+      "institution": "Wuhan University",
+      "area": "BS in Civil Engineering",
       "studyType": "",
       "startDate": "",
       "endDate": "2018",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "M.S. in Jekyll",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2014",
-      "gpa": null,
-      "courses": []
-    },
-    {
-      "institution": "GitHub University",
-      "area": "B.S. in GitHub",
-      "studyType": "",
-      "startDate": "",
-      "endDate": "2012",
-      "gpa": null,
+      "gpa": "87.1/100",
       "courses": []
     }
   ],
