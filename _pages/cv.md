@@ -4,7 +4,7 @@ title: About me
 titleshow: false
 permalink: /me/
 author_profile: true
-toc: true
+toc: false
 redirect_from:
   - /resume
   - /cv
