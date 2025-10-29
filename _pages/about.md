@@ -1,6 +1,6 @@
 ---
 layout: splash
-permalink: /
+permalink: /home
 hidden: true
 redirect_from: 
   - /about/
@@ -23,7 +23,7 @@ excerpt: >
       <div class="archive__item-body">
         I am currently working on the <strong>earthquake mechanics</strong> through integrated <em>laboratory experiments</em> and <em>numerical simulations</em>.  <br /> 
         <br />
-        <strong>Interests on</strong> Rock mechanics and geophysics & Geotechnical engineering & Planetary Geomechanics & Mining backfill.
+        <strong> Rock mechanics and geophysics | Geotechnical engineering | Planetary geomechanics | Mining backfill</strong>
       </div>      
     </div>
   </div>
