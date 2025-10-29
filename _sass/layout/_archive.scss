@@ -10,7 +10,7 @@
   }
 
   @include breakpoint($large) {
-    @include span(9.5 of 12 last);
+    @include span(9.8 of 12 last);
     @include prefix(0.5 of 12);
   }
 
@@ -43,7 +43,7 @@
 .archive__item {
   display: flex;
   height: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: 0;
   flex-direction: column;
   border-radius: 16px;
@@ -62,7 +62,7 @@
   margin-bottom: 0.25em;
   font-family: $sans-serif-narrow;
   font-size: $type-size-4;
-  margin: 1em 0 0.5em;
+  margin: 0.5em 0 0;
   line-height: 1.2;
   font-weight: bold;
 
