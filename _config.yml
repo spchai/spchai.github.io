@@ -13,7 +13,7 @@ title_separator          : "-"
 name                     : &name "Shupeng CHAI"
 description              : &description "personal description"
 url                      : https://spchai.github.io # 
-baseurl                  : "/home" # the subpath of your site, e.g. "/blog"
+baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "spchai/spchai.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
