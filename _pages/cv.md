@@ -2,13 +2,12 @@
 layout: archive
 title: About me
 titleshow: false
-permalink: /
+permalink: /me/
 author_profile: true
 toc: false
 redirect_from:
   - /resume
   - /cv
-  - /me
 ---
 
 {% include base_path %}

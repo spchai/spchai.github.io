@@ -1,6 +1,6 @@
 ---
 layout: splash
-permalink: /home
+permalink: /
 hidden: true
 redirect_from: 
   - /about/

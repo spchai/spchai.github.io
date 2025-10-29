@@ -11,7 +11,7 @@ redirect_from:
 
 {% include base_path %}
 
-# Peer-reviewed journal articles
+# Journal articles
 
 ## (To be) Submitted
 
