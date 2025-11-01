@@ -379,3 +379,16 @@
     width: 100%;
   }
 }
+
+.page__image{
+  max-width: 75%;
+  margin: 20px auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .page__image {
+    max-width: 100%;
+    width: 100%;
+  }
+}
