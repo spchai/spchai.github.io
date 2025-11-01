@@ -17,7 +17,7 @@ We observed staged friction/stress drop during the slip phases of stick-slip cyc
 
 <br/>
 
-<video width="100%" controls>
+<video controls class="page__video">
   <source src="/images/Research/SH_rupture_R5.mp4" type="video/mp4">
 </video>
 

@@ -14,7 +14,7 @@ Numerous laboratory shear tests have been conducted on rock discontinuities usin
 The results indicated that stress heterogeneity generally exists in all laboratory shear tests, and the local stress on the central portion of flat laboratory faults is almost uniform. More pronounced stress heterogeneity occurs in direct shear than in inclined and rotary shear configurations. The estimated average apparent friction coefficient across the shear interface was slightly higher than the dynamic friction coefficient of the material set in the numerical simulations but lower than the static friction coefficient. Calibrations of fault friction obtained from laboratory shear tests were suggested to eliminate the effects of other potential influencing forces such as equipment friction and jacket restraint. Moreover, the local shear stress significantly decreased as the rupture front propagated through, or in the following slip phase, during individual stick-slip cycles, resulting in a more uniform stress distribution in the slip phase than in the stick phase. 
 
 
-<video width="100%" controls>
+<video controls class="page__video">
   <source src="/images/Research/Review_DS.mp4" type="video/mp4">
 </video>
 
@@ -22,7 +22,7 @@ The results indicated that stress heterogeneity generally exists in all laborato
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the direct shear (DS) test</p>
 </div>  
 
-<video width="100%" controls>
+<video controls class="page__video">
   <source src="/images/Research/Review_TS.mp4" type="video/mp4">
 </video>
 
@@ -30,7 +30,7 @@ The results indicated that stress heterogeneity generally exists in all laborato
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the triaxial shear (TS) test</p>
 </div>  
 
-<video width="100%" controls>
+<video controls class="page__video">
   <source src="/images/Research/Review_RS.mp4" type="video/mp4">
 </video>
 

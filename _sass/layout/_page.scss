@@ -366,3 +366,16 @@
   flex: 1;
   // color: #000 !important;
 }
+
+.page__video{
+  max-width: 50%;
+  margin: 20px auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .page__video {
+    max-width: 100%;
+    width: 100%;
+  }
+}
