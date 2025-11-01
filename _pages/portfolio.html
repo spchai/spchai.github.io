@@ -13,7 +13,7 @@ sidebar:
 
 {% capture written_ResearchTag %}'None'{% endcapture %}
 
-{% for post in site.portfolio %}
+{% for post in site.research %}
   {% capture ResearchTag %}{{ post.ResearchTag }}{% endcapture %}
   {% if ResearchTag != written_ResearchTag %}
     <h1 id="{{ ResearchTag | slugify }}" class="page__title">{{ ResearchTag }}</h1>
