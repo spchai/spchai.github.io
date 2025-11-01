@@ -30,8 +30,8 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 * Planetary Geomechanics (e.g., Lunar landslides)
 * Interaction between rock and mining backfill   -->
 
-<div style="text-align: center;line-height: 1.5;">
-  <img src='/images/Research/PhD.png' style="width: 80%; max-width: 850px"/>
+<div class="page__image">
+  <img src='/images/Research/PhD.png'>
 </div>  
 
 <br>
