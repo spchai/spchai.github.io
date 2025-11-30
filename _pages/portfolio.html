@@ -31,7 +31,7 @@ sidebar:
 
     <div class="research-item">
       <div class="research-item__left">
-        <h2 class="research-item__title" itemprop="headline" id="{% if post.anchor %}{{ post.anchor }}{% endif %}">
+        <h2 class="archive__item-title" itemprop="headline" id="{% if post.anchor %}{{ post.anchor }}{% endif %}">
           {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
           {% if post.link %}
             <a href="{{ post.link }}">{{ title }}</a>
