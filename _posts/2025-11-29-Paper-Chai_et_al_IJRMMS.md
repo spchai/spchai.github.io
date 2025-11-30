@@ -3,7 +3,7 @@ title: 'New paper on stress heterogeneity on laboratory faults: Numerical insigh
 covertitle: Laboratory fault heterogeneity
 date: 2025-11-29
 permalink: /posts/2025/Chai_et_al_IJRMMS/
-image_path: /Research/Stress_heterogeneity_laboratory.png
+image_path: /Research/Stress_heterogeneity_laboratory.jpg
 tags:
   - Journal articles
   - Laboratory shear tests
