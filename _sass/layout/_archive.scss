@@ -299,3 +299,32 @@
     }
   }
 }
+
+
+
+.research-grid { display: grid; row-gap: 2rem; }
+.research-item {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 1rem 1.5rem;
+  align-items: start;
+  border-radius: 16px;
+  box-shadow: 0 5px 10px var(--global-grid-color);
+  padding: 1rem 0;
+}
+
+.research-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px var(--global-border-color);
+}
+
+.research-item__left { /* 标题 + 正文 */ }
+.research-item__title { margin: 0 0 .5rem; font-size: 1.15rem; }
+.research-item__excerpt { margin: 0; }
+.research-item__right { text-align: right; }
+.research-item__right img { max-width: 100%; height: auto; display: inline-block; border-radius: 4px; }
+
+@media (max-width: 768px) {
+  .research-item { grid-template-columns: 1fr; }
+  .research-item__right { text-align: left; margin-top: .5rem; }
+}

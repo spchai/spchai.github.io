@@ -11,13 +11,51 @@ sidebar:
 
 {% include base_path %}
 
-{% capture written_ResearchTag %}'None'{% endcapture %}
+<div class="research-grid">
+  {% capture written_ResearchTag %}'None'{% endcapture %}
 
-{% for post in site.research %}
-  {% capture ResearchTag %}{{ post.ResearchTag }}{% endcapture %}
-  {% if ResearchTag != written_ResearchTag %}
-    <h1 id="{{ ResearchTag | slugify }}" class="page__title">{{ ResearchTag }}</h1>
-    {% capture written_ResearchTag %}{{ ResearchTag }}{% endcapture %}
-  {% endif %}
-  {% include archive-single.html %}
-{% endfor %}
+  {% for post in site.research %}
+    {% capture ResearchTag %}{{ post.ResearchTag }}{% endcapture %}
+    {% if ResearchTag != written_ResearchTag %}
+      <h1 id="{{ ResearchTag | slugify }}" class="page__title">{{ ResearchTag }}</h1>
+      {% capture written_ResearchTag %}{{ ResearchTag }}{% endcapture %}
+    {% endif %}
+
+    {% comment %} compute image url like archive-single.html {% endcomment %}
+    {% if post.image_path %}
+      {% assign image_url = post.image_path %}
+      {% unless post.image_path contains "://" %}
+        {% assign image_url = post.image_path | prepend: "/images/" | prepend: base_path %}
+      {% endunless %}
+    {% endif %}
+
+    <div class="research-item">
+      <div class="research-item__left">
+        <h2 class="research-item__title" itemprop="headline" id="{% if post.anchor %}{{ post.anchor }}{% endif %}">
+          {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+          {% if post.link %}
+            <a href="{{ post.link }}">{{ title }}</a>
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+          {% else %}
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+          {% endif %}
+        </h2>
+
+        {% if post.excerpt %}
+          <p class="research-item__excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+        {% else %}
+          <p class="research-item__excerpt" itemprop="description">{{ post.content | markdownify }}</p>
+        {% endif %}
+      </div>
+
+      <div class="research-item__right">
+        {% if image_url %}
+          <a class="image-popup" href="{{ image_url }}" title="{% if post.alt %}{{ post.alt }}{% endif %}">
+            <img src="{{ image_url }}" alt="{% if post.alt %}{{ post.alt }}{% else %}{{ post.title }}{% endif %}">
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+  {% endfor %}
+</div>
