@@ -306,8 +306,7 @@
 .research-item {
   display: grid;
   grid-template-columns: 68% 30%;
-  gap: 1rem 1.5rem;
-  align-items: start;
+  gap: 1em;
   border-radius: 16px;
   box-shadow: 0 5px 10px var(--global-grid-color);
   padding: 1em;
