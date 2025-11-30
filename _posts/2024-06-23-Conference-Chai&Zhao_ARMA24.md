@@ -13,7 +13,7 @@ tags:
 ---
 
 
-**Chai S**, and Zhao Q. (2024). New insights for stress conditions of laboratory shear tests. _In ARMA 58th. US Rock Mechanics/Geomechanics Symposium_. https://doi.org/10.56952/ARMA-2024-0715 ([Link](https://onepetro.org/ARMAUSRMS/proceedings-abstract/ARMA24/ARMA24/ARMA-2024-0715/549558), [PDF](https://armarocks.net/papers/715.pdf))
+**Chai S**, and Zhao Q. (2024). New insights for stress conditions of laboratory shear tests. _In ARMA 58th. US Rock Mechanics/Geomechanics Symposium_. https://doi.org/10.56952/ARMA-2024-0715 ([Link](https://onepetro.org/ARMAUSRMS/proceedings-abstract/ARMA24/ARMA24/ARMA-2024-0715/549558))
 
 
 ## Abstract
@@ -21,4 +21,5 @@ Numerous laboratory tests have been performed to investigate the shear behavior 
 
 <!--<img src='/images/Conferences/Chai_et_al_AGU24.png'>-->
 
-[View on publisher](https://onepetro.org/ARMAUSRMS/proceedings-abstract/ARMA24/ARMA24/ARMA-2024-0715/549558), [Download Paper](https://armarocks.net/papers/715.pdf)
+[View extended paper](https://spchai.github.io/posts/2025/Chai_et_al_IJRMMS/)
+**Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link]https://doi.org/10.1016/j.ijrmms.2025.106358).

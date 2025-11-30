@@ -46,7 +46,7 @@ The results indicated that stress heterogeneity generally exists in all laborato
 
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across rock discontinuities: new insights from numerical simulations.
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link]https://doi.org/10.1016/j.ijrmms.2025.106358).
 
 
 <!-- <div class="page__image">
