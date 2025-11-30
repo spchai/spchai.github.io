@@ -65,7 +65,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 1. **Chai S**, Zhao Q (2026) Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted_.
 
-1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
+1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults. _To be submitted_.
 
 
 ## Published
