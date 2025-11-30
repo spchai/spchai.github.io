@@ -12,7 +12,7 @@ tags:
   - Stick-slip
 ---
 
-Laboratory shear tests on rough faults with millimeter-scale asperity heights were conducted to analyze the four types of dilation or compaction behavior observed during stick-slip cycles. 
+Four types of dilation-compaction behavior in laboratory earthquakes observed on rough faults with millimeter-scale asperity heights. 
 
 See more: **Chai S**, Su B, Zou Y, Zhao Q (2025). Dilation or compaction? Laboratory insights into the role of fault roughness. _EGU General Assembly 2025_. https://doi.org/10.5194/egusphere-egu25-7873 ([Link](https://doi.org/10.5194/egusphere-egu25-7873)).
 

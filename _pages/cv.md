@@ -57,17 +57,19 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 ## (To be) Submitted
 
-1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026) Unveiling Stress Heterogeneity in Seismic Slip: A Review of Fault Shear Experiments. _To be submitted_.
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
+1. **Chai S**, Zhao Q (2026) Competition between fault geometric roughness and mechanical properties in governing sliding instability. _To be submitted_.
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across rock discontinuities: new insights from numerical simulations.
+1. **Chai S**, Su B, Zou Y, Zhao Q (2026) Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _To be submitted_.
+
+1. **Chai S**, Zhao Q (2026) Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted_.
 
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults.
 
 
 ## Published
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link]https://doi.org/10.1016/j.ijrmms.2025.106358).
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
 
 1. Liu S, Wu B, Krasilnikov S, Zhu J, Chen Z, **Chai S**, Zhao Q, Li Y, Michalski J (2025) Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting. _Scientific Reports_. 15(1): 25555. https://doi.org/10.1038/s41598-025-11171-y. ([Link](https://doi.org/10.1038/s41598-025-11171-y)).
 

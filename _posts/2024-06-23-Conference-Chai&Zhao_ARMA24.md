@@ -22,4 +22,4 @@ Numerous laboratory tests have been performed to investigate the shear behavior 
 <!--<img src='/images/Conferences/Chai_et_al_AGU24.png'>-->
 
 [View extended paper](https://spchai.github.io/posts/2025/Chai_et_al_IJRMMS/)
-**Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link]https://doi.org/10.1016/j.ijrmms.2025.106358).
+**Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
