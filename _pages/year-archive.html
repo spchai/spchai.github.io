@@ -36,37 +36,62 @@ redirect_from:
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 只在 /news/ 页面运行
-  if (!window.location.pathname.includes('/news/')) return;
+  // 获取正确的基础路径（处理GitHub Pages和自定义域名）
+  const basePath = window.location.origin + (window.site.baseurl || '');
+  const currentPath = window.location.pathname;
+
+  // 只在/news/页面运行，但更宽松的匹配
+  if (!currentPath.includes('/news/') && !currentPath.endsWith('/news/')) {
+    console.log('Not on news page, skipping script');
+    return;
+  }
+
+  console.log('Starting news filter script...');
 
   // 1. 收集所有文章数据（从现有页面提取）
   const postsData = [];
   const yearSections = document.querySelectorAll('.year-section');
 
+  if (yearSections.length === 0) {
+    console.error('No year sections found!');
+    document.getElementById('dynamic-articles').innerHTML =
+      '<p style="text-align:center; padding:2rem;">No articles found. Please check your posts.</p>';
+    return;
+  }
+
   yearSections.forEach(section => {
-    const year = section.querySelector('h1').textContent.match(/\d{4}/)[0];
+    const yearHeader = section.querySelector('h1');
+    if (!yearHeader) return;
+
+    const yearMatch = yearHeader.textContent.match(/\d{4}/);
+    const year = yearMatch ? yearMatch[0] : 'Unknown';
+
     const articles = section.querySelectorAll('.archive__item');
 
     articles.forEach(article => {
       const titleEl = article.querySelector('.archive__item-title a');
-      const title = titleEl ? titleEl.textContent.trim() : '';
+      const title = titleEl ? titleEl.textContent.trim() : 'Untitled';
       const url = titleEl ? titleEl.href : '';
 
       const imgEl = article.querySelector('.archive__item-teaser img');
-      const image_path = imgEl ? imgEl.src.replace(window.location.origin + '/images/', '') : '';
+      let image_path = '';
+      if (imgEl) {
+        // 更智能的路径处理
+        const src = imgEl.src;
+        if (src.includes('/images/')) {
+          image_path = src.substring(src.indexOf('/images/') + 8); // 取'/images/'之后的部分
+        } else if (src.includes('://')) {
+          image_path = src; // 完整URL
+        } else {
+          image_path = src.replace(basePath + '/images/', '');
+        }
+      }
 
       const dateEl = article.querySelector('.page__meta time');
       const date = dateEl ? dateEl.textContent.trim() : '';
 
       const excerptEl = article.querySelector('.archive__item-excerpt');
       const excerpt = excerptEl ? excerptEl.textContent.trim() : '';
-
-      // 从文章链接获取原始数据（通过fetch或data属性）
-      // 这里简化处理：从页面已有的数据中提取
-      const tags = [];
-      // 尝试从文章的data属性或后续fetch获取
-      // 由于无法直接获取，我们使用一个简化方案：
-      // 假设所有文章的tags数据已经以data属性形式嵌入
 
       postsData.push({
         year: year,
@@ -80,57 +105,117 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  console.log(`Found ${postsData.length} posts in DOM`);
+
   // 2. 通过fetch获取每篇文章的完整数据（包含tags）
+  // 添加错误处理和超时
+  const fetchWithTimeout = (url, timeout = 5000) => {
+    return Promise.race([
+      fetch(url),
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('Timeout')), timeout)
+      )
+    ]);
+  };
+
   Promise.all(postsData.map((post, index) => {
-    return fetch(post.url).then(response => response.text()).then(html => {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
+    return fetchWithTimeout(post.url)
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.text();
+      })
+      .then(html => {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
 
-      // 从文章页面提取tags
-      const tagsEl = doc.querySelector('.post-tags') || doc.querySelector('[data-tags]');
-      if (tagsEl) {
-        const tagsText = tagsEl.getAttribute('data-tags') || tagsEl.textContent;
-        post.tags = tagsText.split(',').map(t => t.trim()).filter(t => t);
-      }
+        // 从文章页面提取tags - 多种选择器尝试
+        let tagsText = '';
+        const tagsEl = doc.querySelector('.post-tags') ||
+                      doc.querySelector('[data-tags]') ||
+                      doc.querySelector('.tags') ||
+                      doc.querySelector('.tag-list');
 
-      return post;
-    }).catch(() => {
-      // 如果fetch失败，使用空tags
-      return post;
-    });
+        if (tagsEl) {
+          tagsText = tagsEl.getAttribute('data-tags') || tagsEl.textContent;
+        }
+
+        // 尝试从meta标签获取
+        if (!tagsText) {
+          const metaTags = doc.querySelector('meta[name="tags"]');
+          if (metaTags) tagsText = metaTags.getAttribute('content');
+        }
+
+        if (tagsText) {
+          post.tags = tagsText.split(/[,\n]+/).map(t => t.trim()).filter(t => t && t.length > 0);
+        }
+
+        return post;
+      })
+      .catch(err => {
+        console.warn(`Failed to fetch ${post.url}: ${err.message}`);
+        // 如果fetch失败，尝试从页面已有的data属性获取tags
+        const originalArticle = document.querySelector(`a[href="${post.url}"]`)?.closest('.archive__item');
+        if (originalArticle) {
+          const dataTags = originalArticle.getAttribute('data-tags');
+          if (dataTags) {
+            post.tags = dataTags.split(',').map(t => t.trim()).filter(t => t);
+          }
+        }
+        return post;
+      });
   })).then(updatedPosts => {
+    console.log('All posts processed:', updatedPosts);
+
     // 3. 解析标签为分组结构
     function parseTag(tagString) {
+      if (!tagString || typeof tagString !== 'string') return null;
+
+      // 支持多种格式: "Category: value1, value2" 或 "Category: value" 或 "value"
       const match = tagString.match(/^([^:]+):\s*(.+)$/);
       if (match) {
         const category = match[1].trim();
-        const values = match[2].split(',').map(v => v.trim()).filter(v => v);
+        const values = match[2].split(/[,\|]+/).map(v => v.trim()).filter(v => v);
         return { category, values };
       }
+
+      // 如果没有冒号，归类为"General"
+      if (tagString.trim()) {
+        return { category: 'General', values: [tagString.trim()] };
+      }
+
       return null;
     }
 
     // 4. 提取所有分组和值
     const tagGroups = {};
+    let hasTags = false;
+
     updatedPosts.forEach(post => {
-      post.tags.forEach(tagString => {
-        const parsed = parseTag(tagString);
-        if (parsed) {
-          if (!tagGroups[parsed.category]) {
-            tagGroups[parsed.category] = new Set();
+      if (post.tags && post.tags.length > 0) {
+        hasTags = true;
+        post.tags.forEach(tagString => {
+          const parsed = parseTag(tagString);
+          if (parsed) {
+            if (!tagGroups[parsed.category]) {
+              tagGroups[parsed.category] = new Set();
+            }
+            parsed.values.forEach(value => {
+              if (value) tagGroups[parsed.category].add(value);
+            });
           }
-          parsed.values.forEach(value => {
-            tagGroups[parsed.category].add(value);
-          });
-        }
-      });
+        });
+      }
     });
 
+    console.log('Tag groups:', tagGroups);
+
     // 5. 按指定顺序排序类别
-    const categoryOrder = ['Research Area', 'topic', 'method', 'output type', 'additional'];
+    const categoryOrder = ['Research Area', 'topic', 'method', 'output type', 'additional', 'General'];
     const sortedCategories = Object.keys(tagGroups).sort((a, b) => {
       const aIndex = categoryOrder.indexOf(a);
       const bIndex = categoryOrder.indexOf(b);
+
+      if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
       if (aIndex === -1) return 1;
       if (bIndex === -1) return -1;
       return aIndex - bIndex;
@@ -138,10 +223,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 6. 生成筛选器
     const tagContainer = document.getElementById('tag-filter');
-    tagContainer.innerHTML = ''; // 确保容器清空
+    if (!tagContainer) {
+      console.error('Tag filter container not found!');
+      return;
+    }
 
-    if (sortedCategories.length === 0) {
-      tagContainer.innerHTML = '<p style="color: #666; font-style: italic;">No tags available</p>';
+    tagContainer.innerHTML = '';
+
+    if (!hasTags || sortedCategories.length === 0) {
+      tagContainer.innerHTML = '<p style="color: #666; font-style: italic; padding: 1rem 0;">No tags available for filtering</p>';
+      // 如果没有标签，仍然显示所有文章但不显示筛选器
+      document.querySelector('.filter-header').style.display = 'none';
     } else {
       sortedCategories.forEach(category => {
         const groupHeader = document.createElement('div');
@@ -201,11 +293,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderPosts(posts) {
       const container = document.getElementById('dynamic-articles');
+      if (!container) return;
+
       container.innerHTML = '';
 
       if (posts.length === 0) {
-        container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No articles match the selected filters.</p>';
-        document.getElementById('result-count').textContent = 'No articles found.';
+        container.innerHTML = '<p style="text-align: center; padding: 3rem; color: #666; background: #f8f9fa; border-radius: 8px;">No articles match the selected filters.</p>';
+        const countEl = document.getElementById('result-count');
+        if (countEl) countEl.textContent = 'No articles found.';
         return;
       }
 
@@ -233,14 +328,24 @@ document.addEventListener('DOMContentLoaded', function() {
           const article = document.createElement('article');
           article.className = 'archive__item';
 
-          let imageSrc = post.image_path ?
-            (post.image_path.includes('://') ? post.image_path : `/images/${post.image_path}`) :
-            '/images/Loading.png';
+          let imageSrc = post.image_path;
+          if (imageSrc) {
+            if (!imageSrc.includes('://') && !imageSrc.startsWith('/')) {
+              imageSrc = '/images/' + imageSrc;
+            }
+          } else {
+            imageSrc = '/images/Loading.png';
+          }
+
+          // 确保图片路径正确
+          if (imageSrc.startsWith('/') && !imageSrc.startsWith('//')) {
+            imageSrc = basePath + imageSrc;
+          }
 
           article.innerHTML = `
             <div class="archive__item-teaser">
               <a href="${post.url}" rel="permalink">
-                <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="Default image">
+                <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="${post.title}">
               </a>
             </div>
             <div class="archive__item-title">
@@ -456,10 +561,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // 10. 首次加载：隐藏原始内容，显示全部文章
     yearSections.forEach(s => s.style.display = 'none');
     renderPosts(updatedPosts);
+
+    console.log('News filter script completed successfully');
   }).catch(error => {
-    console.error('Error processing posts:', error);
-    // 如果出错，显示原始内容
-    document.getElementById('dynamic-articles').innerHTML = '<p style="color: red;">Error loading articles. Please refresh the page.</p>';
+    console.error('Critical error in news filter:', error);
+    // 如果出错，显示原始内容并给出提示
+    const container = document.getElementById('dynamic-articles');
+    if (container) {
+      container.innerHTML = `
+        <div style="padding: 2rem; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; margin-bottom: 1rem;">
+          <strong>⚠️ Filter loading failed</strong><br>
+          Showing original article list. Error: ${error.message}
+        </div>
+      `;
+    }
+    // 确保原始内容可见
+    yearSections.forEach(s => s.style.display = 'block');
   });
 });
 </script>
@@ -531,6 +648,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </section>
 {% endfor %}
+
 
 
 {% comment %}
