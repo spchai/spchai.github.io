@@ -84,104 +84,120 @@ redirect_from:
 
 <!-- 筛选功能JavaScript -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 获取所有文章
-  var allArticles = document.querySelectorAll('article.archive__item');
+// 使用立即执行函数避免全局污染
+(function() {
+  'use strict';
 
-  // 获取所有筛选按钮
-  var filterButtons = document.querySelectorAll('.filter-tag');
+  // 等待DOM完全加载
+  function init() {
+    // 获取所有文章
+    var allArticles = document.querySelectorAll('article.archive__item');
 
-  // 获取清除筛选按钮
-  var clearButton = document.querySelector('.clear-filter');
+    // 获取所有筛选按钮
+    var filterButtons = document.querySelectorAll('.filter-tag');
 
-  // 存储当前激活的标签
-  var activeFilters = [];
+    // 获取清除筛选按钮
+    var clearButton = document.querySelector('.clear-filter');
 
-  // 为每个筛选标签添加点击事件
-  for (var i = 0; i < filterButtons.length; i++) {
-    filterButtons[i].addEventListener('click', function() {
-      var tag = this.getAttribute('data-tag');
+    //存储当前激活的标签
+    var activeFilters = [];
 
-      // 切换激活状态
-      if (this.classList.contains('active')) {
-        this.classList.remove('active');
-        var index = activeFilters.indexOf(tag);
-        if (index > -1) {
-          activeFilters.splice(index, 1);
+    // 为每个筛选标签添加点击事件
+    for (var i = 0; i < filterButtons.length; i++) {
+      filterButtons[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        var tag = this.getAttribute('data-tag');
+
+        // 切换激活状态
+        if (this.classList.contains('active')) {
+          this.classList.remove('active');
+          var index = activeFilters.indexOf(tag);
+          if (index > -1) {
+            activeFilters.splice(index, 1);
+          }
+        } else {
+          this.classList.add('active');
+          activeFilters.push(tag);
         }
-      } else {
-        this.classList.add('active');
-        activeFilters.push(tag);
+
+        // 更新显示
+        updateDisplay();
+      });
+    }
+
+    // 清除筛选按钮
+    if (clearButton) {
+      clearButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        // 清除所有激活状态
+        for (var i = 0; i < filterButtons.length; i++) {
+          filterButtons[i].classList.remove('active');
+        }
+        activeFilters = [];
+        updateDisplay();
+      });
+    }
+
+    // 更新文章显示
+    function updateDisplay() {
+      // 如果没有激活的筛选，显示所有文章和年份区域
+      if (activeFilters.length === 0) {
+        for (var i = 0; i < allArticles.length; i++) {
+          allArticles[i].style.display = 'block';
+        }
+
+        var yearSections = document.querySelectorAll('.year-section');
+        for (var j = 0; j < yearSections.length; j++) {
+          yearSections[j].style.display = 'block';
+        }
+
+        return;
       }
 
-      // 更新显示
-      updateDisplay();
-    });
-  }
-
-  // 清除筛选按钮
-  if (clearButton) {
-    clearButton.addEventListener('click', function() {
-      // 清除所有激活状态
-      for (var i = 0; i < filterButtons.length; i++) {
-        filterButtons[i].classList.remove('active');
-      }
-      activeFilters = [];
-      updateDisplay();
-    });
-  }
-
-  // 更新文章显示
-  function updateDisplay() {
-    // 如果没有激活的筛选，显示所有文章和年份区域
-    if (activeFilters.length === 0) {
-      for (var i = 0; i < allArticles.length; i++) {
-        allArticles[i].style.display = 'block';
-      }
-
+      // 隐藏所有年份区域
       var yearSections = document.querySelectorAll('.year-section');
       for (var j = 0; j < yearSections.length; j++) {
-        yearSections[j].style.display = 'block';
+        yearSections[j].style.display = 'none';
       }
 
-      return;
-    }
+      // 检查每篇文章是否匹配任何激活的筛选
+      for (var i = 0; i < allArticles.length; i++) {
+        var article = allArticles[i];
+        var articleTags = article.getAttribute('data-tags').split(',').map(function(tag) {
+          return tag.trim();
+        });
 
-    // 隐藏所有年份区域
-    var yearSections = document.querySelectorAll('.year-section');
-    for (var j = 0; j < yearSections.length; j++) {
-      yearSections[j].style.display = 'none';
-    }
-
-    // 检查每篇文章是否匹配任何激活的筛选
-    for (var i = 0; i < allArticles.length; i++) {
-      var article = allArticles[i];
-      var articleTags = article.getAttribute('data-tags').split(',').map(function(tag) {
-        return tag.trim();
-      });
-
-      // 检查是否有任何激活的标签匹配文章的标签
-      var hasMatch = false;
-      for (var k = 0; k < activeFilters.length; k++) {
-        if (articleTags.indexOf(activeFilters[k]) > -1) {
-          hasMatch = true;
-          break;
+        // 检查是否有任何激活的标签匹配文章的标签
+        var hasMatch = false;
+        for (var k = 0; k < activeFilters.length; k++) {
+          if (articleTags.indexOf(activeFilters[k]) > -1) {
+            hasMatch = true;
+            break;
+          }
         }
-      }
 
-      if (hasMatch) {
-        article.style.display = 'block';
-        var yearSection = article.closest('.year-section');
-        if (yearSection) {
-          yearSection.style.display = 'block';
+        if (hasMatch) {
+          article.style.display = 'block';
+          var yearSection = article.closest('.year-section');
+          if (yearSection) {
+            yearSection.style.display = 'block';
+          }
+        } else {
+          article.style.display = 'none';
         }
-      } else {
-        article.style.display = 'none';
       }
     }
   }
-});
+
+  // 页面加载完成后初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
 </script>
+
 
 
 
