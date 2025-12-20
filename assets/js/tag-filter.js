@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 2. 定义分类顺序和显示名称
   const categoryConfig = {
-    'field': { name: '研究领域', order: 1 },
-    'method': { name: '研究方法', order: 2 },
-    'form': { name: '发表形式', order: 3 },
-    'focus': { name: '研究对象', order: 4 },
-    'others': { name: '其他标签', order: 5 }
+    'Catagory': { name: '研究类别', order: 1 },
+    'Domain': { name: '研究领域', order: 2 },
+    'topic': { name: '研究主题', order: 3 },
+    'method': { name: '研究方法', order: 4 },
+    'output': { name: '发表形式', order: 5 },
+    'additional': { name: '其他标签', order: 6 }
   };
 
   // 3. 提取所有分类和标签
@@ -25,13 +26,19 @@ document.addEventListener('DOMContentLoaded', function() {
       if (tag.includes(':')) {
         const parts = tag.split(':');
         const category = parts[0].trim();
-        const value = parts[1].trim();
+        const valueString = parts[1].trim();
 
         if (categoryConfig[category]) {
+          // 处理逗号分隔的多个值
+          const values = valueString.split(',').map(v => v.trim()).filter(v => v);
+
           if (!categories[category]) {
             categories[category] = new Set();
           }
-          categories[category].add(value);
+
+          values.forEach(value => {
+            categories[category].add(value);
+          });
         }
       }
     });
@@ -99,10 +106,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const selectedValues = selectedFilters[category];
         if (selectedValues.length === 0) continue;
 
-        // 找出文章在该分类下的标签值
-        const postValues = post.tags
+        // 找出文章在该分类下的标签值（处理逗号分隔）
+        const postValues = [];
+        post.tags
           .filter(tag => tag.startsWith(category + ':'))
-          .map(tag => tag.split(':')[1].trim());
+          .forEach(tag => {
+            const valueString = tag.split(':')[1].trim();
+            const values = valueString.split(',').map(v => v.trim()).filter(v => v);
+            postValues.push(...values);
+          });
 
         // OR：文章至少包含一个选中的值
         const hasMatch = selectedValues.some(val => postValues.includes(val));
