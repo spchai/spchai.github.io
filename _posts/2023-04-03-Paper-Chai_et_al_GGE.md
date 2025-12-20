@@ -4,11 +4,12 @@ covertitle: Stress kink in backfill
 date: 2023-04-03
 permalink: /posts/2023/Chai_GGE/
 tags:
-  - Journal articles
-  - Mining engineering
-  - Numerical simulations
-  - Underground stopes
-  - Analytical solutions
+  - Catagory: Research
+  - Domain:: Mining
+  - topic: Backfill
+  - method: Numerical, Analytical
+  - output: Journal
+  - additional:
 ---
 
 

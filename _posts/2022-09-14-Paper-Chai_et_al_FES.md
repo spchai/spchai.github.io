@@ -4,10 +4,12 @@ covertitle: Pile deviation rectification
 date: 2022-09-14
 permalink: /posts/2022/Chai_FES/
 tags:
-  - Journal articles
-  - Geotechnical engineering
-  - Numerical simulations
-  - Pile
+  - Catagory: Research
+  - Domain:: Geotechnical
+  - topic: Pile
+  - method: Numerical
+  - output: Journal
+  - additional:
 ---
 
 

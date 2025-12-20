@@ -5,12 +5,12 @@ date: 2023-08-12
 permalink: /posts/2023/Best_Poster_Award/
 image_path: /Awards/2023-08-12-Best_Poster_Award.jpg
 tags:
-  - Award
-  - Conference
-  - Laboratory shear tests
-  - Numerical simulations
-  - Stress heterogeneity
-  - Stick-slip
+  - Catagory: Award
+  - Domain: Geotechnical, Rock
+  - topic: Stress heterogeneity, Stick-slip
+  - method: Numerical, Lab
+  - output: Conference
+  - additional:
 ---
 
 Won **Best Poster Award** for the poster presentation entitled **Stress analyses of laboratory shear tests** in _2023 ARMA East Asia Geomechanics Workshop_ held on 11 – 12 August in Hong Kong

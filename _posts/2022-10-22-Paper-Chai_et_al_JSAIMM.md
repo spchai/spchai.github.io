@@ -4,10 +4,12 @@ covertitle: Maximum dump height
 date: 2022-10-22
 permalink: /posts/2022/Chai_JSAIMM/
 tags:
-  - Journal articles
-  - Mining engineering
-  - Numerical simulations
-  - Slope
+  - Catagory: Research
+  - Domain:: Mining
+  - topic: Slope
+  - method: Numerical
+  - output: Journal
+  - additional:
 ---
 
 
