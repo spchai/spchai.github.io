@@ -10,7 +10,6 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -54,12 +53,11 @@ redirect_from:
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const articles = document.querySelectorAll('.archive__item');
-  const sections = document.querySelectorAll('.year-section');
+  const articles = Array.from(document.querySelectorAll('.archive__item'));
+  const sections = Array.from(document.querySelectorAll('.year-section'));
   const tagButtons = document.querySelectorAll('.tag-value');
   const selectedTags = new Set();
 
-  // 1. 点击筛选逻辑
   tagButtons.forEach(btn => {
     btn.addEventListener('click', function(e) {
       e.preventDefault();
@@ -76,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 2. 清除按钮逻辑
   document.getElementById('clear-filter')?.addEventListener('click', (e) => {
     e.preventDefault();
     selectedTags.clear();
@@ -84,29 +81,29 @@ document.addEventListener('DOMContentLoaded', function() {
     render();
   });
 
-  // 3. 核心渲染函数
   function render() {
+    // 第一步：更新所有文章的显示状态
     articles.forEach(article => {
       if (selectedTags.size === 0) {
-        article.style.display = 'block';
+        article.style.display = ''; // 恢复默认显示
         return;
       }
       
-      // 获取文章标签，处理可能的空格冲突
       const raw = article.getAttribute('data-tags') || "";
       const postTags = raw.split('|').map(t => t.trim());
-      
-      // 检查是否满足所有选中的标签 (AND 逻辑)
       const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
+      
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 4. 更新年份标题和显示状态
+    // 第二步：更新年份 Section 的显示和计数
     sections.forEach(section => {
-      const visibleArticles = section.querySelectorAll('.archive__item[style="display: block;"]');
+      // 核心修复：不再使用属性选择器 [style="..."]，而是直接遍历子元素判断 display
+      const sectionArticles = Array.from(section.querySelectorAll('.archive__item'));
+      const visibleArticles = sectionArticles.filter(a => a.style.display !== 'none');
       const count = visibleArticles.length;
       
-      // 如果该年份下没有匹配的文章，隐藏整个 section
+      // 更新年份标题显示
       section.style.display = count > 0 ? 'block' : 'none';
       
       const badge = section.querySelector('.archive__subtitle');
