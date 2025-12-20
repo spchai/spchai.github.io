@@ -21,14 +21,11 @@ redirect_from:
       {% unless first_post %},{% endunless %}
       {
         "title": {{ post.title | jsonify }},
-        "covertitle": {{ post.covertitle | default: post.title | jsonify }},
         "url": {{ post.url | prepend: base_path | jsonify }},
-        "link": {{ post.link | jsonify }},
         "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
         "date_display": {{ post.date | date: "%B %d, %Y" | jsonify }},
         "image_path": {{ post.image_path | default: "" | jsonify }},
-        "alt": {{ post.alt | default: "" | jsonify }},
-        "excerpt": {{ post.excerpt | markdownify | strip_html | strip_newlines | jsonify }},
+        "excerpt": {{ post.excerpt | default: "" | jsonify }},
         "tags": {{ post.tags | jsonify }}
       }
       {% assign first_post = false %}
@@ -201,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // 处理标题
-        let title = post.covertitle || post.title;
+        let title = post.title;
 
         // 处理元数据
         let metaHtml = '';
@@ -213,14 +210,11 @@ document.addEventListener('DOMContentLoaded', function() {
         article.innerHTML = `
           <div class="archive__item-teaser">
             <a href="${post.url}" rel="permalink">
-              <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="${post.alt || 'Default image'}">
+              <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="Default image">
             </a>
           </div>
           <div class="archive__item-title">
-            ${post.link ?
-              `<a href="${post.link}">${title}</a> <a href="${post.url}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>` :
-              `<a href="${post.url}" rel="permalink">${title}</a>`
-            }
+            <a href="${post.url}" rel="permalink">${title}</a>
           </div>
           ${metaHtml}
           ${post.excerpt ? `<small class="archive__item-excerpt" itemprop="description">${post.excerpt}</small>` : ''}
@@ -352,6 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 8. 初始化
   console.log('=== 初始化完成，显示全部文章 ===');
+  console.log('postsData:', postsData);
   document.querySelector('[data-tag="all"]').classList.add('active');
   renderPosts();
 });
