@@ -8,7 +8,6 @@ toc: false
 redirect_from:
   - /news/year/
 ---
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -38,7 +37,7 @@ redirect_from:
                 {% assign categories = categories | push: category %}
               {% endunless %}
 
-              {% capture group_entry %}{{ category }}|{{ trimmed_value }}{% endcapture %}
+              {% capture group_entry %}{{ category | strip }}|{{ trimmed_value | strip }}{% endcapture %}
               {% unless tag_groups contains group_entry %}
                 {% assign tag_groups = tag_groups | push: group_entry %}
               {% endunless %}
@@ -117,7 +116,7 @@ redirect_from:
                 {% for value in values %}
                   {% assign trimmed_value = value | strip %}
                   {% if trimmed_value != "" %}
-                    {% capture tag_entry %}{{ category }}|{{ trimmed_value }}{% endcapture %}
+                    {% capture tag_entry %}{{ category | strip }}|{{ trimmed_value | strip }}{% endcapture %}
                     {% assign article_tags = article_tags | push: tag_entry %}
                   {% endif %}
                 {% endfor %}
@@ -125,9 +124,9 @@ redirect_from:
             {% endfor %}
           {% endif %}
 
-          {% comment %} 使用逗号连接标签对，确保JavaScript能正确解析 {% endcomment %}
           <article class="archive__item"
                    data-tags="{{ article_tags | join: ',' }}"
+                   data-title="{{ post.title | escape }}"
                    itemscope itemtype="http://schema.org/CreativeWork">
 
             {% if post.image_path %}
@@ -377,17 +376,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let activeFilters = new Set();
 
+  console.log('初始化筛选器...');
+  console.log('找到的按钮数量:', tagButtons.length);
+  console.log('找到的文章数量:', articles.length);
+
   // 标签点击事件
   tagButtons.forEach(button => {
     button.addEventListener('click', function() {
       const tag = this.dataset.tag;
+      console.log('点击标签:', tag);
 
       if (activeFilters.has(tag)) {
         activeFilters.delete(tag);
         this.classList.remove('active');
+        console.log('移除筛选器，当前:', Array.from(activeFilters));
       } else {
         activeFilters.add(tag);
         this.classList.add('active');
+        console.log('添加筛选器，当前:', Array.from(activeFilters));
       }
 
       updateDisplay();
@@ -397,6 +403,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 清除按钮
   clearButton.addEventListener('click', function() {
+    console.log('清除所有筛选器');
     activeFilters.clear();
     tagButtons.forEach(btn => btn.classList.remove('active'));
     updateDisplay();
@@ -407,39 +414,58 @@ document.addEventListener('DOMContentLoaded', function() {
     if (activeFilters.size === 0) {
       activeTagsSpan.textContent = 'None';
     } else {
-      // 显示友好的标签名称（去掉类别部分）
       const displayTags = Array.from(activeFilters).map(tag => {
         const parts = tag.split('|');
-        return parts[1]; // 只显示值部分
+        return parts[1];
       });
       activeTagsSpan.textContent = displayTags.join(', ');
     }
   }
 
   function applyFilters() {
+    console.log('应用筛选器，当前激活:', Array.from(activeFilters));
+
     if (activeFilters.size === 0) {
-      // 显示所有文章和年份
-      articles.forEach(a => a.style.display = '');
+      console.log('无筛选器，显示所有');
+      articles.forEach(a => {
+        a.style.display = '';
+        console.log('显示文章:', a.dataset.title);
+      });
       yearSections.forEach(s => s.style.display = '');
       return;
     }
 
     // 筛选文章
+    let visibleCount = 0;
     articles.forEach(article => {
-      const tags = article.dataset.tags.split(',');
-      const show = tags.some(tag => activeFilters.has(tag));
+      const tagsStr = article.dataset.tags || '';
+      const tags = tagsStr.split(',').filter(t => t.trim() !== '');
+
+      console.log('文章:', article.dataset.title, '| 标签:', tags);
+
+      const show = tags.some(tag => {
+        const has = activeFilters.has(tag);
+        if (has) console.log('匹配:', tag);
+        return has;
+      });
+
       article.style.display = show ? '' : 'none';
+      if (show) visibleCount++;
+
+      console.log('  结果:', show ? '显示' : '隐藏');
     });
 
     // 隐藏空年份
     yearSections.forEach(section => {
       const visible = section.querySelectorAll('.archive__item:not([style*="display: none"])');
       section.style.display = visible.length > 0 ? '' : 'none';
+      console.log('年份', section.dataset.year, visible.length > 0 ? '显示' : '隐藏');
     });
+
+    console.log('总共显示', visibleCount, '篇文章');
   }
 });
 </script>
-
 
 
 {% comment %}
