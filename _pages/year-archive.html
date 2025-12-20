@@ -146,10 +146,12 @@ redirect_from:
     // 显示匹配的
     for (var i = 0; i < allArticles.length; i++) {
       var article = allArticles[i];
-      var articleTags = article.getAttribute('data-tags').split(',').map(function(t) { return t.trim(); });
+      var articleTagsString = article.getAttribute('data-tags');
 
       for (var k = 0; k < activeFilters.length; k++) {
-        if (articleTags.indexOf(activeFilters[k]) !== -1) {
+        var filterTag = activeFilters[k];
+        // 检查是否匹配：文章标签字符串包含过滤器标签
+        if (articleTagsString.indexOf(filterTag) !== -1) {
           article.style.display = 'block';
           var section = article.closest('.year-section');
           if (section) {
