@@ -13,13 +13,11 @@ redirect_from:
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 侧边栏筛选器 -->
-<div class="year-archive-sidebar-filter">
+<!-- 仅显示标签，用于测试 -->
+<div class="year-archive-sidebar-filter" style="position: fixed; left: 0; top: 100px; width: 280px; background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; z-index: 1000;">
   <h3>Filter by Tags</h3>
   <div class="filter-section">
-    {% comment %} 收集所有唯一标签 {% endcomment %}
     {% assign all_tags = "" | split: "," %}
-
     {% for post in site.posts %}
       {% if post.tags %}
         {% for tag in post.tags %}
@@ -36,7 +34,6 @@ redirect_from:
       {% endif %}
     {% endfor %}
 
-    {% comment %} 获取所有类别 {% endcomment %}
     {% assign categories = "" | split: "," %}
     {% for tag_entry in all_tags %}
       {% assign category = tag_entry | split: "|" | first %}
@@ -45,7 +42,6 @@ redirect_from:
       {% endunless %}
     {% endfor %}
 
-    {% comment %} 按类别显示标签 {% endcomment %}
     {% for category in categories %}
       <div class="tag-group">
         <h4>{{ category }}</h4>
@@ -62,314 +58,40 @@ redirect_from:
       </div>
     {% endfor %}
   </div>
-
-  <div class="filter-actions">
-    <button id="clear-filters" class="filter-btn">Clear Filters</button>
-  </div>
-
-  <div class="active-filters" id="active-filters">
-    <span>Active filters: </span>
-    <span id="active-tags">None</span>
-  </div>
 </div>
 
-<!-- 筛选器CSS -->
 <style>
-.year-archive-sidebar-filter {
-  position: fixed;
-  left: 0;
-  top: 100px;
-  width: 280px;
-  max-height: 80vh;
-  overflow-y: auto;
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #e9ecef;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-  font-size: 0.9rem;
-}
-
-.year-archive-sidebar-filter h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.tag-group {
-  margin-bottom: 15px;
-  padding-bottom: 10px;
-  border-bottom: 1px dashed #e0e0e0;
-}
-
-.tag-group:last-child {
-  border-bottom: none;
-}
-
-.tag-group h4 {
-  margin: 0 0 8px 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #555;
-}
-
-.tags-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-}
-
-.tag-btn {
-  padding: 4px 8px;
-  background-color: #e9ecef;
-  border: 1px solid #ced4da;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #495057;
-  white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.tag-btn:hover {
-  background-color: #dee2e6;
-  transform: translateY(-1px);
-}
-
-.tag-btn.active {
-  background-color: #007bff;
-  color: white;
-  border-color: #006fe6;
-}
-
-.filter-actions {
-  margin: 15px 0 5px 0;
-  display: flex;
-  gap: 10px;
-}
-
-.filter-btn {
-  padding: 6px 12px;
-  background-color: #6c757d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-  width: 100%;
-}
-
-.filter-btn:hover {
-  background-color: #5a6268;
-}
-
-.active-filters {
-  font-size: 0.85rem;
-  color: #6c757d;
-  margin-top: 10px;
-  word-wrap: break-word;
-}
-
-#active-tags {
-  font-weight: 500;
-  color: #495057;
-}
-
-/* 确保右侧内容有左边距 */
-.archive {
-  margin-left: 300px;
-}
-
-/* 响应式调整 */
+.year-archive-sidebar-filter h3 { margin: 0 0 10px 0; }
+.tag-group { margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #e0e0e0; }
+.tag-group h4 { margin: 0 0 8px 0; font-size: 0.95rem; }
+.tags-container { display: flex; flex-wrap: wrap; gap: 5px; }
+.tag-btn { padding: 4px 8px; background: #e9ecef; border: 1px solid #ced4da; border-radius: 12px; font-size: 0.85rem; cursor: pointer; }
+.archive { margin-left: 300px; }
 @media (max-width: 1024px) {
-  .year-archive-sidebar-filter {
-    position: static;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .archive {
-    margin-left: 0;
-  }
+  .year-archive-sidebar-filter { position: static; width: 100%; margin-bottom: 20px; }
+  .archive { margin-left: 0; }
 }
 </style>
 
-<!-- 筛选器JavaScript -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var tagButtons = document.querySelectorAll('.tag-btn');
-  var clearButton = document.getElementById('clear-filters');
-  var activeTagsSpan = document.getElementById('active-tags');
-  var articles = document.querySelectorAll('.archive__item');
-
-  var activeFilters = new Set();
-
-  // 为每个文章添加data-tags属性
-  articles.forEach(function(article) {
-    var tags = [];
-    var hiddenTags = article.querySelectorAll('.archive__item-tags span');
-    hiddenTags.forEach(function(span) {
-      var category = span.dataset.category;
-      var value = span.dataset.value;
-      if (category && value) {
-        tags.push(category + '|' + value);
-      }
-    });
-    article.dataset.tags = JSON.stringify(tags);
-  });
-
-  // 标签按钮点击事件
-  tagButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      var tag = this.dataset.tag;
-
-      if (activeFilters.has(tag)) {
-        activeFilters.delete(tag);
-        this.classList.remove('active');
-      } else {
-        activeFilters.add(tag);
-        this.classList.add('active');
-      }
-
-      updateActiveFiltersDisplay();
-      applyFilters();
-    });
-  });
-
-  // 清除按钮事件
-  if (clearButton) {
-    clearButton.addEventListener('click', function() {
-      activeFilters.clear();
-      tagButtons.forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-      updateActiveFiltersDisplay();
-      applyFilters();
-    });
-  }
-
-  // 更新活动标签显示
-  function updateActiveFiltersDisplay() {
-    if (activeFilters.size === 0) {
-      activeTagsSpan.textContent = 'None';
-    } else {
-      activeTagsSpan.textContent = Array.from(activeFilters).join(', ');
-    }
-  }
-
-  // 应用筛选器
-  function applyFilters() {
-    if (activeFilters.size === 0) {
-      articles.forEach(function(article) {
-        article.style.display = '';
-      });
-      document.querySelectorAll('.year-section').forEach(function(section) {
-        section.style.display = '';
-      });
-      return;
-    }
-
-    articles.forEach(function(article) {
-      var articleTags = JSON.parse(article.dataset.tags || '[]');
-      var hasMatch = articleTags.some(function(tag) {
-        return activeFilters.has(tag);
-      });
-      article.style.display = hasMatch ? '' : 'none';
-    });
-
-    document.querySelectorAll('.year-section').forEach(function(section) {
-      var visibleArticles = section.querySelectorAll('.archive__item:not([style*="display: none"])');
-      if (visibleArticles.length === 0) {
-        section.style.display = 'none';
-      } else {
-        section.style.display = '';
-      }
-    });
-  }
-});
-</script>
-
 {% for year_group in posts_by_year %}
   <section class="year-section">
-    <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
-      {{ year_group.name }} ({{ year_group.items.size }})
-    </h1>
-
+    <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">{{ year_group.name }} ({{ year_group.items.size }})</h1>
     <div class="grid__wrapper">
       {% for post in year_group.items %}
-        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-          {% if post.image_path %}
-            <div class="archive__item-teaser">
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
-                  src=
-                  {% if post.image_path contains "://" %}
-                    "{{ post.image_path }}"
-                  {% else %}
-                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
-                  {% endif %}
-                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
-              </a>
-            </div>
-          {% else %}
-            <div class="archive__item-teaser">
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
-                  src="{{ '/images/Loading.png' | prepend: base_path }}"
-                  alt="Default image">
-              </a>
-            </div>
-          {% endif %}
-
-          {% if post.id %}
-            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
-          {% else %}
-            {% assign title = post.covertitle %}
-          {% endif %}
-
+        <article class="archive__item">
           <div class="archive__item-title">
-            {% if post.link %}
-              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-            {% else %}
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-            {% endif %}
+            <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ post.covertitle }}</a>
           </div>
-
-          {% if post.collection == 'teaching' %}
-            <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-          {% elsif post.collection == 'publications' %}
-            <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-          {% elsif post.date %}
-            <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
-          {% endif %}
-
-          {% if post.excerpt %}
-            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
-          {% endif %}
-
-          {% comment %} 隐藏的标签容器，用于JS解析 {% endcomment %}
-          {% if post.tags %}
-            <div class="archive__item-tags" style="display:none;">
-              {% for tag in post.tags %}
-                {% assign tag_parts = tag | split: ":" %}
-                {% if tag_parts.size >= 2 %}
-                  <span data-category="{{ tag_parts[0] | strip }}" data-value="{{ tag_parts[1] | strip }}"></span>
-                {% endif %}
-              {% endfor %}
-            </div>
-          {% endif %}
+          <div class="page__meta">
+            <i class="fa fa-calendar"></i>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
+          </div>
         </article>
       {% endfor %}
     </div>
   </section>
 {% endfor %}
+
 
 
 
