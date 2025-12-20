@@ -24,9 +24,9 @@
 
   <!-- 标签筛选区域 - 仅在/news/页面显示 -->
   {% if page.url contains '/news/' %}
-    <div class="filter-section" style="margin-top: 0.5rem; border-top: 1px solid #eee; padding-top: 15px;">
-      <h3 style="margin-bottom: 10px;">Filter by Tags</h3>
-      <div id="tag-filter" style="font-size: 0.9em;">
+    <div class="filter-section">
+      <h3>Filter by Tags</h3>
+      <div id="tag-filter" class="tag-filter-container">
         <!-- 通过Jekyll直接生成标签筛选器 -->
         {% assign all_tags = "" | split: "," %}
         {% for post in site.posts %}
@@ -60,18 +60,13 @@
             {% if current_group != "" %}
               </div></div>
             {% endif %}
-            <div style="margin-bottom: 12px;">
-              <h4 style="margin: 0 0 6px 0; font-size: 1em; color: #333;">{{ group_name }}:</h4>
-            <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+            <div class="tag-group">
+              <h4>{{ group_name }}:</h4>
+            <div class="tag-values">
             {% assign current_group = group_name %}
           {% endif %}
 
-          <span class="tag-value"
-                data-group="{{ group_name }}"
-                data-value="{{ tag_value }}"
-                style="display: inline-block; padding: 3px 6px; background: #e9ecef; border-radius: 3px; font-size: 0.85em; cursor: pointer; border: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; max-width: 100%;">
-            {{ tag_value }}
-          </span>
+          <span class="tag-value" data-full-tag="{{ group_name }}: {{ tag_value }}">{{ tag_value }}</span>
         {% endfor %}
 
         {% if current_group != "" %}
@@ -79,10 +74,7 @@
         {% endif %}
 
         <!-- 清除按钮 -->
-        <button id="clear-filter"
-                style="margin-top: 10px; padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">
-          Clear All Filters
-        </button>
+        <button id="clear-filter" class="clear-filter-btn">Clear All Filters</button>
       </div>
     </div>
   {% endif %}
