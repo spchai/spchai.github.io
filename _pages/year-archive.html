@@ -64,6 +64,7 @@ redirect_from:
   const selectedTags = new Set();
 
   function runFilter() {
+    // 获取当前页面所有的文章和年份区块
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
 
@@ -72,70 +73,81 @@ redirect_from:
         article.style.display = 'block';
         return;
       }
-      // 这里的逻辑是：文章必须包含所有已选中的标签 (AND 逻辑)
-      const attrTags = (article.getAttribute('data-tags') || "").split('|').map(t => t.trim());
-      const isMatch = Array.from(selectedTags).every(tag => attrTags.includes(tag));
+      
+      // 这里的处理至关重要：
+      // 将 data-tags "Group: Research|Topic: Stick-slip" 拆分并彻底去除前后的空格
+      const postTags = (article.getAttribute('data-tags') || "")
+                        .split('|')
+                        .map(t => t.trim())
+                        .filter(t => t !== "");
+
+      // 逻辑：选中的每一个标签，都必须能在文章的标签列表中找到
+      const isMatch = Array.from(selectedTags).every(selected => {
+        // 统一格式：去除选中标签和文章标签中的所有多余空格进行比对
+        // 例如把 "Group:  Research" 变成 "Group:Research" 再比对
+        const normalize = (str) => str.replace(/\s+/g, '').toLowerCase();
+        return postTags.some(postTag => normalize(postTag) === normalize(selected));
+      });
+
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 处理年份标题和文章计数
+    // 联动更新：隐藏没有文章的年份，并更新计数
     sections.forEach(sec => {
       const items = Array.from(sec.querySelectorAll('.archive__item'));
       const visibleCount = items.filter(i => i.style.display !== 'none').length;
-      sec.style.display = visibleCount > 0 ? 'block' : 'none';
-      const title = sec.querySelector('.archive__subtitle');
-      if (title) {
-        const year = sec.getAttribute('data-year');
-        title.textContent = `${year} (${visibleCount})`;
+      
+      if (visibleCount > 0) {
+        sec.style.display = 'block';
+        const titleBadge = sec.querySelector('.archive__subtitle');
+        if (titleBadge) {
+          const year = sec.getAttribute('data-year');
+          titleBadge.textContent = `${year} (${visibleCount})`;
+        }
+      } else {
+        sec.style.display = 'none';
       }
     });
   }
 
-  // 1. 全局点击监听 (解决元素重绘失效问题)
+  // 事件委托：处理点击
   document.addEventListener('click', function(e) {
-    // 标签点击
-    if (e.target && e.target.classList.contains('tag-value')) {
+    const target = e.target.closest('.tag-value');
+    if (target) {
       e.preventDefault();
-      e.stopPropagation();
-      const fullTag = e.target.getAttribute('data-full-tag').trim();
+      const tag = target.getAttribute('data-full-tag').trim();
       
-      if (selectedTags.has(fullTag)) {
-        selectedTags.delete(fullTag);
-        e.target.classList.remove('selected');
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+        target.classList.remove('selected');
       } else {
-        selectedTags.add(fullTag);
-        e.target.classList.add('selected');
+        selectedTags.add(tag);
+        target.classList.add('selected');
       }
       runFilter();
     }
 
     // 清除按钮
-    if (e.target && (e.target.id === 'clear-filter' || e.target.classList.contains('clear-filter-btn'))) {
+    if (e.target.id === 'clear-filter') {
       e.preventDefault();
       selectedTags.clear();
       document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
       runFilter();
     }
-  }, true);
+  });
 
-  // 2. 状态保护：防止 AcademicPages 的主题切换或响应式布局刷新导致样式丢失
-  const guardian = setInterval(() => {
+  // 暴力巡检：应对 AcademicPages 的动态 UI 更新
+  setInterval(() => {
     if (selectedTags.size > 0) {
       document.querySelectorAll('.tag-value').forEach(el => {
-        const tag = el.getAttribute('data-full-tag').trim();
-        if (selectedTags.has(tag)) {
-          el.classList.add('selected');
-        }
+        const val = el.getAttribute('data-full-tag').trim();
+        if (selectedTags.has(val)) el.classList.add('selected');
       });
-      // 保持过滤生效
-      runFilter();
     }
-  }, 1000); 
+  }, 800);
 
-  console.log("Filter engine successfully attached to Document.");
 })();
 </script>
-
 
 {% comment %}
 <!-- 
