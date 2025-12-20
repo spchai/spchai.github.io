@@ -24,7 +24,9 @@ redirect_from:
     <div class="grid__wrapper">
       {% for post in year_group.items %}
         <article class="archive__item" 
-                 data-tags="{{ post.tags | join: '|' }}"> {% if post.image_path %}
+                 data-tags="{{ post.tags | join: '|' }}">
+          
+          {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}">
                 <img style="height:210px;width:100%;object-fit:cover;" 
@@ -54,11 +56,13 @@ redirect_from:
 document.addEventListener('DOMContentLoaded', function() {
   const articles = document.querySelectorAll('.archive__item');
   const sections = document.querySelectorAll('.year-section');
-  const selectedTags = new Set();
   const tagButtons = document.querySelectorAll('.tag-value');
+  const selectedTags = new Set();
 
+  // 1. 点击筛选逻辑
   tagButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
       const tag = this.getAttribute('data-full-tag').trim();
       
       if (selectedTags.has(tag)) {
@@ -72,31 +76,43 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  document.getElementById('clear-filter')?.addEventListener('click', () => {
+  // 2. 清除按钮逻辑
+  document.getElementById('clear-filter')?.addEventListener('click', (e) => {
+    e.preventDefault();
     selectedTags.clear();
     tagButtons.forEach(b => b.classList.remove('selected'));
     render();
   });
 
+  // 3. 核心渲染函数
   function render() {
     articles.forEach(article => {
       if (selectedTags.size === 0) {
         article.style.display = 'block';
         return;
       }
-      // 将 data-tags 转为数组并清理每个标签的空格
-      const postTags = article.getAttribute('data-tags').split('|').map(t => t.trim());
+      
+      // 获取文章标签，处理可能的空格冲突
+      const raw = article.getAttribute('data-tags') || "";
+      const postTags = raw.split('|').map(t => t.trim());
+      
+      // 检查是否满足所有选中的标签 (AND 逻辑)
       const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
       article.style.display = isMatch ? 'block' : 'none';
     });
 
+    // 4. 更新年份标题和显示状态
     sections.forEach(section => {
-      const visibleCount = section.querySelectorAll('.archive__item[style="display: block;"]').length;
-      section.style.display = visibleCount > 0 ? 'block' : 'none';
+      const visibleArticles = section.querySelectorAll('.archive__item[style="display: block;"]');
+      const count = visibleArticles.length;
+      
+      // 如果该年份下没有匹配的文章，隐藏整个 section
+      section.style.display = count > 0 ? 'block' : 'none';
+      
       const badge = section.querySelector('.archive__subtitle');
       if (badge) {
         const year = section.getAttribute('data-year');
-        badge.textContent = `${year} (${visibleCount})`;
+        badge.textContent = `${year} (${count})`;
       }
     });
   }

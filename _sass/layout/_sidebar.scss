@@ -412,3 +412,14 @@
 .clear-filter-btn:hover {
   background: #c82333;
 }
+
+.sidebar-filter-wrapper {
+  position: relative;
+  z-index: 20; /* 确保在最上层 */
+}
+
+.tag-value {
+  pointer-events: auto !important; /* 强制开启点击 */
+  cursor: pointer;
+  user-select: none;
+}
