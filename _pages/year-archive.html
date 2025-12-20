@@ -4,7 +4,7 @@ permalink: /news/
 title: "News"
 titleshow: false
 author_profile: false
-toc: true
+toc: false
 redirect_from:
   - /news/year/
 ---
@@ -22,7 +22,7 @@ redirect_from:
     <div class="grid__wrapper">
       {% for post in year_group.items %}
         <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"
-                 data-tags="{{ post.tags | join: '|' | downcase }}">
+                 data-tags="{{ post.tags | join: ',' | downcase }}">
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
@@ -83,17 +83,18 @@ redirect_from:
 <!-- 筛选功能JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('Filter script loaded'); // 调试信息
+
   // 获取所有文章
   const allArticles = document.querySelectorAll('article.archive__item');
+  console.log('Found ' + allArticles.length + ' articles'); // 调试信息
 
   // 获取所有筛选按钮
   const filterButtons = document.querySelectorAll('.filter-tag');
+  console.log('Found ' + filterButtons.length + ' filter buttons'); // 调试信息
 
   // 获取清除筛选按钮
   const clearButton = document.querySelector('.clear-filter');
-
-  // 获取所有筛选组标题
-  const filterGroups = document.querySelectorAll('.filter-group');
 
   // 存储当前激活的标签
   let activeFilters = new Set();
@@ -102,6 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
   filterButtons.forEach(button => {
     button.addEventListener('click', function() {
       const tag = this.getAttribute('data-tag');
+      console.log('Clicked tag:', tag); // 调试信息
 
       // 切换激活状态
       if (this.classList.contains('active')) {
@@ -112,6 +114,8 @@ document.addEventListener('DOMContentLoaded', function() {
         activeFilters.add(tag);
       }
 
+      console.log('Active filters:', Array.from(activeFilters)); // 调试信息
+
       // 更新显示
       updateDisplay();
     });
@@ -120,6 +124,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // 清除筛选按钮
   if (clearButton) {
     clearButton.addEventListener('click', function() {
+      console.log('Clear all filters clicked'); // 调试信息
+
       // 清除所有激活状态
       filterButtons.forEach(button => {
         button.classList.remove('active');
@@ -131,6 +137,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 更新文章显示
   function updateDisplay() {
+    console.log('Updating display...'); // 调试信息
+
     // 如果没有激活的筛选，显示所有文章和年份区域
     if (activeFilters.size === 0) {
       allArticles.forEach(article => {
@@ -152,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 检查每篇文章是否匹配任何激活的筛选
     allArticles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split('|').map(tag => tag.trim());
+      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
 
       // 检查是否有任何激活的标签匹配文章的标签
       const hasMatch = Array.from(activeFilters).some(filter =>
