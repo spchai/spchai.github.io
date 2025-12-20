@@ -9,7 +9,6 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -23,7 +22,7 @@ redirect_from:
     <div class="grid__wrapper">
       {% for post in year_group.items %}
         <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"
-                 data-tags="{{ post.tags | join: ',' | downcase }}">
+                 data-tags="{{ post.tags | join: '|' | downcase }}">
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
@@ -143,11 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
         section.style.display = 'block';
       });
 
-      // 显示所有筛选组
-      filterGroups.forEach(group => {
-        group.style.display = 'block';
-      });
-
       return;
     }
 
@@ -156,14 +150,9 @@ document.addEventListener('DOMContentLoaded', function() {
       section.style.display = 'none';
     });
 
-    // 显示所有筛选组（即使没有匹配的文章）
-    filterGroups.forEach(group => {
-      group.style.display = 'block';
-    });
-
     // 检查每篇文章是否匹配任何激活的筛选
     allArticles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
+      const articleTags = article.getAttribute('data-tags').split('|').map(tag => tag.trim());
 
       // 检查是否有任何激活的标签匹配文章的标签
       const hasMatch = Array.from(activeFilters).some(filter =>
@@ -181,38 +170,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-
-  // 筛选组显示/隐藏逻辑（可选：如果没有该组的任何文章，可以隐藏组标题）
-  function updateFilterGroupsDisplay() {
-    filterGroups.forEach(group => {
-      const groupTags = group.querySelectorAll('.filter-tag');
-      let hasVisibleTags = false;
-
-      groupTags.forEach(tag => {
-        const tagValue = tag.getAttribute('data-tag');
-        // 检查是否有文章包含这个标签
-        const hasArticleWithThisTag = Array.from(allArticles).some(article => {
-          const articleTags = article.getAttribute('data-tags').split(',').map(t => t.trim());
-          return articleTags.includes(tagValue);
-        });
-
-        if (hasArticleWithThisTag) {
-          hasVisibleTags = true;
-          tag.style.display = 'inline-block';
-        } else {
-          tag.style.display = 'none';
-        }
-      });
-
-      // 如果该组没有可见的标签，可以隐藏整个组
-      group.style.display = hasVisibleTags ? 'block' : 'none';
-    });
-  }
-
-  // 初始化时也调用一次（可选）
-  // updateFilterGroupsDisplay();
 });
 </script>
+
 
 
 {% comment %}

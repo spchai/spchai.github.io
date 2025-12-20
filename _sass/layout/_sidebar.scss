@@ -363,26 +363,42 @@
 
 .filter-tag {
   transition: all 0.2s ease;
+  margin: 2px;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  cursor: pointer;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .filter-tag:hover {
-  background: #e9ecef !important;
+  background: #e9ecef;
   transform: translateY(-1px);
 }
 
 .filter-tag.active {
-  background: #007bff !important;
-  color: white !important;
-  border-color: #007bff !important;
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
 }
 
 .clear-filter {
   width: 100%;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
   transition: background 0.2s ease;
 }
 
 .clear-filter:hover {
-  background: #c0392b !important;
+  background: #c0392b;
 }
 
 

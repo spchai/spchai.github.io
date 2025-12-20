@@ -5,12 +5,13 @@ date: 2024-11-20
 permalink: /posts/2024/Best_Student_Award/
 image_path: /Awards/2024-11-20-Best_Student_Award.png
 tags:
-  - "Catagory: Research, Award"
-  - "Domain: Geotechnical, Rock"
-  - "topic: Stress heterogeneity, Stick-slip, Rupture"
-  - "method: Lab"
-  - "output: Conference"
-  - "additional:"
+  - "Catagory: Award"
+  - "Catagory: Research"  
+  - "Topic: Stick-slip"
+  - "Topic: Stress heterogeneity"  
+  - "Method: Lab"
+  - "Output: Conference"
+  - "Additional:"
 ---
 
 Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia. 

@@ -6,11 +6,14 @@ permalink: /posts/2025/Chai_EGU25/
 image_path: /Research/Dilatancy_DS.png
 tags:
   - "Catagory: Research"
-  - "Domain: Geotechnical, Rock"
-  - "topic: Stress heterogeneity, Stick-slip, Rupture, earthquakes, roughness"
-  - "method: Lab"
-  - "output: Conference"
-  - "additional:"
+  - "Topic: Stick-slip"
+  - "Topic: Stress heterogeneity"  
+  - "Topic: Earthquake"
+  - "Topic: Roughness" 
+  - "Topic: Seismicity"  
+  - "Method: Lab"
+  - "Output: Conference"
+  - "Additional:"
 ---
 
 Four types of dilation-compaction behavior in laboratory earthquakes observed on rough faults with millimeter-scale asperity heights. 

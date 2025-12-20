@@ -6,11 +6,14 @@ permalink: /posts/2024/Chai_Shenzhen/
 image_path: /Conferences/Chai2024_Shenzhen.jpg
 tags:
   - "Catagory: Research"
-  - "Domain: Geotechnical, Rock"
-  - "topic: Stress heterogeneity, Stick-slip, Rupture, earthquakes, roughness"
-  - "method: Lab"
-  - "output: Conference"
-  - "additional:"
+  - "Topic: Stick-slip"
+  - "Topic: Stress heterogeneity"  
+  - "Topic: Earthquake"
+  - "Topic: Roughness" 
+  - "Topic: Seismicity"    
+  - "Method: Lab"
+  - "Output: Conference"
+  - "Additional:"
 ---
 
 

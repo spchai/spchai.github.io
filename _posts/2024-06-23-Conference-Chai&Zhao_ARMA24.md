@@ -6,11 +6,12 @@ image_path: /Conferences/Chai2024_ARMA_poster.jpg
 permalink: /posts/2024/Chai_ARMA24/
 tags:
   - "Catagory: Research"
-  - "Domain: Geotechnical, Rock"
-  - "topic: Stress heterogeneity, Stick-slip, Rupture"
-  - "method: Numerical, Lab"
-  - "output: Conference"
-  - "additional:"
+  - "Topic: Stick-slip"
+  - "Topic: Stress heterogeneity"  
+  - "Method: Lab"
+  - "Method: Numerical"
+  - "Output: Conference"
+  - "Additional:"
 ---
 
 

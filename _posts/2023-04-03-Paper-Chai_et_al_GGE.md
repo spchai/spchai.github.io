@@ -5,11 +5,11 @@ date: 2023-04-03
 permalink: /posts/2023/Chai_GGE/
 tags:
   - "Catagory: Research"
-  - "Domain:: Mining"
-  - "topic: Backfill"
-  - "method: Numerical, Analytical"
-  - "output: Journal"
-  - "additional:"
+  - "Topic: Backfill"
+  - "Method: Analytical"
+  - "Method: Numerical"
+  - "Output: Journal"
+  - "Additional:"
 ---
 
 

@@ -5,11 +5,10 @@ date: 2022-09-14
 permalink: /posts/2022/Chai_FES/
 tags:
   - "Catagory: Research"
-  - "Domain:: Geotechnical"
-  - "topic: Pile"
-  - "method: Numerical"
-  - "output: Journal"
-  - "additional:"
+  - "Topic: Pile"
+  - "Method: Numerical"
+  - "Output: Journal"
+  - "Additional:"
 ---
 
 
