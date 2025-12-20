@@ -10,12 +10,11 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 收集所有标签用于筛选 - 使用JSON格式确保正确解析 -->
+<!-- 收集所有标签用于筛选 -->
 <div id="posts-data" style="display: none;" data-posts='[
   {% for year_group in posts_by_year %}
     {% for post in year_group.items %}
@@ -98,96 +97,105 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑JavaScript -->
+<!-- 筛选逻辑JavaScript - 独立版本 -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('DOM loaded, initializing filter...');
+// 等待页面完全加载
+window.addEventListener('load', function() {
+  console.log('=== Tag Filter System Initializing ===');
 
-  // 全局变量用于跟踪选中标签
-  window.selectedTags = new Set();
+  // 全局状态
+  const state = {
+    selectedTags: new Set(),
+    articles: [],
+    sections: []
+  };
 
-  // 获取容器
-  const tagFilter = document.getElementById('tag-filter');
-  if (!tagFilter) {
-    console.error('tag-filter element not found');
-    return;
+  // 初始化
+  function init() {
+    // 获取所有文章和年份部分
+    state.articles = Array.from(document.querySelectorAll('.archive__item'));
+    state.sections = Array.from(document.querySelectorAll('.year-section'));
+
+    console.log(`Found ${state.articles.length} articles in ${state.sections.length} years`);
+
+    // 绑定标签点击事件
+    const tagElements = document.querySelectorAll('.tag-value');
+    tagElements.forEach(tag => {
+      tag.addEventListener('click', handleTagClick);
+    });
+
+    // 绑定清除按钮
+    const clearBtn = document.getElementById('clear-filter');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', handleClearAll);
+    }
+
+    console.log('✓ Event listeners attached');
   }
 
-  // 使用事件委托处理标签点击
-  tagFilter.addEventListener('click', function(e) {
-    console.log('Click detected on:', e.target);
+  // 处理标签点击
+  function handleTagClick(e) {
+    e.preventDefault();
+    const tagElement = e.target;
+    const fullTag = tagElement.getAttribute('data-full-tag');
 
-    if (e.target.classList.contains('tag-value')) {
-      const fullTag = e.target.getAttribute('data-full-tag');
-      console.log('Tag clicked:', fullTag);
+    console.log('Tag clicked:', fullTag);
 
-      if (window.selectedTags.has(fullTag)) {
-        window.selectedTags.delete(fullTag);
-        e.target.classList.remove('selected');
-      } else {
-        window.selectedTags.add(fullTag);
-        e.target.classList.add('selected');
-      }
-
-      console.log('Selected tags:', Array.from(window.selectedTags));
-      applyFilter();
+    if (state.selectedTags.has(fullTag)) {
+      state.selectedTags.delete(fullTag);
+      tagElement.classList.remove('selected');
+    } else {
+      state.selectedTags.add(fullTag);
+      tagElement.classList.add('selected');
     }
 
-    // 清除筛选按钮
-    if (e.target.id === 'clear-filter') {
-      console.log('Clear all filters clicked');
-      clearAllFilters();
-    }
-  });
+    console.log('Selected tags:', Array.from(state.selectedTags));
+    applyFilter();
+  }
 
-  // 清除所有筛选
-  function clearAllFilters() {
-    window.selectedTags.clear();
+  // 处理清除所有
+  function handleClearAll(e) {
+    e.preventDefault();
+    console.log('Clearing all filters');
+
+    state.selectedTags.clear();
     document.querySelectorAll('.tag-value.selected').forEach(tag => {
       tag.classList.remove('selected');
     });
+
     applyFilter();
   }
 
   // 应用筛选
   function applyFilter() {
-    const allArticles = document.querySelectorAll('.archive__item');
-    const allYearSections = document.querySelectorAll('.year-section');
+    console.log('Applying filter...');
 
-    console.log('Applying filter, selected tags:', Array.from(window.selectedTags));
-
-    if (window.selectedTags.size === 0) {
-      // 显示所有文章
-      allArticles.forEach(article => {
+    // 如果没有选中标签，显示所有
+    if (state.selectedTags.size === 0) {
+      state.articles.forEach(article => {
         article.style.display = 'block';
       });
-      allYearSections.forEach(section => {
+      state.sections.forEach(section => {
         section.style.display = 'block';
-        // 重置年份计数
-        const year = section.getAttribute('data-year');
-        const totalCount = section.querySelectorAll('.archive__item').length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          title.textContent = `${year} (${totalCount})`;
-        }
+        updateYearCount(section);
       });
+      console.log('No filters, showing all');
       return;
     }
 
     // 隐藏所有
-    allArticles.forEach(article => {
+    state.articles.forEach(article => {
       article.style.display = 'none';
     });
-    allYearSections.forEach(section => {
+    state.sections.forEach(section => {
       section.style.display = 'none';
     });
 
-    // 显示匹配的
-    allArticles.forEach(article => {
+    // 显示匹配的文章
+    let visibleCount = 0;
+    state.articles.forEach(article => {
       const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-      console.log('Article tags:', articleTags);
-
-      const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
+      const hasAllTags = Array.from(state.selectedTags).every(selectedTag =>
         articleTags.includes(selectedTag)
       );
 
@@ -197,33 +205,35 @@ document.addEventListener('DOMContentLoaded', function() {
         if (yearSection) {
           yearSection.style.display = 'block';
         }
+        visibleCount++;
       }
     });
 
     // 更新年份计数
-    updateYearCounts();
+    state.sections.forEach(section => {
+      if (section.style.display !== 'none') {
+        updateYearCount(section);
+      }
+    });
+
+    console.log(`✓ Filter applied, ${visibleCount} articles visible`);
   }
 
   // 更新年份计数
-  function updateYearCounts() {
-    document.querySelectorAll('.year-section').forEach(section => {
-      if (section.style.display !== 'none') {
-        const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
-        const count = visibleArticles.length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          const year = section.getAttribute('data-year');
-          title.textContent = `${year} (${count})`;
-        }
-      }
-    });
+  function updateYearCount(section) {
+    const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
+    const count = visibleArticles.length;
+    const title = section.querySelector('.archive__subtitle');
+    if (title) {
+      const year = section.getAttribute('data-year');
+      title.textContent = `${year} (${count})`;
+    }
   }
 
-  console.log('Filter initialized successfully');
+  // 启动初始化
+  init();
 });
 </script>
-
-
 
 
 
