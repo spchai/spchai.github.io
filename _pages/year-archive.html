@@ -1,3 +1,4 @@
+---
 layout: archive
 permalink: /news/
 title: "News"
@@ -10,578 +11,43 @@ redirect_from:
 
 {% include base_path %}
 
-<div class="page-content">
-  <div class="filter-sidebar">
-    <div class="filter-section">
-      <div class="filter-header">
-        <header>
-          <h2 class="nav__title">
-            <i class="fa fa-filter"></i> News filters
-          </h2>
-        </header>
-        <button id="clear-filters" style="margin-top: 0.5rem; padding: 0.5rem 1rem; background: #6c757d; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;">
-          Clear filters
-        </button>
-      </div>
-
-      <div id="tag-filter"></div>
-    </div>
-  </div>
-
-  <div class="main-content">
-    <div id="result-count" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
-    <div id="dynamic-articles"></div>
-  </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 获取正确的基础路径（处理GitHub Pages和自定义域名）
-  const basePath = window.location.origin + (window.site.baseurl || '');
-  const currentPath = window.location.pathname;
-
-  // 只在/news/页面运行，但更宽松的匹配
-  if (!currentPath.includes('/news/') && !currentPath.endsWith('/news/')) {
-    console.log('Not on news page, skipping script');
-    return;
-  }
-
-  console.log('Starting news filter script...');
-
-  // 1. 收集所有文章数据（从现有页面提取）
-  const postsData = [];
-  const yearSections = document.querySelectorAll('.year-section');
-
-  if (yearSections.length === 0) {
-    console.error('No year sections found!');
-    document.getElementById('dynamic-articles').innerHTML =
-      '<p style="text-align:center; padding:2rem;">No articles found. Please check your posts.</p>';
-    return;
-  }
-
-  yearSections.forEach(section => {
-    const yearHeader = section.querySelector('h1');
-    if (!yearHeader) return;
-
-    const yearMatch = yearHeader.textContent.match(/\d{4}/);
-    const year = yearMatch ? yearMatch[0] : 'Unknown';
-
-    const articles = section.querySelectorAll('.archive__item');
-
-    articles.forEach(article => {
-      const titleEl = article.querySelector('.archive__item-title a');
-      const title = titleEl ? titleEl.textContent.trim() : 'Untitled';
-      const url = titleEl ? titleEl.href : '';
-
-      const imgEl = article.querySelector('.archive__item-teaser img');
-      let image_path = '';
-      if (imgEl) {
-        // 更智能的路径处理
-        const src = imgEl.src;
-        if (src.includes('/images/')) {
-          image_path = src.substring(src.indexOf('/images/') + 8); // 取'/images/'之后的部分
-        } else if (src.includes('://')) {
-          image_path = src; // 完整URL
-        } else {
-          image_path = src.replace(basePath + '/images/', '');
-        }
-      }
-
-      const dateEl = article.querySelector('.page__meta time');
-      const date = dateEl ? dateEl.textContent.trim() : '';
-
-      const excerptEl = article.querySelector('.archive__item-excerpt');
-      const excerpt = excerptEl ? excerptEl.textContent.trim() : '';
-
-      postsData.push({
-        year: year,
-        title: title,
-        url: url,
-        image_path: image_path,
-        date: date,
-        excerpt: excerpt,
-        tags: [] // 将在下面通过fetch获取
-      });
-    });
-  });
-
-  console.log(`Found ${postsData.length} posts in DOM`);
-
-  // 2. 通过fetch获取每篇文章的完整数据（包含tags）
-  // 添加错误处理和超时
-  const fetchWithTimeout = (url, timeout = 5000) => {
-    return Promise.race([
-      fetch(url),
-      new Promise((_, reject) =>
-        setTimeout(() => reject(new Error('Timeout')), timeout)
-      )
-    ]);
-  };
-
-  Promise.all(postsData.map((post, index) => {
-    return fetchWithTimeout(post.url)
-      .then(response => {
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        return response.text();
-      })
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        // 从文章页面提取tags - 多种选择器尝试
-        let tagsText = '';
-        const tagsEl = doc.querySelector('.post-tags') ||
-                      doc.querySelector('[data-tags]') ||
-                      doc.querySelector('.tags') ||
-                      doc.querySelector('.tag-list');
-
-        if (tagsEl) {
-          tagsText = tagsEl.getAttribute('data-tags') || tagsEl.textContent;
-        }
-
-        // 尝试从meta标签获取
-        if (!tagsText) {
-          const metaTags = doc.querySelector('meta[name="tags"]');
-          if (metaTags) tagsText = metaTags.getAttribute('content');
-        }
-
-        if (tagsText) {
-          post.tags = tagsText.split(/[,\n]+/).map(t => t.trim()).filter(t => t && t.length > 0);
-        }
-
-        return post;
-      })
-      .catch(err => {
-        console.warn(`Failed to fetch ${post.url}: ${err.message}`);
-        // 如果fetch失败，尝试从页面已有的data属性获取tags
-        const originalArticle = document.querySelector(`a[href="${post.url}"]`)?.closest('.archive__item');
-        if (originalArticle) {
-          const dataTags = originalArticle.getAttribute('data-tags');
-          if (dataTags) {
-            post.tags = dataTags.split(',').map(t => t.trim()).filter(t => t);
-          }
-        }
-        return post;
-      });
-  })).then(updatedPosts => {
-    console.log('All posts processed:', updatedPosts);
-
-    // 3. 解析标签为分组结构
-    function parseTag(tagString) {
-      if (!tagString || typeof tagString !== 'string') return null;
-
-      // 支持多种格式: "Category: value1, value2" 或 "Category: value" 或 "value"
-      const match = tagString.match(/^([^:]+):\s*(.+)$/);
-      if (match) {
-        const category = match[1].trim();
-        const values = match[2].split(/[,\|]+/).map(v => v.trim()).filter(v => v);
-        return { category, values };
-      }
-
-      // 如果没有冒号，归类为"General"
-      if (tagString.trim()) {
-        return { category: 'General', values: [tagString.trim()] };
-      }
-
-      return null;
-    }
-
-    // 4. 提取所有分组和值
-    const tagGroups = {};
-    let hasTags = false;
-
-    updatedPosts.forEach(post => {
-      if (post.tags && post.tags.length > 0) {
-        hasTags = true;
-        post.tags.forEach(tagString => {
-          const parsed = parseTag(tagString);
-          if (parsed) {
-            if (!tagGroups[parsed.category]) {
-              tagGroups[parsed.category] = new Set();
-            }
-            parsed.values.forEach(value => {
-              if (value) tagGroups[parsed.category].add(value);
-            });
-          }
-        });
-      }
-    });
-
-    console.log('Tag groups:', tagGroups);
-
-    // 5. 按指定顺序排序类别
-    const categoryOrder = ['Research Area', 'topic', 'method', 'output type', 'additional', 'General'];
-    const sortedCategories = Object.keys(tagGroups).sort((a, b) => {
-      const aIndex = categoryOrder.indexOf(a);
-      const bIndex = categoryOrder.indexOf(b);
-
-      if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
-      if (aIndex === -1) return 1;
-      if (bIndex === -1) return -1;
-      return aIndex - bIndex;
-    });
-
-    // 6. 生成筛选器
-    const tagContainer = document.getElementById('tag-filter');
-    if (!tagContainer) {
-      console.error('Tag filter container not found!');
-      return;
-    }
-
-    tagContainer.innerHTML = '';
-
-    if (!hasTags || sortedCategories.length === 0) {
-      tagContainer.innerHTML = '<p style="color: #666; font-style: italic; padding: 1rem 0;">No tags available for filtering</p>';
-      // 如果没有标签，仍然显示所有文章但不显示筛选器
-      document.querySelector('.filter-header').style.display = 'none';
-    } else {
-      sortedCategories.forEach(category => {
-        const groupHeader = document.createElement('div');
-        groupHeader.className = 'filter-group';
-        groupHeader.innerHTML = `<h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.95rem; color: #333;">${category}</h4>`;
-        tagContainer.appendChild(groupHeader);
-
-        const buttonContainer = document.createElement('div');
-        buttonContainer.className = 'filter-buttons';
-        buttonContainer.style.cssText = 'display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem;';
-
-        const sortedValues = Array.from(tagGroups[category]).sort();
-
-        sortedValues.forEach(value => {
-          const btn = document.createElement('button');
-          btn.className = 'tag-btn';
-          btn.textContent = value;
-          btn.dataset.category = category;
-          btn.dataset.value = value;
-          btn.style.cssText = 'padding: 0.3rem 0.6rem; border: 1px solid #ddd; border-radius: 4px; background: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; white-space: nowrap;';
-          buttonContainer.appendChild(btn);
-        });
-
-        tagContainer.appendChild(buttonContainer);
-      });
-    }
-
-    // 7. 筛选和渲染逻辑
-    const selectedFilters = {};
-
-    function filterPosts() {
-      let filtered = updatedPosts;
-
-      if (Object.keys(selectedFilters).length > 0) {
-        filtered = updatedPosts.filter(post => {
-          for (const category in selectedFilters) {
-            const selectedValues = selectedFilters[category];
-            if (selectedValues.length === 0) continue;
-
-            const postValues = [];
-            post.tags.forEach(tagString => {
-              const parsed = parseTag(tagString);
-              if (parsed && parsed.category === category) {
-                postValues.push(...parsed.values);
-              }
-            });
-
-            const hasMatch = selectedValues.some(v => postValues.includes(v));
-            if (!hasMatch) return false;
-          }
-          return true;
-        });
-      }
-
-      renderPosts(filtered);
-    }
-
-    function renderPosts(posts) {
-      const container = document.getElementById('dynamic-articles');
-      if (!container) return;
-
-      container.innerHTML = '';
-
-      if (posts.length === 0) {
-        container.innerHTML = '<p style="text-align: center; padding: 3rem; color: #666; background: #f8f9fa; border-radius: 8px;">No articles match the selected filters.</p>';
-        const countEl = document.getElementById('result-count');
-        if (countEl) countEl.textContent = 'No articles found.';
-        return;
-      }
-
-      const postsByYear = {};
-      posts.forEach(post => {
-        if (!postsByYear[post.year]) postsByYear[post.year] = [];
-        postsByYear[post.year].push(post);
-      });
-
-      const sortedYears = Object.keys(postsByYear).sort().reverse();
-
-      sortedYears.forEach(year => {
-        const yearSection = document.createElement('section');
-        yearSection.className = 'year-section';
-
-        const yearHeader = document.createElement('h1');
-        yearHeader.id = year;
-        yearHeader.className = 'archive__subtitle';
-        yearHeader.textContent = `${year} (${postsByYear[year].length})`;
-
-        const gridWrapper = document.createElement('div');
-        gridWrapper.className = 'grid__wrapper';
-
-        postsByYear[year].forEach(post => {
-          const article = document.createElement('article');
-          article.className = 'archive__item';
-
-          let imageSrc = post.image_path;
-          if (imageSrc) {
-            if (!imageSrc.includes('://') && !imageSrc.startsWith('/')) {
-              imageSrc = '/images/' + imageSrc;
-            }
-          } else {
-            imageSrc = '/images/Loading.png';
-          }
-
-          // 确保图片路径正确
-          if (imageSrc.startsWith('/') && !imageSrc.startsWith('//')) {
-            imageSrc = basePath + imageSrc;
-          }
-
-          article.innerHTML = `
-            <div class="archive__item-teaser">
-              <a href="${post.url}" rel="permalink">
-                <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="${post.title}">
-              </a>
-            </div>
-            <div class="archive__item-title">
-              <a href="${post.url}" rel="permalink">${post.title}</a>
-            </div>
-            ${post.date ? `<div class="page__meta"><i class="fa fa-calendar"></i> <time>${post.date}</time></div>` : ''}
-            ${post.excerpt ? `<small class="archive__item-excerpt">${post.excerpt}</small>` : ''}
-          `;
-
-          gridWrapper.appendChild(article);
-        });
-
-        yearSection.appendChild(yearHeader);
-        yearSection.appendChild(gridWrapper);
-        container.appendChild(yearSection);
-      });
-
-      const countEl = document.getElementById('result-count');
-      if (countEl) {
-        countEl.textContent = `Found ${posts.length} articles.`;
-      }
-    }
-
-    // 8. 事件绑定
-    document.querySelectorAll('.tag-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const category = this.dataset.category;
-        const value = this.dataset.value;
-
-        if (!selectedFilters[category]) {
-          selectedFilters[category] = [];
-        }
-
-        if (selectedFilters[category].includes(value)) {
-          selectedFilters[category] = selectedFilters[category].filter(v => v !== value);
-          this.classList.remove('active');
-        } else {
-          selectedFilters[category].push(value);
-          this.classList.add('active');
-        }
-
-        if (selectedFilters[category].length === 0) {
-          delete selectedFilters[category];
-        }
-
-        filterPosts();
-      });
-    });
-
-    const clearBtn = document.getElementById('clear-filters');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', function() {
-        document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
-        for (const key in selectedFilters) delete selectedFilters[key];
-        renderPosts(updatedPosts);
-      });
-    }
-
-    // 9. 添加样式
-    const style = document.createElement('style');
-    style.textContent = `
-      .page-content {
-        display: flex;
-        gap: 2rem;
-        align-items: flex-start;
-      }
-
-      .filter-sidebar {
-        flex: 0 0 280px;
-        position: sticky;
-        top: 2rem;
-        height: fit-content;
-        background: #f8f9fa;
-        padding: 1.5rem;
-        border-radius: 8px;
-        border: 1px solid #e9ecef;
-      }
-
-      .filter-section {
-        padding: 0;
-        background: transparent;
-        border: none;
-        border-radius: 0;
-      }
-
-      .filter-header {
-        border-bottom: 1px solid #e9ecef;
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .main-content {
-        flex: 1;
-        min-width: 0;
-      }
-
-      .tag-btn.active {
-        background: #007bff !important;
-        color: white !important;
-        border-color: #007bff !important;
-      }
-
-      .tag-btn:hover {
-        background: #f0f0f0;
-      }
-
-      .filter-group {
-        margin-top: 1rem;
-        padding-top: 0.5rem;
-        border-top: 1px dashed #eee;
-      }
-
-      .filter-group:first-child {
-        border-top: none;
-        margin-top: 0;
-        padding-top: 0;
-      }
-
-      .filter-buttons {
-        margin-bottom: 1rem;
-      }
-
-      .year-section {
-        margin-bottom: 2rem;
-      }
-
-      .archive__subtitle {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-      }
-
-      .grid__wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-      }
-
-      .archive__item {
-        background: white;
-        border: 1px solid #eaeaea;
-        border-radius: 8px;
-        overflow: hidden;
-        transition: transform 0.2s, box-shadow 0.2s;
-      }
-
-      .archive__item:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      }
-
-      .archive__item-teaser img {
-        width: 100%;
-        height: 210px;
-        object-fit: cover;
-        display: block;
-      }
-
-      .archive__item-title {
-        padding: 1rem 1rem 0.5rem;
-        font-size: 1.2rem;
-        font-weight: 600;
-      }
-
-      .archive__item-title a {
-        color: #2c3e50;
-        text-decoration: none;
-      }
-
-      .archive__item-title a:hover {
-        color: #007bff;
-      }
-
-      .page__meta {
-        padding: 0 1rem;
-        color: #6c757d;
-        font-size: 0.9rem;
-      }
-
-      .archive__item-excerpt {
-        padding: 0.5rem 1rem 1rem;
-        display: block;
-        color: #495057;
-        font-size: 0.95rem;
-        line-height: 1.5;
-      }
-
-      @media (max-width: 992px) {
-        .page-content {
-          flex-direction: column;
-        }
-
-        .filter-sidebar {
-          position: static;
-          width: 100%;
-          flex: none;
-          margin-bottom: 2rem;
-        }
-
-        .grid__wrapper {
-          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
-      }
-
-      @media (max-width: 576px) {
-        .grid__wrapper {
-          grid-template-columns: 1fr;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // 10. 首次加载：隐藏原始内容，显示全部文章
-    yearSections.forEach(s => s.style.display = 'none');
-    renderPosts(updatedPosts);
-
-    console.log('News filter script completed successfully');
-  }).catch(error => {
-    console.error('Critical error in news filter:', error);
-    // 如果出错，显示原始内容并给出提示
-    const container = document.getElementById('dynamic-articles');
-    if (container) {
-      container.innerHTML = `
-        <div style="padding: 2rem; background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; margin-bottom: 1rem;">
-          <strong>⚠️ Filter loading failed</strong><br>
-          Showing original article list. Error: ${error.message}
-        </div>
-      `;
-    }
-    // 确保原始内容可见
-    yearSections.forEach(s => s.style.display = 'block');
-  });
-});
+<div id="result-count" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
+
+<script id="posts-data" type="application/json">
+  [
+    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+    {% for year_group in posts_by_year %}
+      {% for post in year_group.items %}
+        {
+          "year": "{{ year_group.name }}",
+          "title": {{ post.title | jsonify }},
+          "url": {{ post.url | jsonify }},
+          "link": {{ post.link | jsonify }},
+          "covertitle": {{ post.covertitle | jsonify }},
+          "image_path": {{ post.image_path | jsonify }},
+          "alt": {{ post.alt | jsonify }},
+          "date": {{ post.date | date: '%Y-%m-%d' | jsonify }},
+          "date_display": {{ post.date | date: '%B %d, %Y' | jsonify }},
+          "collection": {{ post.collection | jsonify }},
+          "type": {{ post.type | jsonify }},
+          "venue": {{ post.venue | jsonify }},
+          "excerpt": {{ post.excerpt | markdownify | jsonify }},
+          "tags": {{ post.tags | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
 </script>
 
-<!-- 原始内容（会被JS隐藏） -->
+<!-- 动态文章容器 -->
+<div id="dynamic-articles"></div>
+
+<!-- 引入筛选脚本 -->
+<script src="/assets/js/tag-filter.js"></script>
+
+
+{% comment %}
+<!--
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
 {% for year_group in posts_by_year %}
@@ -589,15 +55,15 @@ document.addEventListener('DOMContentLoaded', function() {
     <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
       {{ year_group.name }} ({{ year_group.items.size }})
     </h1>
-
+    
     <div class="grid__wrapper">
       {% for post in year_group.items %}
         <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
+                <img 
+                  style="height:210px;object-fit:cover;" 
                   src=
                   {% if post.image_path contains "://" %}
                     "{{ post.image_path }}"
@@ -610,9 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
           {% else %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
-                  src="{{ '/images/Loading.png' | prepend: base_path }}"
+                <img 
+                  style="height:210px;object-fit:cover;" 
+                  src="{{ '/images/Loading.png' | prepend: base_path }}" 
                   alt="Default image">
               </a>
             </div>
@@ -644,15 +110,13 @@ document.addEventListener('DOMContentLoaded', function() {
             <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
         </article>
+
       {% endfor %}
     </div>
   </section>
 {% endfor %}
 
 
-
-{% comment %}
-<!--
  {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
