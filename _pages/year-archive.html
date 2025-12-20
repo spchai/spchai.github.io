@@ -8,60 +8,52 @@ toc: false
 redirect_from:
   - /news/year/
 ---
----
-layout: archive
-permalink: /news/
-title: "News"
-titleshow: false
-author_profile: false
-toc: false---
+
 
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 侧边栏筛选器 -极简版本 -->
+<!-- 侧边栏筛选器 - 简化版 -->
 <div class="year-archive-sidebar-filter">
   <h3>Filter by Tags</h3>
-  <div class="filter-section">
-    {% comment %} 直接遍历文章收集标签 {% endcomment %}
-    {% assign categories = "" | split: "," %}
-    {% assign tag_values = "" | split: "," %}
+  <div class="filter-section" id="tag-filters">
+    {% comment %} 简化标签收集逻辑 {% endcomment %}
+    {% assign unique_tags = "" | split: "," %}
 
     {% for post in site.posts %}
       {% if post.tags %}
         {% for tag in post.tags %}
           {% assign tag_parts = tag | split: ":" %}
           {% if tag_parts.size >= 2 %}
-            {% assign cat = tag_parts[0] | strip %}
-            {% assign val = tag_parts[1] | strip %}
-
-            {% comment %} 收集类别 {% endcomment %}
-            {% unless categories contains cat %}
-              {% assign categories = categories | push: cat %}
-            {% endunless %}
-
-            {% comment %}存储标签值 - 使用特殊分隔符 {% endcomment %}
-            {% capture tag_key %}{{ cat }}|||{{ val }}{% endcapture %}
-            {% unless tag_values contains tag_key %}
-              {% assign tag_values = tag_values | push: tag_key %}
+            {% assign category = tag_parts[0] | strip %}
+            {% assign value = tag_parts[1] | strip %}
+            {% capture tag_string %}{{ category }}:{{ value }}{% endcapture %}
+            {% unless unique_tags contains tag_string %}
+              {% assign unique_tags = unique_tags | push: tag_string %}
             {% endunless %}
           {% endif %}
         {% endfor %}
       {% endif %}
     {% endfor %}
 
-    {% comment %}显示标签 {% endcomment %}
-    {% for cat in categories %}
+    {% comment %} 显示标签 {% endcomment %}
+    {% assign categories = "" | split: "," %}
+    {% for tag in unique_tags %}
+      {% assign cat = tag | split: ":" | first %}
+      {% unless categories contains cat %}
+        {% assign categories = categories | push: cat %}
+      {% endunless %}
+    {% endfor %}
+
+    {% for category in categories %}
       <div class="tag-group">
-        <h4>{{ cat }}</h4>
+        <h4>{{ category }}</h4>
         <div class="tags-container">
-          {% for tag_key in tag_values %}
-            {% assign parts = tag_key | split: "|||" %}
-            {% if parts[0] == cat %}
-              <button class="tag-btn" data-tag="{{ tag_key }}">
-                {{ parts[1] }}
-              </button>
+          {% for tag in unique_tags %}
+            {% if tag contains category %}
+              {% assign value = tag | split: ":" | last %}
+              <button class="tag-btn" data-tag="{{ tag }}">{{ value }}</button>
             {% endif %}
           {% endfor %}
         </div>
@@ -73,12 +65,13 @@ toc: false---
     <button id="clear-filters" class="filter-btn">Clear Filters</button>
   </div>
 
-  <div class="active-filters" id="active-filters">
+  <div class="active-filters">
     <span>Active filters: </span>
     <span id="active-tags">None</span>
   </div>
 </div>
 
+<!-- 筛选器CSS -->
 <style>
 .year-archive-sidebar-filter {
   position: fixed;
@@ -108,10 +101,6 @@ toc: false---
   border-bottom: 1px dashed #e0e0e0;
 }
 
-.tag-group:last-child {
-  border-bottom: none;
-}
-
 .tag-group h4 {
   margin: 0 0 8px 0;
   font-size: 0.95rem;
@@ -135,26 +124,16 @@ toc: false---
   transition: all 0.2s ease;
   color: #495057;
   white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .tag-btn:hover {
   background-color: #dee2e6;
-  transform: translateY(-1px);
 }
 
 .tag-btn.active {
   background-color: #007bff;
   color: white;
   border-color: #006fe6;
-}
-
-.filter-actions {
-  margin: 15px 0 5px 0;
-  display: flex;
-  gap: 10px;
 }
 
 .filter-btn {
@@ -164,25 +143,13 @@ toc: false---
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
   width: 100%;
-}
-
-.filter-btn:hover {
-  background-color: #5a6268;
 }
 
 .active-filters {
   font-size: 0.85rem;
   color: #6c757d;
   margin-top: 10px;
-  word-wrap: break-word;
-}
-
-#active-tags {
-  font-weight: 500;
-  color: #495057;
 }
 
 .archive {
@@ -195,13 +162,13 @@ toc: false---
     width: 100%;
     margin-bottom: 20px;
   }
-
   .archive {
     margin-left: 0;
   }
 }
 </style>
 
+<!-- 筛选器JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const tagButtons = document.querySelectorAll('.tag-btn');
@@ -216,16 +183,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const tags = [];
     const hiddenTags = article.querySelectorAll('.archive__item-tags span');
     hiddenTags.forEach(span => {
-      const cat = span.dataset.category;
-      const val = span.dataset.value;
-      if (cat && val) {
-        tags.push(cat + '|||' + val);
+      const category = span.dataset.category;
+      const value = span.dataset.value;
+      if (category && value) {
+        tags.push(`${category}:${value}`);
       }
     });
     article.dataset.tags = JSON.stringify(tags);
   });
 
-  // 标签按钮点击
+  // 标签点击
   tagButtons.forEach(button => {
     button.addEventListener('click', function() {
       const tag = this.dataset.tag;
@@ -263,14 +230,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     articles.forEach(article => {
-      const articleTags = JSON.parse(article.dataset.tags || '[]');
-      const hasMatch = articleTags.some(tag => activeFilters.has(tag));
-      article.style.display = hasMatch ? '' : 'none';
+      const tags = JSON.parse(article.dataset.tags || '[]');
+      const show = tags.some(tag => activeFilters.has(tag));
+      article.style.display = show ? '' : 'none';
     });
 
     document.querySelectorAll('.year-section').forEach(section => {
       const visible = section.querySelectorAll('.archive__item:not([style*="display: none"])');
-      section.style.display = visible.length === 0 ? 'none' : '';
+      section.style.display = visible.length > 0 ? '' : 'none';
     });
   }
 });
@@ -336,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
 
+          {% comment %} 隐藏的标签容器 {% endcomment %}
           {% if post.tags %}
             <div class="archive__item-tags" style="display:none;">
               {% for tag in post.tags %}
@@ -351,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </section>
 {% endfor %}
-
 
 
 
