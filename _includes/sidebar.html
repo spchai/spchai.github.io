@@ -24,12 +24,14 @@
 
   <!-- 标签筛选区域 - 仅在/news/页面显示 -->
   {% if page.url contains '/news/' %}
-    <div class="filter-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem;">
-      <h3 style="margin-bottom: 1rem;">Filter by Tags</h3>
+    <div class="filter-section" style="margin-top: 2rem;">
+      <h3>Filter by Tags</h3>
 
+      {% comment %} 收集所有唯一标签并按类别分组 {% endcomment %}
       {% assign all_tags = "" | split: "," %}
       {% assign tag_groups = "" | split: "," %}
 
+      {% comment %} 第一次遍历：收集所有标签和分组 {% endcomment %}
       {% for post in site.posts %}
         {% if post.tags %}
           {% for tag in post.tags %}
@@ -38,6 +40,7 @@
               {% assign all_tags = all_tags | push: clean_tag %}
             {% endunless %}
 
+            {% comment %} 提取分组名称（冒号前的部分） {% endcomment %}
             {% assign tag_parts = clean_tag | split: ":" %}
             {% if tag_parts.size > 1 %}
               {% assign group_name = tag_parts[0] | strip %}
@@ -49,18 +52,18 @@
         {% endif %}
       {% endfor %}
 
+      {% comment %} 按分组显示标签 {% endcomment %}
       {% for group_name in tag_groups %}
-        <div class="filter-group" style="margin-bottom: 1rem;">
-          <h4 style="margin: 0.5rem 0; font-size: 0.9em; color: #555;">{{ group_name }}</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        <div class="filter-group">
+          <h4>{{ group_name }}</h4>
+          <div class="filter-tags">
             {% for tag in all_tags %}
               {% assign tag_parts = tag | split: ":" %}
               {% if tag_parts.size > 1 %}
                 {% assign current_group = tag_parts[0] | strip %}
                 {% if current_group == group_name %}
                   {% assign tag_display = tag_parts[1] | strip %}
-                  <button class="filter-tag" data-tag="{{ tag | downcase }}"
- style="margin: 2px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; white-space: normal; word-wrap: break-word; max-width: 100%; font-size: 0.85em;">
+                  <button class="filter-tag" data-tag="{{ tag | downcase }}" style="margin: 2px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; white-space: normal; word-wrap: break-word; max-width: 100%;">
                     {{ tag_display }}
                   </button>
                 {% endif %}
@@ -70,13 +73,13 @@
         </div>
       {% endfor %}
 
-      <div class="filter-group" style="margin-bottom: 1rem;">
-        <h4 style="margin: 0.5rem 0; font-size: 0.9em; color: #555;">Other Tags</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+      {% comment %} 显示没有分组的标签（如果有） {% endcomment %}
+      <div class="filter-group">
+        <h4>Other Tags</h4>
+        <div class="filter-tags">
           {% for tag in all_tags %}
             {% unless tag contains ":" %}
-              <button class="filter-tag" data-tag="{{ tag | downcase }}"
-                      style="margin: 2px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; white-space: normal; word-wrap: break-word; max-width: 100%; font-size: 0.85em;">
+              <button class="filter-tag" data-tag="{{ tag | downcase }}" style="margin: 2px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; white-space: normal; word-wrap: break-word; max-width: 100%;">
                 {{ tag }}
               </button>
             {% endunless %}
@@ -89,7 +92,6 @@
       </button>
     </div>
   {% endif %}
-
 
   {% if page.toc %}
     {% include toc content=content title="Contents" %}
