@@ -22,12 +22,12 @@
     {% endif %}
   {% endif %}
 
-  <!-- 标签筛选区域 - 仅在/news/页面显示 -->
+  <!-- 标签筛选区域 -->
   {% if page.url contains '/news/' %}
     <div class="filter-section">
       <h3>Filter by Tags</h3>
       <div id="tag-filter" class="tag-filter-container">
-        <!-- 通过Jekyll直接生成标签筛选器 -->
+        <!-- Jekyll生成标签 -->
         {% assign all_tags = "" | split: "," %}
         {% for post in site.posts %}
           {% if post.tags %}
@@ -38,8 +38,8 @@
         {% endfor %}
 
         {% assign unique_tags = all_tags | uniq | sort %}
-
         {% assign tag_groups = "" | split: "," %}
+
         {% for tag in unique_tags %}
           {% if tag contains ":" %}
             {% assign group = tag | split: ":" | first | strip %}
@@ -73,7 +73,6 @@
           </div></div>
         {% endif %}
 
-        <!-- 清除按钮 -->
         <button id="clear-filter" class="clear-filter-btn">Clear All Filters</button>
       </div>
     </div>

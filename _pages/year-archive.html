@@ -14,7 +14,7 @@ redirect_from:
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 收集所有标签用于筛选 -->
+<!-- 文章数据存储 -->
 <div id="posts-data" style="display: none;" data-posts='[
   {% for year_group in posts_by_year %}
     {% for post in year_group.items %}
@@ -91,138 +91,107 @@ redirect_from:
             <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
         </article>
-
       {% endfor %}
     </div>
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑JavaScript - 独立版本 -->
+<!-- 筛选逻辑 - 简化版本 -->
 <script>
-// 等待页面完全加载
-window.addEventListener('load', function() {
-  console.log('=== Tag Filter System Initializing ===');
+window.onload = function() {
+  console.log('=== 筛选系统启动 ===');
 
-  // 全局状态
-  const state = {
-    selectedTags: new Set(),
-    articles: [],
-    sections: []
-  };
+  // 获取所有元素
+  const allArticles = document.querySelectorAll('.archive__item');
+  const allSections = document.querySelectorAll('.year-section');
+  const filterContainer = document.getElementById('tag-filter');
 
-  // 初始化
-  function init() {
-    // 获取所有文章和年份部分
-    state.articles = Array.from(document.querySelectorAll('.archive__item'));
-    state.sections = Array.from(document.querySelectorAll('.year-section'));
+  if (!filterContainer) {
+    console.error('未找到筛选容器');
+    return;
+  }
 
-    console.log(`Found ${state.articles.length} articles in ${state.sections.length} years`);
+  // 选中标签集合
+  const selectedTags = new Set();
 
-    // 绑定标签点击事件
-    const tagElements = document.querySelectorAll('.tag-value');
-    tagElements.forEach(tag => {
-      tag.addEventListener('click', handleTagClick);
+  // 为所有标签添加点击事件
+  const tagElements = filterContainer.querySelectorAll('.tag-value');
+  console.log(`找到 ${tagElements.length} 个标签`);
+
+  tagElements.forEach(tag => {
+    tag.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const fullTag = this.getAttribute('data-full-tag');
+      console.log('点击标签:', fullTag);
+
+      if (selectedTags.has(fullTag)) {
+        selectedTags.delete(fullTag);
+        this.classList.remove('selected');
+      } else {
+        selectedTags.add(fullTag);
+        this.classList.add('selected');
+      }
+
+      console.log('当前选中:', Array.from(selectedTags));
+      applyFilter();
     });
+  });
 
-    // 绑定清除按钮
-    const clearBtn = document.getElementById('clear-filter');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', handleClearAll);
-    }
-
-    console.log('✓ Event listeners attached');
-  }
-
-  // 处理标签点击
-  function handleTagClick(e) {
-    e.preventDefault();
-    const tagElement = e.target;
-    const fullTag = tagElement.getAttribute('data-full-tag');
-
-    console.log('Tag clicked:', fullTag);
-
-    if (state.selectedTags.has(fullTag)) {
-      state.selectedTags.delete(fullTag);
-      tagElement.classList.remove('selected');
-    } else {
-      state.selectedTags.add(fullTag);
-      tagElement.classList.add('selected');
-    }
-
-    console.log('Selected tags:', Array.from(state.selectedTags));
-    applyFilter();
-  }
-
-  // 处理清除所有
-  function handleClearAll(e) {
-    e.preventDefault();
-    console.log('Clearing all filters');
-
-    state.selectedTags.clear();
-    document.querySelectorAll('.tag-value.selected').forEach(tag => {
-      tag.classList.remove('selected');
+  // 清除按钮
+  const clearBtn = document.getElementById('clear-filter');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('清除所有筛选');
+      selectedTags.clear();
+      tagElements.forEach(tag => tag.classList.remove('selected'));
+      applyFilter();
     });
-
-    applyFilter();
   }
 
-  // 应用筛选
+  // 应用筛选函数
   function applyFilter() {
-    console.log('Applying filter...');
-
-    // 如果没有选中标签，显示所有
-    if (state.selectedTags.size === 0) {
-      state.articles.forEach(article => {
-        article.style.display = 'block';
+    if (selectedTags.size === 0) {
+      // 显示所有
+      allArticles.forEach(a => a.style.display = 'block');
+      allSections.forEach(s => {
+        s.style.display = 'block';
+        updateCount(s);
       });
-      state.sections.forEach(section => {
-        section.style.display = 'block';
-        updateYearCount(section);
-      });
-      console.log('No filters, showing all');
       return;
     }
 
     // 隐藏所有
-    state.articles.forEach(article => {
-      article.style.display = 'none';
-    });
-    state.sections.forEach(section => {
-      section.style.display = 'none';
-    });
+    allArticles.forEach(a => a.style.display = 'none');
+    allSections.forEach(s => s.style.display = 'none');
 
-    // 显示匹配的文章
+    // 显示匹配的
     let visibleCount = 0;
-    state.articles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-      const hasAllTags = Array.from(state.selectedTags).every(selectedTag =>
-        articleTags.includes(selectedTag)
-      );
+    allArticles.forEach(article => {
+      const articleTags = article.getAttribute('data-tags').split(',').map(t => t.trim());
+      const hasMatch = Array.from(selectedTags).every(tag => articleTags.includes(tag));
 
-      if (hasAllTags) {
+      if (hasMatch) {
         article.style.display = 'block';
-        const yearSection = article.closest('.year-section');
-        if (yearSection) {
-          yearSection.style.display = 'block';
-        }
+        const section = article.closest('.year-section');
+        if (section) section.style.display = 'block';
         visibleCount++;
       }
     });
 
-    // 更新年份计数
-    state.sections.forEach(section => {
-      if (section.style.display !== 'none') {
-        updateYearCount(section);
-      }
+    // 更新计数
+    allSections.forEach(s => {
+      if (s.style.display !== 'none') updateCount(s);
     });
 
-    console.log(`✓ Filter applied, ${visibleCount} articles visible`);
+    console.log(`显示 ${visibleCount} 篇文章`);
   }
 
   // 更新年份计数
-  function updateYearCount(section) {
-    const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
-    const count = visibleArticles.length;
+  function updateCount(section) {
+    const count = section.querySelectorAll('.archive__item[style*="block"]').length;
     const title = section.querySelector('.archive__subtitle');
     if (title) {
       const year = section.getAttribute('data-year');
@@ -230,9 +199,8 @@ window.addEventListener('load', function() {
     }
   }
 
-  // 启动初始化
-  init();
-});
+  console.log('筛选系统已就绪');
+};
 </script>
 
 
