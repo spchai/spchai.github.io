@@ -337,6 +337,12 @@
 
 
 /* 标签筛选器样式 */
+.filter-section {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+  margin-top: 2rem;
+}
+
 .tag-filter-container {
   margin-top: 10px;
 }
@@ -386,6 +392,11 @@
   border-color: #0056b3;
 }
 
+.tag-value.selected::after {
+  content: " ✓";
+  font-weight: bold;
+}
+
 .clear-filter-btn {
   margin-top: 12px;
   padding: 6px 12px;
@@ -400,24 +411,4 @@
 
 .clear-filter-btn:hover {
   background: #c82333;
-}
-
-/* 选中标签的视觉反馈 */
-.tag-value.selected::after {
-  content: " ✓";
-  font-weight: bold;
-}
-
-/* 筛选时的视觉提示 */
-.filter-section {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-}
-
-/* 文章标签显示样式（可选） */
-.post-tags {
-  font-size: 0.8em;
-  color: #666;
-  margin-top: 8px;
-  line-height: 1.4;
 }
