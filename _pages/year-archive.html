@@ -10,22 +10,10 @@ redirect_from:
   - /news/year/
 ---
 
+
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
-
-<!-- 文章数据存储 -->
-<div id="posts-data" style="display: none;" data-posts='[
-  {% for year_group in posts_by_year %}
-    {% for post in year_group.items %}
-      {
-        "id": "{{ post.id | default: post.url }}",
-        "tags": {{ post.tags | jsonify }},
-        "year": "{{ year_group.name }}"
-      }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
-    {% endfor %}
-  {% endfor %}
-]'></div>
 
 {% for year_group in posts_by_year %}
   <section class="year-section" data-year="{{ year_group.name }}">
@@ -35,60 +23,26 @@ redirect_from:
 
     <div class="grid__wrapper">
       {% for post in year_group.items %}
-        <article class="archive__item"
-                 itemscope itemtype="http://schema.org/CreativeWork"
-                 data-post-id="{{ post.id | default: post.url }}"
-                 data-tags="{{ post.tags | join: ', ' }}">
-
-          {% if post.image_path %}
+        <article class="archive__item" 
+                 data-tags="{{ post.tags | join: '|' }}"> {% if post.image_path %}
             <div class="archive__item-teaser">
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
-                  src=
-                  {% if post.image_path contains "://" %}
-                    "{{ post.image_path }}"
-                  {% else %}
-                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
-                  {% endif %}
-                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              <a href="{{ base_path }}{{ post.url }}">
+                <img style="height:210px;width:100%;object-fit:cover;" 
+                     src="{% if post.image_path contains '://' %}{{ post.image_path }}{% else %}{{ post.image_path | prepend: '/images/' | prepend: base_path }}{% endif %}" alt="">
               </a>
             </div>
-          {% else %}
-            <div class="archive__item-teaser">
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img
-                  style="height:210px;object-fit:cover;"
-                  src="{{ '/images/Loading.png' | prepend: base_path }}"
-                  alt="Default image">
-              </a>
-            </div>
-          {% endif %}
-
-          {% if post.id %}
-            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
-          {% else %}
-            {% assign title = post.covertitle %}
           {% endif %}
 
           <div class="archive__item-title">
-            {% if post.link %}
-              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-            {% else %}
-              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-            {% endif %}
+            <a href="{{ base_path }}{{ post.url }}">{{ post.covertitle | default: post.title }}</a>
           </div>
 
-          {% if post.collection == 'teaching' %}
-            <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-          {% elsif post.collection == 'publications' %}
-            <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-          {% elsif post.date %}
-            <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
-          {% endif %}
+          <div class="page__meta">
+            <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
+          </div>
 
           {% if post.excerpt %}
-            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
+            <small class="archive__item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</small>
           {% endif %}
         </article>
       {% endfor %}
@@ -96,130 +50,58 @@ redirect_from:
   </section>
 {% endfor %}
 
-
-<!-- 筛选逻辑 - 立即执行版本 -->
 <script>
-(function() {
-  'use strict';
-
-  console.log('=== 筛选系统初始化 ===');
-
-  // 获取所有元素
-  const allArticles = document.querySelectorAll('.archive__item');
-  const allSections = document.querySelectorAll('.year-section');
-  const filterContainer = document.getElementById('tag-filter');
-
-  if (!filterContainer) {
-    console.error('未找到筛选容器');
-    return;
-  }
-
-  // 选中标签集合
+document.addEventListener('DOMContentLoaded', function() {
+  const articles = document.querySelectorAll('.archive__item');
+  const sections = document.querySelectorAll('.year-section');
   const selectedTags = new Set();
+  const tagButtons = document.querySelectorAll('.tag-value');
 
-  // 为所有标签添加点击事件
-  const tagElements = filterContainer.querySelectorAll('.tag-value');
-  console.log(`找到 ${tagElements.length} 个标签`);
-
-  tagElements.forEach(tag => {
-    tag.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-
-      const fullTag = this.getAttribute('data-full-tag');
-      console.log('点击标签:', fullTag);
-
-      if (selectedTags.has(fullTag)) {
-        selectedTags.delete(fullTag);
+  tagButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const tag = this.getAttribute('data-full-tag').trim();
+      
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
         this.classList.remove('selected');
       } else {
-        selectedTags.add(fullTag);
+        selectedTags.add(tag);
         this.classList.add('selected');
       }
-
-      console.log('当前选中:', Array.from(selectedTags));
-      applyFilter();
+      render();
     });
   });
 
-  // 清除按钮
-  const clearBtn = document.getElementById('clear-filter');
-  if (clearBtn) {
-    clearBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('清除所有筛选');
-      selectedTags.clear();
-      tagElements.forEach(tag => tag.classList.remove('selected'));
-      applyFilter();
-    });
-  }
+  document.getElementById('clear-filter')?.addEventListener('click', () => {
+    selectedTags.clear();
+    tagButtons.forEach(b => b.classList.remove('selected'));
+    render();
+  });
 
-  // 应用筛选函数
-  function applyFilter() {
-    console.log('开始筛选...');
-
-    if (selectedTags.size === 0) {
-      // 显示所有
-      allArticles.forEach(a => {
-        a.style.display = 'block';
- a.style.visibility = 'visible';
-        a.style.opacity = '1';
-      });
-      allSections.forEach(s => {
-        s.style.display = 'block';
-        s.style.visibility = 'visible';
-        s.style.opacity = '1';
-        updateCount(s);
-      });
-      console.log('显示所有文章');
-      return;
-    }
-
-    // 隐藏所有
-    allArticles.forEach(a => {
-      a.style.display = 'none';
-    });
-    allSections.forEach(s => {
-      s.style.display = 'none';
-    });
-
-    // 显示匹配的
-    let visibleCount = 0;
-    allArticles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split(',').map(t => t.trim());
-      const hasMatch = Array.from(selectedTags).every(tag => articleTags.includes(tag));
-
-      if (hasMatch) {
+  function render() {
+    articles.forEach(article => {
+      if (selectedTags.size === 0) {
         article.style.display = 'block';
-        const section = article.closest('.year-section');
-        if (section) section.style.display = 'block';
-        visibleCount++;
+        return;
+      }
+      // 将 data-tags 转为数组并清理每个标签的空格
+      const postTags = article.getAttribute('data-tags').split('|').map(t => t.trim());
+      const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
+      article.style.display = isMatch ? 'block' : 'none';
+    });
+
+    sections.forEach(section => {
+      const visibleCount = section.querySelectorAll('.archive__item[style="display: block;"]').length;
+      section.style.display = visibleCount > 0 ? 'block' : 'none';
+      const badge = section.querySelector('.archive__subtitle');
+      if (badge) {
+        const year = section.getAttribute('data-year');
+        badge.textContent = `${year} (${visibleCount})`;
       }
     });
-
-    // 更新计数
-    allSections.forEach(s => {
-      if (s.style.display !== 'none') updateCount(s);
-    });
-
-    console.log(`筛选完成，显示 ${visibleCount} 篇文章`);
   }
-
-  // 更新年份计数
-  function updateCount(section) {
-    const count = section.querySelectorAll('.archive__item[style*="block"]').length;
-    const title = section.querySelector('.archive__subtitle');
-    if (title) {
-      const year = section.getAttribute('data-year');
-      title.textContent = `${year} (${count})`;
-    }
-  }
-
-  console.log('筛选系统已就绪，等待点击...');
-})();
+});
 </script>
-
-
 
 
 {% comment %}
