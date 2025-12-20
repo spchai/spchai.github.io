@@ -11,7 +11,7 @@ tags:
   - "Topic: Stress heterogeneity"  
   - "Method: Lab"
   - "Output: Conference"
-  - "Additional:"
+
 ---
 
 Won **Best Student Award** for the oral presentation entitled **New insights into stress conditions on rock discontinuities in laboratory shear tests** in the _2024 International Geomechanics Conference_ held on 18 – 20 November in Kuala Lumpur, Malaysia. 

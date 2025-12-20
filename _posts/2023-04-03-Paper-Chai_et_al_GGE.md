@@ -9,7 +9,7 @@ tags:
   - "Method: Analytical"
   - "Method: Numerical"
   - "Output: Journal"
-  - "Additional:"
+
 ---
 
 

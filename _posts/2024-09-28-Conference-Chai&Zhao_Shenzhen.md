@@ -13,7 +13,7 @@ tags:
   - "Topic: Seismicity"    
   - "Method: Lab"
   - "Output: Conference"
-  - "Additional:"
+
 ---
 
 

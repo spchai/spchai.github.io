@@ -8,7 +8,7 @@ tags:
   - "Topic: Waste"
   - "Method: Lab"
   - "Output: Journal"
-  - "Additional:"
+
 ---
 
 

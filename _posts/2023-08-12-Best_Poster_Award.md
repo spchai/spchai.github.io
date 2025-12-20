@@ -11,7 +11,7 @@ tags:
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Conference"
-  - "Additional:"
+
 ---
 
 Won **Best Poster Award** for the poster presentation entitled **Stress analyses of laboratory shear tests** in _2023 ARMA East Asia Geomechanics Workshop_ held on 11 – 12 August in Hong Kong

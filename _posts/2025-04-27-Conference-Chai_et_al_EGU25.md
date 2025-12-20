@@ -13,7 +13,7 @@ tags:
   - "Topic: Seismicity"  
   - "Method: Lab"
   - "Output: Conference"
-  - "Additional:"
+
 ---
 
 Four types of dilation-compaction behavior in laboratory earthquakes observed on rough faults with millimeter-scale asperity heights. 

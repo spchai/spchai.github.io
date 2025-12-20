@@ -28,7 +28,7 @@
       <div class="filter-section">
         <h2>Filter</h2>
         <div id="tag-filter" class="tag-filter-container">
-          {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+          {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
           {% assign current_group = "" %}
 
           {% for tag in all_tags %}

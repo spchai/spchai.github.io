@@ -11,7 +11,7 @@ tags:
   - "Topic: Seismicity"    
   - "Method: Numerical"
   - "Output: Conference"
-  - "Additional:"
+
 ---
 
 **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).

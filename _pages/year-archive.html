@@ -23,7 +23,7 @@ redirect_from:
 
     <div class="grid__wrapper">
       {% for post in year_group.items %}
-        <article class="archive__item" data-tags="{{ post.tags | join: '|' }}">
+        <article class="archive__item" data-tags="{{ post.tags | join: '|' | strip }}">
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}">
@@ -49,6 +49,14 @@ redirect_from:
 (function() {
   const selectedTags = new Set();
 
+  function normalizeTag(tag) {
+    return tag
+      .replace(/\s*:\s*/g, ': ')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+
   function runFilter() {
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
@@ -62,13 +70,13 @@ redirect_from:
       // 深度清洗标签：解决 YAML 解析出的空格、换行符问题
       const postTags = (article.getAttribute('data-tags') || "")
                         .split('|')
-                        .map(t => t.trim().replace(/\s+/g, ' ')) // 统一为空格
+                        .map(normalizeTag)
                         .filter(t => t !== "");
 
-      const isMatch = Array.from(selectedTags).every(selected => {
-        const normSelected = selected.trim().replace(/\s+/g, ' ').toLowerCase();
-        return postTags.some(postTag => postTag.toLowerCase() === normSelected);
-      });
+      const isMatch = Array.from(selectedTags).every(sel =>
+        postTags.includes(normalizeTag(sel))
+      );
+
 
       article.style.display = isMatch ? 'block' : 'none';
     });

@@ -12,7 +12,7 @@ tags:
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Journal"
-  - "Additional:"
+
 ---
 
 New paper in _IJRMMS_. Numerical insights on the edge-related stress heterogeneity in 8 laboratory shear tests.
