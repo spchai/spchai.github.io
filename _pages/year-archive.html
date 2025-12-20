@@ -96,10 +96,13 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑 - 简化版本 -->
+
+<!-- 筛选逻辑 - 立即执行版本 -->
 <script>
-window.onload = function() {
-  console.log('=== 筛选系统启动 ===');
+(function() {
+  'use strict';
+
+  console.log('=== 筛选系统初始化 ===');
 
   // 获取所有元素
   const allArticles = document.querySelectorAll('.archive__item');
@@ -153,19 +156,32 @@ window.onload = function() {
 
   // 应用筛选函数
   function applyFilter() {
+    console.log('开始筛选...');
+
     if (selectedTags.size === 0) {
       // 显示所有
-      allArticles.forEach(a => a.style.display = 'block');
+      allArticles.forEach(a => {
+        a.style.display = 'block';
+ a.style.visibility = 'visible';
+        a.style.opacity = '1';
+      });
       allSections.forEach(s => {
         s.style.display = 'block';
+        s.style.visibility = 'visible';
+        s.style.opacity = '1';
         updateCount(s);
       });
+      console.log('显示所有文章');
       return;
     }
 
     // 隐藏所有
-    allArticles.forEach(a => a.style.display = 'none');
-    allSections.forEach(s => s.style.display = 'none');
+    allArticles.forEach(a => {
+      a.style.display = 'none';
+    });
+    allSections.forEach(s => {
+      s.style.display = 'none';
+    });
 
     // 显示匹配的
     let visibleCount = 0;
@@ -186,7 +202,7 @@ window.onload = function() {
       if (s.style.display !== 'none') updateCount(s);
     });
 
-    console.log(`显示 ${visibleCount} 篇文章`);
+    console.log(`筛选完成，显示 ${visibleCount} 篇文章`);
   }
 
   // 更新年份计数
@@ -199,8 +215,8 @@ window.onload = function() {
     }
   }
 
-  console.log('筛选系统已就绪');
-};
+  console.log('筛选系统已就绪，等待点击...');
+})();
 </script>
 
 
