@@ -10,7 +10,6 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -98,174 +97,105 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑JavaScript -->
+<!-- 筛选逻辑JavaScript - 简化版本 -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 获取所有文章数据
-  const postsDataElement = document.getElementById('posts-data');
-  if (!postsDataElement) {
-    console.error('未找到posts-data元素');
-    return;
-  }
+// 全局变量用于跟踪选中标签
+window.selectedTags = new Set();
 
-  const postsData = postsDataElement.getAttribute('data-posts');
-  let posts = [];
-  try {
-    posts = JSON.parse(postsData);
-  } catch (e) {
-    console.error('JSON解析失败:', e);
-    return;
+// 切换标签筛选
+function toggleTagFilter(element, fullTag) {
+  if (window.selectedTags.has(fullTag)) {
+    window.selectedTags.delete(fullTag);
+    element.style.background = '#e9ecef';
+    element.style.borderColor = '#dee2e6';
+    element.style.color = '';
+  } else {
+    window.selectedTags.add(fullTag);
+    element.style.background = '#007bff';
+    element.style.color = 'white';
+    element.style.borderColor = '#0056b3';
   }
+  applyFilter();
+}
 
-  // 提取并分组所有标签
-  const tagGroups = {};
-  posts.forEach(post => {
-    if (post.tags && Array.isArray(post.tags)) {
-      post.tags.forEach(tag => {
-        const colonIndex = tag.indexOf(':');
-        if (colonIndex > 0) {
-          const group = tag.substring(0, colonIndex).trim();
-          const value = tag.substring(colonIndex + 1).trim();
-          if (!tagGroups[group]) {
-            tagGroups[group] = new Set();
-          }
-          tagGroups[group].add(value);
-        }
-      });
-    }
+// 清除所有筛选
+function clearAllFilters() {
+  window.selectedTags.clear();
+  document.querySelectorAll('.tag-value').forEach(tag => {
+    tag.style.background = '#e9ecef';
+    tag.style.color = '';
+    tag.style.borderColor = '#dee2e6';
   });
+  applyFilter();
+}
 
-  // 生成标签筛选器HTML
-  const filterContainer = document.getElementById('tag-filter');
-  if (!filterContainer) {
-    console.error('未找到tag-filter容器');
-    return;
-  }
-
-  if (Object.keys(tagGroups).length === 0) {
-    filterContainer.innerHTML = '<div style="color: #666;">No tags found</div>';
-    return;
-  }
-
-  let html = '';
-  Object.keys(tagGroups).sort().forEach(group => {
-    html += `<div style="margin-bottom: 12px;">
-              <h4 style="margin: 0 0 6px 0; font-size: 1em; color: #333;">${group}:</h4>
-              <div style="display: flex; flex-wrap: wrap; gap: 4px;">`;
-
-    Array.from(tagGroups[group]).sort().forEach(value => {
-      const fullTag = `${group}: ${value}`;
-      html += `<span class="tag-value" data-full-tag="${fullTag}"
-                style="display: inline-block; padding: 3px 6px; background: #e9ecef; border-radius: 3px;
-                       font-size: 0.85em; cursor: pointer; border: 1px solid #dee2e6;
-                       white-space: normal; word-wrap: break-word; max-width: 100%;">${value}</span>`;
-    });
-
-    html += '</div></div>';
-  });
-
-  html += '<button id="clear-filter" class="clear-filter-btn" style="margin-top: 10px; padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">Clear All Filters</button>';
-
-  filterContainer.innerHTML = html;
-
-  // 筛选功能
-  const selectedTags = new Set();
+// 应用筛选
+function applyFilter() {
   const allArticles = document.querySelectorAll('.archive__item');
   const allYearSections = document.querySelectorAll('.year-section');
 
-  function applyFilter() {
-    if (selectedTags.size === 0) {
-      // 显示所有文章
-      allArticles.forEach(article => {
-        article.style.display = 'block';
-      });
-      allYearSections.forEach(section => {
-        section.style.display = 'block';
-        // 重置年份计数
-        const year = section.getAttribute('data-year');
-        const totalCount = section.querySelectorAll('.archive__item').length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          title.textContent = `${year} (${totalCount})`;
-        }
-      });
-      return;
-    }
-
-    // 隐藏所有文章和年份部分
+  if (window.selectedTags.size === 0) {
+    // 显示所有文章
     allArticles.forEach(article => {
-      article.style.display = 'none';
+      article.style.display = 'block';
     });
     allYearSections.forEach(section => {
-      section.style.display = 'none';
-    });
-
-    // 显示匹配的文章和对应的年份部分
-    allArticles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-      const hasAllTags = Array.from(selectedTags).every(selectedTag =>
-        articleTags.includes(selectedTag)
-      );
-
-      if (hasAllTags) {
-        article.style.display = 'block';
-        const yearSection = article.closest('.year-section');
-        if (yearSection) {
-          yearSection.style.display = 'block';
-        }
+      section.style.display = 'block';
+      // 重置年份计数
+      const year = section.getAttribute('data-year');
+      const totalCount = section.querySelectorAll('.archive__item').length;
+      const title = section.querySelector('.archive__subtitle');
+      if (title) {
+        title.textContent = `${year} (${totalCount})`;
       }
     });
-
-    // 更新年份计数
-    updateYearCounts();
+    return;
   }
 
-  function updateYearCounts() {
-    allYearSections.forEach(section => {
-      if (section.style.display !== 'none') {
-        const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
-        const count = visibleArticles.length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          const year = section.getAttribute('data-year');
-          title.textContent = `${year} (${count})`;
-        }
+  // 隐藏所有
+  allArticles.forEach(article => {
+    article.style.display = 'none';
+  });
+  allYearSections.forEach(section => {
+    section.style.display = 'none';
+  });
+
+  // 显示匹配的
+  allArticles.forEach(article => {
+    const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
+    const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
+      articleTags.includes(selectedTag)
+    );
+
+    if (hasAllTags) {
+      article.style.display = 'block';
+      const yearSection = article.closest('.year-section');
+      if (yearSection) {
+        yearSection.style.display = 'block';
       }
-    });
-  }
-
-  // 为标签添加点击事件
-  document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('tag-value')) {
-      const fullTag = e.target.getAttribute('data-full-tag');
-
-      if (selectedTags.has(fullTag)) {
-        selectedTags.delete(fullTag);
-        e.target.style.background = '#e9ecef';
-        e.target.style.borderColor = '#dee2e6';
-      } else {
-        selectedTags.add(fullTag);
-        e.target.style.background = '#007bff';
-        e.target.style.color = 'white';
-        e.target.style.borderColor = '#0056b3';
-      }
-
-      applyFilter();
-    }
-
-    // 清除筛选按钮
-    if (e.target.id === 'clear-filter') {
-      selectedTags.clear();
-      document.querySelectorAll('.tag-value').forEach(tag => {
-        tag.style.background = '#e9ecef';
-        tag.style.color = '';
-        tag.style.borderColor = '#dee2e6';
-      });
-      applyFilter();
     }
   });
-});
+
+  // 更新年份计数
+  updateYearCounts();
+}
+
+// 更新年份计数
+function updateYearCounts() {
+  document.querySelectorAll('.year-section').forEach(section => {
+    if (section.style.display !== 'none') {
+      const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
+      const count = visibleArticles.length;
+      const title = section.querySelector('.archive__subtitle');
+      if (title) {
+        const year = section.getAttribute('data-year');
+        title.textContent = `${year} (${count})`;
+      }
+    }
+  });
+}
 </script>
+
 
 
 
