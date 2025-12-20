@@ -4,34 +4,31 @@ permalink: /news/
 title: "News"
 titleshow: false
 author_profile: false
-toc: false
+toc: true
 redirect_from:
   - /news/year/
 ---
 
 {% include base_path %}
 
+<!-- 结果计数器 -->
 <div id="result-count" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
 
+<!-- 文章数据脚本（只包含必要字段） -->
 <script id="posts-data" type="application/json">
   [
     {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
     {% for year_group in posts_by_year %}
       {% for post in year_group.items %}
         {
-          "year": "{{ year_group.name }}",
+          "year": {{ year_group.name | jsonify }},
           "title": {{ post.title | jsonify }},
           "url": {{ post.url | jsonify }},
-          "link": {{ post.link | jsonify }},
           "covertitle": {{ post.covertitle | jsonify }},
           "image_path": {{ post.image_path | jsonify }},
-          "alt": {{ post.alt | jsonify }},
           "date": {{ post.date | date: '%Y-%m-%d' | jsonify }},
           "date_display": {{ post.date | date: '%B %d, %Y' | jsonify }},
-          "collection": {{ post.collection | jsonify }},
-          "type": {{ post.type | jsonify }},
-          "venue": {{ post.venue | jsonify }},
-          "excerpt": {{ post.excerpt | markdownify | jsonify }},
+          "excerpt": {{ post.excerpt | jsonify }},
           "tags": {{ post.tags | jsonify }}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}{% unless forloop.last %},{% endunless %}
