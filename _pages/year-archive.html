@@ -46,40 +46,44 @@ redirect_from:
 {% endfor %}
 
 <style>
-  /* 确保标签看起来可以点击 */
-  .tag-value, .clear-filter-btn { cursor: pointer !important; }
-  .tag-value { transition: all 0.2s ease; border-bottom: 1px solid transparent; }
-  .tag-value:hover { color: #2185d0; border-bottom: 1px solid #2185d0; }
-  /* 选中后的样式 */
+  /* 交互与状态样式 */
+  .tag-value { cursor: pointer !important; transition: all 0.2s; border-bottom: 1px dotted transparent; }
+  .tag-value:hover { color: #2185d0; border-bottom-color: #2185d0; }
   .tag-value.selected { 
     background-color: #2185d0 !important; 
     color: white !important; 
-    padding: 2px 6px; 
-    border-radius: 4px;
+    padding: 0 6px; 
+    border-radius: 4px; 
+    font-weight: bold;
+    border-bottom: none;
+  }
+  .clear-filter-btn {
+    transition: background 0.2s;
     font-weight: bold;
   }
+  .clear-filter-btn:active { transform: translateY(1px); }
 </style>
 
 <script>
 (function() {
-  const selectedTags = new Set();
+  let selectedTags = new Set();
 
   function runFilter() {
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
     
-    // 1. 筛选文章
+    // 1. 文章过滤
     articles.forEach(post => {
       if (selectedTags.size === 0) {
         post.style.display = 'block';
         return;
       }
       const postTags = (post.getAttribute('data-tags') || "").split('|').map(t => t.trim());
-      const match = Array.from(selectedTags).every(tag => postTags.includes(tag));
-      post.style.display = match ? 'block' : 'none';
+      const isMatch = Array.from(selectedTags).every(tag => postTags.includes(tag));
+      post.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 2. 隐藏没有文章的年份标题，并更新计数
+    // 2. 年份标题与计数更新
     sections.forEach(sec => {
       const items = Array.from(sec.querySelectorAll('.archive__item'));
       const visibleCount = items.filter(i => i.style.display !== 'none').length;
@@ -93,14 +97,14 @@ redirect_from:
     });
   }
 
-  // 使用“事件委托”：这种方式不依赖 ID 是否加载，只要点击到对应 Class 就会执行
-  document.addEventListener('click', function(e) {
-    // 检查是否点击了标签
+  // 使用最高优先级的事件捕获，防止被其他脚本拦截
+  function handleInteraction(e) {
+    // 处理标签点击
     if (e.target && e.target.classList.contains('tag-value')) {
       e.preventDefault();
-      e.stopPropagation(); // 防止冒泡导致页面刷新
-      
+      e.stopPropagation();
       const tag = e.target.getAttribute('data-full-tag').trim();
+      
       if (selectedTags.has(tag)) {
         selectedTags.delete(tag);
         e.target.classList.remove('selected');
@@ -111,18 +115,28 @@ redirect_from:
       runFilter();
     }
 
-    // 检查是否点击了清除按钮 (兼容 ID 和 Class)
+    // 处理清除按钮
     if (e.target && (e.target.id === 'clear-filter' || e.target.classList.contains('clear-filter-btn'))) {
       e.preventDefault();
       e.stopPropagation();
-      
       selectedTags.clear();
       document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
       runFilter();
     }
-  }, true); // 使用 Capture 模式确保第一时间截获点击
+  }
 
-  console.log("Filter Engine Status: Live");
+  // 绑定监听
+  document.addEventListener('click', handleInteraction, true);
+
+  // 防错：确保即便 main.min.js 覆盖了 DOM，逻辑依然在线
+  const observer = new MutationObserver(() => {
+    // 检查是否有选中的标签，如果有，强制应用过滤（防止被主题重置显示）
+    if (selectedTags.size > 0) runFilter();
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
+  console.log("Filter Engine: Ready & Anti-Error active.");
 })();
 </script>
 
