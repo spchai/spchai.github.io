@@ -202,31 +202,31 @@ redirect_from:
 <!-- 筛选器JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const tagButtons = document.querySelectorAll('.tag-btn');
-  const clearButton = document.getElementById('clear-filters');
-  const activeTagsSpan = document.getElementById('active-tags');
-  const articles = document.querySelectorAll('.archive__item');
+  var tagButtons = document.querySelectorAll('.tag-btn');
+  var clearButton = document.getElementById('clear-filters');
+  var activeTagsSpan = document.getElementById('active-tags');
+  var articles = document.querySelectorAll('.archive__item');
 
-  let activeFilters = new Set();
+  var activeFilters = new Set();
 
   // 为每个文章添加data-tags属性
-  articles.forEach(article => {
-    const tags = [];
-    const hiddenTags = article.querySelectorAll('.archive__item-tags span');
-    hiddenTags.forEach(span => {
-      const category = span.dataset.category;
-      const value = span.dataset.value;
+  articles.forEach(function(article) {
+    var tags = [];
+    var hiddenTags = article.querySelectorAll('.archive__item-tags span');
+    hiddenTags.forEach(function(span) {
+      var category = span.dataset.category;
+      var value = span.dataset.value;
       if (category && value) {
-        tags.push(`${category}|${value}`);
+        tags.push(category + '|' + value);
       }
     });
     article.dataset.tags = JSON.stringify(tags);
   });
 
   // 标签按钮点击事件
-  tagButtons.forEach(button => {
+  tagButtons.forEach(function(button) {
     button.addEventListener('click', function() {
-      const tag = this.dataset.tag;
+      var tag = this.dataset.tag;
 
       if (activeFilters.has(tag)) {
         activeFilters.delete(tag);
@@ -242,12 +242,16 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // 清除按钮事件
-  clearButton.addEventListener('click', function() {
-    activeFilters.clear();
-    tagButtons.forEach(btn => btn.classList.remove('active'));
-    updateActiveFiltersDisplay();
-    applyFilters();
-  });
+  if (clearButton) {
+    clearButton.addEventListener('click', function() {
+      activeFilters.clear();
+      tagButtons.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      updateActiveFiltersDisplay();
+      applyFilters();
+    });
+  }
 
   // 更新活动标签显示
   function updateActiveFiltersDisplay() {
@@ -261,23 +265,25 @@ document.addEventListener('DOMContentLoaded', function() {
   // 应用筛选器
   function applyFilters() {
     if (activeFilters.size === 0) {
-      articles.forEach(article => {
+      articles.forEach(function(article) {
         article.style.display = '';
       });
-      document.querySelectorAll('.year-section').forEach(section => {
+      document.querySelectorAll('.year-section').forEach(function(section) {
         section.style.display = '';
       });
       return;
     }
 
-    articles.forEach(article => {
-      const articleTags = JSON.parse(article.dataset.tags || '[]');
-      const hasMatch = articleTags.some(tag => activeFilters.has(tag));
+    articles.forEach(function(article) {
+      var articleTags = JSON.parse(article.dataset.tags || '[]');
+      var hasMatch = articleTags.some(function(tag) {
+        return activeFilters.has(tag);
+      });
       article.style.display = hasMatch ? '' : 'none';
     });
 
-    document.querySelectorAll('.year-section').forEach(section => {
-      const visibleArticles = section.querySelectorAll('.archive__item:not([style*="display: none"])');
+    document.querySelectorAll('.year-section').forEach(function(section) {
+      var visibleArticles = section.querySelectorAll('.archive__item:not([style*="display: none"])');
       if (visibleArticles.length === 0) {
         section.style.display = 'none';
       } else {
@@ -348,7 +354,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
 
-          {% comment %} 隐藏的标签容器, 用于JS解析 {% endcomment %}
+          {% comment %} 隐藏的标签容器，用于JS解析 {% endcomment %}
           {% if post.tags %}
             <div class="archive__item-tags" style="display:none;">
               {% for tag in post.tags %}
