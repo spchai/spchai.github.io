@@ -9,51 +9,57 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 侧边栏筛选器 -->
+<!-- 侧边栏筛选器 -重写版本 -->
 <div class="year-archive-sidebar-filter">
   <h3>Filter by Tags</h3>
-  <div class="filter-section" id="tag-filters">
-    {% comment %} 收集所有唯一标签 {% endcomment %}
-    {% assign unique_tags = "" | split: "," %}
+  <div class="filter-section">
+    {% comment %}
+直接遍历所有文章和标签，生成按钮      使用最简单的字符串操作，避免复杂逻辑
+    {% endcomment %}
+
+    {% comment %} 第一步：收集所有唯一标签 {% endcomment %}
+    {% assign all_tags = "" | split: "|" %}
 
     {% for post in site.posts %}
       {% if post.tags %}
         {% for tag in post.tags %}
-          {% assign tag_parts = tag | split: ":" %}
-          {% if tag_parts.size >= 2 %}
-            {% assign category = tag_parts[0] | strip %}
-            {% assign value = tag_parts[1] | strip %}
-            {% capture tag_string %}{{ category }}:{{ value }}{% endcapture %}
-            {% unless unique_tags contains tag_string %}
-              {% assign unique_tags = unique_tags | push: tag_string %}
-            {% endunless %}
-          {% endif %}
+          {% comment %} 直接存储原始标签字符串 {% endcomment %}
+          {% capture tag_entry %}{{ tag }}|{% endcapture %}
+          {% unless all_tags contains tag_entry %}
+            {% assign all_tags = all_tags | push: tag_entry %}
+          {% endunless %}
         {% endfor %}
       {% endif %}
     {% endfor %}
 
-    {% comment %} 按类别分组 {% endcomment %}
-    {% assign categories = "" | split: "," %}
-    {% for tag in unique_tags %}
-      {% assign cat = tag | split: ":" | first %}
-      {% unless categories contains cat %}
-        {% assign categories = categories | push: cat %}
+    {% comment %} 第二步：按类别分组 {% endcomment %}
+    {% assign categories = "" | split: "|" %}
+
+    {% for tag_entry in all_tags %}
+      {% assign full_tag = tag_entry | split: "|" | first %}
+      {% assign category = full_tag | split: ":" | first | strip %}
+      {% unless categories contains category %}
+        {% assign categories = categories | push: category %}
       {% endunless %}
     {% endfor %}
 
+    {% comment %} 第三步：显示标签按钮 {% endcomment %}
     {% for category in categories %}
       <div class="tag-group">
         <h4>{{ category }}</h4>
         <div class="tags-container">
-          {% for tag in unique_tags %}
-            {% if tag contains category %}
-              {% assign value = tag | split: ":" | last %}
-              <button class="tag-btn" data-tag="{{ category }}:{{ value }}">{{ value }}</button>
+          {% for tag_entry in all_tags %}
+            {% assign full_tag = tag_entry | split: "|" | first %}
+            {% assign tag_category = full_tag | split: ":" | first | strip %}
+            {% if tag_category == category %}
+              {% assign tag_value = full_tag | split: ":" | last | strip %}
+              <button class="tag-btn" data-tag="{{ full_tag }}">
+                {{ tag_value }}
+              </button>
             {% endif %}
           {% endfor %}
         </div>
@@ -71,7 +77,6 @@ redirect_from:
   </div>
 </div>
 
-<!-- 筛选器CSS -->
 <style>
 .year-archive-sidebar-filter {
   position: fixed;
@@ -128,7 +133,6 @@ redirect_from:
 
 .tag-btn:hover {
   background-color: #dee2e6;
-  transform: translateY(-1px);
 }
 
 .tag-btn.active {
@@ -151,7 +155,6 @@ redirect_from:
   font-size: 0.85rem;
   color: #6c757d;
   margin-top: 10px;
-  word-break: break-all;
 }
 
 .archive {
@@ -170,117 +173,80 @@ redirect_from:
 }
 </style>
 
-<!-- 筛选器JavaScript -->
 <script>
-// 使用更简单的JavaScript实现
-(function() {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  const tagButtons = document.querySelectorAll('.tag-btn');
+  const clearButton = document.getElementById('clear-filters');
+  const activeTagsSpan = document.getElementById('active-tags');
+  const articles = document.querySelectorAll('.archive__item');
 
-  // 等待DOM完全加载
-  function initFilter() {
-    const tagButtons = document.querySelectorAll('.tag-btn');
-    const clearButton = document.getElementById('clear-filters');
-    const activeTagsSpan = document.getElementById('active-tags');
-    const articles = document.querySelectorAll('.archive__item');
+  let activeFilters = new Set();
 
-    if (!tagButtons.length || !clearButton || !activeTagsSpan || !articles.length) {
-      console.warn('Filter elements not found');
-      return;
-    }
-
-    let activeFilters = new Set();
-
-    // 为文章添加标签数据
-    articles.forEach(article => {
-      const tags = [];
-      const hiddenTags = article.querySelectorAll('.archive__item-tags span');
-      hiddenTags.forEach(span => {
-        const category = span.dataset.category;
-        const value = span.dataset.value;
-        if (category && value) {
-          tags.push(`${category}:${value}`);
-        }
-      });
-      article.dataset.tags = JSON.stringify(tags);
-      console.log('Article tags:', tags); // 调试
+  // 为文章添加标签数据
+  articles.forEach(article => {
+    const tags = [];
+    const hiddenTags = article.querySelectorAll('.archive__item-tags span');
+    hiddenTags.forEach(span => {
+      const category = span.dataset.category;
+      const value = span.dataset.value;
+      if (category && value) {
+        tags.push(`${category}: ${value}`);
+      }
     });
+    article.dataset.tags = JSON.stringify(tags);
+  });
 
-    // 标签点击事件
-    tagButtons.forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const tag = this.dataset.tag;
-        console.log('Tag clicked:', tag); // 调试
+  // 标签点击事件
+  tagButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tag = this.dataset.tag;
 
-        if (activeFilters.has(tag)) {
-          activeFilters.delete(tag);
-          this.classList.remove('active');
-        } else {
-          activeFilters.add(tag);
-          this.classList.add('active');
-        }
+      if (activeFilters.has(tag)) {
+        activeFilters.delete(tag);
+        this.classList.remove('active');
+      } else {
+        activeFilters.add(tag);
+        this.classList.add('active');
+      }
 
-        updateDisplay();
-        applyFilters();
-      });
-    });
-
-    // 清除按钮
-    clearButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      console.log('Clear filters clicked'); // 调试
-
-      activeFilters.clear();
-      tagButtons.forEach(btn => btn.classList.remove('active'));
       updateDisplay();
       applyFilters();
     });
+  });
 
-    function updateDisplay() {
-      const text = activeFilters.size === 0 ? 'None' : Array.from(activeFilters).join(', ');
-      activeTagsSpan.textContent = text;
-      console.log('Active filters:', activeFilters); // 调试
-    }
+  // 清除按钮
+  clearButton.addEventListener('click', function() {
+    activeFilters.clear();
+    tagButtons.forEach(btn => btn.classList.remove('active'));
+    updateDisplay();
+    applyFilters();
+  });
 
-    function applyFilters() {
-      console.log('Applying filters, count:', activeFilters.size); // 调试
-
-      if (activeFilters.size === 0) {
-        articles.forEach(a => {
-          a.style.display = '';
-          console.log('Show all articles');
-        });
-        document.querySelectorAll('.year-section').forEach(s => s.style.display = '');
-        return;
-      }
-
-      let visibleCount = 0;
-      articles.forEach(article => {
-        const tags = JSON.parse(article.dataset.tags || '[]');
-        const show = tags.some(tag => activeFilters.has(tag));
-        article.style.display = show ? '' : 'none';
-        if (show) visibleCount++;
-        console.log('Article:', article.querySelector('.archive__item-title')?.textContent?.trim(), 'Tags:', tags, 'Show:', show);
-      });
-
-      document.querySelectorAll('.year-section').forEach(section => {
-        const visible = section.querySelectorAll('.archive__item:not([style*="display: none"])');
-        section.style.display = visible.length > 0 ? '' : 'none';
-      });
-
-      console.log('Visible articles:', visibleCount);
-    }
-
-    console.log('Filter initialized');
+  function updateDisplay() {
+    activeTagsSpan.textContent = activeFilters.size === 0 ? 'None' : Array.from(activeFilters).join(', ');
   }
 
-  // 确保DOM加载完成后初始化
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initFilter);
-  } else {
-    initFilter();
+  function applyFilters() {
+    if (activeFilters.size === 0) {
+      articles.forEach(a => a.style.display = '');
+      document.querySelectorAll('.year-section').forEach(s => s.style.display = '');
+      return;
+    }
+
+    articles.forEach(article => {
+      const tags = JSON.parse(article.dataset.tags || '[]');
+      const show = tags.some(tag => {
+        return Array.from(activeFilters).some(filter => filter === tag);
+      });
+      article.style.display = show ? '' : 'none';
+    });
+
+    document.querySelectorAll('.year-section').forEach(section => {
+      const visible = section.querySelectorAll('.archive__item:not([style*="display: none"])');
+      section.style.display = visible.length > 0 ? '' : 'none';
+    });
   }
-})();
+});
 </script>
 
 {% for year_group in posts_by_year %}
