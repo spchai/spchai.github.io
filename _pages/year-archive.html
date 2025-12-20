@@ -10,6 +10,7 @@ redirect_from:
   - /news/year/
 ---
 
+
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -19,7 +20,7 @@ redirect_from:
   {% for year_group in posts_by_year %}
     {% for post in year_group.items %}
       {
-        "id": "{{ post.id | default: post.url | replace: '"', '\"' }}",
+        "id": "{{ post.id | default: post.url }}",
         "tags": {{ post.tags | jsonify }},
         "year": "{{ year_group.name }}"
       }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
@@ -37,8 +38,8 @@ redirect_from:
       {% for post in year_group.items %}
         <article class="archive__item"
                  itemscope itemtype="http://schema.org/CreativeWork"
-                 data-post-id="{{ post.id | default: post.url | replace: '"', '\"' }}"
-                 data-tags="{{ post.tags | join: ', ' | replace: '"', '\"' }}">
+                 data-post-id="{{ post.id | default: post.url }}"
+                 data-tags="{{ post.tags | join: ', ' }}">
 
           {% if post.image_path %}
             <div class="archive__item-teaser">
@@ -100,8 +101,6 @@ redirect_from:
 <!-- 筛选逻辑JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('页面加载完成，开始初始化标签筛选器...');
-
   // 获取所有文章数据
   const postsDataElement = document.getElementById('posts-data');
   if (!postsDataElement) {
@@ -110,12 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   const postsData = postsDataElement.getAttribute('data-posts');
-  console.log('原始数据:', postsData);
-
   let posts = [];
   try {
     posts = JSON.parse(postsData);
-    console.log('解析后的文章数据:', posts);
   } catch (e) {
     console.error('JSON解析失败:', e);
     return;
@@ -123,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // 提取并分组所有标签
   const tagGroups = {};
-
   posts.forEach(post => {
     if (post.tags && Array.isArray(post.tags)) {
       post.tags.forEach(tag => {
@@ -131,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (colonIndex > 0) {
           const group = tag.substring(0, colonIndex).trim();
           const value = tag.substring(colonIndex + 1).trim();
-
           if (!tagGroups[group]) {
             tagGroups[group] = new Set();
           }
@@ -141,8 +135,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  console.log('标签分组:', tagGroups);
-
   // 生成标签筛选器HTML
   const filterContainer = document.getElementById('tag-filter');
   if (!filterContainer) {
@@ -151,30 +143,30 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   if (Object.keys(tagGroups).length === 0) {
-    filterContainer.innerHTML = '<div style="font-size: 0.9em; color: #666;">No tags found</div>';
+    filterContainer.innerHTML = '<div style="color: #666;">No tags found</div>';
     return;
   }
 
-  let html = '<div class="tag-filter-container">';
-
+  let html = '';
   Object.keys(tagGroups).sort().forEach(group => {
-    html += `<div class="tag-group">
- <h4>${group}:</h4>
-              <div class="tag-values">`;
+    html += `<div style="margin-bottom: 12px;">
+              <h4 style="margin: 0 0 6px 0; font-size: 1em; color: #333;">${group}:</h4>
+              <div style="display: flex; flex-wrap: wrap; gap: 4px;">`;
 
     Array.from(tagGroups[group]).sort().forEach(value => {
       const fullTag = `${group}: ${value}`;
-      html += `<span class="tag-value" data-full-tag="${fullTag}">${value}</span>`;
+      html += `<span class="tag-value" data-full-tag="${fullTag}"
+                style="display: inline-block; padding: 3px 6px; background: #e9ecef; border-radius: 3px;
+                       font-size: 0.85em; cursor: pointer; border: 1px solid #dee2e6;
+                       white-space: normal; word-wrap: break-word; max-width: 100%;">${value}</span>`;
     });
 
     html += '</div></div>';
   });
 
-  html += '<button id="clear-filter" class="clear-filter-btn">Clear All Filters</button>';
-  html += '</div>';
+  html += '<button id="clear-filter" class="clear-filter-btn" style="margin-top: 10px; padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer; width: 100%;">Clear All Filters</button>';
 
   filterContainer.innerHTML = html;
-  console.log('标签筛选器HTML已生成');
 
   // 筛选功能
   const selectedTags = new Set();
@@ -182,8 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const allYearSections = document.querySelectorAll('.year-section');
 
   function applyFilter() {
-    console.log('应用筛选，选中标签:', Array.from(selectedTags));
-
     if (selectedTags.size === 0) {
       // 显示所有文章
       allArticles.forEach(article => {
@@ -191,9 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
       allYearSections.forEach(section => {
         section.style.display = 'block';
-      });
-      //重置计数
-      allYearSections.forEach(section => {
+        // 重置年份计数
         const year = section.getAttribute('data-year');
         const totalCount = section.querySelectorAll('.archive__item').length;
         const title = section.querySelector('.archive__subtitle');
@@ -215,15 +203,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // 显示匹配的文章和对应的年份部分
     allArticles.forEach(article => {
       const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-
-      // 检查文章是否包含所有选中的标签
       const hasAllTags = Array.from(selectedTags).every(selectedTag =>
         articleTags.includes(selectedTag)
       );
 
       if (hasAllTags) {
         article.style.display = 'block';
-        // 显示该文章所属的年份部分
         const yearSection = article.closest('.year-section');
         if (yearSection) {
           yearSection.style.display = 'block';
@@ -256,10 +241,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (selectedTags.has(fullTag)) {
         selectedTags.delete(fullTag);
-        e.target.classList.remove('selected');
+        e.target.style.background = '#e9ecef';
+        e.target.style.borderColor = '#dee2e6';
       } else {
         selectedTags.add(fullTag);
-        e.target.classList.add('selected');
+        e.target.style.background = '#007bff';
+        e.target.style.color = 'white';
+        e.target.style.borderColor = '#0056b3';
       }
 
       applyFilter();
@@ -268,14 +256,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 清除筛选按钮
     if (e.target.id === 'clear-filter') {
       selectedTags.clear();
-      document.querySelectorAll('.tag-value.selected').forEach(tag => {
-        tag.classList.remove('selected');
+      document.querySelectorAll('.tag-value').forEach(tag => {
+        tag.style.background = '#e9ecef';
+        tag.style.color = '';
+        tag.style.borderColor = '#dee2e6';
       });
       applyFilter();
     }
   });
 });
 </script>
+
 
 
 
