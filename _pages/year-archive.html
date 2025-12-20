@@ -1,4 +1,3 @@
----
 layout: archive
 permalink: /news/
 title: "News"
@@ -139,31 +138,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 6. 生成筛选器
     const tagContainer = document.getElementById('tag-filter');
+    tagContainer.innerHTML = ''; // 确保容器清空
 
-    sortedCategories.forEach(category => {
-      const groupHeader = document.createElement('div');
-      groupHeader.className = 'filter-group';
-      groupHeader.innerHTML = `<h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.95rem; color: #333;">${category}</h4>`;
-      tagContainer.appendChild(groupHeader);
+    if (sortedCategories.length === 0) {
+      tagContainer.innerHTML = '<p style="color: #666; font-style: italic;">No tags available</p>';
+    } else {
+      sortedCategories.forEach(category => {
+        const groupHeader = document.createElement('div');
+        groupHeader.className = 'filter-group';
+        groupHeader.innerHTML = `<h4 style="margin: 1rem 0 0.5rem 0; font-size: 0.95rem; color: #333;">${category}</h4>`;
+        tagContainer.appendChild(groupHeader);
 
-      const buttonContainer = document.createElement('div');
-      buttonContainer.className = 'filter-buttons';
-      buttonContainer.style.cssText = 'display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem;';
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'filter-buttons';
+        buttonContainer.style.cssText = 'display: flex; flex-wrap: wrap; gap: 0.3rem; margin-bottom: 0.5rem;';
 
-      const sortedValues = Array.from(tagGroups[category]).sort();
+        const sortedValues = Array.from(tagGroups[category]).sort();
 
-      sortedValues.forEach(value => {
-        const btn = document.createElement('button');
-        btn.className = 'tag-btn';
-        btn.textContent = value;
-        btn.dataset.category = category;
-        btn.dataset.value = value;
-        btn.style.cssText = 'padding: 0.3rem 0.6rem; border: 1px solid #ddd; border-radius: 4px; background: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; white-space: nowrap;';
-        buttonContainer.appendChild(btn);
+        sortedValues.forEach(value => {
+          const btn = document.createElement('button');
+          btn.className = 'tag-btn';
+          btn.textContent = value;
+          btn.dataset.category = category;
+          btn.dataset.value = value;
+          btn.style.cssText = 'padding: 0.3rem 0.6rem; border: 1px solid #ddd; border-radius: 4px; background: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; white-space: nowrap;';
+          buttonContainer.appendChild(btn);
+        });
+
+        tagContainer.appendChild(buttonContainer);
       });
-
-      tagContainer.appendChild(buttonContainer);
-    });
+    }
 
     // 7. 筛选和渲染逻辑
     const selectedFilters = {};
@@ -198,6 +202,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderPosts(posts) {
       const container = document.getElementById('dynamic-articles');
       container.innerHTML = '';
+
+      if (posts.length === 0) {
+        container.innerHTML = '<p style="text-align: center; padding: 2rem; color: #666;">No articles match the selected filters.</p>';
+        document.getElementById('result-count').textContent = 'No articles found.';
+        return;
+      }
 
       const postsByYear = {};
       posts.forEach(post => {
@@ -250,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const countEl = document.getElementById('result-count');
       if (countEl) {
-        countEl.textContent = `Finds ${posts.length} articles.`;
+        countEl.textContent = `Found ${posts.length} articles.`;
       }
     }
 
@@ -280,11 +290,14 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 
-    document.getElementById('clear-filters').addEventListener('click', function() {
-      document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
-      for (const key in selectedFilters) delete selectedFilters[key];
-      renderPosts(updatedPosts);
-    });
+    const clearBtn = document.getElementById('clear-filters');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+        for (const key in selectedFilters) delete selectedFilters[key];
+        renderPosts(updatedPosts);
+      });
+    }
 
     // 9. 添加样式
     const style = document.createElement('style');
@@ -292,40 +305,149 @@ document.addEventListener('DOMContentLoaded', function() {
       .page-content {
         display: flex;
         gap: 2rem;
+        align-items: flex-start;
       }
-      
+
       .filter-sidebar {
-        flex: 0 0 300px;
+        flex: 0 0 280px;
         position: sticky;
         top: 2rem;
         height: fit-content;
-        max-height: calc(100vh - 4rem);
-        overflow-y: auto;
-      }
-      
-      .filter-section {
         background: #f8f9fa;
         padding: 1.5rem;
         border-radius: 8px;
         border: 1px solid #e9ecef;
       }
-      
+
+      .filter-section {
+        padding: 0;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+      }
+
+      .filter-header {
+        border-bottom: 1px solid #e9ecef;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+      }
+
       .main-content {
         flex: 1;
         min-width: 0;
       }
-      
-      .tag-btn.active { background: #007bff !important; color: white !important; border-color: #007bff !important; }
-      .tag-btn:hover { background: #f0f0f0; }
-      .filter-group { margin-top: 1rem; padding-top: 0.5rem; border-top: 1px dashed #eee; }
-      
-      @media (max-width: 768px) {
+
+      .tag-btn.active {
+        background: #007bff !important;
+        color: white !important;
+        border-color: #007bff !important;
+      }
+
+      .tag-btn:hover {
+        background: #f0f0f0;
+      }
+
+      .filter-group {
+        margin-top: 1rem;
+        padding-top: 0.5rem;
+        border-top: 1px dashed #eee;
+      }
+
+      .filter-group:first-child {
+        border-top: none;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      .filter-buttons {
+        margin-bottom: 1rem;
+      }
+
+      .year-section {
+        margin-bottom: 2rem;
+      }
+
+      .archive__subtitle {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .grid__wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .archive__item {
+        background: white;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      .archive__item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      }
+
+      .archive__item-teaser img {
+        width: 100%;
+        height: 210px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .archive__item-title {
+        padding: 1rem 1rem 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .archive__item-title a {
+        color: #2c3e50;
+        text-decoration: none;
+      }
+
+      .archive__item-title a:hover {
+        color: #007bff;
+      }
+
+      .page__meta {
+        padding: 0 1rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      .archive__item-excerpt {
+        padding: 0.5rem 1rem 1rem;
+        display: block;
+        color: #495057;
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 992px) {
         .page-content {
           flex-direction: column;
         }
+
         .filter-sidebar {
           position: static;
+          width: 100%;
           flex: none;
+          margin-bottom: 2rem;
+        }
+
+        .grid__wrapper {
+          grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
+      }
+
+      @media (max-width: 576px) {
+        .grid__wrapper {
+          grid-template-columns: 1fr;
         }
       }
     `;
@@ -334,12 +456,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 10. 首次加载：隐藏原始内容，显示全部文章
     yearSections.forEach(s => s.style.display = 'none');
     renderPosts(updatedPosts);
+  }).catch(error => {
+    console.error('Error processing posts:', error);
+    // 如果出错，显示原始内容
+    document.getElementById('dynamic-articles').innerHTML = '<p style="color: red;">Error loading articles. Please refresh the page.</p>';
   });
 });
 </script>
-
-
-
 
 <!-- 原始内容（会被JS隐藏） -->
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -408,7 +531,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </section>
 {% endfor %}
-
 
 
 {% comment %}
