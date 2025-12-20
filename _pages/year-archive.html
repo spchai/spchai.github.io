@@ -4,431 +4,226 @@ permalink: /news/
 title: "News"
 titleshow: false
 author_profile: false
-toc: false
+toc: true
 redirect_from:
   - /news/year/
 ---
 
+
 {% include base_path %}
 
-<style>
-  /* 筛选侧边栏样式 */
-  .filter-sidebar {
-    width: 250px;
-    float: left;
-    margin-right: 30px;
-    margin-top: 20px;
-  }
-  
-  .filter-section {
-    margin-bottom: 25px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .filter-section h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #007acc;
-    color: #333;
-    font-size: 16px;
-  }
-  
-  .filter-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  
-  .filter-tag {
-    display: inline-block;
-    padding: 5px 10px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 15px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: center;
-    margin: 2px;
-    user-select: none;
-  }
-  
-  .filter-tag:hover {
-    background: #e9ecef;
-    border-color: #007acc;
-  }
-  
-  .filter-tag.active {
-    background: #007acc;
-    color: white;
-    border-color: #007acc;
-  }
-  
-  .filter-tag.active:hover {
-    background: #005fa3;
-  }
-  
-  /* 右侧内容区域 */
-  .year-content {
-    margin-left: 280px;
-  }
-  
-  /* 筛选状态显示 */
-  .filter-status {
-    margin-bottom: 20px;
-    padding: 10px 15px;
-    background: #e3f2fd;
-    border-radius: 5px;
-    border-left: 4px solid #007acc;
-  }
-  
-  .clear-filters {
-    color: #dc3545;
-    cursor: pointer;
-    text-decoration: underline;
-    font-size: 14px;
-    margin-left: 15px;
-  }
-  
-  .clear-filters:hover {
-    color: #bd2130;
-  }
-  
-  /* 响应式设计 */
-  @media (max-width: 1024px) {
-    .filter-sidebar {
-      width: 200px;
-      margin-right: 20px;
-    }
-    
-    .year-content {
-      margin-left: 220px;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .filter-sidebar {
-      width: 100%;
-      float: none;
-      margin-right: 0;
-      margin-bottom: 30px;
-    }
-    
-    .year-content {
-      margin-left: 0;
-    }
-  }
-  
-  /* 隐藏被筛选掉的项 */
-  .year-section.hidden,
-  .archive__item.hidden {
-    display: none;
-  }
-</style>
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 筛选侧边栏 -->
-<div class="filter-sidebar">
-  {% comment %} 收集所有tags并进行分类 {% endcomment %}
-  {% assign all_tags = "" | split: "," %}
-  {% assign tag_categories = "" | split: "," %}
-  
-  {% for post in site.posts %}
-    {% if post.tags %}
-      {% for tag in post.tags %}
-        {% unless all_tags contains tag %}
-          {% assign all_tags = all_tags | push: tag %}
-        {% endunless %}
-        
-        {% comment %} 提取分类（tags中的前缀） {% endcomment %}
-        {% assign category = tag | split: ":" | first | strip %}
-        {% unless tag_categories contains category %}
-          {% assign tag_categories = tag_categories | push: category %}
-        {% endunless %}
-      {% endfor %}
-    {% endif %}
-  {% endfor %}
-  
-  <h2 style="margin-top: 0; color: #2c3e50;">筛选</h2>
-  
-  <div class="filter-section">
-    <h3>清除筛选</h3>
-    <div class="filter-tags">
-      <span class="filter-tag clear-all" onclick="clearAllFilters()">全部显示</span>
-    </div>
-  </div>
-  
-  {% comment %} 按分类显示tags {% endcomment %}
-  {% for category in tag_categories %}
-    {% if category != "" %}
-      {% assign category_tags = "" | split: "," %}
-      
-      {% for tag in all_tags %}
-        {% if tag contains category and tag contains ":" %}
-          {% assign category_tags = category_tags | push: tag %}
-        {% endif %}
-      {% endfor %}
-      
-      {% if category_tags.size > 0 %}
-        <div class="filter-section">
-          <h3>{{ category }}</h3>
-          <div class="filter-tags">
-            {% for tag in category_tags %}
-              {% assign tag_value = tag | split: ":" | last | strip %}
-              {% if tag_value != "" %}
-                <span class="filter-tag" 
-                      data-tag="{{ tag | strip }}" 
-                      onclick="toggleFilter('{{ tag | strip | replace: "'", "\\'" }}')">
-                  {{ tag_value }}
-                </span>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
-</div>
+{% for year_group in posts_by_year %}
+  <section class="year-section">
+    <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
+      {{ year_group.name }} ({{ year_group.items.size }})
+    </h1>
 
-<!-- 主要内容区域 -->
-<div class="year-content">
-  <!-- 筛选状态显示 -->
-  <div id="filterStatus" class="filter-status" style="display: none;">
-    当前筛选: <span id="activeFilters"></span>
-    <span class="clear-filters" onclick="clearAllFilters()">清除所有筛选</span>
-  </div>
-
-  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
-
-  {% for year_group in posts_by_year %}
-    <section class="year-section" data-year="{{ year_group.name }}">
-      <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
-        {{ year_group.name }} ({{ year_group.items.size }})
-      </h1>
-      
-      <div class="grid__wrapper">
-        {% for post in year_group.items %}
-          <article class="archive__item" 
-                   itemscope 
-                   itemtype="http://schema.org/CreativeWork"
-                   data-tags="{% if post.tags %}{{ post.tags | join: ',' | strip }}{% endif %}"
-                   data-year="{{ post.date | date: '%Y' }}"
-                   data-id="{{ forloop.index0 }}">
-            
-            {% if post.image_path %}
-              <div class="archive__item-teaser">
-                <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                  <img 
-                    style="height:210px;object-fit:cover;" 
-                    src=
-                    {% if post.image_path contains "://" %}
-                      "{{ post.image_path }}"
-                    {% else %}
-                      "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
-                    {% endif %}
-                  alt="{% if post.alt %}{{ post.alt }}{% endif %}">
-                </a>
-              </div>
-            {% else %}
-              <div class="archive__item-teaser">
-                <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                  <img 
-                    style="height:210px;object-fit:cover;" 
-                    src="{{ '/images/Loading.png' | prepend: base_path }}" 
-                    alt="Default image">
-                </a>
-              </div>
-            {% endif %}
-
-            {% if post.id %}
-              {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
-            {% else %}
-              {% assign title = post.covertitle %}
-            {% endif %}
-
-            <div class="archive__item-title">
-              {% if post.link %}
-                <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-              {% else %}
-                <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-              {% endif %}
-            </div>
-
-            {% if post.collection == 'teaching' %}
-              <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-            {% elsif post.collection == 'publications' %}
-              <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
-            {% elsif post.date %}
-              <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
-            {% endif %}
-
-            {% if post.excerpt %}
-              <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
-            {% endif %}
-            
-            <!-- 显示标签 -->
-            {% if post.tags %}
-              <div class="post-tags" style="margin-top: 8px;">
-                {% for tag in post.tags %}
-                  {% assign tag_value = tag | split: ":" | last | strip %}
-                  {% if tag_value != "" %}
-                    <span class="filter-tag small-tag" style="font-size: 10px; padding: 2px 6px; margin-right: 3px; background: #e9ecef;">
-                      {{ tag_value }}
-                    </span>
+    <div class="grid__wrapper">
+      {% for post in year_group.items %}
+        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"
+                 data-tags="{{ post.tags | join: ',' | downcase }}">
+          {% if post.image_path %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img
+                  style="height:210px;object-fit:cover;"
+                  src=
+                  {% if post.image_path contains "://" %}
+                    "{{ post.image_path }}"
+                  {% else %}
+                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
                   {% endif %}
-                {% endfor %}
-              </div>
-            {% endif %}
-            
-          </article>
-        {% endfor %}
-      </div>
-    </section>
-  {% endfor %}
-</div>
+                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              </a>
+            </div>
+          {% else %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img
+                  style="height:210px;object-fit:cover;"
+                  src="{{ '/images/Loading.png' | prepend: base_path }}"
+                  alt="Default image">
+              </a>
+            </div>
+          {% endif %}
 
+          {% if post.id %}
+            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
+          {% else %}
+            {% assign title = post.covertitle %}
+          {% endif %}
+
+          <div class="archive__item-title">
+            {% if post.link %}
+              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+            {% else %}
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+            {% endif %}
+          </div>
+
+          {% if post.collection == 'teaching' %}
+            <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.collection == 'publications' %}
+            <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.date %}
+            <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
+          {% endif %}
+
+          {% if post.excerpt %}
+            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
+          {% endif %}
+        </article>
+
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}
+
+<!-- 筛选功能JavaScript -->
 <script>
-  // 当前选中的筛选标签
-  let activeFilters = [];
-  
-  // 初始化页面
-  document.addEventListener('DOMContentLoaded', function() {
-    // 从URL参数中读取筛选状态
-    const params = new URLSearchParams(window.location.search);
-    const filtersFromUrl = params.get('filters');
-    
-    if (filtersFromUrl) {
-      activeFilters = filtersFromUrl.split(',');
-      activeFilters.forEach(tag => {
-        const tagElement = document.querySelector(`.filter-tag[data-tag="${tag}"]`);
-        if (tagElement) {
-          tagElement.classList.add('active');
-        }
-      });
-      applyFilters();
-    }
-    
-    // 更新URL参数（但不刷新页面）
-    updateUrlParams();
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取所有文章
+  const allArticles = document.querySelectorAll('article.archive__item');
+
+  // 获取所有筛选按钮
+  const filterButtons = document.querySelectorAll('.filter-tag');
+
+  // 获取清除筛选按钮
+  const clearButton = document.querySelector('.clear-filter');
+
+  // 获取所有筛选组标题
+  const filterGroups = document.querySelectorAll('.filter-group');
+
+  // 存储当前激活的标签
+  let activeFilters = new Set();
+
+  // 为每个筛选标签添加点击事件
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const tag = this.getAttribute('data-tag');
+
+      // 切换激活状态
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        activeFilters.delete(tag);
+      } else {
+        this.classList.add('active');
+        activeFilters.add(tag);
+      }
+
+      // 更新显示
+      updateDisplay();
+    });
   });
-  
-  // 切换筛选标签
-  function toggleFilter(tag) {
-    const index = activeFilters.indexOf(tag);
-    const tagElement = document.querySelector(`.filter-tag[data-tag="${tag}"]`);
-    
-    if (index === -1) {
-      // 添加筛选
-      activeFilters.push(tag);
-      tagElement.classList.add('active');
-    } else {
-      // 移除筛选
-      activeFilters.splice(index, 1);
-      tagElement.classList.remove('active');
-    }
-    
-    applyFilters();
-    updateUrlParams();
-  }
-  
-  // 应用筛选
-  function applyFilters() {
-    const allPosts = document.querySelectorAll('.archive__item');
-    const allYears = document.querySelectorAll('.year-section');
-    let visibleCount = 0;
-    
-    // 更新筛选状态显示
-    const filterStatus = document.getElementById('filterStatus');
-    const activeFiltersSpan = document.getElementById('activeFilters');
-    
-    if (activeFilters.length > 0) {
-      const filterLabels = activeFilters.map(tag => {
-        const parts = tag.split(':');
-        return parts.length > 1 ? parts[1].trim() : tag;
+
+  // 清除筛选按钮
+  if (clearButton) {
+    clearButton.addEventListener('click', function() {
+      // 清除所有激活状态
+      filterButtons.forEach(button => {
+        button.classList.remove('active');
       });
-      
-      activeFiltersSpan.textContent = filterLabels.join(', ');
-      filterStatus.style.display = 'block';
-    } else {
-      filterStatus.style.display = 'none';
+      activeFilters.clear();
+      updateDisplay();
+    });
+  }
+
+  // 更新文章显示
+  function updateDisplay() {
+    // 如果没有激活的筛选，显示所有文章和年份区域
+    if (activeFilters.size === 0) {
+      allArticles.forEach(article => {
+        article.style.display = 'block';
+      });
+
+      // 显示所有年份区域
+      document.querySelectorAll('.year-section').forEach(section => {
+        section.style.display = 'block';
+      });
+
+      // 显示所有筛选组
+      filterGroups.forEach(group => {
+        group.style.display = 'block';
+      });
+
+      return;
     }
-    
-    // 筛选文章
-    allPosts.forEach(post => {
-      const postTags = post.getAttribute('data-tags');
-      
-      if (activeFilters.length === 0) {
-        // 没有筛选，显示所有
-        post.classList.remove('hidden');
-      } else if (postTags) {
-        // 检查文章是否包含所有选中的标签
-        const tagsArray = postTags.split(',').map(t => t.trim());
-        const hasAllFilters = activeFilters.every(filter => 
-          tagsArray.includes(filter)
-        );
-        
-        if (hasAllFilters) {
-          post.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          post.classList.add('hidden');
+
+    // 隐藏所有年份区域，然后只显示有匹配文章的年份
+    document.querySelectorAll('.year-section').forEach(section => {
+      section.style.display = 'none';
+    });
+
+    // 显示所有筛选组（即使没有匹配的文章）
+    filterGroups.forEach(group => {
+      group.style.display = 'block';
+    });
+
+    // 检查每篇文章是否匹配任何激活的筛选
+    allArticles.forEach(article => {
+      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
+
+      // 检查是否有任何激活的标签匹配文章的标签
+      const hasMatch = Array.from(activeFilters).some(filter =>
+        articleTags.includes(filter)
+      );
+
+      article.style.display = hasMatch ? 'block' : 'none';
+
+      // 如果文章显示，确保其父年份区域也显示
+      if (hasMatch) {
+        const yearSection = article.closest('.year-section');
+        if (yearSection) {
+          yearSection.style.display = 'block';
         }
-      } else {
-        post.classList.add('hidden');
       }
     });
-    
-    // 处理年份分组显示
-    allYears.forEach(yearSection => {
-      const yearPosts = yearSection.querySelectorAll('.archive__item:not(.hidden)');
-      const yearTitle = yearSection.querySelector('.archive__subtitle');
-      const originalYear = yearTitle.textContent.match(/^\d+/)[0];
-      
-      if (yearPosts.length > 0) {
-        yearSection.classList.remove('hidden');
-        // 更新年份标题的数量
-        yearTitle.textContent = `${originalYear} (${yearPosts.length})`;
-      } else {
-        yearSection.classList.add('hidden');
-      }
+  }
+
+  // 筛选组显示/隐藏逻辑（可选：如果没有该组的任何文章，可以隐藏组标题）
+  function updateFilterGroupsDisplay() {
+    filterGroups.forEach(group => {
+      const groupTags = group.querySelectorAll('.filter-tag');
+      let hasVisibleTags = false;
+
+      groupTags.forEach(tag => {
+        const tagValue = tag.getAttribute('data-tag');
+        // 检查是否有文章包含这个标签
+        const hasArticleWithThisTag = Array.from(allArticles).some(article => {
+          const articleTags = article.getAttribute('data-tags').split(',').map(t => t.trim());
+          return articleTags.includes(tagValue);
+        });
+
+        if (hasArticleWithThisTag) {
+          hasVisibleTags = true;
+          tag.style.display = 'inline-block';
+        } else {
+          tag.style.display = 'none';
+        }
+      });
+
+      // 如果该组没有可见的标签，可以隐藏整个组
+      group.style.display = hasVisibleTags ? 'block' : 'none';
     });
-    
-    // 如果没有可见的文章，显示提示
-    if (visibleCount === 0 && activeFilters.length > 0) {
-      const firstYear = document.querySelector('.year-section');
-      if (firstYear) {
-        firstYear.insertAdjacentHTML('afterbegin', 
-          '<div class="no-results" style="text-align: center; padding: 40px; color: #666; background: #f8f9fa; border-radius: 8px; margin-bottom: 20px;">没有找到匹配的文章。请尝试其他筛选条件。</div>'
-        );
-      }
-    }
   }
-  
-  // 清除所有筛选
-  function clearAllFilters() {
-    activeFilters = [];
-    document.querySelectorAll('.filter-tag.active').forEach(tag => {
-      tag.classList.remove('active');
-    });
-    applyFilters();
-    updateUrlParams();
-  }
-  
-  // 更新URL参数
-  function updateUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    
-    if (activeFilters.length > 0) {
-      params.set('filters', activeFilters.join(','));
-    } else {
-      params.delete('filters');
-    }
-    
-    // 使用history API更新URL而不刷新页面
-    const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
-    window.history.replaceState({}, '', newUrl);
-  }
+
+  // 初始化时也调用一次（可选）
+  // updateFilterGroupsDisplay();
+});
 </script>
+
+
+{% comment %}
+<!-- {% capture written_year %}'None'{% endcapture %}
+{% for post in site.posts %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% if year != written_year %}
+    <h2 id="{{ year | slugify }}" class="archive__subtitle">{{ year }}</h2>
+    {% capture written_year %}{{ year }}{% endcapture %}
+  {% endif %}
+
+  {% include archive-single.html type="grid" %}
+{% endfor %} -->
+{% endcomment %}

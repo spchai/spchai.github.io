@@ -334,3 +334,55 @@
     }
   }
 }
+
+
+/* 标签筛选器样式 */
+.filter-section {
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.filter-group {
+  margin-bottom: 15px;
+}
+
+.filter-group h4 {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: #555;
+  font-weight: 600;
+}
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.filter-tag {
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  background: #e9ecef !important;
+  transform: translateY(-1px);
+}
+
+.filter-tag.active {
+  background: #007bff !important;
+  color: white !important;
+  border-color: #007bff !important;
+}
+
+.clear-filter {
+  width: 100%;
+  transition: background 0.2s ease;
+}
+
+.clear-filter:hover {
+  background: #c0392b !important;
+}
+
+
