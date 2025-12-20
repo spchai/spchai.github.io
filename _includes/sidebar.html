@@ -23,36 +23,38 @@
   {% endif %}
 
   <!-- 标签筛选区域 -->
-  <div class="sidebar-filter-wrapper">
-    <div class="filter-section">
-      <h3>Filter by Tags</h3>
-      <div id="tag-filter" class="tag-filter-container">
-        {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
-        {% assign current_group = "" %}
+  {% if page.filter %}
+    <div class="sidebar-filter-wrapper">
+      <div class="filter-section">
+        <h3>Filter by Tags</h3>
+        <div id="tag-filter" class="tag-filter-container">
+          {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
+          {% assign current_group = "" %}
 
-        {% for tag in all_tags %}
-          {% if tag contains ":" %}
-            {% assign parts = tag | split: ":" %}
-            {% assign group_name = parts[0] | strip %}
-            {% assign tag_value = parts[1] | strip %}
-            {% if tag_value != "" and tag_value != nil %}
-              {% if group_name != current_group %}
-                {% if current_group != "" %}</div></div>{% endif %}
-                <div class="tag-group">
-                  <h4>{{ group_name }}:</h4>
-                  <div class="tag-values">
-                {% assign current_group = group_name %}
+          {% for tag in all_tags %}
+            {% if tag contains ":" %}
+              {% assign parts = tag | split: ":" %}
+              {% assign group_name = parts[0] | strip %}
+              {% assign tag_value = parts[1] | strip %}
+              {% if tag_value != "" and tag_value != nil %}
+                {% if group_name != current_group %}
+                  {% if current_group != "" %}</div></div>{% endif %}
+                  <div class="tag-group">
+                    <h4>{{ group_name }}:</h4>
+                    <div class="tag-values">
+                  {% assign current_group = group_name %}
+                {% endif %}
+                <span class="tag-value" data-full-tag="{{ group_name }}: {{ tag_value }}">{{ tag_value }}</span>
               {% endif %}
-              <span class="tag-value" data-full-tag="{{ group_name }}: {{ tag_value }}">{{ tag_value }}</span>
             {% endif %}
-          {% endif %}
-        {% endfor %}
-        {% if current_group != "" %}</div></div>{% endif %}
-        
-        <button id="clear-filter" class="clear-filter-btn" style="margin-top: 20px; width: 100%;">Clear All Filters</button>
+          {% endfor %}
+          {% if current_group != "" %}</div></div>{% endif %}
+          
+          <button id="clear-filter" class="clear-filter-btn" style="margin-top: 20px; width: 100%;">Clear All Filters</button>
+        </div>
       </div>
     </div>
-  </div>
+  {% endif %}
 
   {% if page.toc %}
     {% include toc content=content title="Contents" %}

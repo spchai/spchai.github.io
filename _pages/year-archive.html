@@ -46,64 +46,94 @@ redirect_from:
 {% endfor %}
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const articles = Array.from(document.querySelectorAll('.archive__item'));
-  const sections = Array.from(document.querySelectorAll('.year-section'));
-  const tagButtons = document.querySelectorAll('.tag-value');
-  const clearBtn = document.getElementById('clear-filter');
-  const selectedTags = new Set();
+(function() {
+  function initFilter() {
+    const articles = Array.from(document.querySelectorAll('.archive__item'));
+    const sections = Array.from(document.querySelectorAll('.year-section'));
+    const tagButtons = document.querySelectorAll('.tag-value');
+    const clearBtn = document.getElementById('clear-filter');
+    const selectedTags = new Set();
 
-  if (tagButtons.length === 0) return;
-
-  // 1. 点击筛选逻辑
-  tagButtons.forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const tag = this.getAttribute('data-full-tag').trim();
-      if (selectedTags.has(tag)) {
-        selectedTags.delete(tag);
-        this.classList.remove('selected');
-      } else {
-        selectedTags.add(tag);
-        this.classList.add('selected');
-      }
-      render();
-    });
-  });
-
-  // 2. 增强版清除按钮逻辑 (增加 Optional Chaining 防止报错)
-  clearBtn?.addEventListener('click', function(e) {
-    e.preventDefault();
-    selectedTags.clear();
-    tagButtons.forEach(b => b.classList.remove('selected'));
-    render();
-  });
-
-  // 3. 渲染函数
-  function render() {
-    articles.forEach(article => {
-      if (selectedTags.size === 0) {
-        article.style.display = ''; 
+    if (tagButtons.length === 0 || articles.length === 0) {
+        console.warn("Filter elements not found, retrying...");
         return;
-      }
-      const raw = article.getAttribute('data-tags') || "";
-      const postTags = raw.split('|').map(t => t.trim());
-      const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
-      article.style.display = isMatch ? 'block' : 'none';
+    }
+
+    console.log("Filter initialized with " + articles.length + " articles.");
+
+    tagButtons.forEach(btn => {
+      btn.style.cursor = 'pointer'; // 确保鼠标手势正确
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // 核心修复：移除所有前后空格进行匹配
+        const tag = this.getAttribute('data-full-tag').trim();
+        
+        if (selectedTags.has(tag)) {
+          selectedTags.delete(tag);
+          this.classList.remove('selected');
+          this.style.fontWeight = 'normal'; // 临时反馈
+        } else {
+          selectedTags.add(tag);
+          this.classList.add('selected');
+          this.style.fontWeight = 'bold'; // 临时反馈
+        }
+        render();
+      });
     });
 
-    sections.forEach(section => {
-      const visibleArticles = Array.from(section.querySelectorAll('.archive__item')).filter(a => a.style.display !== 'none');
-      const count = visibleArticles.length;
-      section.style.display = count > 0 ? 'block' : 'none';
-      const badge = section.querySelector('.archive__subtitle');
-      if (badge) {
-        const year = section.getAttribute('data-year');
-        badge.textContent = `${year} (${count})`;
-      }
-    });
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        selectedTags.clear();
+        tagButtons.forEach(b => {
+            b.classList.remove('selected');
+            b.style.fontWeight = 'normal';
+        });
+        render();
+      });
+    }
+
+    function render() {
+      articles.forEach(article => {
+        if (selectedTags.size === 0) {
+          article.style.display = ''; 
+          return;
+        }
+        
+        const raw = article.getAttribute('data-tags') || "";
+        // 修正：支持竖线、逗号等多种分隔符
+        const postTags = raw.split(/[|,]+/).map(t => t.trim());
+        
+        // 检查是否包含所有选中的标签
+        const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
+        article.style.display = isMatch ? 'block' : 'none';
+      });
+
+      sections.forEach(section => {
+        const visibleInYear = Array.from(section.querySelectorAll('.archive__item'))
+                                 .filter(a => a.style.display !== 'none');
+        const count = visibleInYear.length;
+        
+        section.style.display = count > 0 ? 'block' : 'none';
+        
+        const badge = section.querySelector('.archive__subtitle');
+        if (badge) {
+          const year = section.getAttribute('data-year');
+          badge.textContent = `${year} (${count})`;
+        }
+      });
+    }
   }
-});
+
+  // 确保在页面完全加载后再运行，如果失败则 500ms 后重试一次
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFilter);
+  } else {
+    initFilter();
+  }
+})();
 </script>
 
 
