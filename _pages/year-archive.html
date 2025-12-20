@@ -65,30 +65,86 @@ document.addEventListener('DOMContentLoaded', function() {
     return;
   }
 
-  // 3. 提取所有标签并去重
-  const allTags = [...new Set(postsData.flatMap(post => post.tags))].sort();
-  console.log('✓ 提取到标签：', allTags);
+  // 3. 提取所有标签并按类别分组
+  const tagsByCategory = {};
+  postsData.forEach(post => {
+    post.tags.forEach(tag => {
+      // 按冒号分割类别和标签
+      const parts = tag.split(':');
+      if (parts.length >= 2) {
+        const category = parts[0].trim();
+        const tagValue = parts.slice(1).join(':').trim();
 
-  // 4. 生成标签按钮（在侧边栏）
+        if (!tagsByCategory[category]) {
+          tagsByCategory[category] = new Set();
+        }
+        tagsByCategory[category].add(tagValue);
+      } else {
+        // 如果没有冒号，归为"Other"类别
+        if (!tagsByCategory['Other']) {
+          tagsByCategory['Other'] = new Set();
+        }
+        tagsByCategory['Other'].add(tag.trim());
+      }
+    });
+  });
+
+  // 转换为数组并排序
+  Object.keys(tagsByCategory).forEach(category => {
+    tagsByCategory[category] = Array.from(tagsByCategory[category]).sort();
+  });
+
+  console.log('✓ 提取到分类标签：', tagsByCategory);
+
+  // 4. 生成分类标签筛选器（在侧边栏）
   const tagContainer = document.getElementById('tag-filter');
   if (!tagContainer) {
     console.error('❌ 找不到 tag-filter 容器！');
     return;
   }
 
-  // 清除现有内容并添加"全部"按钮
-  tagContainer.innerHTML = '<button class="tag-btn" data-tag="all">全部</button>';
+  // 清除现有内容
+  tagContainer.innerHTML = '';
 
-  allTags.forEach(tag => {
-    const btn = document.createElement('button');
-    btn.className = 'tag-btn';
-    btn.textContent = tag;
-    btn.dataset.tag = tag;
-    tagContainer.appendChild(btn);
+  // 添加"全部"按钮
+  const allBtnContainer = document.createElement('div');
+  allBtnContainer.className = 'tag-category';
+  const allBtn = document.createElement('button');
+  allBtn.className = 'tag-btn';
+  allBtn.textContent = '全部';
+  allBtn.dataset.tag = 'all';
+  allBtnContainer.appendChild(allBtn);
+  tagContainer.appendChild(allBtnContainer);
+
+  // 为每个分类生成标签组
+  Object.keys(tagsByCategory).sort().forEach(category => {
+    const categoryDiv = document.createElement('div');
+    categoryDiv.className = 'tag-category';
+
+    // 分类标题
+    const categoryTitle = document.createElement('h4');
+    categoryTitle.className = 'tag-category-title';
+    categoryTitle.textContent = category;
+    categoryDiv.appendChild(categoryTitle);
+
+    // 标签容器
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'tag-group';
+
+    // 该分类下的所有标签
+    tagsByCategory[category].forEach(tagValue => {
+      const btn = document.createElement('button');
+      btn.className = 'tag-btn';
+      btn.textContent = tagValue;
+      btn.dataset.tag = `${category}: ${tagValue}`;
+      tagsContainer.appendChild(btn);
+    });
+
+    categoryDiv.appendChild(tagsContainer);
+    tagContainer.appendChild(categoryDiv);
   });
-  console.log('✓ 生成了', allTags.length, '个标签按钮');
 
-  // 5. 渲染文章函数
+  // 5. 渲染文章函数（保持不变）
   function renderPosts(filterTags = null) {
     const container = document.getElementById('dynamic-articles');
     if (!container) {
@@ -190,10 +246,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   tagContainer.addEventListener('click', function(e) {
     if (e.target.classList.contains('tag-btn')) {
-      const tag = e.target.dataset.tag;
-      console.log('点击标签：', tag);
+      const fullTag = e.target.dataset.tag;
+      console.log('点击标签：', fullTag);
 
-      if (tag === 'all') {
+      if (fullTag === 'all') {
         selectedTags.clear();
         document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
         e.target.classList.add('active');
@@ -201,11 +257,11 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         document.querySelector('[data-tag="all"]').classList.remove('active');
 
-        if (selectedTags.has(tag)) {
-          selectedTags.delete(tag);
+        if (selectedTags.has(fullTag)) {
+          selectedTags.delete(fullTag);
           e.target.classList.remove('active');
         } else {
-          selectedTags.add(tag);
+          selectedTags.add(fullTag);
           e.target.classList.add('active');
         }
 
@@ -219,26 +275,78 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // 7. 添加样式
+  // 7. 添加样式 - 增强版
   const style = document.createElement('style');
   style.textContent = `
+    /* 分类容器 */
+    .tag-category {
+      margin-bottom: 1.2rem;
+    }
+
+    /* 分类标题 */
+    .tag-category-title {
+      font-size: 1.1rem;
+      margin: 0.8rem 0 0.5rem 0;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #eee;
+      color: #333;
+      font-weight: 600;
+    }
+
+    /* 标签组容器 - 允许换行 */
+    .tag-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    /* 标签按钮基础样式 */
     .tag-btn {
-      display: block;
-      width: 100%;
-      margin: 0.3rem 0;
-      padding: 0.5rem 0.8rem;
+      padding: 0.4rem 0.7rem;
       border: 1px solid #ddd;
       border-radius: 4px;
       background: white;
       cursor: pointer;
-      text-align: left;
       transition: all 0.2s;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       word-wrap: break-word;
       white-space: normal;
+      line-height: 1.3;
+      max-width: 100%;
+      flex: 0 0 auto; /* 防止拉伸 */
     }
-    .tag-btn:hover { background: #f0f0f0; }
-    .tag-btn.active { background: #007bff; color: white; border-color: #007bff; }
+
+    /* 全部按钮特殊样式 */
+    .tag-btn[data-tag="all"] {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      background: #f8f9fa;
+    }
+
+    /* 标签按钮悬停状态 */
+    .tag-btn:hover {
+      background: #e9ecef;
+      border-color: #adb5bd;
+    }
+
+    /* 标签按钮激活状态 */
+    .tag-btn.active {
+      background: #007bff;
+      color: white;
+      border-color: #007bff;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .tag-group {
+        gap: 0.3rem;
+      }
+      .tag-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.8rem;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -250,9 +358,81 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 
-
 {% comment %}
-<!-- {% capture written_year %}'None'{% endcapture %}
+<!-- 
+
+{% include base_path %}
+
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+
+{% for year_group in posts_by_year %}
+  <section class="year-section">
+    <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
+      {{ year_group.name }} ({{ year_group.items.size }})
+    </h1>
+    
+    <div class="grid__wrapper">
+      {% for post in year_group.items %}
+        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+          {% if post.image_path %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img 
+                  style="height:210px;object-fit:cover;" 
+                  src=
+                  {% if post.image_path contains "://" %}
+                    "{{ post.image_path }}"
+                  {% else %}
+                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
+                  {% endif %}
+                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              </a>
+            </div>
+          {% else %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img 
+                  style="height:210px;object-fit:cover;" 
+                  src="{{ '/images/Loading.png' | prepend: base_path }}" 
+                  alt="Default image">
+              </a>
+            </div>
+          {% endif %}
+
+          {% if post.id %}
+            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
+          {% else %}
+            {% assign title = post.covertitle %}
+          {% endif %}
+
+          <div class="archive__item-title">
+            {% if post.link %}
+              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+            {% else %}
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+            {% endif %}
+          </div>
+
+          {% if post.collection == 'teaching' %}
+            <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.collection == 'publications' %}
+            <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.date %}
+            <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
+          {% endif %}
+
+          {% if post.excerpt %}
+            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
+          {% endif %}
+        </article>
+
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}
+
+
+{% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
   {% if year != written_year %}
