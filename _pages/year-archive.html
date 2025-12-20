@@ -46,113 +46,73 @@ redirect_from:
 {% endfor %}
 
 <style>
-  .tag-value { cursor: pointer; transition: all 0.2s; border-bottom: 1px dotted #ccc; }
-  .tag-value:hover { color: #2185d0; }
+  /* 基础交互样式 */
+  .tag-value { cursor: pointer !important; transition: 0.2s; }
+  .tag-value:hover { opacity: 0.7; color: #2185d0; }
   .tag-value.selected { 
     background-color: #2185d0 !important; 
-    color: white !important; 
-    padding: 0 5px; 
-    border-radius: 3px;
-    border-bottom: none;
+    color: #fff !important; 
+    padding: 2px 5px; 
+    border-radius: 3px; 
   }
-  .clear-filter-btn {
-    margin-top: 15px;
-    width: 100%;
-    padding: 8px;
-    background: #f0f0f0;
-    border: 1px solid #ddd;
-    cursor: pointer;
-  }
-  .clear-filter-btn:hover { background: #e0e0e0; }
 </style>
 
 <script>
 (function() {
-  /**
-   * 核心筛选逻辑：支持多选（交集过滤）
-   */
-  function initNewsFilter() {
-    const articles = Array.from(document.querySelectorAll('.archive__item'));
-    const sections = Array.from(document.querySelectorAll('.year-section'));
-    const tagButtons = document.querySelectorAll('.tag-value');
-    const clearBtn = document.getElementById('clear-filter');
-    
-    // 如果页面没有找到筛选元素，直接退出防止报错
-    if (tagButtons.length === 0 || articles.length === 0) return;
+  let selectedTags = new Set();
 
-    let selectedTags = new Set();
+  function updateDisplay() {
+    const articles = document.querySelectorAll('.archive__item');
+    const sections = document.querySelectorAll('.year-section');
 
-    // 更新页面显示
-    function updateDisplay() {
-      // 1. 过滤文章
-      articles.forEach(article => {
-        if (selectedTags.size === 0) {
-          article.style.display = ''; // 显示所有
-          return;
-        }
-        // 获取文章自带的标签字符串
-        const postTagsRaw = article.getAttribute('data-tags') || "";
-        const postTagsArray = postTagsRaw.split('|').map(t => t.trim());
-        
-        // 只有包含所有选中标签的文章才显示 (AND 逻辑)
-        const isMatch = Array.from(selectedTags).every(tag => postTagsArray.includes(tag));
-        article.style.display = isMatch ? 'block' : 'none';
-      });
-
-      // 2. 处理年份标题和计数
-      sections.forEach(section => {
-        const visibleInThisYear = Array.from(section.querySelectorAll('.archive__item'))
-                                     .filter(a => a.style.display !== 'none');
-        const count = visibleInThisYear.length;
-        
-        // 如果该年份下没有匹配文章，隐藏整个年份区块
-        section.style.display = count > 0 ? 'block' : 'none';
-        
-        // 更新标题后的数字，例如 2024 (6) -> 2024 (2)
-        const subtitle = section.querySelector('.archive__subtitle');
-        if (subtitle) {
-          const year = section.getAttribute('data-year');
-          subtitle.textContent = `${year} (${count})`;
-        }
-      });
-    }
-
-    // 绑定标签点击事件
-    tagButtons.forEach(btn => {
-      btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const tag = this.getAttribute('data-full-tag').trim();
-        
-        if (selectedTags.has(tag)) {
-          selectedTags.delete(tag);
-          this.classList.remove('selected');
-        } else {
-          selectedTags.add(tag);
-          this.classList.add('selected');
-        }
-        updateDisplay();
-      });
+    articles.forEach(article => {
+      if (selectedTags.size === 0) {
+        article.style.display = '';
+        return;
+      }
+      const raw = article.getAttribute('data-tags') || "";
+      const postTags = raw.split('|').map(t => t.trim());
+      const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
+      article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 绑定清除按钮
-    if (clearBtn) {
-      clearBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        selectedTags.clear();
-        tagButtons.forEach(b => b.classList.remove('selected'));
-        updateDisplay();
-      });
-    }
-    
-    console.log("News filter system ready.");
+    sections.forEach(section => {
+      const visible = Array.from(section.querySelectorAll('.archive__item')).filter(a => a.style.display !== 'none');
+      section.style.display = visible.length > 0 ? 'block' : 'none';
+      const badge = section.querySelector('.archive__subtitle');
+      if (badge) {
+        const year = section.getAttribute('data-year');
+        badge.textContent = `${year} (${visible.length})`;
+      }
+    });
   }
 
-  // 关键：AcademicPages 侧边栏是动态的，使用 window.onload 确保 DOM 树完全稳定
-  if (document.readyState === 'complete') {
-    initNewsFilter();
-  } else {
-    window.addEventListener('load', initNewsFilter);
-  }
+  // 使用事件委托：即使侧边栏是动态加载的，点击也能生效
+  document.addEventListener('click', function(e) {
+    // 1. 处理标签点击
+    if (e.target && e.target.classList.contains('tag-value')) {
+      e.preventDefault();
+      const tag = e.target.getAttribute('data-full-tag').trim();
+      if (selectedTags.has(tag)) {
+        selectedTags.delete(tag);
+        e.target.classList.remove('selected');
+      } else {
+        selectedTags.add(tag);
+        e.target.classList.add('selected');
+      }
+      updateDisplay();
+    }
+
+    // 2. 处理清除按钮点击 (ID 匹配)
+    if (e.target && e.target.id === 'clear-filter') {
+      e.preventDefault();
+      selectedTags.clear();
+      document.querySelectorAll('.tag-value').forEach(btn => btn.classList.remove('selected'));
+      updateDisplay();
+    }
+  });
+
+  console.log("News Filter: Event delegation active.");
 })();
 </script>
 
