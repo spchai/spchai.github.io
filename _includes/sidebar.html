@@ -25,13 +25,14 @@
   <!-- 标签筛选区域 - 仅在/news/页面显示 -->
   {% if page.url contains '/news/' %}
     <div class="filter-section" style="margin-top: 0.5rem;">
-      <h2>Filter by Tags</h2>
+      <h3>Filter by Tags</h3>
       <div id="tag-filter">
         <!-- 这里将通过JavaScript动态生成标签筛选器 -->
+        <div style="font-size: 0.9em; color: #666; padding: 8px 0;">Loading tags...</div>
       </div>
     </div>
   {% endif %}
-  
+
   {% if page.toc %}
     {% include toc content=content title="Contents" %}
   {% endif %}
