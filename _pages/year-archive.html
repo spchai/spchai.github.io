@@ -69,9 +69,9 @@ redirect_from:
       
       // 深度清洗标签：解决 YAML 解析出的空格、换行符问题
       const postTags = (article.getAttribute('data-tags') || "")
-                        .split('|')
-                        .map(normalizeTag)
-                        .filter(t => t !== "");
+        .split('|')
+        .map(normalizeTag)
+        .filter(t => t !== "" && !t.endsWith(':'));
 
       const isMatch = Array.from(selectedTags).every(sel =>
         postTags.includes(normalizeTag(sel))
