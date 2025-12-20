@@ -22,16 +22,14 @@
     {% endif %}
   {% endif %}
 
-  <!-- 标签筛选区域 - 仅在/news/页面显示 -->
+  <!-- 筛选区域 -->
   {% if page.url contains '/news/' %}
-    <div class="filter-section" style="margin-top: 2rem;">
-      <h3>Filter by Tags</h3>
+    <div class="filter-section" style="margin-top: 2rem; padding: 15px; background: #f8f9fa; border-radius: 5px;">
+      <h3 style="margin-top: 0;">Filter by Tags</h3>
 
-      {% comment %} 收集所有唯一标签并按类别分组 {% endcomment %}
       {% assign all_tags = "" | split: "," %}
       {% assign tag_groups = "" | split: "," %}
 
-      {% comment %} 第一次遍历：收集所有标签和分组 {% endcomment %}
       {% for post in site.posts %}
         {% if post.tags %}
           {% for tag in post.tags %}
@@ -39,8 +37,6 @@
             {% unless all_tags contains clean_tag %}
               {% assign all_tags = all_tags | push: clean_tag %}
             {% endunless %}
-
-            {% comment %} 提取分组名称（冒号前的部分） {% endcomment %}
             {% assign tag_parts = clean_tag | split: ":" %}
             {% if tag_parts.size > 1 %}
               {% assign group_name = tag_parts[0] | strip %}
@@ -52,11 +48,10 @@
         {% endif %}
       {% endfor %}
 
-      {% comment %} 按分组显示标签 {% endcomment %}
       {% for group_name in tag_groups %}
-        <div class="filter-group">
-          <h4>{{ group_name }}</h4>
-          <div class="filter-tags">
+        <div class="filter-group" style="margin-bottom: 15px;">
+          <h4 style="margin: 0 0 8px 0; font-size: 0.9em; color: #555;">{{ group_name }}</h4>
+          <div style="display: flex; flex-wrap: wrap; gap: 4px;">
             {% for tag in all_tags %}
               {% assign tag_parts = tag | split: ":" %}
               {% if tag_parts.size > 1 %}
@@ -73,10 +68,9 @@
         </div>
       {% endfor %}
 
-      {% comment %} 显示没有分组的标签（如果有） {% endcomment %}
-      <div class="filter-group">
-        <h4>Other Tags</h4>
-        <div class="filter-tags">
+      <div class="filter-group" style="margin-bottom: 15px;">
+        <h4 style="margin: 0 0 8px 0; font-size: 0.9em; color: #555;">Other Tags</h4>
+        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
           {% for tag in all_tags %}
             {% unless tag contains ":" %}
               <button class="filter-tag" data-tag="{{ tag | downcase }}" style="margin: 2px; padding: 4px 8px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 3px; cursor: pointer; white-space: normal; word-wrap: break-word; max-width: 100%;">
