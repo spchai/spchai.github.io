@@ -1,16 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // 检查是否在归档页面
-  if (!document.getElementById('posts-data') || !document.getElementById('tag-filter')) {
+  // 1. 获取数据
+  const dataScript = document.getElementById('posts-data');
+  if (!dataScript) return;
+
+  let postsData;
+  try {
+    postsData = JSON.parse(dataScript.textContent);
+  } catch (e) {
+    console.error('JSON 解析失败:', e);
     return;
   }
 
-  // 1. 获取文章数据
-  const postsData = JSON.parse(document.getElementById('posts-data').textContent);
-
-  // 2. 提取所有标签并去重
+  // 2. 提取所有标签
   const allTags = [...new Set(postsData.flatMap(post => post.tags))].sort();
 
-  // 3. 动态生成标签按钮
+  // 3. 生成标签按钮（自动换行）
   const tagContainer = document.getElementById('tag-filter');
   allTags.forEach(tag => {
     const btn = document.createElement('button');
@@ -20,12 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     tagContainer.appendChild(btn);
   });
 
-  // 4. 渲染文章函数（按年份分组）
+  // 4. 渲染文章（按年份分组）
   function renderPosts(filterTags = null) {
     const container = document.getElementById('dynamic-articles');
-    container.innerHTML = ''; // 清空现有内容
+    container.innerHTML = '';
 
-    // 过滤文章
+    // 筛选
     let filteredPosts = postsData;
     if (filterTags && filterTags.length > 0) {
       filteredPosts = postsData.filter(post =>
@@ -36,13 +40,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 按年份分组
     const postsByYear = {};
     filteredPosts.forEach(post => {
-      if (!postsByYear[post.year]) {
-        postsByYear[post.year] = [];
-      }
+      if (!postsByYear[post.year]) postsByYear[post.year] = [];
       postsByYear[post.year].push(post);
     });
 
-    // 按年份倒序排列
+    // 排序年份（倒序）
     const sortedYears = Object.keys(postsByYear).sort().reverse();
 
     // 生成HTML
@@ -61,46 +63,41 @@ document.addEventListener('DOMContentLoaded', function() {
       postsByYear[year].forEach(post => {
         const article = document.createElement('article');
         article.className = 'archive__item';
-        article.setAttribute('itemscope', '');
-        article.setAttribute('itemtype', 'http://schema.org/CreativeWork');
 
-        // 处理图片
+        // 处理图片路径
         let imageSrc = '/images/Loading.png';
-        if (post.image_path) {
-          imageSrc = post.image_path.includes('://') ? post.image_path : `/images/${post.image_path}`;
+        if (post.image_path && post.image_path.trim() !== '') {
+          imageSrc = post.image_path.includes('://') ?
+            post.image_path :
+            `/images${post.image_path}`;
         }
 
         // 处理标题
-        let title = post.covertitle;
-        if (post.id) {
-          title = post.covertitle.replace(/<[^>]*>/g, '');
-        }
+        const title = post.covertitle && post.covertitle.trim() !== '' ? post.covertitle : post.title;
 
         // 处理元数据
         let metaHtml = '';
-        if (post.collection === 'teaching') {
-          metaHtml = `<div>${post.type}, <i>${post.venue}</i>, ${post.date.substring(0, 4)}</div>`;
-        } else if (post.collection === 'publications') {
-          metaHtml = `<div>Published in <i>${post.venue}</i>, ${post.date.substring(0, 4)}</div>`;
-        } else if (post.date) {
+        if (post.date) {
           metaHtml = `<div class="page__meta"><i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="${post.date}">${post.date_display}</time></div>`;
         }
 
-        // 构建文章HTML
+        // 处理 excerpt
+        let excerptHtml = '';
+        if (post.excerpt && post.excerpt.trim() !== '') {
+          excerptHtml = `<small class="archive__item-excerpt" itemprop="description">${post.excerpt}</small>`;
+        }
+
         article.innerHTML = `
           <div class="archive__item-teaser">
             <a href="${post.url}" rel="permalink">
-              <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="${post.alt || 'Default image'}">
+              <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="${title}">
             </a>
           </div>
           <div class="archive__item-title">
-            ${post.link ?
-              `<a href="${post.link}">${title}</a> <a href="${post.url}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>` :
-              `<a href="${post.url}" rel="permalink">${title}</a>`
-            }
+            <a href="${post.url}" rel="permalink">${title}</a>
           </div>
           ${metaHtml}
-          ${post.excerpt ? `<small class="archive__item-excerpt" itemprop="description">${post.excerpt}</small>` : ''}
+          ${excerptHtml}
         `;
 
         gridWrapper.appendChild(article);
@@ -118,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 5. 处理标签点击
+  // 5. 事件处理
   const selectedTags = new Set();
 
   tagContainer.addEventListener('click', function(e) {
@@ -151,16 +148,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // 6. 添加样式
+  // 6. 样式
   const style = document.createElement('style');
   style.textContent = `
-    .tag-btn { display: block; width: 100%; margin: 0.3rem 0; padding: 0.5rem 0.8rem; border: 1px solid #ddd; border-radius: 4px; background: white; cursor: pointer; text-align: left; transition: all 0.2s; font-size: 0.9rem; }
+    .tag-btn {
+      flex: 0 0 auto;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
     .tag-btn:hover { background: #f0f0f0; }
     .tag-btn.active { background: #007bff; color: white; border-color: #007bff; }
   `;
   document.head.appendChild(style);
 
-  // 7. 初始化（首次加载显示全部）
-  document.querySelector('[data-tag="all"]').classList.add('active');
+  // 7. 初始化
   renderPosts();
+  document.querySelector('[data-tag="all"]').classList.add('active');
 });

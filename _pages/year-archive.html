@@ -18,29 +18,27 @@ redirect_from:
     {% for year_group in posts_by_year %}
       {% for post in year_group.items %}
         {
-          "year": "{{ year_group.name }}",
-          "title": "{{ post.title | escape }}",
-          "url": "{{ base_path }}{{ post.url }}",
-          "link": "{{ post.link }}",
-          "covertitle": "{{ post.covertitle | escape }}",
-          "image_path": "{{ post.image_path }}",
-          "alt": "{{ post.alt }}",
-          "date": "{{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}",
-          "date_display": "{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}",
-          "collection": "{{ post.collection }}",
-          "type": "{{ post.type }}",
-          "venue": "{{ post.venue }}",
-          "excerpt": "{{ post.excerpt | markdownify | escape }}",
+          "year": {{ year_group.name | jsonify }},
+          "title": {{ post.title | jsonify }},
+          "url": {{ post.url | jsonify }},
+          "covertitle": {{ post.covertitle | jsonify }},
+          "image_path": {{ post.image_path | jsonify }},
+          "date": {{ post.date | date: '%Y-%m-%d' | jsonify }},
+          "date_display": {{ post.date | date: '%B %d, %Y' | jsonify }},
+          "excerpt": {{ post.excerpt | jsonify }},
           "tags": {{ post.tags | jsonify }}
         }{% unless forloop.last %},{% endunless %}
       {% endfor %}{% unless forloop.last %},{% endunless %}
     {% endfor %}
   ]
 </script>
+
 <div id="dynamic-articles"></div>
+<script src="/assets/js/tag-filter.js"></script>
 
 
-
+{% comment %}
+<!--
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
 {% for year_group in posts_by_year %}
@@ -110,8 +108,7 @@ redirect_from:
 {% endfor %}
 
 
-{% comment %}
-<!-- {% capture written_year %}'None'{% endcapture %}
+ {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
   {% if year != written_year %}
@@ -122,3 +119,5 @@ redirect_from:
   {% include archive-single.html type="grid" %}
 {% endfor %} -->
 {% endcomment %}
+
+
