@@ -12,345 +12,240 @@ redirect_from:
 
 {% include base_path %}
 
-<!-- 数据脚本：将所有文章数据存储为JSON -->
-<script type="application/json" id="posts-data">
-[
-  {% assign first_post = true %}
-  {% for post in site.posts %}
-    {% if post.date %}
-      {% unless first_post %},{% endunless %}
+{% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+
+<!-- 收集所有标签用于筛选 -->
+<div id="posts-data" style="display: none;" data-posts='[
+  {% for year_group in posts_by_year %}
+    {% for post in year_group.items %}
       {
-        "title": {{ post.title | jsonify }},
-        "url": {{ post.url | prepend: base_path | jsonify }},
-        "date": {{ post.date | date: "%Y-%m-%d" | jsonify }},
-        "date_display": {{ post.date | date: "%B %d, %Y" | jsonify }},
-        "image_path": {{ post.image_path | default: "" | jsonify }},
-        "excerpt": {{ post.excerpt | default: "" | jsonify }},
-        "tags": {{ post.tags | jsonify }}
-      }
-      {% assign first_post = false %}
-    {% endif %}
+        "id": "{{ post.id | default: post.url }}",
+        "tags": {{ post.tags | jsonify }},
+        "year": "{{ year_group.name }}"
+      }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
+    {% endfor %}
   {% endfor %}
-]
-</script>
+]'></div>
 
-<!-- 动态文章容器（初始为空） -->
-<div id="dynamic-articles"></div>
+{% for year_group in posts_by_year %}
+  <section class="year-section" data-year="{{ year_group.name }}">
+    <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
+      {{ year_group.name }} ({{ year_group.items.size }})
+    </h1>
 
-<!-- 筛选结果计数器 -->
-<div id="result-count" style="margin: 1rem 0; font-weight: bold;"></div>
+    <div class="grid__wrapper">
+      {% for post in year_group.items %}
+        <article class="archive__item"
+                 itemscope itemtype="http://schema.org/CreativeWork"
+                 data-post-id="{{ post.id | default: post.url }}"
+                 data-tags="{{ post.tags | join: ', ' }}">
 
-<!-- JavaScript：筛选和渲染逻辑 -->
+          {% if post.image_path %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img
+                  style="height:210px;object-fit:cover;"
+                  src=
+                  {% if post.image_path contains "://" %}
+                    "{{ post.image_path }}"
+                  {% else %}
+                    "{{ post.image_path | prepend: "/images/" | prepend: base_path }}"
+                  {% endif %}
+                alt="{% if post.alt %}{{ post.alt }}{% endif %}">
+              </a>
+            </div>
+          {% else %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img
+                  style="height:210px;object-fit:cover;"
+                  src="{{ '/images/Loading.png' | prepend: base_path }}"
+                  alt="Default image">
+              </a>
+            </div>
+          {% endif %}
+
+          {% if post.id %}
+            {% assign title = post.covertitle | markdownify | remove: "<p>" | remove: "</p>" %}
+          {% else %}
+            {% assign title = post.covertitle %}
+          {% endif %}
+
+          <div class="archive__item-title">
+            {% if post.link %}
+              <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
+            {% else %}
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+            {% endif %}
+          </div>
+
+          {% if post.collection == 'teaching' %}
+            <div> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.collection == 'publications' %}
+            <div>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </div>
+          {% elsif post.date %}
+            <div class="page__meta"> <i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: " %B %d, %Y" }}</time></div>
+          {% endif %}
+
+          {% if post.excerpt %}
+            <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
+          {% endif %}
+
+          <!-- 显示标签（可选，用于调试） -->
+          {% if post.tags %}
+            <div class="post-tags" style="margin-top: 8px; font-size: 0.85em; color: #666;">
+              Tags: {{ post.tags | join: ', ' }}
+            </div>
+          {% endif %}
+        </article>
+
+      {% endfor %}
+    </div>
+  </section>
+{% endfor %}
+
+<!-- 筛选逻辑JavaScript -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('=== 开始执行筛选脚本 ===');
+  // 获取所有文章数据
+  const postsData = document.getElementById('posts-data');
+  if (!postsData) return;
 
-  // 1. 检查数据脚本
-  const dataScript = document.getElementById('posts-data');
-  if (!dataScript) {
-    console.error('❌ 找不到 posts-data 脚本！');
-    return;
-  }
+  const posts = JSON.parse(postsData.getAttribute('data-posts'));
 
-  // 2. 解析数据
-  let postsData;
-  try {
-    postsData = JSON.parse(dataScript.textContent);
-    console.log('✓ 数据解析成功，文章数：', postsData.length);
-  } catch (e) {
-    console.error('❌ 数据解析失败：', e);
-    return;
-  }
+  // 提取并分组所有标签
+  const tagGroups = {};
 
-  // 3. 提取所有标签并按类别分组
-  const tagsByCategory = {};
-  postsData.forEach(post => {
+  posts.forEach(post => {
     post.tags.forEach(tag => {
-      // 按冒号分割类别和标签
       const parts = tag.split(':');
       if (parts.length >= 2) {
-        const category = parts[0].trim();
-        const tagValue = parts.slice(1).join(':').trim();
+        const group = parts[0].trim();
+        const value = parts.slice(1).join(':').trim();
 
-        if (!tagsByCategory[category]) {
-          tagsByCategory[category] = new Set();
+        if (!tagGroups[group]) {
+          tagGroups[group] = new Set();
         }
-        tagsByCategory[category].add(tagValue);
-      } else {
-        // 如果没有冒号，归为"Other"类别
-        if (!tagsByCategory['Other']) {
-          tagsByCategory['Other'] = new Set();
-        }
-        tagsByCategory['Other'].add(tag.trim());
+        tagGroups[group].add(value);
       }
     });
   });
 
-  // 转换为数组并排序
-  Object.keys(tagsByCategory).forEach(category => {
-    tagsByCategory[category] = Array.from(tagsByCategory[category]).sort();
-  });
+  // 生成标签筛选器HTML
+  const filterContainer = document.getElementById('tag-filter');
+  if (filterContainer && Object.keys(tagGroups).length > 0) {
+    let html = '<div class="tag-filter-container">';
 
-  console.log('✓ 提取到分类标签：', tagsByCategory);
+    Object.keys(tagGroups).sort().forEach(group => {
+      html += `<div class="tag-group">
+                <h4>${group}:</h4>
+                <div class="tag-values">`;
 
-  // 4. 生成分类标签筛选器（在侧边栏）
-  const tagContainer = document.getElementById('tag-filter');
-  if (!tagContainer) {
-    console.error('❌ 找不到 tag-filter 容器！');
-    return;
-  }
+      Array.from(tagGroups[group]).sort().forEach(value => {
+        const fullTag = `${group}: ${value}`;
+        html += `<span class="tag-value" data-full-tag="${fullTag}">${value}</span>`;
+      });
 
-  // 清除现有内容
-  tagContainer.innerHTML = '';
-
-  // 添加"全部"按钮
-  const allBtnContainer = document.createElement('div');
-  allBtnContainer.className = 'tag-category';
-  const allBtn = document.createElement('button');
-  allBtn.className = 'tag-btn';
-  allBtn.textContent = '全部';
-  allBtn.dataset.tag = 'all';
-  allBtnContainer.appendChild(allBtn);
-  tagContainer.appendChild(allBtnContainer);
-
-  // 为每个分类生成标签组
-  Object.keys(tagsByCategory).sort().forEach(category => {
-    const categoryDiv = document.createElement('div');
-    categoryDiv.className = 'tag-category';
-
-    // 分类标题
-    const categoryTitle = document.createElement('h4');
-    categoryTitle.className = 'tag-category-title';
-    categoryTitle.textContent = category;
-    categoryDiv.appendChild(categoryTitle);
-
-    // 标签容器
-    const tagsContainer = document.createElement('div');
-    tagsContainer.className = 'tag-group';
-
-    // 该分类下的所有标签
-    tagsByCategory[category].forEach(tagValue => {
-      const btn = document.createElement('button');
-      btn.className = 'tag-btn';
-      btn.textContent = tagValue;
-      btn.dataset.tag = `${category}: ${tagValue}`;
-      tagsContainer.appendChild(btn);
+      html += '</div></div>';
     });
 
-    categoryDiv.appendChild(tagsContainer);
-    tagContainer.appendChild(categoryDiv);
-  });
+    // 添加清除筛选按钮
+    html += '<button id="clear-filter" class="clear-filter-btn">Clear All Filters</button>';
+    html += '</div>';
 
-  // 5. 渲染文章函数（保持不变）
-  function renderPosts(filterTags = null) {
-    const container = document.getElementById('dynamic-articles');
-    if (!container) {
-      console.error('❌ 找不到 dynamic-articles 容器！');
+    filterContainer.innerHTML = html;
+  }
+
+  // 筛选功能
+  const selectedTags = new Set();
+  const allArticles = document.querySelectorAll('.archive__item');
+  const allYearSections = document.querySelectorAll('.year-section');
+
+  function applyFilter() {
+    if (selectedTags.size === 0) {
+      // 显示所有文章
+      allArticles.forEach(article => {
+        article.style.display = 'block';
+      });
+      allYearSections.forEach(section => {
+        section.style.display = 'block';
+      });
       return;
     }
 
-    container.innerHTML = '';
+    // 隐藏所有文章和年份部分
+    allArticles.forEach(article => {
+      article.style.display = 'none';
+    });
+    allYearSections.forEach(section => {
+      section.style.display = 'none';
+    });
 
-    // 筛选文章
-    let filteredPosts = postsData;
-    if (filterTags && filterTags.length > 0) {
-      filteredPosts = postsData.filter(post =>
-        filterTags.every(tag => post.tags.includes(tag))
+    // 显示匹配的文章和对应的年份部分
+    allArticles.forEach(article => {
+      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
+
+      // 检查文章是否包含所有选中的标签
+      const hasAllTags = Array.from(selectedTags).every(selectedTag =>
+        articleTags.includes(selectedTag)
       );
-    }
 
-    console.log('✓ 筛选后文章数：', filteredPosts.length);
-
-    // 按年份分组
-    const postsByYear = {};
-    filteredPosts.forEach(post => {
-      const year = post.date.substring(0, 4);
-      if (!postsByYear[year]) postsByYear[year] = [];
-      postsByYear[year].push(post);
+      if (hasAllTags) {
+        article.style.display = 'block';
+        // 显示该文章所属的年份部分
+        const yearSection = article.closest('.year-section');
+        if (yearSection) {
+          yearSection.style.display = 'block';
+        }
+      }
     });
 
-    // 按年份倒序排列
-    const sortedYears = Object.keys(postsByYear).sort().reverse();
-
-    // 生成HTML
-    sortedYears.forEach(year => {
-      const yearSection = document.createElement('section');
-      yearSection.className = 'year-section';
-
-      const yearHeader = document.createElement('h1');
-      yearHeader.id = year;
-      yearHeader.className = 'archive__subtitle';
-      yearHeader.textContent = `${year} (${postsByYear[year].length})`;
-
-      const gridWrapper = document.createElement('div');
-      gridWrapper.className = 'grid__wrapper';
-
-      postsByYear[year].forEach(post => {
-        const article = document.createElement('article');
-        article.className = 'archive__item';
-        article.setAttribute('itemscope', '');
-        article.setAttribute('itemtype', 'http://schema.org/CreativeWork');
-
-        // 处理图片
-        let imageSrc = '/images/Loading.png';
-        if (post.image_path) {
-          imageSrc = post.image_path.includes('://') ? post.image_path : `/images/${post.image_path}`;
-        }
-
-        // 处理标题
-        let title = post.title;
-
-        // 处理元数据
-        let metaHtml = '';
-        if (post.date) {
-          metaHtml = `<div class="page__meta"><i class="fa fa-calendar" aria-hidden="true"></i> <time datetime="${post.date}">${post.date_display}</time></div>`;
-        }
-
-        // 构建文章HTML
-        article.innerHTML = `
-          <div class="archive__item-teaser">
-            <a href="${post.url}" rel="permalink">
-              <img style="height:210px;object-fit:cover;" src="${imageSrc}" alt="Default image">
-            </a>
-          </div>
-          <div class="archive__item-title">
-            <a href="${post.url}" rel="permalink">${title}</a>
-          </div>
-          ${metaHtml}
-          ${post.excerpt ? `<small class="archive__item-excerpt" itemprop="description">${post.excerpt}</small>` : ''}
-        `;
-
-        gridWrapper.appendChild(article);
-      });
-
-      yearSection.appendChild(yearHeader);
-      yearSection.appendChild(gridWrapper);
-      container.appendChild(yearSection);
-    });
-
-    // 更新计数器
-    const countEl = document.getElementById('result-count');
-    if (countEl) {
-      countEl.textContent = `找到 ${filteredPosts.length} 篇文章`;
-    }
+    // 更新年份计数
+    updateYearCounts();
   }
 
-  // 6. 处理标签点击
-  const selectedTags = new Set();
-
-  tagContainer.addEventListener('click', function(e) {
-    if (e.target.classList.contains('tag-btn')) {
-      const fullTag = e.target.dataset.tag;
-      console.log('点击标签：', fullTag);
-
-      if (fullTag === 'all') {
-        selectedTags.clear();
-        document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
-        e.target.classList.add('active');
-        renderPosts();
-      } else {
-        document.querySelector('[data-tag="all"]').classList.remove('active');
-
-        if (selectedTags.has(fullTag)) {
-          selectedTags.delete(fullTag);
-          e.target.classList.remove('active');
-        } else {
-          selectedTags.add(fullTag);
-          e.target.classList.add('active');
-        }
-
-        if (selectedTags.size === 0) {
-          document.querySelector('[data-tag="all"]').classList.add('active');
-          renderPosts();
-        } else {
-          renderPosts(Array.from(selectedTags));
+  function updateYearCounts() {
+    allYearSections.forEach(section => {
+      if (section.style.display !== 'none') {
+        const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
+        const count = visibleArticles.length;
+        const title = section.querySelector('.archive__subtitle');
+        if (title) {
+          const year = section.getAttribute('data-year');
+          title.textContent = `${year} (${count})`;
         }
       }
+    });
+  }
+
+  // 为标签添加点击事件
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('tag-value')) {
+      const fullTag = e.target.getAttribute('data-full-tag');
+
+      if (selectedTags.has(fullTag)) {
+        selectedTags.delete(fullTag);
+        e.target.classList.remove('selected');
+      } else {
+        selectedTags.add(fullTag);
+        e.target.classList.add('selected');
+      }
+
+      applyFilter();
+    }
+
+    // 清除筛选按钮
+    if (e.target.id === 'clear-filter') {
+      selectedTags.clear();
+      document.querySelectorAll('.tag-value.selected').forEach(tag => {
+        tag.classList.remove('selected');
+      });
+      applyFilter();
     }
   });
-
-  // 7. 添加样式 - 增强版
-  const style = document.createElement('style');
-  style.textContent = `
-    /* 分类容器 */
-    .tag-category {
-      margin-bottom: 1.2rem;
-    }
-
-    /* 分类标题 */
-    .tag-category-title {
-      font-size: 1.1rem;
-      margin: 0.8rem 0 0.5rem 0;
-      padding-bottom: 0.3rem;
-      border-bottom: 1px solid #eee;
-      color: #333;
-      font-weight: 600;
-    }
-
-    /* 标签组容器 - 允许换行 */
-    .tag-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    /* 标签按钮基础样式 */
-    .tag-btn {
-      padding: 0.4rem 0.7rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      background: white;
-      cursor: pointer;
-      transition: all 0.2s;
-      font-size: 0.85rem;
-      word-wrap: break-word;
-      white-space: normal;
-      line-height: 1.3;
-      max-width: 100%;
-      flex: 0 0 auto; /* 防止拉伸 */
-    }
-
-    /* 全部按钮特殊样式 */
-    .tag-btn[data-tag="all"] {
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-      background: #f8f9fa;
-    }
-
-    /* 标签按钮悬停状态 */
-    .tag-btn:hover {
-      background: #e9ecef;
-      border-color: #adb5bd;
-    }
-
-    /* 标签按钮激活状态 */
-    .tag-btn.active {
-      background: #007bff;
-      color: white;
-      border-color: #007bff;
-    }
-
-    /* 响应式调整 */
-    @media (max-width: 768px) {
-      .tag-group {
-        gap: 0.3rem;
-      }
-      .tag-btn {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.8rem;
-      }
-    }
-  `;
-  document.head.appendChild(style);
-
-  // 8. 初始化
-  console.log('=== 初始化完成，显示全部文章 ===');
-  console.log('postsData:', postsData);
-  document.querySelector('[data-tag="all"]').classList.add('active');
-  renderPosts();
 });
 </script>
+
 
 
 {% comment %}

@@ -337,68 +337,87 @@
 
 
 /* 标签筛选器样式 */
-.filter-section {
-  padding: 15px;
+.tag-filter-container {
+  margin-top: 10px;
+}
+
+.tag-group {
+  margin-bottom: 15px;
+  padding: 8px;
   background: #f8f9fa;
-  border-radius: 5px;
-  margin-bottom: 15px;
+  border-radius: 4px;
 }
 
-.filter-group {
-  margin-bottom: 15px;
-}
-
-.filter-group h4 {
-  margin-bottom: 8px;
-  font-size: 0.9em;
-  color: #555;
+.tag-group h4 {
+  margin: 0 0 8px 0;
+  font-size: 0.95em;
+  color: #333;
   font-weight: 600;
 }
 
-.filter-tags {
+.tag-values {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px;
+  gap: 6px;
 }
 
-.filter-tag {
-  transition: all 0.2s ease;
-  margin: 2px;
+.tag-value {
+  display: inline-block;
   padding: 4px 8px;
-  background: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  background: #e9ecef;
+  border-radius: 3px;
+  font-size: 0.85em;
   cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #dee2e6;
   white-space: normal;
   word-wrap: break-word;
   max-width: 100%;
 }
 
-.filter-tag:hover {
-  background: #e9ecef;
-  transform: translateY(-1px);
+.tag-value:hover {
+  background: #dee2e6;
+  border-color: #adb5bd;
 }
 
-.filter-tag.active {
+.tag-value.selected {
   background: #007bff;
   color: white;
-  border-color: #007bff;
+  border-color: #0056b3;
 }
 
-.clear-filter {
-  width: 100%;
-  margin-top: 10px;
+.clear-filter-btn {
+  margin-top: 12px;
   padding: 6px 12px;
-  background: #e74c3c;
+  background: #dc3545;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  font-size: 0.85em;
+  width: 100%;
 }
 
-.clear-filter:hover {
-  background: #c0392b;
+.clear-filter-btn:hover {
+  background: #c82333;
 }
 
+/* 选中标签的视觉反馈 */
+.tag-value.selected::after {
+  content: " ✓";
+  font-weight: bold;
+}
 
+/* 筛选时的视觉提示 */
+.filter-section {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+/* 文章标签显示样式（可选） */
+.post-tags {
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 8px;
+  line-height: 1.4;
+}
