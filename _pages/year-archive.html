@@ -10,6 +10,7 @@ redirect_from:
   - /news/year/
 ---
 
+
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -22,9 +23,7 @@ redirect_from:
 
     <div class="grid__wrapper">
       {% for post in year_group.items %}
-        <article class="archive__item" 
-                 data-tags="{{ post.tags | join: '|' }}">
-          
+        <article class="archive__item" data-tags="{{ post.tags | join: '|' }}">
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}">
@@ -33,15 +32,10 @@ redirect_from:
               </a>
             </div>
           {% endif %}
-
           <div class="archive__item-title">
             <a href="{{ base_path }}{{ post.url }}">{{ post.covertitle | default: post.title }}</a>
           </div>
-
-          <div class="page__meta">
-            <i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}
-          </div>
-
+          <div class="page__meta"><i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</div>
           {% if post.excerpt %}
             <small class="archive__item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</small>
           {% endif %}
@@ -56,13 +50,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const articles = Array.from(document.querySelectorAll('.archive__item'));
   const sections = Array.from(document.querySelectorAll('.year-section'));
   const tagButtons = document.querySelectorAll('.tag-value');
+  const clearBtn = document.getElementById('clear-filter');
   const selectedTags = new Set();
 
+  if (tagButtons.length === 0) return;
+
+  // 1. 点击筛选逻辑
   tagButtons.forEach(btn => {
     btn.addEventListener('click', function(e) {
-      e.preventDefault();
+      e.stopPropagation();
       const tag = this.getAttribute('data-full-tag').trim();
-      
       if (selectedTags.has(tag)) {
         selectedTags.delete(tag);
         this.classList.remove('selected');
@@ -74,38 +71,31 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  document.getElementById('clear-filter')?.addEventListener('click', (e) => {
+  // 2. 增强版清除按钮逻辑 (增加 Optional Chaining 防止报错)
+  clearBtn?.addEventListener('click', function(e) {
     e.preventDefault();
     selectedTags.clear();
     tagButtons.forEach(b => b.classList.remove('selected'));
     render();
   });
 
+  // 3. 渲染函数
   function render() {
-    // 第一步：更新所有文章的显示状态
     articles.forEach(article => {
       if (selectedTags.size === 0) {
-        article.style.display = ''; // 恢复默认显示
+        article.style.display = ''; 
         return;
       }
-      
       const raw = article.getAttribute('data-tags') || "";
       const postTags = raw.split('|').map(t => t.trim());
       const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
-      
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 第二步：更新年份 Section 的显示和计数
     sections.forEach(section => {
-      // 核心修复：不再使用属性选择器 [style="..."]，而是直接遍历子元素判断 display
-      const sectionArticles = Array.from(section.querySelectorAll('.archive__item'));
-      const visibleArticles = sectionArticles.filter(a => a.style.display !== 'none');
+      const visibleArticles = Array.from(section.querySelectorAll('.archive__item')).filter(a => a.style.display !== 'none');
       const count = visibleArticles.length;
-      
-      // 更新年份标题显示
       section.style.display = count > 0 ? 'block' : 'none';
-      
       const badge = section.querySelector('.archive__subtitle');
       if (badge) {
         const year = section.getAttribute('data-year');
