@@ -81,6 +81,90 @@ redirect_from:
   </section>
 {% endfor %}
 
+<script>
+// 极简版筛选脚本
+(function() {
+  var filterButtons = document.querySelectorAll('.filter-tag');
+  var allArticles = document.querySelectorAll('article.archive__item');
+  var clearButton = document.querySelector('.clear-filter');
+
+  //存储激活的过滤器
+  var activeFilters = [];
+
+  // 绑定按钮点击事件
+  for (var i = 0; i < filterButtons.length; i++) {
+    filterButtons[i].addEventListener('click', function() {
+      var tag = this.getAttribute('data-tag');
+      var index = activeFilters.indexOf(tag);
+
+      if (index === -1) {
+        activeFilters.push(tag);
+        this.classList.add('active');
+      } else {
+        activeFilters.splice(index, 1);
+        this.classList.remove('active');
+      }
+
+      applyFilters();
+    });
+  }
+
+  // 清除按钮
+  if (clearButton) {
+    clearButton.addEventListener('click', function() {
+      activeFilters = [];
+      for (var i = 0; i < filterButtons.length; i++) {
+        filterButtons[i].classList.remove('active');
+      }
+      applyFilters();
+    });
+  }
+
+  // 应用过滤器
+  function applyFilters() {
+    if (activeFilters.length === 0) {
+      // 显示所有
+      for (var i = 0; i < allArticles.length; i++) {
+        allArticles[i].style.display = 'block';
+      }
+      var sections = document.querySelectorAll('.year-section');
+      for (var j = 0; j < sections.length; j++) {
+        sections[j].style.display = 'block';
+      }
+      return;
+    }
+
+    // 隐藏所有
+    for (var i = 0; i < allArticles.length; i++) {
+      allArticles[i].style.display = 'none';
+    }
+    var sections = document.querySelectorAll('.year-section');
+    for (var j = 0; j < sections.length; j++) {
+      sections[j].style.display = 'none';
+    }
+
+    // 显示匹配的
+    for (var i = 0; i < allArticles.length; i++) {
+      var article = allArticles[i];
+      var articleTagsString = article.getAttribute('data-tags');
+
+      for (var k = 0; k < activeFilters.length; k++) {
+        var filterTag = activeFilters[k];
+        // 检查是否匹配：文章标签字符串包含过滤器标签
+        if (articleTagsString.indexOf(filterTag) !== -1) {
+          article.style.display = 'block';
+          var section = article.closest('.year-section');
+          if (section) {
+            section.style.display = 'block';
+          }
+          break;
+        }
+      }
+    }
+  }
+})();
+</script>
+
 
 
 
