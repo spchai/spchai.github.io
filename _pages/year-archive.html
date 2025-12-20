@@ -10,7 +10,6 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -82,69 +81,103 @@ redirect_from:
   </section>
 {% endfor %}
 
+<!-- 筛选功能JavaScript -->
 <script>
 (function() {
   'use strict';
 
-  function init() {
+  // 等待页面完全加载
+  window.addEventListener('load', function() {
+    // 获取所有文章
     var allArticles = document.querySelectorAll('article.archive__item');
+
+    // 获取所有筛选按钮
     var filterButtons = document.querySelectorAll('.filter-tag');
+
+    // 获取清除筛选按钮
     var clearButton = document.querySelector('.clear-filter');
+
+    // 存储当前激活的标签
     var activeFilters = [];
 
-    // 绑定点击事件
+    console.log('初始化筛选功能 - 文章:', allArticles.length, '按钮:', filterButtons.length);
+
+    // 为每个筛选标签添加点击事件
     for (var i = 0; i < filterButtons.length; i++) {
       filterButtons[i].addEventListener('click', function(e) {
         e.preventDefault();
-        var tag = this.getAttribute('data-tag');
 
+        var tag = this.getAttribute('data-tag');
+        console.log('点击标签:', tag);
+
+        // 切换激活状态
         if (this.classList.contains('active')) {
           this.classList.remove('active');
           var index = activeFilters.indexOf(tag);
-          if (index > -1) activeFilters.splice(index, 1);
+          if (index > -1) {
+            activeFilters.splice(index, 1);
+          }
         } else {
           this.classList.add('active');
           activeFilters.push(tag);
         }
 
-        updateDisplay();
+        console.log('当前激活的筛选:', activeFilters);
+
+        // 更新显示
+        filterArticles();
       });
     }
 
+    // 清除筛选按钮
     if (clearButton) {
       clearButton.addEventListener('click', function(e) {
         e.preventDefault();
+
+        console.log('清除所有筛选');
+
+        // 清除所有激活状态
         for (var i = 0; i < filterButtons.length; i++) {
           filterButtons[i].classList.remove('active');
         }
         activeFilters = [];
-        updateDisplay();
+        filterArticles();
       });
     }
 
-    function updateDisplay() {
+    // 筛选文章的函数
+    function filterArticles() {
+      console.log('执行筛选，激活的筛选:', activeFilters.length);
+
+      // 如果没有激活的筛选，显示所有文章和年份区域
       if (activeFilters.length === 0) {
         for (var i = 0; i < allArticles.length; i++) {
           allArticles[i].style.display = 'block';
         }
+
         var yearSections = document.querySelectorAll('.year-section');
         for (var j = 0; j < yearSections.length; j++) {
           yearSections[j].style.display = 'block';
         }
+
+        console.log('显示所有文章');
         return;
       }
 
+      // 隐藏所有年份区域
       var yearSections = document.querySelectorAll('.year-section');
       for (var j = 0; j < yearSections.length; j++) {
         yearSections[j].style.display = 'none';
       }
 
+      // 检查每篇文章是否匹配任何激活的筛选
       for (var i = 0; i < allArticles.length; i++) {
         var article = allArticles[i];
         var articleTags = article.getAttribute('data-tags').split(',').map(function(tag) {
           return tag.trim();
         });
 
+        // 检查是否有任何激活的标签匹配文章的标签
         var hasMatch = false;
         for (var k = 0; k < activeFilters.length; k++) {
           if (articleTags.indexOf(activeFilters[k]) > -1) {
@@ -155,26 +188,21 @@ redirect_from:
 
         if (hasMatch) {
           article.style.display = 'block';
-          var yearSection = article.closest('.year-section');
-          if (yearSection) {
-            yearSection.style.display = 'block';
+          // 显示父年份区域
+          var parentSection = article.closest('.year-section');
+          if (parentSection) {
+            parentSection.style.display = 'block';
           }
         } else {
           article.style.display = 'none';
         }
       }
-    }
-  }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+      console.log('筛选完成');
+    }
+  });
 })();
 </script>
-
-
 
 
 
