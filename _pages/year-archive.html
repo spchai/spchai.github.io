@@ -10,6 +10,7 @@ redirect_from:
   - /news/year/
 ---
 
+
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -97,103 +98,115 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑JavaScript - 简化版本 -->
+<!-- 筛选逻辑JavaScript - 使用事件委托 -->
 <script>
-// 全局变量用于跟踪选中标签
-window.selectedTags = new Set();
+document.addEventListener('DOMContentLoaded', function() {
+  // 全局变量用于跟踪选中标签
+  window.selectedTags = new Set();
 
-// 切换标签筛选
-function toggleTagFilter(element, fullTag) {
-  if (window.selectedTags.has(fullTag)) {
-    window.selectedTags.delete(fullTag);
-    element.style.background = '#e9ecef';
-    element.style.borderColor = '#dee2e6';
-    element.style.color = '';
-  } else {
-    window.selectedTags.add(fullTag);
-    element.style.background = '#007bff';
-    element.style.color = 'white';
-    element.style.borderColor = '#0056b3';
-  }
-  applyFilter();
-}
+  // 使用事件委托处理标签点击
+  document.getElementById('tag-filter').addEventListener('click', function(e) {
+    if (e.target.classList.contains('tag-value')) {
+      const fullTag = e.target.getAttribute('data-full-tag');
 
-// 清除所有筛选
-function clearAllFilters() {
-  window.selectedTags.clear();
-  document.querySelectorAll('.tag-value').forEach(tag => {
-    tag.style.background = '#e9ecef';
-    tag.style.color = '';
-    tag.style.borderColor = '#dee2e6';
+      if (window.selectedTags.has(fullTag)) {
+        window.selectedTags.delete(fullTag);
+        e.target.style.background = '#e9ecef';
+        e.target.style.borderColor = '#dee2e6';
+        e.target.style.color = '';
+      } else {
+        window.selectedTags.add(fullTag);
+        e.target.style.background = '#007bff';
+        e.target.style.color = 'white';
+        e.target.style.borderColor = '#0056b3';
+      }
+
+      applyFilter();
+    }
+
+    // 清除筛选按钮
+    if (e.target.id === 'clear-filter') {
+      clearAllFilters();
+    }
   });
-  applyFilter();
-}
 
-// 应用筛选
-function applyFilter() {
-  const allArticles = document.querySelectorAll('.archive__item');
-  const allYearSections = document.querySelectorAll('.year-section');
+  // 清除所有筛选
+  function clearAllFilters() {
+    window.selectedTags.clear();
+    document.querySelectorAll('.tag-value').forEach(tag => {
+      tag.style.background = '#e9ecef';
+      tag.style.color = '';
+      tag.style.borderColor = '#dee2e6';
+    });
+    applyFilter();
+  }
 
-  if (window.selectedTags.size === 0) {
-    // 显示所有文章
+  // 应用筛选
+  function applyFilter() {
+    const allArticles = document.querySelectorAll('.archive__item');
+    const allYearSections = document.querySelectorAll('.year-section');
+
+    if (window.selectedTags.size === 0) {
+      // 显示所有文章
+      allArticles.forEach(article => {
+        article.style.display = 'block';
+      });
+      allYearSections.forEach(section => {
+        section.style.display = 'block';
+        // 重置年份计数
+        const year = section.getAttribute('data-year');
+        const totalCount = section.querySelectorAll('.archive__item').length;
+        const title = section.querySelector('.archive__subtitle');
+        if (title) {
+          title.textContent = `${year} (${totalCount})`;
+        }
+      });
+      return;
+    }
+
+    // 隐藏所有
     allArticles.forEach(article => {
-      article.style.display = 'block';
+      article.style.display = 'none';
     });
     allYearSections.forEach(section => {
-      section.style.display = 'block';
-      // 重置年份计数
-      const year = section.getAttribute('data-year');
-      const totalCount = section.querySelectorAll('.archive__item').length;
-      const title = section.querySelector('.archive__subtitle');
-      if (title) {
-        title.textContent = `${year} (${totalCount})`;
+      section.style.display = 'none';
+    });
+
+    // 显示匹配的
+    allArticles.forEach(article => {
+      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
+      const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
+        articleTags.includes(selectedTag)
+      );
+
+      if (hasAllTags) {
+        article.style.display = 'block';
+        const yearSection = article.closest('.year-section');
+        if (yearSection) {
+          yearSection.style.display = 'block';
+        }
       }
     });
-    return;
+
+    // 更新年份计数
+    updateYearCounts();
   }
 
-  // 隐藏所有
-  allArticles.forEach(article => {
-    article.style.display = 'none';
-  });
-  allYearSections.forEach(section => {
-    section.style.display = 'none';
-  });
-
-  // 显示匹配的
-  allArticles.forEach(article => {
-    const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-    const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
-      articleTags.includes(selectedTag)
-    );
-
-    if (hasAllTags) {
-      article.style.display = 'block';
-      const yearSection = article.closest('.year-section');
-      if (yearSection) {
-        yearSection.style.display = 'block';
-      }
-    }
-  });
-
   // 更新年份计数
-  updateYearCounts();
-}
-
-// 更新年份计数
-function updateYearCounts() {
-  document.querySelectorAll('.year-section').forEach(section => {
-    if (section.style.display !== 'none') {
-      const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
-      const count = visibleArticles.length;
-      const title = section.querySelector('.archive__subtitle');
-      if (title) {
-        const year = section.getAttribute('data-year');
-        title.textContent = `${year} (${count})`;
+  function updateYearCounts() {
+    document.querySelectorAll('.year-section').forEach(section => {
+      if (section.style.display !== 'none') {
+        const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
+        const count = visibleArticles.length;
+        const title = section.querySelector('.archive__subtitle');
+        if (title) {
+          const year = section.getAttribute('data-year');
+          title.textContent = `${year} (${count})`;
+        }
       }
-    }
-  });
-}
+    });
+  }
+});
 </script>
 
 
