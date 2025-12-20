@@ -22,68 +22,11 @@
     {% endif %}
   {% endif %}
 
-  <!-- 筛选区域 -->
+  <!-- 标签筛选区域 - 仅在/news/页面显示 -->
   {% if page.url contains '/news/' %}
-    <div class="filter-section" >
-      <h2 style="margin-top: 0;">Filter by Tags</h2>
-
-      {% assign all_tags = "" | split: "," %}
-      {% assign tag_groups = "" | split: "," %}
-
-      {% for post in site.posts %}
-        {% if post.tags %}
-          {% for tag in post.tags %}
-            {% assign clean_tag = tag | strip %}
-            {% unless all_tags contains clean_tag %}
-              {% assign all_tags = all_tags | push: clean_tag %}
-            {% endunless %}
-            {% assign tag_parts = clean_tag | split: ":" %}
-            {% if tag_parts.size > 1 %}
-              {% assign group_name = tag_parts[0] | strip %}
-              {% unless tag_groups contains group_name %}
-                {% assign tag_groups = tag_groups | push: group_name %}
-              {% endunless %}
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      {% endfor %}
-
-      {% for group_name in tag_groups %}
-        <div class="filter-group">
-          <h4 style="margin: 0 0 8px 0; font-size: 0.9em; color: #555;">{{ group_name }}</h4>
-          <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-            {% for tag in all_tags %}
-              {% assign tag_parts = tag | split: ":" %}
-              {% if tag_parts.size > 1 %}
-                {% assign current_group = tag_parts[0] | strip %}
-                {% if current_group == group_name %}
-                  {% assign tag_display = tag_parts[1] | strip %}
-                  <button class="filter-tag" data-tag="{{ tag | downcase }}">
-                    {{ tag_display }}
-                  </button>
-                {% endif %}
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      {% endfor %}
-
-      <div class="filter-group" >
-        <h4 style="margin: 0 0 8px 0; font-size: 0.9em; color: #555;">Other Tags</h4>
-        <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-          {% for tag in all_tags %}
-            {% unless tag contains ":" %}
-              <button class="filter-tag" data-tag="{{ tag | downcase }}">
-                {{ tag }}
-              </button>
-            {% endunless %}
-          {% endfor %}
-        </div>
-      </div>
-
-      <button class="clear-filter">
-        Clear Filters
-      </button>
+    <div class="filter-section" style="margin-top: 2rem;">
+      <h3>Filter by Tags</h3>
+      <div id="tag-filter"></div>
     </div>
   {% endif %}
 
