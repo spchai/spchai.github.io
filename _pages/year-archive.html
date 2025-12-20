@@ -125,8 +125,9 @@ redirect_from:
             {% endfor %}
           {% endif %}
 
+          {% comment %} 使用逗号连接标签对，确保JavaScript能正确解析 {% endcomment %}
           <article class="archive__item"
-                   data-tags="{{ article_tags | join: '|' }}"
+                   data-tags="{{ article_tags | join: ',' }}"
                    itemscope itemtype="http://schema.org/CreativeWork">
 
             {% if post.image_path %}
@@ -425,7 +426,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 筛选文章
     articles.forEach(article => {
-      const tags = article.dataset.tags.split('|').filter(t => t);
+      const tags = article.dataset.tags.split(',');
       const show = tags.some(tag => activeFilters.has(tag));
       article.style.display = show ? '' : 'none';
     });
