@@ -46,97 +46,97 @@ redirect_from:
 {% endfor %}
 
 <style>
-  /* 交互与状态样式 */
-  .tag-value { cursor: pointer !important; transition: all 0.2s; border-bottom: 1px dotted transparent; }
-  .tag-value:hover { color: #2185d0; border-bottom-color: #2185d0; }
+  /* 基础交互与选中状态 */
+  .tag-value { cursor: pointer !important; transition: all 0.2s; border-radius: 4px; padding: 2px 4px; }
+  .tag-value:hover { background-color: rgba(33, 133, 208, 0.1); color: #2185d0; }
   .tag-value.selected { 
     background-color: #2185d0 !important; 
     color: white !important; 
-    padding: 0 6px; 
-    border-radius: 4px; 
     font-weight: bold;
-    border-bottom: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-  .clear-filter-btn {
-    transition: background 0.2s;
-    font-weight: bold;
-  }
-  .clear-filter-btn:active { transform: translateY(1px); }
+  .clear-filter-btn { cursor: pointer !important; transition: opacity 0.2s; }
+  .clear-filter-btn:hover { opacity: 0.8; }
 </style>
 
 <script>
 (function() {
-  let selectedTags = new Set();
+  const state = { selected: new Set() };
 
-  function runFilter() {
+  // 核心过滤逻辑
+  function applyFilter() {
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
     
-    // 1. 文章过滤
     articles.forEach(post => {
-      if (selectedTags.size === 0) {
+      if (state.selected.size === 0) {
         post.style.display = 'block';
         return;
       }
-      const postTags = (post.getAttribute('data-tags') || "").split('|').map(t => t.trim());
-      const isMatch = Array.from(selectedTags).every(tag => postTags.includes(tag));
+      const rawTags = post.getAttribute('data-tags') || "";
+      const postTags = rawTags.split('|').map(t => t.trim());
+      // 逻辑：必须包含所有选中的标签 (AND 逻辑)
+      const isMatch = Array.from(state.selected).every(s => postTags.includes(s));
       post.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 2. 年份标题与计数更新
     sections.forEach(sec => {
-      const items = Array.from(sec.querySelectorAll('.archive__item'));
-      const visibleCount = items.filter(i => i.style.display !== 'none').length;
-      sec.style.display = visibleCount > 0 ? 'block' : 'none';
-      
-      const title = sec.querySelector('.archive__subtitle');
-      if (title) {
+      const visibleItems = Array.from(sec.querySelectorAll('.archive__item')).filter(i => i.style.display !== 'none');
+      sec.style.display = visibleItems.length > 0 ? 'block' : 'none';
+      const badge = sec.querySelector('.archive__subtitle');
+      if (badge) {
         const year = sec.getAttribute('data-year');
-        title.textContent = `${year} (${visibleCount})`;
+        badge.textContent = `${year} (${visibleItems.length})`;
       }
     });
   }
 
-  // 使用最高优先级的事件捕获，防止被其他脚本拦截
-  function handleInteraction(e) {
-    // 处理标签点击
-    if (e.target && e.target.classList.contains('tag-value')) {
+  // 全局点击监听 (不依赖具体 ID)
+  document.addEventListener('click', function(e) {
+    const target = e.target;
+
+    // 1. 处理标签点击
+    if (target.classList.contains('tag-value')) {
       e.preventDefault();
-      e.stopPropagation();
-      const tag = e.target.getAttribute('data-full-tag').trim();
-      
-      if (selectedTags.has(tag)) {
-        selectedTags.delete(tag);
-        e.target.classList.remove('selected');
+      const tag = target.getAttribute('data-full-tag');
+      if (!tag) return;
+
+      if (state.selected.has(tag)) {
+        state.selected.delete(tag);
+        target.classList.remove('selected');
       } else {
-        selectedTags.add(tag);
-        e.target.classList.add('selected');
+        state.selected.add(tag);
+        target.classList.add('selected');
       }
-      runFilter();
+      applyFilter();
     }
 
-    // 处理清除按钮
-    if (e.target && (e.target.id === 'clear-filter' || e.target.classList.contains('clear-filter-btn'))) {
+    // 2. 处理清除按钮
+    if (target.id === 'clear-filter' || target.classList.contains('clear-filter-btn')) {
       e.preventDefault();
-      e.stopPropagation();
-      selectedTags.clear();
+      state.selected.clear();
       document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
-      runFilter();
+      applyFilter();
     }
-  }
+  }, true); // 使用 Capture 模式
 
-  // 绑定监听
-  document.addEventListener('click', handleInteraction, true);
-
-  // 防错：确保即便 main.min.js 覆盖了 DOM，逻辑依然在线
-  const observer = new MutationObserver(() => {
-    // 检查是否有选中的标签，如果有，强制应用过滤（防止被主题重置显示）
-    if (selectedTags.size > 0) runFilter();
+  // 关键：处理页面动态加载/主题切换导致的 DOM 重置
+  const observer = new MutationObserver((mutations) => {
+    // 如果发现选中的标签被重置了（失去了 selected 类），强制同步状态
+    const activeTags = document.querySelectorAll('.tag-value.selected');
+    if (state.selected.size > 0 && activeTags.length !== state.selected.size) {
+      document.querySelectorAll('.tag-value').forEach(el => {
+        const tag = el.getAttribute('data-full-tag');
+        if (state.selected.has(tag)) el.classList.add('selected');
+      });
+      applyFilter();
+    }
   });
 
+  // 监听整个 body 确保万无一失
   observer.observe(document.body, { childList: true, subtree: true });
 
-  console.log("Filter Engine: Ready & Anti-Error active.");
+  console.log("News Filter Engine: Deployed successfully.");
 })();
 </script>
 
