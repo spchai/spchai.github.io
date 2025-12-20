@@ -4,47 +4,14 @@ permalink: /news/
 title: "News"
 titleshow: false
 author_profile: false
-toc: true
+toc: false
 redirect_from:
   - /news/year/
 ---
 
 {% include base_path %}
 
-<!-- 结果计数器 -->
-<div id="result-count" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
 
-<!-- 文章数据脚本（只包含必要字段） -->
-<script id="posts-data" type="application/json">
-  [
-    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
-    {% for year_group in posts_by_year %}
-      {% for post in year_group.items %}
-        {
-          "year": {{ year_group.name | jsonify }},
-          "title": {{ post.title | jsonify }},
-          "url": {{ post.url | jsonify }},
-          "covertitle": {{ post.covertitle | jsonify }},
-          "image_path": {{ post.image_path | jsonify }},
-          "date": {{ post.date | date: '%Y-%m-%d' | jsonify }},
-          "date_display": {{ post.date | date: '%B %d, %Y' | jsonify }},
-          "excerpt": {{ post.excerpt | jsonify }},
-          "tags": {{ post.tags | jsonify }}
-        }{% unless forloop.last %},{% endunless %}
-      {% endfor %}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ]
-</script>
-
-<!-- 动态文章容器 -->
-<div id="dynamic-articles"></div>
-
-<!-- 引入筛选脚本 -->
-<script src="/assets/js/tag-filter.js"></script>
-
-
-{% comment %}
-<!--
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
 {% for year_group in posts_by_year %}
@@ -113,7 +80,8 @@ redirect_from:
   </section>
 {% endfor %}
 
-
+{% comment %}
+<!--
  {% capture written_year %}'None'{% endcapture %}
 {% for post in site.posts %}
   {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
