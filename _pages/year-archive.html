@@ -50,7 +50,6 @@ redirect_from:
   const selectedTags = new Set();
 
   function runFilter() {
-    // 获取当前页面所有的文章和年份区块
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
 
@@ -60,35 +59,32 @@ redirect_from:
         return;
       }
       
-      // 这里的处理至关重要：
-      // 将 data-tags "Group: Research|Topic: Stick-slip" 拆分并彻底去除前后的空格
+      // 深度清洗标签：解决 YAML 解析出的空格、换行符问题
       const postTags = (article.getAttribute('data-tags') || "")
                         .split('|')
-                        .map(t => t.trim())
+                        .map(t => t.trim().replace(/\s+/g, ' ')) // 统一为空格
                         .filter(t => t !== "");
 
-      // 逻辑：选中的每一个标签，都必须能在文章的标签列表中找到
       const isMatch = Array.from(selectedTags).every(selected => {
-        // 统一格式：去除选中标签和文章标签中的所有多余空格进行比对
-        // 例如把 "Group:  Research" 变成 "Group:Research" 再比对
-        const normalize = (str) => str.replace(/\s+/g, '').toLowerCase();
-        return postTags.some(postTag => normalize(postTag) === normalize(selected));
+        const normSelected = selected.trim().replace(/\s+/g, ' ').toLowerCase();
+        return postTags.some(postTag => postTag.toLowerCase() === normSelected);
       });
 
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 联动更新：隐藏没有文章的年份，并更新计数
+    // 优雅地更新年份显示，不破坏原有 DOM 结构
     sections.forEach(sec => {
       const items = Array.from(sec.querySelectorAll('.archive__item'));
       const visibleCount = items.filter(i => i.style.display !== 'none').length;
       
       if (visibleCount > 0) {
         sec.style.display = 'block';
-        const titleBadge = sec.querySelector('.archive__subtitle');
-        if (titleBadge) {
+        const title = sec.querySelector('.archive__subtitle');
+        if (title) {
           const year = sec.getAttribute('data-year');
-          titleBadge.textContent = `${year} (${visibleCount})`;
+          // 仅更新括号内的数字，保留 ID 结构
+          title.innerHTML = `${year} <span style="font-size: 0.8em; opacity: 0.7;">(${visibleCount})</span>`;
         }
       } else {
         sec.style.display = 'none';
@@ -96,11 +92,12 @@ redirect_from:
     });
   }
 
-  // 事件委托：处理点击
+  // 监听点击：使用委托模式解决 AcademicPages 侧边栏重绘问题
   document.addEventListener('click', function(e) {
     const target = e.target.closest('.tag-value');
     if (target) {
       e.preventDefault();
+      e.stopPropagation();
       const tag = target.getAttribute('data-full-tag').trim();
       
       if (selectedTags.has(tag)) {
@@ -113,25 +110,25 @@ redirect_from:
       runFilter();
     }
 
-    // 清除按钮
     if (e.target.id === 'clear-filter') {
       e.preventDefault();
       selectedTags.clear();
       document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
       runFilter();
     }
-  });
+  }, true);
 
-  // 暴力巡检：应对 AcademicPages 的动态 UI 更新
+  // 状态守护：AcademicPages 切换主题时会清除我们的 selected 类名，这里负责补回来
   setInterval(() => {
     if (selectedTags.size > 0) {
       document.querySelectorAll('.tag-value').forEach(el => {
         const val = el.getAttribute('data-full-tag').trim();
-        if (selectedTags.has(val)) el.classList.add('selected');
+        if (selectedTags.has(val)) {
+          el.classList.add('selected');
+        }
       });
     }
-  }, 800);
-
+  }, 500); // 提高频率到 500ms，让切换主题后的反馈更快
 })();
 </script>
 

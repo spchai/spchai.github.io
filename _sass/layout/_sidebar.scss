@@ -350,7 +350,6 @@
 .tag-group {
   margin-bottom: 15px;
   padding: 8px;
-  background: #f8f9fa;
   border-radius: 4px;
 }
 
@@ -379,6 +378,8 @@
   white-space: normal;
   word-wrap: break-word;
   max-width: 100%;
+  pointer-events: auto !important; /* 强制开启点击 */
+  user-select: none;  
 }
 
 .tag-value:hover {
@@ -388,8 +389,11 @@
 
 .tag-value.selected {
   background: #007bff;
-  color: white;
   border-color: #0056b3;
+  background-color: #494949 !important;
+  color: #fff !important;
+  border-radius: 4px;
+  padding: 2px 6px;  
 }
 
 .tag-value.selected::after {
@@ -418,15 +422,4 @@
   z-index: 20; /* 确保在最上层 */
 }
 
-.tag-value {
-  pointer-events: auto !important; /* 强制开启点击 */
-  cursor: pointer;
-  user-select: none;
-}
 
-.tag-value.selected {
-  background-color: #494949 !important;
-  color: #fff !important;
-  border-radius: 4px;
-  padding: 2px 6px;
-}
