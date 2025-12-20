@@ -26,7 +26,7 @@
   {% if page.filter %}
     <div class="sidebar-filter-wrapper">
       <div class="filter-section">
-        <h3>Filter by Tags</h3>
+        <h2>Filter</h2>
         <div id="tag-filter" class="tag-filter-container">
           {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort %}
           {% assign current_group = "" %}

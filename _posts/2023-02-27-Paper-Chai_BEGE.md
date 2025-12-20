@@ -5,7 +5,7 @@ date: 2023-02-27
 permalink: /posts/2023/Chai_BEGE/
 image_path: /Papers/Chai2023.png
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Slope"
   - "Method: Analytical"
   - "Method: Numerical"

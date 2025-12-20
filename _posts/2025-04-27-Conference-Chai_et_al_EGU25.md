@@ -5,7 +5,7 @@ date: 2025-04-29
 permalink: /posts/2025/Chai_EGU25/
 image_path: /Research/Dilatancy_DS.png
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Topic: Earthquake"

@@ -4,7 +4,7 @@ covertitle: Recycled aggregates
 date: 2022-11-18
 permalink: /posts/2022/Li_Coatings/
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Waste"
   - "Method: Lab"
   - "Output: Journal"

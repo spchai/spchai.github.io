@@ -5,7 +5,7 @@ date: 2024-09-28
 permalink: /posts/2024/Chai_Shenzhen/
 image_path: /Conferences/Chai2024_Shenzhen.jpg
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Topic: Earthquake"

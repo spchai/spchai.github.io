@@ -4,7 +4,7 @@ covertitle: Maximum dump height
 date: 2022-10-22
 permalink: /posts/2022/Chai_JSAIMM/
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Slope"
   - "Topic: Waste"  
   - "Method: Numerical"

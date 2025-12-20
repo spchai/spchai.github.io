@@ -5,7 +5,7 @@ date: 2024-06-23
 image_path: /Conferences/Chai2024_ARMA_poster.jpg
 permalink: /posts/2024/Chai_ARMA24/
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Method: Lab"

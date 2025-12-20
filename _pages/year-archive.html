@@ -46,97 +46,93 @@ redirect_from:
 {% endfor %}
 
 <style>
-  /* 基础交互与选中状态 */
-  .tag-value { cursor: pointer !important; transition: all 0.2s; border-radius: 4px; padding: 2px 4px; }
+  /* 筛选按钮交互样式 */
+  .tag-value { cursor: pointer !important; transition: all 0.2s ease; border-radius: 4px; padding: 2px 5px; border-bottom: none !important; }
   .tag-value:hover { background-color: rgba(33, 133, 208, 0.1); color: #2185d0; }
   .tag-value.selected { 
     background-color: #2185d0 !important; 
     color: white !important; 
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
-  .clear-filter-btn { cursor: pointer !important; transition: opacity 0.2s; }
-  .clear-filter-btn:hover { opacity: 0.8; }
+  .clear-filter-btn { cursor: pointer !important; transition: transform 0.1s active; }
+  .clear-filter-btn:active { transform: scale(0.98); }
 </style>
 
 <script>
 (function() {
-  const state = { selected: new Set() };
+  const selectedTags = new Set();
 
-  // 核心过滤逻辑
-  function applyFilter() {
+  function runFilter() {
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
-    
-    articles.forEach(post => {
-      if (state.selected.size === 0) {
-        post.style.display = 'block';
+
+    articles.forEach(article => {
+      if (selectedTags.size === 0) {
+        article.style.display = 'block';
         return;
       }
-      const rawTags = post.getAttribute('data-tags') || "";
-      const postTags = rawTags.split('|').map(t => t.trim());
-      // 逻辑：必须包含所有选中的标签 (AND 逻辑)
-      const isMatch = Array.from(state.selected).every(s => postTags.includes(s));
-      post.style.display = isMatch ? 'block' : 'none';
+      // 这里的逻辑是：文章必须包含所有已选中的标签 (AND 逻辑)
+      const attrTags = (article.getAttribute('data-tags') || "").split('|').map(t => t.trim());
+      const isMatch = Array.from(selectedTags).every(tag => attrTags.includes(tag));
+      article.style.display = isMatch ? 'block' : 'none';
     });
 
+    // 处理年份标题和文章计数
     sections.forEach(sec => {
-      const visibleItems = Array.from(sec.querySelectorAll('.archive__item')).filter(i => i.style.display !== 'none');
-      sec.style.display = visibleItems.length > 0 ? 'block' : 'none';
-      const badge = sec.querySelector('.archive__subtitle');
-      if (badge) {
+      const items = Array.from(sec.querySelectorAll('.archive__item'));
+      const visibleCount = items.filter(i => i.style.display !== 'none').length;
+      sec.style.display = visibleCount > 0 ? 'block' : 'none';
+      const title = sec.querySelector('.archive__subtitle');
+      if (title) {
         const year = sec.getAttribute('data-year');
-        badge.textContent = `${year} (${visibleItems.length})`;
+        title.textContent = `${year} (${visibleCount})`;
       }
     });
   }
 
-  // 全局点击监听 (不依赖具体 ID)
+  // 1. 全局点击监听 (解决元素重绘失效问题)
   document.addEventListener('click', function(e) {
-    const target = e.target;
-
-    // 1. 处理标签点击
-    if (target.classList.contains('tag-value')) {
+    // 标签点击
+    if (e.target && e.target.classList.contains('tag-value')) {
       e.preventDefault();
-      const tag = target.getAttribute('data-full-tag');
-      if (!tag) return;
-
-      if (state.selected.has(tag)) {
-        state.selected.delete(tag);
-        target.classList.remove('selected');
+      e.stopPropagation();
+      const fullTag = e.target.getAttribute('data-full-tag').trim();
+      
+      if (selectedTags.has(fullTag)) {
+        selectedTags.delete(fullTag);
+        e.target.classList.remove('selected');
       } else {
-        state.selected.add(tag);
-        target.classList.add('selected');
+        selectedTags.add(fullTag);
+        e.target.classList.add('selected');
       }
-      applyFilter();
+      runFilter();
     }
 
-    // 2. 处理清除按钮
-    if (target.id === 'clear-filter' || target.classList.contains('clear-filter-btn')) {
+    // 清除按钮
+    if (e.target && (e.target.id === 'clear-filter' || e.target.classList.contains('clear-filter-btn'))) {
       e.preventDefault();
-      state.selected.clear();
+      selectedTags.clear();
       document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
-      applyFilter();
+      runFilter();
     }
-  }, true); // 使用 Capture 模式
+  }, true);
 
-  // 关键：处理页面动态加载/主题切换导致的 DOM 重置
-  const observer = new MutationObserver((mutations) => {
-    // 如果发现选中的标签被重置了（失去了 selected 类），强制同步状态
-    const activeTags = document.querySelectorAll('.tag-value.selected');
-    if (state.selected.size > 0 && activeTags.length !== state.selected.size) {
+  // 2. 状态保护：防止 AcademicPages 的主题切换或响应式布局刷新导致样式丢失
+  const guardian = setInterval(() => {
+    if (selectedTags.size > 0) {
       document.querySelectorAll('.tag-value').forEach(el => {
-        const tag = el.getAttribute('data-full-tag');
-        if (state.selected.has(tag)) el.classList.add('selected');
+        const tag = el.getAttribute('data-full-tag').trim();
+        if (selectedTags.has(tag)) {
+          el.classList.add('selected');
+        }
       });
-      applyFilter();
+      // 保持过滤生效
+      runFilter();
     }
-  });
+  }, 1000); 
 
-  // 监听整个 body 确保万无一失
-  observer.observe(document.body, { childList: true, subtree: true });
-
-  console.log("News Filter Engine: Deployed successfully.");
+  console.log("Filter engine successfully attached to Document.");
 })();
 </script>
 

@@ -5,7 +5,7 @@ date: 2023-11-30
 permalink: /posts/2023/Chai_GESS/
 image_path: /Conferences/Chai2023_GESS.jpg
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Method: Lab"

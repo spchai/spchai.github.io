@@ -4,7 +4,7 @@ covertitle: ANN for slope stability
 date: 2022-11-25
 permalink: /posts/2022/Chai_ICHCE/
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Waste"  
   - "Topic: Slope"
   - "Method: AI"

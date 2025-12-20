@@ -5,7 +5,7 @@ date: 2024-12-12
 permalink: /posts/2024/Chai_AGU24/
 image_path: /Conferences/Chai_et_al_AGU24.png
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Moon"
   - "Topic: Slope"
   - "Topic: Seismicity"    

@@ -5,8 +5,8 @@ date: 2024-11-20
 permalink: /posts/2024/Best_Student_Award/
 image_path: /Awards/2024-11-20-Best_Student_Award.png
 tags:
-  - "Catagory: Award"
-  - "Catagory: Research"  
+  - "Group: Award"
+  - "Group: Research"  
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Method: Lab"

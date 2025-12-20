@@ -4,7 +4,7 @@ covertitle: Pile deviation rectification
 date: 2022-09-14
 permalink: /posts/2022/Chai_FES/
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Pile"
   - "Method: Numerical"
   - "Output: Journal"

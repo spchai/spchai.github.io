@@ -5,7 +5,7 @@ date: 2025-11-29
 permalink: /posts/2025/Chai_et_al_IJRMMS/
 image_path: /Research/Stress_heterogeneity_laboratory.jpg
 tags:
-  - "Catagory: Research"
+  - "Group: Research"
   - "Topic: Stick-slip"
   - "Topic: Stress heterogeneity"  
   - "Topic: Frictional weakening"    
