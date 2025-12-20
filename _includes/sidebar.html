@@ -67,7 +67,8 @@
           {% endif %}
 
           <span class="tag-value"
-                data-full-tag="{{ group_name }}: {{ tag_value }}"
+                data-group="{{ group_name }}"
+                data-value="{{ tag_value }}"
                 style="display: inline-block; padding: 3px 6px; background: #e9ecef; border-radius: 3px; font-size: 0.85em; cursor: pointer; border: 1px solid #dee2e6; white-space: normal; word-wrap: break-word; max-width: 100%;">
             {{ tag_value }}
           </span>

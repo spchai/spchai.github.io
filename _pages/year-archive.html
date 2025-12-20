@@ -15,19 +15,6 @@ redirect_from:
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
-<!-- 收集所有标签用于筛选 - 使用JSON格式确保正确解析 -->
-<div id="posts-data" style="display: none;" data-posts='[
-  {% for year_group in posts_by_year %}
-    {% for post in year_group.items %}
-      {
-        "id": "{{ post.id | default: post.url }}",
-        "tags": {{ post.tags | jsonify }},
-        "year": "{{ year_group.name }}"
-      }{% unless forloop.last and forloop.parentloop.last %},{% endunless %}
-    {% endfor %}
-  {% endfor %}
-]'></div>
-
 {% for year_group in posts_by_year %}
   <section class="year-section" data-year="{{ year_group.name }}">
     <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
@@ -36,10 +23,15 @@ redirect_from:
 
     <div class="grid__wrapper">
       {% for post in year_group.items %}
+        <!-- 提取文章的标签数据 -->
+        {% assign post_tags_array = "" | split: "," %}
+        {% for tag in post.tags %}
+          {% assign post_tags_array = post_tags_array | push: tag %}
+        {% endfor %}
+
         <article class="archive__item"
                  itemscope itemtype="http://schema.org/CreativeWork"
-                 data-post-id="{{ post.id | default: post.url }}"
-                 data-tags="{{ post.tags | join: ', ' }}">
+                 data-tags="{{ post_tags_array | join: '|' }}">
 
           {% if post.image_path %}
             <div class="archive__item-teaser">
@@ -98,115 +90,131 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选逻辑JavaScript - 使用事件委托 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // 全局变量用于跟踪选中标签
-  window.selectedTags = new Set();
+<!-- 筛选逻辑JavaScript - 独立作用域，避免冲突 -->
+<script type="text/javascript">
+// 使用立即执行函数创建独立作用域
+(function() {
+  // 等待DOM完全加载
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFilter);
+  } else {
+    initFilter();
+  }
 
-  // 使用事件委托处理标签点击
-  document.getElementById('tag-filter').addEventListener('click', function(e) {
-    if (e.target.classList.contains('tag-value')) {
-      const fullTag = e.target.getAttribute('data-full-tag');
+  function initFilter() {
+    // 检查必要元素是否存在
+    const tagFilter = document.getElementById('tag-filter');
+    if (!tagFilter) return;
 
-      if (window.selectedTags.has(fullTag)) {
-        window.selectedTags.delete(fullTag);
-        e.target.style.background = '#e9ecef';
-        e.target.style.borderColor = '#dee2e6';
-        e.target.style.color = '';
-      } else {
-        window.selectedTags.add(fullTag);
-        e.target.style.background = '#007bff';
-        e.target.style.color = 'white';
-        e.target.style.borderColor = '#0056b3';
+    // 全局变量用于跟踪选中标签
+    window.selectedTags = window.selectedTags || new Set();
+
+    // 事件委托处理标签点击
+    tagFilter.addEventListener('click', function(e) {
+      if (e.target.classList.contains('tag-value')) {
+        const group = e.target.getAttribute('data-group');
+        const value = e.target.getAttribute('data-value');
+        const fullTag = group + ': ' + value;
+
+        if (window.selectedTags.has(fullTag)) {
+          window.selectedTags.delete(fullTag);
+          e.target.style.background = '#e9ecef';
+          e.target.style.borderColor = '#dee2e6';
+          e.target.style.color = '';
+        } else {
+          window.selectedTags.add(fullTag);
+          e.target.style.background = '#007bff';
+          e.target.style.color = 'white';
+          e.target.style.borderColor = '#0056b3';
+        }
+
+        applyFilter();
       }
 
+      // 清除筛选按钮
+      if (e.target.id === 'clear-filter') {
+        clearAllFilters();
+      }
+    });
+
+    // 清除所有筛选
+    function clearAllFilters() {
+      window.selectedTags.clear();
+      document.querySelectorAll('.tag-value').forEach(tag => {
+        tag.style.background = '#e9ecef';
+        tag.style.color = '';
+        tag.style.borderColor = '#dee2e6';
+      });
       applyFilter();
     }
 
-    // 清除筛选按钮
-    if (e.target.id === 'clear-filter') {
-      clearAllFilters();
-    }
-  });
+    // 应用筛选
+    function applyFilter() {
+      const allArticles = document.querySelectorAll('.archive__item');
+      const allYearSections = document.querySelectorAll('.year-section');
 
-  // 清除所有筛选
-  function clearAllFilters() {
-    window.selectedTags.clear();
-    document.querySelectorAll('.tag-value').forEach(tag => {
-      tag.style.background = '#e9ecef';
-      tag.style.color = '';
-      tag.style.borderColor = '#dee2e6';
-    });
-    applyFilter();
-  }
+      if (window.selectedTags.size === 0) {
+        // 显示所有文章
+        allArticles.forEach(article => {
+          article.style.display = 'block';
+        });
+        allYearSections.forEach(section => {
+          section.style.display = 'block';
+          // 重置年份计数
+          const year = section.getAttribute('data-year');
+          const totalCount = section.querySelectorAll('.archive__item').length;
+          const title = section.querySelector('.archive__subtitle');
+          if (title) {
+            title.textContent = `${year} (${totalCount})`;
+          }
+        });
+        return;
+      }
 
-  // 应用筛选
-  function applyFilter() {
-    const allArticles = document.querySelectorAll('.archive__item');
-    const allYearSections = document.querySelectorAll('.year-section');
-
-    if (window.selectedTags.size === 0) {
-      // 显示所有文章
+      // 隐藏所有
       allArticles.forEach(article => {
-        article.style.display = 'block';
+        article.style.display = 'none';
       });
       allYearSections.forEach(section => {
-        section.style.display = 'block';
-        // 重置年份计数
-        const year = section.getAttribute('data-year');
-        const totalCount = section.querySelectorAll('.archive__item').length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          title.textContent = `${year} (${totalCount})`;
+        section.style.display = 'none';
+      });
+
+      // 显示匹配的
+      allArticles.forEach(article => {
+        const articleTags = article.getAttribute('data-tags').split('|');
+        const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
+          articleTags.includes(selectedTag)
+        );
+
+        if (hasAllTags) {
+          article.style.display = 'block';
+          const yearSection = article.closest('.year-section');
+          if (yearSection) {
+            yearSection.style.display = 'block';
+          }
         }
       });
-      return;
+
+      // 更新年份计数
+      updateYearCounts();
     }
 
-    // 隐藏所有
-    allArticles.forEach(article => {
-      article.style.display = 'none';
-    });
-    allYearSections.forEach(section => {
-      section.style.display = 'none';
-    });
-
-    // 显示匹配的
-    allArticles.forEach(article => {
-      const articleTags = article.getAttribute('data-tags').split(',').map(tag => tag.trim());
-      const hasAllTags = Array.from(window.selectedTags).every(selectedTag =>
-        articleTags.includes(selectedTag)
-      );
-
-      if (hasAllTags) {
-        article.style.display = 'block';
-        const yearSection = article.closest('.year-section');
-        if (yearSection) {
-          yearSection.style.display = 'block';
-        }
-      }
-    });
-
     // 更新年份计数
-    updateYearCounts();
-  }
-
-  // 更新年份计数
-  function updateYearCounts() {
-    document.querySelectorAll('.year-section').forEach(section => {
-      if (section.style.display !== 'none') {
-        const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
-        const count = visibleArticles.length;
-        const title = section.querySelector('.archive__subtitle');
-        if (title) {
-          const year = section.getAttribute('data-year');
-          title.textContent = `${year} (${count})`;
+    function updateYearCounts() {
+      document.querySelectorAll('.year-section').forEach(section => {
+        if (section.style.display !== 'none') {
+          const visibleArticles = section.querySelectorAll('.archive__item[style*="block"]');
+          const count = visibleArticles.length;
+          const title = section.querySelector('.archive__subtitle');
+          if (title) {
+            const year = section.getAttribute('data-year');
+            title.textContent = `${year} (${count})`;
+          }
         }
-      }
-    });
+      });
+    }
   }
-});
+})();
 </script>
 
 
