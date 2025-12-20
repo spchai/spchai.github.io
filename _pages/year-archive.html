@@ -11,23 +11,284 @@ redirect_from:
 
 {% include base_path %}
 
-
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+
+<!-- 新增：筛选控件区域 -->
+<div class="filter-container" id="filter-container">
+  <h3>Filter by Tags</h3>
+  <div class="filter-section">
+    {% comment %} 生成动态筛选标题和标签 {% endcomment %}
+    {% assign all_tags = "" | split: "," %}
+    {% for post in site.posts %}
+      {% if post.tags %}
+        {% for tag in post.tags %}
+          {% assign tag_parts = tag | split: ":" %}
+          {% if tag_parts.size >= 2 %}
+            {% assign category = tag_parts[0] | strip %}
+            {% assign value = tag_parts[1] | strip %}
+            {% capture tag_entry %}{{ category }}|{{ value }}{% endcapture %}
+            {% unless all_tags contains tag_entry %}
+              {% assign all_tags = all_tags | push: tag_entry %}
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} 按类别分组 {% endcomment %}
+    {% assign grouped_tags = all_tags | group_by_exp: "tag", "tag | split: '|' | first" %}
+
+    {% for group in grouped_tags %}
+      <div class="tag-group">
+        <h4>{{ group.name }}</h4>
+        <div class="tags-container">
+          {% assign sorted_items = group.items | sort: "split: '|' | last" %}
+          {% for item in sorted_items %}
+            {% assign parts = item | split: "|" %}
+            {% assign value = parts[1] %}
+            <button class="tag-btn" data-category="{{ group.name }}" data-value="{{ value }}">
+              {{ value }}
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="filter-actions">
+    <button id="clear-filters" class="filter-btn">Clear Filters</button>
+  </div>
+
+  <div class="active-filters" id="active-filters">
+    <span>Active filters: </span>
+    <span id="active-tags">None</span>
+  </div>
+</div>
+
+<!-- 新增：筛选功能CSS -->
+<style>
+.filter-container {
+  margin-bottom: 2rem;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.filter-section {
+  margin-top: 10px;
+}
+
+.tag-group {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e0e0e0;
+}
+
+.tag-group:last-child {
+  border-bottom: none;
+}
+
+.tag-group h4 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-btn {
+  padding: 4px 10px;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #495057;
+  white-space: nowrap;
+}
+
+.tag-btn:hover {
+  background-color: #dee2e6;
+  transform: translateY(-1px);
+}
+
+.tag-btn.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #006fe6;
+}
+
+.filter-actions {
+  margin: 15px 0 5px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 6px 12px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.filter-btn:hover {
+  background-color: #5a6268;
+}
+
+.active-filters {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 10px;
+}
+
+#active-tags {
+  font-weight: 500;
+  color: #495057;
+}
+
+/* 文章隐藏时的样式 */
+.archive__item.hidden {
+  display: none;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .tags-container {
+    gap: 4px;
+  }
+
+  .tag-btn {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+}
+</style>
+
+<!-- 新增：筛选功能JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取DOM元素
+  const tagButtons = document.querySelectorAll('.tag-btn');
+  const clearButton = document.getElementById('clear-filters');
+  const activeTagsSpan = document.getElementById('active-tags');
+  const articles = document.querySelectorAll('.archive__item');
+
+  // 存储当前激活的标签
+  let activeFilters = new Set();
+
+  // 为每个标签按钮添加点击事件
+  tagButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const category = this.dataset.category;
+      const value = this.dataset.value;
+      const tag = `${category}:${value}`;
+
+      // 切换激活状态
+      if (activeFilters.has(tag)) {
+        activeFilters.delete(tag);
+        this.classList.remove('active');
+      } else {
+        activeFilters.add(tag);
+        this.classList.add('active');
+      }
+
+      // 更新显示
+      updateActiveFiltersDisplay();
+      applyFilters();
+    });
+  });
+
+  // 清除按钮事件
+  clearButton.addEventListener('click', function() {
+    activeFilters.clear();
+    tagButtons.forEach(btn => btn.classList.remove('active'));
+    updateActiveFiltersDisplay();
+    applyFilters();
+  });
+
+  // 更新活动标签显示
+  function updateActiveFiltersDisplay() {
+    if (activeFilters.size === 0) {
+      activeTagsSpan.textContent = 'None';
+    } else {
+      activeTagsSpan.textContent = Array.from(activeFilters).join(', ');
+    }
+  }
+
+  // 应用筛选器
+  function applyFilters() {
+    // 如果没有激活的筛选器，显示所有文章
+    if (activeFilters.size === 0) {
+      articles.forEach(article => article.classList.remove('hidden'));
+      return;
+    }
+
+    // 遍历所有文章
+    articles.forEach(article => {
+      // 获取文章的标签（从data-tags属性）
+      const articleTags = JSON.parse(article.dataset.tags || '[]');
+
+      // 检查文章是否有至少一个匹配的标签
+      const hasMatchingTag = articleTags.some(tag => activeFilters.has(tag));
+
+      // 显示/隐藏文章
+      if (hasMatchingTag) {
+        article.classList.remove('hidden');
+      } else {
+        article.classList.add('hidden');
+      }
+    });
+  }
+
+  // 为每个文章添加data-tags属性
+  articles.forEach(article => {
+    // 查找文章中的标签（通过DOM解析）
+    const tagsContainer = article.querySelector('.archive__item-tags');
+    if (tagsContainer) {
+      const tags = [];
+      // 从元素中提取标签
+      const tagElements = tagsContainer.querySelectorAll('span');
+      tagElements.forEach(span => {
+        const category = span.dataset.category;
+        const value = span.dataset.value;
+        if (category && value) {
+          tags.push(`${category}:${value}`);
+        }
+      });
+      article.dataset.tags = JSON.stringify(tags);
+    }
+  });
+});
+</script>
 
 {% for year_group in posts_by_year %}
   <section class="year-section">
     <h1 id="{{ year_group.name | slugify }}" class="archive__subtitle">
       {{ year_group.name }} ({{ year_group.items.size }})
     </h1>
-    
+
     <div class="grid__wrapper">
       {% for post in year_group.items %}
-        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+        <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork"
+          {% comment %} 添加data-tags属性用于筛选 {% endcomment %}
+          data-tags="{{ post.tags | join: ',' | escape }}"
+        >
           {% if post.image_path %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img 
-                  style="height:210px;object-fit:cover;" 
+                <img
+                  style="height:210px;object-fit:cover;"
                   src=
                   {% if post.image_path contains "://" %}
                     "{{ post.image_path }}"
@@ -40,9 +301,9 @@ redirect_from:
           {% else %}
             <div class="archive__item-teaser">
               <a href="{{ base_path }}{{ post.url }}" rel="permalink">
-                <img 
-                  style="height:210px;object-fit:cover;" 
-                  src="{{ '/images/Loading.png' | prepend: base_path }}" 
+                <img
+                  style="height:210px;object-fit:cover;"
+                  src="{{ '/images/Loading.png' | prepend: base_path }}"
                   alt="Default image">
               </a>
             </div>
@@ -73,8 +334,21 @@ redirect_from:
           {% if post.excerpt %}
             <small class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</small>
           {% endif %}
-        </article>
 
+          {% comment %} 新增：隐藏的标签显示（用于JS解析） {% endcomment %}
+          {% if post.tags %}
+            <div class="archive__item-tags" style="display:none;">
+              {% for tag in post.tags %}
+                {% assign tag_parts = tag | split: ":" %}
+                {% if tag_parts.size >= 2 %}
+                  {% assign category = tag_parts[0] | strip %}
+                  {% assign value = tag_parts[1] | strip %}
+                  <span data-category="{{ category }}" data-value="{{ value }}"></span>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+        </article>
       {% endfor %}
     </div>
   </section>
@@ -93,5 +367,3 @@ redirect_from:
   {% include archive-single.html type="grid" %}
 {% endfor %} -->
 {% endcomment %}
-
-
