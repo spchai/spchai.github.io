@@ -24,5 +24,15 @@
   {% if page.toc %}
     {% include toc content=content title="Contents" %}
   {% endif %}  
+
+  {% if page.layout == "archive" %}
+    <div class="tag-filter-section" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+      <h3>Tags</h3>
+      <div id="tag-filter">
+        <button class="tag-btn" data-tag="all">ALL</button>
+      </div>
+    </div>
+  {% endif %}
+
   </div>
 {% endif %}

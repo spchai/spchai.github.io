@@ -11,6 +11,36 @@ redirect_from:
 
 {% include base_path %}
 
+<div id="result-count" style="margin-bottom: 1rem; font-weight: bold; color: #333;"></div>
+<script id="posts-data" type="application/json">
+  [
+    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
+    {% for year_group in posts_by_year %}
+      {% for post in year_group.items %}
+        {
+          "year": "{{ year_group.name }}",
+          "title": "{{ post.title | escape }}",
+          "url": "{{ base_path }}{{ post.url }}",
+          "link": "{{ post.link }}",
+          "covertitle": "{{ post.covertitle | escape }}",
+          "image_path": "{{ post.image_path }}",
+          "alt": "{{ post.alt }}",
+          "date": "{{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}",
+          "date_display": "{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}",
+          "collection": "{{ post.collection }}",
+          "type": "{{ post.type }}",
+          "venue": "{{ post.venue }}",
+          "excerpt": "{{ post.excerpt | markdownify | escape }}",
+          "tags": {{ post.tags | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+      {% endfor %}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+<div id="dynamic-articles"></div>
+
+
+
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
 
 {% for year_group in posts_by_year %}
