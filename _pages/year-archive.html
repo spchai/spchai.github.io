@@ -46,52 +46,60 @@ redirect_from:
 {% endfor %}
 
 <style>
-  /* 基础交互样式 */
-  .tag-value { cursor: pointer !important; transition: 0.2s; }
-  .tag-value:hover { opacity: 0.7; color: #2185d0; }
+  /* 确保标签看起来可以点击 */
+  .tag-value, .clear-filter-btn { cursor: pointer !important; }
+  .tag-value { transition: all 0.2s ease; border-bottom: 1px solid transparent; }
+  .tag-value:hover { color: #2185d0; border-bottom: 1px solid #2185d0; }
+  /* 选中后的样式 */
   .tag-value.selected { 
     background-color: #2185d0 !important; 
-    color: #fff !important; 
-    padding: 2px 5px; 
-    border-radius: 3px; 
+    color: white !important; 
+    padding: 2px 6px; 
+    border-radius: 4px;
+    font-weight: bold;
   }
 </style>
 
 <script>
 (function() {
-  let selectedTags = new Set();
+  const selectedTags = new Set();
 
-  function updateDisplay() {
+  function runFilter() {
     const articles = document.querySelectorAll('.archive__item');
     const sections = document.querySelectorAll('.year-section');
-
-    articles.forEach(article => {
+    
+    // 1. 筛选文章
+    articles.forEach(post => {
       if (selectedTags.size === 0) {
-        article.style.display = '';
+        post.style.display = 'block';
         return;
       }
-      const raw = article.getAttribute('data-tags') || "";
-      const postTags = raw.split('|').map(t => t.trim());
-      const isMatch = Array.from(selectedTags).every(t => postTags.includes(t));
-      article.style.display = isMatch ? 'block' : 'none';
+      const postTags = (post.getAttribute('data-tags') || "").split('|').map(t => t.trim());
+      const match = Array.from(selectedTags).every(tag => postTags.includes(tag));
+      post.style.display = match ? 'block' : 'none';
     });
 
-    sections.forEach(section => {
-      const visible = Array.from(section.querySelectorAll('.archive__item')).filter(a => a.style.display !== 'none');
-      section.style.display = visible.length > 0 ? 'block' : 'none';
-      const badge = section.querySelector('.archive__subtitle');
-      if (badge) {
-        const year = section.getAttribute('data-year');
-        badge.textContent = `${year} (${visible.length})`;
+    // 2. 隐藏没有文章的年份标题，并更新计数
+    sections.forEach(sec => {
+      const items = Array.from(sec.querySelectorAll('.archive__item'));
+      const visibleCount = items.filter(i => i.style.display !== 'none').length;
+      sec.style.display = visibleCount > 0 ? 'block' : 'none';
+      
+      const title = sec.querySelector('.archive__subtitle');
+      if (title) {
+        const year = sec.getAttribute('data-year');
+        title.textContent = `${year} (${visibleCount})`;
       }
     });
   }
 
-  // 使用事件委托：即使侧边栏是动态加载的，点击也能生效
+  // 使用“事件委托”：这种方式不依赖 ID 是否加载，只要点击到对应 Class 就会执行
   document.addEventListener('click', function(e) {
-    // 1. 处理标签点击
+    // 检查是否点击了标签
     if (e.target && e.target.classList.contains('tag-value')) {
       e.preventDefault();
+      e.stopPropagation(); // 防止冒泡导致页面刷新
+      
       const tag = e.target.getAttribute('data-full-tag').trim();
       if (selectedTags.has(tag)) {
         selectedTags.delete(tag);
@@ -100,19 +108,21 @@ redirect_from:
         selectedTags.add(tag);
         e.target.classList.add('selected');
       }
-      updateDisplay();
+      runFilter();
     }
 
-    // 2. 处理清除按钮点击 (ID 匹配)
-    if (e.target && e.target.id === 'clear-filter') {
+    // 检查是否点击了清除按钮 (兼容 ID 和 Class)
+    if (e.target && (e.target.id === 'clear-filter' || e.target.classList.contains('clear-filter-btn'))) {
       e.preventDefault();
+      e.stopPropagation();
+      
       selectedTags.clear();
-      document.querySelectorAll('.tag-value').forEach(btn => btn.classList.remove('selected'));
-      updateDisplay();
+      document.querySelectorAll('.tag-value').forEach(el => el.classList.remove('selected'));
+      runFilter();
     }
-  });
+  }, true); // 使用 Capture 模式确保第一时间截获点击
 
-  console.log("News Filter: Event delegation active.");
+  console.log("Filter Engine Status: Live");
 })();
 </script>
 
