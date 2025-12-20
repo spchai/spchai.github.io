@@ -9,7 +9,6 @@ redirect_from:
   - /news/year/
 ---
 
-
 {% include base_path %}
 
 {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" | sort: "name" | reverse %}
@@ -18,7 +17,7 @@ redirect_from:
 <div class="filter-sidebar">
   <h3>News filters</h3>
 
-  {% comment %} 收集所有标签并按类别分组 {% endcomment %}
+  {% comment %} 收集所有标签并按类别分组，处理逗号分隔的值 {% endcomment %}
   {% assign tag_groups = "" | split: "," %}
   {% assign categories = "" | split: "," %}
 
@@ -28,18 +27,23 @@ redirect_from:
         {% assign tag_parts = tag | split: ":" %}
         {% if tag_parts.size >= 2 %}
           {% assign category = tag_parts[0] | strip %}
-          {% assign value = tag_parts[1] | strip %}
+          {% assign values_string = tag_parts[1] | strip %}
 
-          {% comment %} 收集类别 {% endcomment %}
-          {% unless categories contains category %}
-            {% assign categories = categories | push: category %}
-          {% endunless %}
+          {% comment %} 按逗号分割值，并处理每个值 {% endcomment %}
+          {% assign values = values_string | split: "," %}
+          {% for value in values %}
+            {% assign trimmed_value = value | strip %}
+            {% if trimmed_value != "" %}
+              {% unless categories contains category %}
+                {% assign categories = categories | push: category %}
+              {% endunless %}
 
-          {% comment %} 存储标签到组 {% endcomment %}
-          {% capture group_entry %}{{ category }}|{{ value }}{% endcapture %}
-          {% unless tag_groups contains group_entry %}
-            {% assign tag_groups = tag_groups | push: group_entry %}
-          {% endunless %}
+              {% capture group_entry %}{{ category }}|{{ trimmed_value }}{% endcapture %}
+              {% unless tag_groups contains group_entry %}
+                {% assign tag_groups = tag_groups | push: group_entry %}
+              {% endunless %}
+            {% endif %}
+          {% endfor %}
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -101,8 +105,28 @@ redirect_from:
 
       <div class="grid__wrapper">
         {% for post in year_group.items %}
+          {% comment %} 为文章构建完整标签列表（处理逗号分隔的值） {% endcomment %}
+          {% assign article_tags = "" | split: "," %}
+          {% if post.tags %}
+            {% for tag in post.tags %}
+              {% assign tag_parts = tag | split: ":" %}
+              {% if tag_parts.size >= 2 %}
+                {% assign category = tag_parts[0] | strip %}
+                {% assign values_string = tag_parts[1] | strip %}
+                {% assign values = values_string | split: "," %}
+                {% for value in values %}
+                  {% assign trimmed_value = value | strip %}
+                  {% if trimmed_value != "" %}
+                    {% capture tag_entry %}{{ category }}|{{ trimmed_value }}{% endcapture %}
+                    {% assign article_tags = article_tags | push: tag_entry %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+
           <article class="archive__item"
-                   data-tags="{{ post.tags | join: '|' }}"
+                   data-tags="{{ article_tags | join: '|' }}"
                    itemscope itemtype="http://schema.org/CreativeWork">
 
             {% if post.image_path %}
@@ -401,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 筛选文章
     articles.forEach(article => {
-      const tags = article.dataset.tags.split('|');
+      const tags = article.dataset.tags.split('|').filter(t => t);
       const show = tags.some(tag => activeFilters.has(tag));
       article.style.display = show ? '' : 'none';
     });
@@ -414,7 +438,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
-
 
 
 
