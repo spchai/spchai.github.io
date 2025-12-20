@@ -5,12 +5,12 @@ date: 2024-12-12
 permalink: /posts/2024/Chai_AGU24/
 image_path: /Conferences/Chai_et_al_AGU24.png
 tags:
-  - Catagory: Research
-  - Domain: Geotechnical, Planetary
-  - topic: Lunar landslides
-  - method: Numerical
-  - output: Conference
-  - additional:
+  - "Catagory: Research"
+  - "Domain: Geotechnical, Planetary"
+  - "topic: Lunar landslides"
+  - "method: Numerical"
+  - "output: Conference"
+  - "additional:"
 ---
 
 **Chai S**, Zou Y, Chen G, Zhao Q (2024). Possible moonquakes and tectonic activities inferred from crater landslides. _AGU24_. ([Link](https://agu.confex.com/agu/agu24/meetingapp.cgi/Paper/1665642)).

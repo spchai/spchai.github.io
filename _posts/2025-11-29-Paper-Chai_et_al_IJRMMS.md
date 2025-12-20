@@ -5,12 +5,12 @@ date: 2025-11-29
 permalink: /posts/2025/Chai_et_al_IJRMMS/
 image_path: /Research/Stress_heterogeneity_laboratory.jpg
 tags:
-  - Catagory: Research
-  - Domain: Geotechnical, Rock
-  - topic: Stress heterogeneity, Stick-slip, Rupture, Frictional weakening
-  - method: Numerical, Lab
-  - output: Journal
-  - additional:
+  - "Catagory: Research"
+  - "Domain: Geotechnical, Rock"
+  - "topic: Stress heterogeneity, Stick-slip, Rupture, Frictional weakening"
+  - "method: Numerical, Lab"
+  - "output: Journal"
+  - "additional:"
 ---
 
 New paper in _IJRMMS_. Numerical insights on the edge-related stress heterogeneity in 8 laboratory shear tests.

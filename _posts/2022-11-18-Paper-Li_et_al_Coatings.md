@@ -4,12 +4,12 @@ covertitle: Recycled aggregates
 date: 2022-11-18
 permalink: /posts/2022/Li_Coatings/
 tags:
-  - Catagory: Research
-  - Domain:: Geotechnical
-  - topic: Construction waste
-  - method: Lab
-  - output: Journal
-  - additional:
+  - "Catagory: Research"
+  - "Domain:: Geotechnical"
+  - "topic: Construction waste"
+  - "method: Lab"
+  - "output: Journal"
+  - "additional:"
 ---
 
 

@@ -5,12 +5,12 @@ date: 2023-02-27
 permalink: /posts/2023/Chai_BEGE/
 image_path: /Papers/Chai2023.png
 tags:
-  - Catagory: Research
-  - Domain:: Geotechnical
-  - topic: Slope
-  - method: Numerical, Analytical
-  - output: Journal
-  - additional:
+  - "Catagory: Research"
+  - "Domain:: Geotechnical"
+  - "topic: Slope"
+  - "method: Numerical, Analytical"
+  - "output: Journal"
+  - "additional:"
 ---
 
 **Chai S*** (2023). Two-wedge slope stability analysis considering a nonvertical wedge interface. _Bulletin of Engineering Geology and the Environment_. 82:89. https://doi.org/10.1007/s10064-023-03126-2 ([Link](https://doi.org/10.1007/s10064-023-03126-2), [PDF](https://rdcu.be/c6wDg))

@@ -4,12 +4,12 @@ covertitle: Stress kink in backfill
 date: 2023-04-03
 permalink: /posts/2023/Chai_GGE/
 tags:
-  - Catagory: Research
-  - Domain:: Mining
-  - topic: Backfill
-  - method: Numerical, Analytical
-  - output: Journal
-  - additional:
+  - "Catagory: Research"
+  - "Domain:: Mining"
+  - "topic: Backfill"
+  - "method: Numerical, Analytical"
+  - "output: Journal"
+  - "additional:"
 ---
 
 

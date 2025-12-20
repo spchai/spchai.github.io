@@ -4,12 +4,12 @@ covertitle: ANN for slope stability
 date: 2022-11-25
 permalink: /posts/2022/Chai_ICHCE/
 tags:
-  - Catagory: Research
-  - Domain:: Geotechnical
-  - topic: Slope
-  - method: Numerical, AI
-  - output: Conference
-  - additional:
+  - "Catagory: Research"
+  - "Domain:: Geotechnical"
+  - "topic: Slope"
+  - "method: Numerical, AI"
+  - "output: Conference"
+  - "additional:"
 ---
 
 

@@ -4,12 +4,12 @@ covertitle: Maximum dump height
 date: 2022-10-22
 permalink: /posts/2022/Chai_JSAIMM/
 tags:
-  - Catagory: Research
-  - Domain:: Mining
-  - topic: Slope
-  - method: Numerical
-  - output: Journal
-  - additional:
+  - "Catagory: Research"
+  - "Domain:: Mining"
+  - "topic: Slope"
+  - "method: Numerical"
+  - "output: Journal"
+  - "additional:"
 ---
 
 

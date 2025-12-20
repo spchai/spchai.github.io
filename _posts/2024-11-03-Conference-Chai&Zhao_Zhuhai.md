@@ -5,12 +5,12 @@ date: 2024-11-03
 permalink: /posts/2024/11/Chai_Zhuhai/
 image_path: /Conferences/Chai2024_GESS.jpg
 tags:
-  - Catagory: Research
-  - Domain: Geotechnical, Rock
-  - topic: Stress heterogeneity, Stick-slip, Rupture, earthquakes, roughness
-  - method: Lab
-  - output: Conference
-  - additional:
+  - "Catagory: Research"
+  - "Domain: Geotechnical, Rock"
+  - "topic: Stress heterogeneity, Stick-slip, Rupture, earthquakes, roughness"
+  - "method: Lab"
+  - "output: Conference"
+  - "additional:"
 ---
 
 

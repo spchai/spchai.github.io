@@ -5,12 +5,12 @@ date: 2023-11-30
 permalink: /posts/2023/Chai_GESS/
 image_path: /Conferences/Chai2023_GESS.jpg
 tags:
-  - Catagory: Research
-  - Domain: Geotechnical, Rock
-  - topic: Stress heterogeneity, Stick-slip, Rupture
-  - method: Numerical, Lab
-  - output: Conference
-  - additional:
+  - "Catagory: Research"
+  - "Domain: Geotechnical, Rock"
+  - "topic: Stress heterogeneity, Stick-slip, Rupture"
+  - "method: Numerical, Lab"
+  - "output: Conference"
+  - "additional:"
 ---
 
 
