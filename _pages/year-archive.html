@@ -92,7 +92,7 @@ redirect_from:
         if (title) {
           const year = sec.getAttribute('data-year');
           // 仅更新括号内的数字，保留 ID 结构
-          title.innerHTML = `${year} <span style="font-size: 0.8em; opacity: 0.7;">(${visibleCount})</span>`;
+          title.innerHTML = year +  ' <span style="font-size: 0.8em; opacity: 0.7;">(' +   visibleCount +   ')</span>';
         }
       } else {
         sec.style.display = 'none';
@@ -102,7 +102,8 @@ redirect_from:
 
   // 监听点击：使用委托模式解决 AcademicPages 侧边栏重绘问题
   document.addEventListener('click', function(e) {
-    const target = e.target.closest('.tag-value');
+    const node = e.target.nodeType === 3 ? e.target.parentElement : e.target;
+    const target = node.closest('.tag-value');
     if (target) {
       e.preventDefault();
       e.stopPropagation();
