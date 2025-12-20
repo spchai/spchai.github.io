@@ -45,20 +45,6 @@ redirect_from:
   </section>
 {% endfor %}
 
-<style>
-  /* 筛选按钮交互样式 */
-  .tag-value { cursor: pointer !important; transition: all 0.2s ease; border-radius: 4px; padding: 2px 5px; border-bottom: none !important; }
-  .tag-value:hover { background-color: rgba(33, 133, 208, 0.1); color: #2185d0; }
-  .tag-value.selected { 
-    background-color: #2185d0 !important; 
-    color: white !important; 
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-  }
-  .clear-filter-btn { cursor: pointer !important; transition: transform 0.1s active; }
-  .clear-filter-btn:active { transform: scale(0.98); }
-</style>
-
 <script>
 (function() {
   const selectedTags = new Set();
