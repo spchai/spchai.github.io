@@ -82,62 +82,97 @@ redirect_from:
   </section>
 {% endfor %}
 
-<!-- 筛选功能JavaScript -->
 <script>
-$(document).ready(function() {
-  var activeFilters = [];
+(function() {
+  'use strict';
 
-  $('.filter-tag').click(function(e) {
-    e.preventDefault();
-    var tag = $(this).data('tag');
+  function init() {
+    var allArticles = document.querySelectorAll('article.archive__item');
+    var filterButtons = document.querySelectorAll('.filter-tag');
+    var clearButton = document.querySelector('.clear-filter');
+    var activeFilters = [];
 
-    if ($(this).hasClass('active')) {
-      $(this).removeClass('active');
-      activeFilters = activeFilters.filter(function(f) { return f !== tag; });
-    } else {
-      $(this).addClass('active');
-      activeFilters.push(tag);
+    // 绑定点击事件
+    for (var i = 0; i < filterButtons.length; i++) {
+      filterButtons[i].addEventListener('click', function(e) {
+        e.preventDefault();
+        var tag = this.getAttribute('data-tag');
+
+        if (this.classList.contains('active')) {
+          this.classList.remove('active');
+          var index = activeFilters.indexOf(tag);
+          if (index > -1) activeFilters.splice(index, 1);
+        } else {
+          this.classList.add('active');
+          activeFilters.push(tag);
+        }
+
+        updateDisplay();
+      });
     }
 
-    updateDisplay();
-  });
-
-  $('.clear-filter').click(function(e) {
-    e.preventDefault();
-    $('.filter-tag').removeClass('active');
-    activeFilters = [];
-    updateDisplay();
-  });
-
-  function updateDisplay() {
-    if (activeFilters.length === 0) {
-      $('.archive__item').show();
-      $('.year-section').show();
-      return;
+    if (clearButton) {
+      clearButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        for (var i = 0; i < filterButtons.length; i++) {
+          filterButtons[i].classList.remove('active');
+        }
+        activeFilters = [];
+        updateDisplay();
+      });
     }
 
-    $('.year-section').hide();
-
-    $('.archive__item').each(function() {
-      var articleTags = $(this).data('tags').split(',').map(function(tag) {
-        return tag.trim();
-      });
-
-      var hasMatch = activeFilters.some(function(filter) {
-        return articleTags.indexOf(filter) > -1;
-      });
-
-      if (hasMatch) {
-        $(this).show();
-        $(this).closest('.year-section').show();
-      } else {
-        $(this).hide();
+    function updateDisplay() {
+      if (activeFilters.length === 0) {
+        for (var i = 0; i < allArticles.length; i++) {
+          allArticles[i].style.display = 'block';
+        }
+        var yearSections = document.querySelectorAll('.year-section');
+        for (var j = 0; j < yearSections.length; j++) {
+          yearSections[j].style.display = 'block';
+        }
+        return;
       }
-    });
-  }
-});
-</script>
 
+      var yearSections = document.querySelectorAll('.year-section');
+      for (var j = 0; j < yearSections.length; j++) {
+        yearSections[j].style.display = 'none';
+      }
+
+      for (var i = 0; i < allArticles.length; i++) {
+        var article = allArticles[i];
+        var articleTags = article.getAttribute('data-tags').split(',').map(function(tag) {
+          return tag.trim();
+        });
+
+        var hasMatch = false;
+        for (var k = 0; k < activeFilters.length; k++) {
+          if (articleTags.indexOf(activeFilters[k]) > -1) {
+            hasMatch = true;
+            break;
+          }
+        }
+
+        if (hasMatch) {
+          article.style.display = 'block';
+          var yearSection = article.closest('.year-section');
+          if (yearSection) {
+            yearSection.style.display = 'block';
+          }
+        } else {
+          article.style.display = 'none';
+        }
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 
 
