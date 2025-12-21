@@ -13,7 +13,7 @@ A list of all the posts and pages found on the site. For you robots out there, t
 {% for post in site.pages %}
   {% if post.title %}
     {% include archive-single.html %}
-  {% endfor %}
+  {% endif %}
 {% endfor %}
 
 <h2>Posts</h2>
