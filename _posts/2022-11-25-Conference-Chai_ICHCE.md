@@ -3,7 +3,7 @@ title: 'Conference presentation on Slope stability evaluation using artificial n
 covertitle: ANN for slope stability
 date: 2022-11-25
 permalink: /posts/2022/Chai_ICHCE/
-image_path: /Conferences/Chai2022_ICHCE.png
+image_path: /Conferences/Chai2022_ICHCE.jpg
 tags:
   - "Group: Research"
   - "Topic: Waste"  

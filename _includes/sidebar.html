@@ -50,7 +50,9 @@
                 <div class="tag-values">
                   {%- for t in group_tags -%}
                     {%- assign name = t | remove_first: g | remove_first: ":" | strip -%}
-                    <span class="tag-value" data-full-tag="{{ t }}"> {{ name }} </span>
+                    <span class="tag-value" data-full-tag="{{ t }}"> {{ name }} 
+                      <span class="tag-count">({{ site.tags[t].size }})</span>
+                    </span>
                   {%- endfor -%}
                 </div>
               </div>
