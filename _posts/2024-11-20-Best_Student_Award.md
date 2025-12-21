@@ -8,7 +8,7 @@ tags:
   - "Group: Award"
   - "Group: Research"  
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
+  - "Topic: Heterogeneity"  
   - "Method: Lab"
   - "Output: Conference"
 

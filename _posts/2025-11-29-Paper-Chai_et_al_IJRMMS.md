@@ -7,8 +7,8 @@ image_path: /Research/Stress_heterogeneity_laboratory.jpg
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
-  - "Topic: Frictional weakening"    
+  - "Topic: Heterogeneity"  
+  - "Topic: Friction"    
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Journal"

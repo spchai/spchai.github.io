@@ -43,7 +43,7 @@ redirect_from:
           </div>
           <div class="page__meta"><i class="fa fa-calendar"></i> {{ post.date | date: "%B %d, %Y" }}</div>
           {% if post.excerpt %}
-            <small class="archive__item-excerpt">{{ post.excerpt | strip_html | truncate: 160 }}</small>
+            <small class="archive__item-excerpt">{{ post.excerpt | strip_html | truncate: 120 }}</small>
           {% endif %}
         </article>
       {% endfor %}

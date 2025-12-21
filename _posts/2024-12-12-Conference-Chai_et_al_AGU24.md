@@ -8,7 +8,6 @@ tags:
   - "Group: Research"
   - "Topic: Moon"
   - "Topic: Slope"
-  - "Topic: Seismicity"    
   - "Method: Numerical"
   - "Output: Conference"
 

@@ -7,7 +7,7 @@ image_path: /Conferences/Chai2023_GESS.jpg
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
+  - "Topic: Heterogeneity"  
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Conference"

@@ -7,7 +7,7 @@ image_path: /Research/Dilatancy_DS.png
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
+  - "Topic: Heterogeneity"  
   - "Topic: Earthquake"
   - "Topic: Roughness" 
   - "Topic: Seismicity"  

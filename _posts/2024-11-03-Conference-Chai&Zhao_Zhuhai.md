@@ -7,9 +7,9 @@ image_path: /Conferences/Chai2024_GESS.jpg
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
+  - "Topic: Heterogeneity"  
   - "Topic: Earthquake"
-  - "Topic: Seismicity"    
+  - "Topic: Friction"    
   - "Topic: Roughness" 
   - "Method: Lab"
   - "Output: Conference"

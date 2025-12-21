@@ -7,7 +7,7 @@ image_path: /Awards/2023-08-12-Best_Poster_Award.jpg
 tags:
   - "Group: Award"
   - "Topic: Stick-slip"
-  - "Topic: Stress heterogeneity"  
+  - "Topic: Heterogeneity"  
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Conference"
