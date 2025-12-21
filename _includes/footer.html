@@ -26,12 +26,7 @@
         <img src="/images/icons/researchgate_d.svg" alt="ResearchGate" class="icon-dark icon-pad-right" style="height:36px;">
       </a>
     {% endif %}
-    {% if author.scopus %}
-      <a href="{{ author.scopus }}">
-        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-light icon-pad-right" style="height:36px;">
-        <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:36px;">
-      </a>
-    {% endif %}
+
     {% if author.linkedin %}
       <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
         <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-light icon-pad-right" style="height:36px;">
@@ -52,3 +47,15 @@
     Last updated {{ "now" | date: '%Y-%m-%d' }}
   </div>
 </div>
+
+
+{% comment %}
+<!-- 
+  {% if author.scopus %}
+    <a href="{{ author.scopus }}">
+      <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-light icon-pad-right" style="height:36px;">
+      <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:36px;">
+    </a>
+  {% endif %}
+  -->
+{% endcomment %}
