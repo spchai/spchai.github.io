@@ -3,8 +3,7 @@ layout: splash
 permalink: /
 hidden: true
 redirect_from: 
-  - /about/
-  - /about.html
+  - /home
 header:
   overlay_color: "#5e616c"
   overlay_image: "https://spchai.github.io/images/home-page.jpg"
