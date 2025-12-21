@@ -42,9 +42,9 @@ sidebar:
         </h2>
 
         {% if post.excerpt %}
-          <p class="research-item__excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
+          <div class="research-item__excerpt" itemprop="description">{{ post.excerpt | markdownify }}</div>
         {% else %}
-          <p class="research-item__excerpt" itemprop="description">{{ post.content | markdownify }}</p>
+          <div class="research-item__excerpt" itemprop="description">{{ post.content | markdownify }}</div>
         {% endif %}
       </div>
 
