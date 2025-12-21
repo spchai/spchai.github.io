@@ -301,19 +301,32 @@
   display: none;
 
   @include breakpoint($large) {
-    display: grid;
-    grid-template-columns: repeat(7, minmax(30px, 1fr));
-    justify-items: center;
+    display: flex;         /* 改为 flex */
+    flex-direction: column; /* 让 icon-row 纵向排列 */
+    align-items: center;    /* 整体水平居中 */
+    width: 50%;             /* 容器宽度 50% */
+    margin-left: auto;      /* 左右 auto 实现居中 */
+    margin-right: auto;
     margin-top: 5px;
-    margin-left: 5px;
     padding-bottom: 1em;
+
+    .icon-row {
+      display: flex;        /* 每一行内部使用 flex */
+      justify-content: center; /* 行内图标水平居中 */
+      width: 100%;
+      gap: 10px;            /* 图标之间的间距，可自行调整 */
+      margin-bottom: 5px;
+    }
 
     a {
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1px;
+      transition: transform 0.2s; /* 增加一点互动感 */
+      
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     img {

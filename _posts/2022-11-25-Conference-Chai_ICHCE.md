@@ -9,7 +9,6 @@ tags:
   - "Topic: Waste"  
   - "Topic: Slope"
   - "Method: AI"
-  - "Method: AI"  
   - "Output: Conference"
 
 ---
