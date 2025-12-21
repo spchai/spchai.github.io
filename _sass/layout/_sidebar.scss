@@ -302,7 +302,7 @@
 
   @include breakpoint($large) {
     display: grid;
-    grid-template-columns: repeat(4, minmax(30px, 1fr));
+    grid-template-columns: repeat(7, minmax(30px, 1fr));
     justify-items: center;
     margin-left: auto;   
     margin-right: auto;
@@ -318,10 +318,14 @@
     }
 
     img {
-      height: 32px;      // 固定高度
-      width: auto;       // 宽度自动，保持比例
-      object-fit: contain; // 图片完整显示，不裁剪
+      height: 32px;      
+      width: auto;       
+      object-fit: contain; 
     }
+
+    a:hover img {
+      transform: scale(1.1); 
+    }    
 
     p {
       font-size: .875rem;
