@@ -337,10 +337,20 @@
 
 
 /* 标签筛选器样式 */
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.filter-header h2 {
+  margin: 0;
+}
+
 .filter-section {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-  margin-top: 2rem;
+  padding-top: 0px;
+  margin-top: 0.5rem;
 }
 
 .tag-filter-container {
@@ -356,7 +366,6 @@
 .tag-group h4 {
   margin: 0 0 8px 0;
   font-size: 0.95em;
-  color: #333;
   font-weight: 600;
 }
 
@@ -369,12 +378,11 @@
 .tag-value {
   display: inline-block;
   padding: 4px 8px;
-  background: #e9ecef;
+  background: var(--button-bg-color);
   border-radius: 10px;
   font-size: 0.85em;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: 1px solid #dee2e6;
   white-space: normal;
   word-wrap: break-word;
   max-width: 100%;
@@ -390,10 +398,9 @@
 .tag-value.selected {
   background: #007bff;
   border-color: #0056b3;
-  background-color: #494949 !important;
   color: #fff !important;
-  border-radius: 4px;
   padding: 2px 6px;  
+  font-weight: bold;
 }
 
 .tag-value.selected::after {
@@ -404,17 +411,19 @@
 .clear-filter-btn {
   margin-top: 12px;
   padding: 6px 12px;
-  background: #dc3545;
+  background: var(--global-link-color);
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 0.85em;
-  width: 100%;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  white-space: nowrap;  
 }
 
 .clear-filter-btn:hover {
-  background: #c82333;
+  background: var(--global-bg-color);
+  color: var(--global-link-color);
 }
 
 .sidebar-filter-wrapper {
