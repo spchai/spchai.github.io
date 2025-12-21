@@ -301,38 +301,37 @@
   display: none;
 
   @include breakpoint($large) {
-    display: flex;
-    flex-wrap: wrap;       /* 允许换行 */
-    justify-content: center; /* 全局居中 */
-    width: 50%;            /* 容器占 50% */
-    margin: 5px auto 0;    /* 水平居中 */
+    display: grid;
+    grid-template-columns: repeat(4, minmax(30px, 1fr));
+    justify-items: center;
+    margin-left: auto;   
+    margin-right: auto;
     padding-bottom: 1em;
+    width: 60%;
 
     a {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      padding: 10px 0;    /* 增加上下间距 */
-      
-      /* 核心逻辑：强制前 3 个图标占满第一行 (100% / 3) */
-      &:nth-child(-n+3) {
-        flex: 0 0 33.33%; 
-      }
-      
-      /* 核心逻辑：后 4 个图标占满第二行 (100% / 4) */
-      &:nth-child(n+4) {
-        flex: 0 0 25%;
-      }
+      justify-content: center;
+      margin-bottom: 1px;
     }
 
     img {
-      height: 36px;       /* 严格统一图标高度 */
-      width: auto;
-      transition: transform 0.2s;
+      height: 32px;      // 固定高度
+      width: auto;       // 宽度自动，保持比例
+      object-fit: contain; // 图片完整显示，不裁剪
     }
 
-    a:hover img {
-      transform: scale(1.1); /* 鼠标悬停微调，增加互动感 */
+    p {
+      font-size: .875rem;
+      line-height: 1rem;
+      font-weight: 600;
+      color: inherit;
+    }
+
+    i {
+      font-size: 32px; // 或 32px、40px，根据需要调整
     }
   }
 }

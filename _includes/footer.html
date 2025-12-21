@@ -8,6 +8,13 @@
         <img src="/images/icons/email_d.svg" alt="Email" class="icon-dark icon-pad-right" style="height:36px;">
      </a>
     {% endif %}
+    {% if author.linkedin %}
+      <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
+        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-light icon-pad-right" style="height:36px;">
+        <img src="/images/icons/linkedin_d.svg" alt="LinkedIn" class="icon-dark icon-pad-right" style="height:36px;">
+      </a>
+    {% endif %}
+
     {% if author.googlescholar %}
       <a href="{{ author.googlescholar }}">
         <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-light icon-pad-right" style="height:36px;">
@@ -32,18 +39,7 @@
         <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:36px;">
       </a>
     {% endif %}
-    {% if author.linkedin %}
-      <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
-        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-light icon-pad-right" style="height:36px;">
-        <img src="/images/icons/linkedin_d.svg" alt="LinkedIn" class="icon-dark icon-pad-right" style="height:36px;">
-      </a>
-    {% endif %}
-    {% if author.CV %}
-      <a href="{{ author.CV }}">
-        <img src="/images/icons/cv.svg" alt="CV" class="icon-light icon-pad-right" style="height:36px;">
-        <img src="/images/icons/cv_d.svg" alt="CV" class="icon-dark icon-pad-right" style="height:36px;">
-      </a>
-    {% endif %}
+
   </div>
   
   <div class="page__footer-copyright">

@@ -171,73 +171,51 @@
   </div>
 </div>
 
-{% assign icon_count = 0 %}
-{% if author.email %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.googlescholar %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.orcid %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.researchgate %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.scopus %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.linkedin %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% if author.CV %}{% assign icon_count = icon_count | plus: 1 %}{% endif %}
-{% assign split_at = icon_count | divided_by: 2 %}
-{% assign current_index = 0 %}
-
 <div class="author-social-links-desktop">
-  <div class="icon-row">
   {% if author.email %}
-    {% assign current_index = current_index | plus: 1 %}
     <a href="mailto:{{ author.email }}">
       <img src="/images/icons/email.svg" alt="Email" class="icon-light icon-pad-right" style="height:36px;">
       <img src="/images/icons/email_d.svg" alt="Email" class="icon-dark icon-pad-right" style="height:36px;">
     </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %}
-  {% endif %}
-  {% if author.googlescholar %}
-    {% assign current_index = current_index | plus: 1 %}
-    <a href="{{ author.googlescholar }}">
-      <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-light icon-pad-right" style="height:36px;">
-      <img src="/images/icons/google-scholar_d.svg" alt="Google Scholar" class="icon-dark icon-pad-right" style="height:36px;">
-    </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %}
-  {% endif %}
-  {% if author.orcid %}
-    {% assign current_index = current_index | plus: 1 %}
-    <a href="{{ author.orcid }}">
-      <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-light icon-pad-right" style="height:36px;">
-      <img src="/images/icons/orcid_d.svg" alt="ORCID" class="icon-dark icon-pad-right" style="height:36px;">
-    </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %}
-  {% endif %}
-  {% if author.researchgate %}
-    {% assign current_index = current_index | plus: 1 %}
-    <a href="{{ author.researchgate }}">
-      <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-light icon-pad-right" style="height:36px;">
-      <img src="/images/icons/researchgate_d.svg" alt="ResearchGate" class="icon-dark icon-pad-right" style="height:36px;">
-    </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %} 
-  {% endif %}
-  {% if author.scopus %}
-    {% assign current_index = current_index | plus: 1 %}
-    <a href="{{ author.scopus }}">
-      <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-light icon-pad-right" style="height:36px;">
-      <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:36px;">
-    </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %}
   {% endif %}
   {% if author.linkedin %}
-    {% assign current_index = current_index | plus: 1 %}
     <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
       <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-light icon-pad-right" style="height:36px;">
       <img src="/images/icons/linkedin_d.svg" alt="LinkedIn" class="icon-dark icon-pad-right" style="height:36px;">
     </a>
-    {% if current_index == split_at %}</div><div class="icon-row">{% endif %}
   {% endif %}
   {% if author.CV %}
-    {% assign current_index = current_index | plus: 1 %}
     <a href="{{ author.CV }}">
       <img src="/images/icons/cv.svg" alt="CV" class="icon-light icon-pad-right" style="height:36px;">
       <img src="/images/icons/cv_d.svg" alt="CV" class="icon-dark icon-pad-right" style="height:36px;">
     </a>
   {% endif %}
-  </div>
+</div>
+
+
+<div class="author-social-links-desktop">
+  {% if author.googlescholar %}
+    <a href="{{ author.googlescholar }}">
+      <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-light icon-pad-right" style="height:36px;">
+      <img src="/images/icons/google-scholar_d.svg" alt="Google Scholar" class="icon-dark icon-pad-right" style="height:36px;">
+    </a>
+  {% endif %}
+  {% if author.orcid %}
+    <a href="{{ author.orcid }}">
+      <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-light icon-pad-right" style="height:36px;">
+      <img src="/images/icons/orcid_d.svg" alt="ORCID" class="icon-dark icon-pad-right" style="height:36px;">
+    </a>
+  {% endif %}
+  {% if author.researchgate %}
+    <a href="{{ author.researchgate }}">
+      <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-light icon-pad-right" style="height:36px;">
+      <img src="/images/icons/researchgate_d.svg" alt="ResearchGate" class="icon-dark icon-pad-right" style="height:36px;">
+    </a>
+  {% endif %}
+  {% if author.scopus %}
+    <a href="{{ author.scopus }}">
+      <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-light icon-pad-right" style="height:36px;">
+      <img src="/images/icons/scopus_d.svg" alt="Scopus" class="icon-dark icon-pad-right" style="height:36px;">
+    </a>
+  {% endif %}
 </div>
