@@ -1,6 +1,10 @@
 ---
 title: "Stress heterogeneity in ten laboratory shear configurations"
-excerpt: "Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Instead, the average stress on rock joints was usually taken as an indicator. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors."
+excerpt: |
+  Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Instead, the average stress on rock joints was usually taken as an indicator. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors.
+  • Stress heterogeneity is quantified in numerical simulations and compared among eight types of laboratory shear tests. 
+  • More pronounced stress heterogeneity occurs in direct shear configurations than in inclined and rotary shear ones. 
+  • Configuration-related stress heterogeneity controls the rupture dynamics and damage patterns on planar laboratory faults.
 image_path: "/Research/RS_Stress_Cover.png"
 anchor: "in-lab-setups"
 collection: Research
