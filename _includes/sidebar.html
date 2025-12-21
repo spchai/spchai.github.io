@@ -27,8 +27,8 @@
     <div class="sidebar-filter-wrapper">
       <div class="filter-section">
         <div class="filter-header">
-          <h2 class="nav__title"> <i class="fa fa-filter"></i> News filters </h2>
-          <button id="clear-filter" class="clear-filter-btn">  Clear </button>    
+          <h2 class="nav__title"> <i class="fa fa-filter"></i> FILTER </h2>
+          <button id="clear-filter" class="clear-filter-btn">  Clear All </button>    
         </div>
         <div id="tag-filter" class="tag-filter-container">
           {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
@@ -50,14 +50,7 @@
                 <div class="tag-values">
                   {%- for t in group_tags -%}
                     {%- assign name = t | remove_first: g | remove_first: ":" | strip -%}
-                    <span class="tag-value"
-                          data-full-tag="{{ t }}">
-                      {%- if g == "Group" -%}
-                        {{ name }}
-                      {%- else -%}
-                        {{ g }}: {{ name }}
-                      {%- endif -%}
-                    </span>
+                    <span class="tag-value" data-full-tag="{{ t }}"> {{ name }} </span>
                   {%- endfor -%}
                 </div>
               </div>

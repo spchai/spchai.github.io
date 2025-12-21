@@ -31,6 +31,12 @@ redirect_from:
                      src="{% if post.image_path contains '://' %}{{ post.image_path }}{% else %}{{ post.image_path | prepend: '/images/' | prepend: base_path }}{% endif %}" alt="">
               </a>
             </div>
+          {% else %}
+            <div class="archive__item-teaser">
+              <a href="{{ base_path }}{{ post.url }}" rel="permalink">
+                <img style="height:210px;object-fit:cover;"  src="{{ '/images/Loading.png' | prepend: base_path }}"  alt="Default image">
+              </a>
+            </div>
           {% endif %}
           <div class="archive__item-title">
             <a href="{{ base_path }}{{ post.url }}">{{ post.covertitle | default: post.title }}</a>
