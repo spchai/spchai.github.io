@@ -398,14 +398,13 @@
   background: #007bff;
   border-color: #0056b3;
   color: #fff !important;
-  padding: 2px 6px;  
   font-weight: bold;
 }
 
 .tag-count {
   font-size: 0.8em;
   opacity: 0.6;
-  margin-left: 2px;
+  margin-left: 1px;
 }
 
 .tag-value.selected::after {
@@ -414,14 +413,11 @@
 }
 
 .clear-filter-btn {
-  margin-top: 12px;
-  padding: 6px 12px;
   background: var(--global-link-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
-  padding: 4px 8px;
   white-space: nowrap;  
 }
 
