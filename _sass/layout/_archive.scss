@@ -302,7 +302,7 @@
 
 
 
-.research-grid { display: grid; row-gap: 2rem; }
+.research-grid { display: grid; row-gap: 1rem; }
 .research-item {
   display: grid;
   grid-template-columns: 68% 30%;
@@ -318,7 +318,7 @@
 }
 
 .research-item__left { /* 标题 + 正文 */ }
-.research-item__excerpt { margin: 0; }
+.research-item__excerpt { margin: 0; white-space: pre-line;}
 .research-item__right{
   display: flex;
   align-items: center;    /* 垂直居中 */
