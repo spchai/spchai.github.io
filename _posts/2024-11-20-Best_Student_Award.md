@@ -9,6 +9,7 @@ tags:
   - "Group: Research"  
   - "Topic: Stick-slip"
   - "Topic: Heterogeneity"  
+  - "Topic: Friction"   
   - "Method: Lab"
   - "Output: Conference"
 

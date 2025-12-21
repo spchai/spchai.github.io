@@ -7,7 +7,8 @@ permalink: /posts/2024/Chai_ARMA24/
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
-  - "Topic: Heterogeneity"  
+  - "Topic: Heterogeneity"
+  - "Topic: Friction"     
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Conference"

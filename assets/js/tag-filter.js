@@ -33,7 +33,7 @@
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 优雅地更新年份显示，不破坏原有 DOM 结构
+    // 更新年份显示和计数
     sections.forEach(sec => {
       const items = Array.from(sec.querySelectorAll('.archive__item'));
       const visibleCount = items.filter(i => i.style.display !== 'none').length;
@@ -79,7 +79,7 @@
     }
   }, true);
 
-  // 状态守护：AcademicPages 切换主题时会清除我们的 selected 类名，这里负责补回来
+  // 状态守护：AcademicPages 切换主题时会清除 selected 类名，这里补回来
   setInterval(() => {
     if (selectedTags.size > 0) {
       document.querySelectorAll('.tag-value').forEach(el => {
@@ -89,5 +89,5 @@
         }
       });
     }
-  }, 500); // 提高频率到 500ms，让切换主题后的反馈更快
+  }, 500); // 提高频率到 500ms，切换主题后的反馈更快
 })();

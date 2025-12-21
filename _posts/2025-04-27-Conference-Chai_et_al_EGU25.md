@@ -10,7 +10,7 @@ tags:
   - "Topic: Heterogeneity"  
   - "Topic: Earthquake"
   - "Topic: Roughness" 
-  - "Topic: Seismicity"  
+  - "Topic: Friction"   
   - "Method: Lab"
   - "Output: Conference"
 

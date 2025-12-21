@@ -8,6 +8,7 @@ tags:
   - "Group: Award"
   - "Topic: Stick-slip"
   - "Topic: Heterogeneity"  
+  - "Topic: Friction"   
   - "Method: Lab"
   - "Method: Numerical"
   - "Output: Conference"
