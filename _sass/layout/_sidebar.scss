@@ -395,8 +395,8 @@
 }
 
 .tag-value.selected {
-  background: #007bff;
-  border-color: #0056b3;
+  background: var(--global-link-color);
+  border-color: none;
   color: #fff !important;
   font-weight: bold;
 }
@@ -414,7 +414,8 @@
 
 .clear-filter-btn {
   background: var(--global-link-color);
-  padding: 2px 6px;  
+  padding: 2px 6px;
+  margin-right: 25px;  
   color: white;
   border: none;
   border-radius: 10px;
