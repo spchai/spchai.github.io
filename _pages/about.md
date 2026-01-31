@@ -73,7 +73,7 @@ header:
       <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US">
         <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
       </a>
-      <a href="https://spchai.github.io/files/CV_ShupengChai_250407.pdf">
+      <a href="https://spchai.github.io/files/CV_ShupengChai.pdf">
         <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
       </a>
     </div> -->
