@@ -29,9 +29,9 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 * Planetary Geomechanics (e.g., Lunar landslides)
 * Interaction between rock and mining backfill   -->
 
-<div class="page__image">
+<!-- <div class="page__image">
   <img src='/images/Research/PhD.png'>
-</div>  
+</div>   -->
 
 <br>
 
@@ -58,11 +58,11 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026) Unveiling Stress Heterogeneity in Seismic Slip: A Review of Fault Shear Experiments. _To be submitted_.
 
+1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026) Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _To be submitted_.
+
+1. **Chai S**, Dal Zilio L, Hatzor Y H, Zhao Q (2026) Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted_.
+
 1. **Chai S**, Zhao Q (2026) Competition between fault geometric roughness and mechanical properties in governing sliding instability. _To be submitted_.
-
-1. **Chai S**, Su B, Zou Y, Zhao Q (2026) Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _To be submitted_.
-
-1. **Chai S**, Zhao Q (2026) Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted_.
 
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults. _To be submitted_.
 
