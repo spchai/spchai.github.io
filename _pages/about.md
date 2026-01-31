@@ -22,7 +22,7 @@ excerpt: >
       <div class="archive__item-body">
         I am currently working on the <strong>earthquake mechanics</strong> through integrated <em>laboratory experiments</em> and <em>numerical simulations</em>.  <br /> 
         <br />
-        <strong> Rock mechanics and geophysics | Geotechnical engineering | Planetary geomechanics | Mining backfill</strong>
+        <strong> Earthquake mechanics | Rock physics | Geotechnical engineering | Mining backfill</strong>
       </div>      
     </div>
   </div>
