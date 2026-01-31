@@ -44,7 +44,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 <br>
 
-#  Employment
+#  Professional Experience
 
 * 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
 * 2021–2023, Lecturer in geotechnical engineering, Zhengzhou University of Science and Technology  
