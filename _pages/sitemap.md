@@ -14,8 +14,8 @@ author_profile: true
   {% endif %}
 {% endfor %}
 
-<h2>News</h2>
-{% for post in site.news %}
+<h2>Posts</h2>
+{% for post in site.posts %}
   {% include archive-single.html %}
 {% endfor %}
 
