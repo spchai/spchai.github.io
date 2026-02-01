@@ -27,7 +27,7 @@ excerpt: >
     </div>
   </div>
   
-feature_row:
+recent:
   - image_path: /Research/Dilatancy_DS.png
     alt: "Dilantancy during laboratory stick-slips (EGU25)"
     title: "Dilantancy during lab stick-slips (EGU25)"
@@ -45,7 +45,7 @@ feature_row:
     url: "https://spchai.github.io/posts/2023/Best_Poster_Award/"
 ---
 
-{% include feature_row %}
+{% include recent %}
 
 
 <!-- 
