@@ -31,7 +31,7 @@
           <button id="clear-filter" class="clear-filter-btn">  Clear All </button>    
         </div>
         <div id="tag-filter" class="tag-filter-container">
-          {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
+          {% assign all_tags = site.news | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
           {%- assign ordered_groups = "Group,Topic,Method,Output" | split: "," -%}
           {%- assign used_tags = "" | split: "," -%}
           {%- for g in ordered_groups -%}
