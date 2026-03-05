@@ -13,7 +13,7 @@ redirect_from:
 
 <!-- 
 <div style="text-align: right">
-  <a href="https://spchai.github.io/files/CV_ShupengChai.pdf">Download CV</a>
+  <a href="https://spchai.github.io/files/CV_Shupeng Chai.pdf">Download CV</a>
 </div>
 -->
 
