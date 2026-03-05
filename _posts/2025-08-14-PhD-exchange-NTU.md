@@ -1,6 +1,6 @@
 ---
 title: 'PhD exchange at NTU'
-covertitle: Start a 6-month exchange at Nanyang Technological University
+covertitle: PhD exchange at NTU
 date: 2025-08-14
 permalink: /posts/2025/PhD-exchange-NTU/
 image_path: /MyPhotos/250814-PhD-Exchange-NTU.jpg
@@ -14,7 +14,7 @@ tags:
   - "Method: Numerical"
 ---
 
-During my visit to NTU, I am working on the interplay between surface roughness and contact evolution and its effects on the seismic characteristics of laboratory earthquakes.
+During my 6-month exchange at NTU, I am working on the interplay between surface roughness and contact evolution and its effects on the seismic characteristics of laboratory earthquakes.
 
 I am applying the PyQuake3D codes to simulate my laboratory tests under the supervision of Prof. Luca Dal Zilio.
 
