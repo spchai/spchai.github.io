@@ -19,7 +19,7 @@ During my 6-month exchange at NTU, I am working on the interplay between surface
 I am applying the PyQuake3D codes to simulate my laboratory tests under the supervision of Prof. Luca Dal Zilio.
 
 <div style="text-align: center;line-height: 1.5;">
-  <a class="image-popup" href = '/images/Awards/2024-11-20-Best_Student_Award.png'>
+  <a class="image-popup" href = '/images/MyPhotos/250814-PhD-Exchange-NTU.jpg'>
     <img src='/images/MyPhotos/250814-PhD-Exchange-NTU.jpg' style="width: 80%;" />  
   </a>
 </div>  
@@ -29,7 +29,7 @@ I am applying the PyQuake3D codes to simulate my laboratory tests under the supe
 </div>  
 
 <div style="text-align: center;line-height: 1.5;">
-  <a class="image-popup" href = '/images/Awards/2024-11-20-Best_Student_Award.png'>
+  <a class="image-popup" href = '/images/MyPhotos/260204-PhD-Exchange-NTU.jpg'>
     <img src='/images/MyPhotos/260204-PhD-Exchange-NTU.jpg' style="width: 80%;" />  
   </a>
 </div>  
@@ -39,7 +39,7 @@ I am applying the PyQuake3D codes to simulate my laboratory tests under the supe
 </div>  
 
 <div style="text-align: center;line-height: 1.5;">
-  <a class="image-popup" href = '/images/Awards/2024-11-20-Best_Student_Award.png'>
+  <a class="image-popup" href = '/images/MyPhotos/260105-Singapore.jpg'>
     <img src='/images/MyPhotos/260105-Singapore.jpg' style="width: 80%;" />  
   </a>
 </div>  
