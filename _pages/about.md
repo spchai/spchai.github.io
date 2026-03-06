@@ -9,7 +9,6 @@ header:
   overlay_image: "https://spchai.github.io/images/home-page.jpg"
   overlay_filter: true
   fullscreen_bg: true
-excerpt: "Shupeng CHAI (柴术鹏) - PhD candidate researching earthquake mechanics"
 recent_posts:
   - 2025-04-27-Conference-Chai_et_al_EGU25
   - 2024-11-20-Best_Student_Award
