@@ -22,12 +22,16 @@ recent_posts:
   }
 </style>
 
+{% if page.author and site.data.authors[page.author] %}
+  {% assign author = site.data.authors[page.author] %}{% else %}{% assign author = site.author %}
+{% endif %}
+
 <div class="profile-columns">
   <div class="profile-left">
     <div class="profile-image">
       <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 250px; border-radius: 50%;" >
     </div>
-    <div class="body-social-links">
+    <div class="author-social-links-desktop">
       {% if author.email %}
         <a href="mailto:{{ author.email }}">
           <img src="/images/icons/email.svg" alt="Email" class="icon-light icon-pad-right" style="height:36px;">
