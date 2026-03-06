@@ -39,7 +39,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
 
-* 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
+* 2025–2026, Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 
