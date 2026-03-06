@@ -28,7 +28,6 @@ excerpt: >
       </div>      
     </div>
   </div>
-  
 recent:
   - image_path: /Research/Dilatancy_DS.png
     alt: "Dilantancy during laboratory stick-slips (EGU25)"
