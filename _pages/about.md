@@ -23,30 +23,47 @@ recent_posts:
 </style>
 
 <div class="profile-columns">
-  <div class="profile-image">
-    <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 250px; border-radius: 50%;" >
+  <div class="profile-left">
+    <div class="profile-image">
+      <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 250px; border-radius: 50%;" >
+    </div>
     <div class="body-social-links">
-      <a href="mailto:shupeng.chai@connect.polyu.hk">
-        <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
+      {% if author.email %}
+        <a href="mailto:{{ author.email }}">
+          <img src="/images/icons/email.svg" alt="Email" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/email_d.svg" alt="Email" class="icon-dark icon-pad-right" style="height:36px;">
       </a>
-      <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">
-        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://orcid.org/0000-0003-3600-6132">
-        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.researchgate.net/profile/Shupeng-Chai">
-        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600">
-        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US">
-        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://spchai.github.io/files/CV_Shupeng Chai.pdf">
-        <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
-      </a>
+      {% endif %}
+      {% if author.googlescholar %}
+        <a href="{{ author.googlescholar }}">
+          <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/google-scholar_d.svg" alt="Google Scholar" class="icon-dark icon-pad-right" style="height:36px;">
+        </a>
+      {% endif %}
+      {% if author.orcid %}
+        <a href="{{ author.orcid }}">
+          <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/orcid_d.svg" alt="ORCID" class="icon-dark icon-pad-right" style="height:36px;">
+        </a>
+      {% endif %}
+      {% if author.researchgate %}
+        <a href="{{ author.researchgate }}">
+          <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/researchgate_d.svg" alt="ResearchGate" class="icon-dark icon-pad-right" style="height:36px;">
+        </a>
+      {% endif %}
+      {% if author.linkedin %}
+        <a href="https://www.linkedin.com/in/{{ author.linkedin }}">
+          <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/linkedin_d.svg" alt="LinkedIn" class="icon-dark icon-pad-right" style="height:36px;">
+        </a>
+      {% endif %}
+      {% if author.CV %}
+        <a href="{{ author.CV }}">
+          <img src="/images/icons/cv.svg" alt="CV" class="icon-light icon-pad-right" style="height:36px;">
+          <img src="/images/icons/cv_d.svg" alt="CV" class="icon-dark icon-pad-right" style="height:36px;">
+        </a>
+      {% endif %}
     </div>
   </div>
   <div class="profile-content">

@@ -353,9 +353,12 @@
   }
 }
 
-.profile-image {
+.profile-left {
   flex: 0 0 auto;
   
+}
+
+.profile-image {
   img {
     border: 2px solid #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
