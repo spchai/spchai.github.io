@@ -24,7 +24,7 @@ recent_posts:
 
   .scroll-indicator {
     position: fixed;
-    bottom: 2em;
+    bottom: 0.5em;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
@@ -44,20 +44,12 @@ recent_posts:
   }
   .scroll-indicator .icon-dark {
     display: block;
-    filter: drop-shadow(0 0 2px rgba(50, 50, 50, 0.6));
-  }
-  .scroll-indicator:hover .icon-dark {
-    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
   }
   html:not([data-theme="dark"]) .scroll-indicator .icon-light {
     display: block;
-    filter: drop-shadow(0 0 2px rgba(200, 200, 200, 0.8));
   }
   html:not([data-theme="dark"]) .scroll-indicator .icon-dark {
     display: none;
-  }
-  html:not([data-theme="dark"]) .scroll-indicator:hover .icon-light {
-    filter: drop-shadow(0 0 6px rgba(100, 100, 100, 1));
   }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -167,32 +159,26 @@ recent_posts:
   var indicator = document.querySelector('.scroll-indicator');
   if (!indicator) return;
   
-  // 点击事件
-  indicator.addEventListener('click', function(e) {
-    e.preventDefault();
+  // 点击事件 - 直接导航
+  indicator.addEventListener('click', function() {
     window.location.href = '/me/';
   });
   
-  // 滚轮事件 - 全局监听，简化触发条件
-  var wheelScrolling = false;
-  var wheelTimeout;
-  
-  window.addEventListener('wheel', function(e) {
-    if (e.deltaY > 100) { // 向下快速滚动
-      if (!wheelScrolling) {
-        wheelScrolling = true;
-        clearTimeout(wheelTimeout);
-        
-        wheelTimeout = setTimeout(function() {
-          window.location.href = '/me/';
-        }, 300);
+  // 滚轮事件 - 简化版本
+  var lastScroll = 0;
+  document.addEventListener('wheel', function(e) {
+    var now = Date.now();
+    if (now - lastScroll > 1000) { // 1秒内只触发一次
+      if (e.deltaY > 50) { // 向下滚动
+        lastScroll = now;
+        window.location.href = '/me/';
       }
     }
   });
   
-  // 也支持向下键
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.code === 'Space') {
+  // 键盘事件 - 向下键、空格、PageDown
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
       window.location.href = '/me/';
     }
   });
