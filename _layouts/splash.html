@@ -5,10 +5,10 @@ layout: default
 {% include base_path %}
 
 {% if page.bg_image %}
-  <div id="main" role="main" class="page__hero--main" style="background-image: linear-gradient(var(--overlay_filter_color), var(--overlay_filter_color)), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; min-height: 100vh; margin-top: 0; padding-top: 2em;">
-{% else %}
-  <div id="main" role="main">
+<div class="splash-bg" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background-image: linear-gradient(var(--overlay_filter_color), var(--overlay_filter_color)), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; z-index: -1; pointer-events: none;"></div>
 {% endif %}
+
+<div id="main" role="main">
   <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}   
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
