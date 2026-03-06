@@ -30,16 +30,17 @@ recent_posts:
     cursor: pointer;
     z-index: 100;
     animation: bounce 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  .scroll-indicator svg {
+  .scroll-indicator img {
     width: 24px;
     height: 24px;
-    stroke: rgba(255, 255, 255, 0.8);
-    stroke-width: 2;
-    fill: none;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
   }
-  .scroll-indicator:hover svg {
-    stroke: rgba(255, 255, 255, 1);
+  .scroll-indicator:hover img {
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 1));
   }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -139,10 +140,8 @@ recent_posts:
   {% endfor %}
 </div>
 
-<a href="/me/" class="scroll-indicator" title="Go to My Profile">
-  <svg viewBox="0 0 24 24">
-    <polyline points="6 9 12 15 18 9"></polyline>
-  </svg>
+<a href="/me/" class="scroll-indicator" title="About Me">
+  <img src="/images/icons/arrow-down.svg" alt="About Me">
 </a>
 
 <script>
