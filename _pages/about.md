@@ -16,11 +16,31 @@ recent_posts:
 <style>
   body {
     background: transparent;
-    padding-top: 0 !important;
     margin-bottom: 0 !important;
   }
   .page__footer {
     display: none;
+  }
+
+  .scroll-indicator {
+    position: fixed;
+    bottom: 3em;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 100;
+    animation: bounce 2s infinite;
+  }
+  .scroll-indicator svg {
+    width: 40px;
+    height: 40px;
+    stroke: white;
+    stroke-width: 2;
+    fill: none;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
   }
 </style>
 
@@ -115,6 +135,24 @@ recent_posts:
   {% endfor %}
 </div>
 
+<a href="/me/" class="scroll-indicator" title="Go to My Profile">
+  <svg viewBox="0 0 24 24">
+    <polyline points="6 9 12 15 18 9"></polyline>
+  </svg>
+</a>
+
+<script>
+  document.querySelector('.scroll-indicator').addEventListener('mousewheel', function(e) {
+    if(e.deltaY > 0) {
+      window.location.href = '/me/';
+    }
+  });
+  document.querySelector('.scroll-indicator').addEventListener('wheel', function(e) {
+    if(e.deltaY > 0) {
+      window.location.href = '/me/';
+    }
+  });
+</script>
 
 <!-- 
 header:
