@@ -5,8 +5,7 @@ layout: default
 {% include base_path %}
 
 {% if page.bg_image %}
-  {% capture bg_filter_style %}rgba(0, 0, 0, {{ page.bg_filter | default: 0.5 }}){% endcapture %}
-  <div id="main" role="main" style="background-image: linear-gradient({{ bg_filter_style }}, {{ bg_filter_style }}), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+  <div id="main" role="main" class="page__hero--main" style="background-image: linear-gradient(var(--overlay_filter_color), var(--overlay_filter_color)), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; min-height: 100vh; margin-top: 0; padding-top: 2em;">
 {% else %}
   <div id="main" role="main">
 {% endif %}
