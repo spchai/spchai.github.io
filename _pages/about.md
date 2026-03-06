@@ -36,24 +36,26 @@ recent_posts:
 
 <div class="grid__wrapper">
   {% for post_name in page.recent_posts %}
-    {% assign post = site.posts | where: "url", site.baseurl | where_exp: "p", "p.name contains post_name" | first %}
-    {% if post %}
-      <div class="archive__item">
-        {% if post.image_path %}
-          <div class="archive__item-teaser">
-            <a href="{{ post.permalink | prepend: base_path }}">
-              <img style="height:270px;object-fit:cover;" src="{{ post.image_path | prepend: '/images/' | prepend: base_path }}" alt="{{ post.covertitle }}">
-            </a>
+    {% for post in site.posts %}
+      {% if post.name contains post_name %}
+        <div class="archive__item">
+          {% if post.image_path %}
+            <div class="archive__item-teaser">
+              <a href="{{ post.url | prepend: base_path }}">
+                <img style="height:270px;object-fit:cover;" src="{{ post.image_path | prepend: '/images/' | prepend: base_path }}" alt="{{ post.covertitle }}">
+              </a>
+            </div>
+          {% endif %}
+          <div class="archive__item-body">
+            <h2 class="archive__item-title">
+              <a href="{{ post.url | prepend: base_path }}">{{ post.covertitle }}</a>
+            </h2>
+            <div class="archive__item-excerpt">{{ post.excerpt | markdownify | strip_html }}</div>
           </div>
-        {% endif %}
-        <div class="archive__item-body">
-          <h2 class="archive__item-title">
-            <a href="{{ post.permalink | prepend: base_path }}">{{ post.covertitle }}</a>
-          </h2>
-          <div class="archive__item-excerpt">{{ post.excerpt | markdownify | strip_html }}</div>
         </div>
-      </div>
-    {% endif %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
   {% endfor %}
 </div>
 
