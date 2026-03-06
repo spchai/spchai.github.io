@@ -16,6 +16,8 @@ recent_posts:
 <style>
   body {
     background: transparent;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   .page__footer {
     display: none;
