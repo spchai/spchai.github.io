@@ -33,18 +33,20 @@ recent_posts:
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--global-text-color);
   }
   .scroll-indicator img {
-    width: 24px;
-    height: 24px;
-    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+    width: 48px;
+    height: 48px;
+    filter: drop-shadow(0 0 2px var(--global-text-color));
+    transition: all 0.3s ease;
   }
   .scroll-indicator:hover img {
-    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 1));
+    filter: drop-shadow(0 0 6px var(--global-text-color));
   }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-5px); }
+    50% { transform: translateX(-50%) translateY(-8px); }
   }
 
 </style>
@@ -155,24 +157,30 @@ recent_posts:
     window.location.href = '/me/';
   });
   
-  // 滚轮事件 - 更可靠的方式
-  var scrollTimeout = null;
-  window.addEventListener('wheel', function(e) {
-    if (e.deltaY <= 0) return; // 只检测向下滚动
+  // 滚轮事件 - 修复版本
+  var lastWheelTime = 0;
+  document.addEventListener('wheel', function(e) {
+    var now = Date.now();
+    if (now - lastWheelTime < 500) return; // 防抖，0.5秒内只触发一次
     
-    // 清除之前的超时
-    if (scrollTimeout) clearTimeout(scrollTimeout);
-    
-    // 延迟执行，避免立即导航
-    scrollTimeout = setTimeout(function() {
-      window.location.href = '/me/';
-    }, 100);
-  }, {passive: true});
+    if (e.deltaY > 0) { // 向下滚动
+      var rect = indicator.getBoundingClientRect();
+      // 只在靠近屏幕底部100px内时触发
+      if (rect.top > window.innerHeight - 150 && rect.top < window.innerHeight) {
+        lastWheelTime = now;
+        window.location.href = '/me/';
+      }
+    }
+  });
   
-  // 也支持键盘 ArrowDown
-  window.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowDown') {
-      window.location.href = '/me/';
+  // 也支持空格/PageDown键
+  document.addEventListener('keydown', function(e) {
+    if (e.key === ' ' || e.key === 'PageDown') {
+      var rect = indicator.getBoundingClientRect();
+      if (rect.top > window.innerHeight - 150 && rect.top < window.innerHeight) {
+        e.preventDefault();
+        window.location.href = '/me/';
+      }
     }
   });
 })();
