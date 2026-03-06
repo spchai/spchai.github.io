@@ -39,11 +39,7 @@
       {% endcomment %}
       </h1>
       {% if page.excerpt %}
-        {% if page.header.fullscreen %}
-          <div class="page__lead page__lead--fullscreen">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</div>
-        {% else %}
-          <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
-        {% endif %}
+        <p class="page__lead">{{ page.excerpt | markdownify | remove: "<p>" | remove: "</p>" }}</p>
       {% endif %}
       {% if site.read_time and page.read_time %}
         <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
