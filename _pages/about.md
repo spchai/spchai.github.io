@@ -24,7 +24,7 @@ recent_posts:
 
   .scroll-indicator {
     position: fixed;
-    bottom: 3em;
+    bottom: 2em;
     left: 50%;
     transform: translateX(-50%);
     cursor: pointer;
@@ -32,16 +32,20 @@ recent_posts:
     animation: bounce 2s infinite;
   }
   .scroll-indicator svg {
-    width: 40px;
-    height: 40px;
-    stroke: white;
+    width: 24px;
+    height: 24px;
+    stroke: rgba(255, 255, 255, 0.8);
     stroke-width: 2;
     fill: none;
   }
+  .scroll-indicator:hover svg {
+    stroke: rgba(255, 255, 255, 1);
+  }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
+    50% { transform: translateX(-50%) translateY(-5px); }
   }
+
 </style>
 
 {% if page.author and site.data.authors[page.author] %}
@@ -142,15 +146,26 @@ recent_posts:
 </a>
 
 <script>
-  document.querySelector('.scroll-indicator').addEventListener('mousewheel', function(e) {
-    if(e.deltaY > 0) {
+  document.addEventListener('DOMContentLoaded', function() {
+    var indicator = document.querySelector('.scroll-indicator');
+    
+    // Click to navigate
+    indicator.addEventListener('click', function(e) {
+      e.preventDefault();
       window.location.href = '/me/';
-    }
-  });
-  document.querySelector('.scroll-indicator').addEventListener('wheel', function(e) {
-    if(e.deltaY > 0) {
-      window.location.href = '/me/';
-    }
+    });
+    
+    // Scroll wheel to navigate
+    document.addEventListener('wheel', function(e) {
+      if(e.deltaY > 0) {
+        var rect = indicator.getBoundingClientRect();
+        // Check if user is scrolling near the indicator area (bottom 150px of viewport)
+        if(rect.top < window.innerHeight && rect.top > window.innerHeight - 150) {
+          e.preventDefault();
+          window.location.href = '/me/';
+        }
+      }
+    }, {passive: false});
   });
 </script>
 
