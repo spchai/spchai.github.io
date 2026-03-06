@@ -33,16 +33,31 @@ recent_posts:
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--global-text-color);
   }
   .scroll-indicator img {
     width: 48px;
     height: 48px;
-    filter: drop-shadow(0 0 2px var(--global-text-color));
     transition: all 0.3s ease;
   }
-  .scroll-indicator:hover img {
-    filter: drop-shadow(0 0 6px var(--global-text-color));
+  .scroll-indicator .icon-light {
+    display: none;
+  }
+  .scroll-indicator .icon-dark {
+    display: block;
+    filter: drop-shadow(0 0 2px rgba(50, 50, 50, 0.6));
+  }
+  .scroll-indicator:hover .icon-dark {
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.8));
+  }
+  html:not([data-theme="dark"]) .scroll-indicator .icon-light {
+    display: block;
+    filter: drop-shadow(0 0 2px rgba(200, 200, 200, 0.8));
+  }
+  html:not([data-theme="dark"]) .scroll-indicator .icon-dark {
+    display: none;
+  }
+  html:not([data-theme="dark"]) .scroll-indicator:hover .icon-light {
+    filter: drop-shadow(0 0 6px rgba(100, 100, 100, 1));
   }
   @keyframes bounce {
     0%, 100% { transform: translateX(-50%) translateY(0); }
@@ -143,7 +158,8 @@ recent_posts:
 </div>
 
 <a href="/me/" class="scroll-indicator" title="About Me">
-  <img src="/images/icons/arrow-down.svg" alt="About Me">
+  <img src="/images/icons/arrow-down.svg" alt="About Me" class="icon-light">
+  <img src="/images/icons/arrow-down_d.svg" alt="About Me" class="icon-dark">
 </a>
 
 <script>
@@ -157,30 +173,27 @@ recent_posts:
     window.location.href = '/me/';
   });
   
-  // 滚轮事件 - 修复版本
-  var lastWheelTime = 0;
-  document.addEventListener('wheel', function(e) {
-    var now = Date.now();
-    if (now - lastWheelTime < 500) return; // 防抖，0.5秒内只触发一次
-    
-    if (e.deltaY > 0) { // 向下滚动
-      var rect = indicator.getBoundingClientRect();
-      // 只在靠近屏幕底部100px内时触发
-      if (rect.top > window.innerHeight - 150 && rect.top < window.innerHeight) {
-        lastWheelTime = now;
-        window.location.href = '/me/';
+  // 滚轮事件 - 全局监听，简化触发条件
+  var wheelScrolling = false;
+  var wheelTimeout;
+  
+  window.addEventListener('wheel', function(e) {
+    if (e.deltaY > 100) { // 向下快速滚动
+      if (!wheelScrolling) {
+        wheelScrolling = true;
+        clearTimeout(wheelTimeout);
+        
+        wheelTimeout = setTimeout(function() {
+          window.location.href = '/me/';
+        }, 300);
       }
     }
   });
   
-  // 也支持空格/PageDown键
-  document.addEventListener('keydown', function(e) {
-    if (e.key === ' ' || e.key === 'PageDown') {
-      var rect = indicator.getBoundingClientRect();
-      if (rect.top > window.innerHeight - 150 && rect.top < window.innerHeight) {
-        e.preventDefault();
-        window.location.href = '/me/';
-      }
+  // 也支持向下键
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.code === 'Space') {
+      window.location.href = '/me/';
     }
   });
 })();
