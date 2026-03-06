@@ -21,7 +21,15 @@ recent_posts:
   .page__footer {
     display: none;
   }
-
+  .masthead__menu-item {
+    background: transparent;
+  }  
+  .greedy-nav {
+    background: transparent;
+  }
+  .masthead {
+    background: transparent;
+  }  
   .scroll-indicator {
     position: fixed;
     bottom: 0.5em;
@@ -38,6 +46,7 @@ recent_posts:
     width: 48px;
     height: 48px;
     transition: all 0.3s ease;
+    border-radius: 50%
   }
   .scroll-indicator .icon-light {
     display: none;
