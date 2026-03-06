@@ -194,26 +194,19 @@
   }
 
   &--fullscreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
+    position: relative;
     margin-bottom: 0;
     padding: 0;
     height: 100vh;
     min-height: 100vh;
-    max-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    background-attachment: fixed;
     animation: intro 0.3s both;
     animation-delay: 0.25s;
-    z-index: 0;
 
     a {
       color: #fff;
@@ -225,8 +218,6 @@
       text-align: center;
       width: 100%;
       max-width: 100%;
-      position: relative;
-      z-index: 1;
 
       @include breakpoint($x-large) {
         max-width: 90%;
@@ -252,7 +243,7 @@
 }
 
 .page__hero-arrow {
-  position: fixed;
+  position: absolute;
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
@@ -263,7 +254,7 @@
   height: 50px;
   cursor: pointer;
   animation: bounce 2s infinite;
-  z-index: 20;
+  z-index: 10;
 
   &:hover {
     .page__hero-arrow-icon {
