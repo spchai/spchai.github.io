@@ -6,12 +6,9 @@ layout: default
 
 {% if page.bg_image %}
 <div class="splash-bg" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; background-image: linear-gradient(var(--overlay_filter_color), var(--overlay_filter_color)), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed; z-index: -1; pointer-events: none;"></div>
-
-<div id="main" role="main" class="has-bg-image">
-{% else %}
+{% endif %}
 
 <div id="main" role="main">
-{% endif %}
   <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}   
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
