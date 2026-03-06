@@ -8,7 +8,8 @@ layout: default
   {% include page__hero.html %}
 {% endif %}
 
-<div id="main" role="main"{% if page.header.fullscreen %} class="main--fullscreen-hero"{% endif %}>
+{% if page.header.fullscreen != true %}
+<div id="main" role="main">
   <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}   
     {% if page.excerpt %}<meta itemprop="description" content="{{ page.excerpt | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -20,3 +21,4 @@ layout: default
     </section>
   </article>
 </div>
+{% endif %}

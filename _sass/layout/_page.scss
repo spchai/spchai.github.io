@@ -14,12 +14,6 @@
   @include breakpoint($x-large) {
     max-width: $x-large;
   }
-
-  &.main--fullscreen-hero {
-    margin-top: 100vh;
-    position: relative;
-    z-index: 10;
-  }
 }
 
 .page {
@@ -219,8 +213,7 @@
     background-attachment: fixed;
     animation: intro 0.3s both;
     animation-delay: 0.25s;
-    z-index: 1;
-    pointer-events: none;
+    z-index: 0;
 
     a {
       color: #fff;
@@ -233,8 +226,7 @@
       width: 100%;
       max-width: 100%;
       position: relative;
-      z-index: 2;
-      pointer-events: auto;
+      z-index: 1;
 
       @include breakpoint($x-large) {
         max-width: 90%;
@@ -261,7 +253,7 @@
 
 .page__hero-arrow {
   position: fixed;
-  bottom: calc(100vh + 30px);
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -271,7 +263,7 @@
   height: 50px;
   cursor: pointer;
   animation: bounce 2s infinite;
-  z-index: 15;
+  z-index: 20;
 
   &:hover {
     .page__hero-arrow-icon {
