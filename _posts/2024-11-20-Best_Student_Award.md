@@ -4,6 +4,7 @@ covertitle: IGS24 Best Student Award
 date: 2024-11-20
 permalink: /posts/2024/Best_Student_Award/
 image_path: /Awards/2024-11-20-Best_Student_Award.png
+recent_path: /Awards/2024-11-20-02 Awarding_Best_Student_Award.jpg
 tags:
   - "Group: Award"
   - "Group: Research"  

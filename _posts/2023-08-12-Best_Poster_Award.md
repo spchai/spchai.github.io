@@ -4,6 +4,7 @@ covertitle: Best Poster Award
 date: 2023-08-12
 permalink: /posts/2023/Best_Poster_Award/
 image_path: /Awards/2023-08-12-Best_Poster_Award.jpg
+recent_path: /Awards/2023-08-12-Awarding_Best_Poster_Award.png
 tags:
   - "Group: Award"
   - "Topic: Stick-slip"

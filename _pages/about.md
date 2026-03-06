@@ -42,10 +42,11 @@ recent_posts:
         {% unless found %}
           {% assign found = true %}
           <div class="archive__item">
-            {% if post.image_path %}
+            {% assign img_path = post.recent_path | default: post.image_path %}
+            {% if img_path %}
               <div class="archive__item-teaser">
                 <a href="{{ post.url | prepend: base_path }}">
-                  <img style="height:270px;object-fit:cover;" src="{{ post.image_path | prepend: '/images/' | prepend: base_path }}" alt="{{ post.covertitle }}">
+                  <img style="height:270px;object-fit:cover;" src="{{ img_path | prepend: '/images/' | prepend: base_path }}" alt="{{ post.covertitle }}">
                 </a>
               </div>
             {% endif %}
