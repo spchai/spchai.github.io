@@ -4,22 +4,11 @@ layout: default
 
 {% include base_path %}
 
-{% if page.header.fullscreen_bg %}
-  {% capture overlay_filter %}{{ page.header.overlay_filter }}{% endcapture %}
-  {% if page.header.overlay_filter contains "rgba" %}
-    {% capture overlay_filter_style %}{{ page.header.overlay_filter }}{% endcapture %}
-  {% elsif page.header.overlay_filter %}
-    {% capture overlay_filter_style %}rgba(0, 0, 0, {{ page.header.overlay_filter }}){% endcapture %}
-  {% endif %}
-  <div id="main" role="main" style="background-image: {% if overlay_filter_style %}linear-gradient({{ overlay_filter_style }}, {{ overlay_filter_style }}), {% endif %}url('{{ page.header.overlay_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
-    {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-      {% include page__hero.html %}
-    {% endif %}
+{% if page.bg_image %}
+  {% capture bg_filter_style %}rgba(0, 0, 0, {{ page.bg_filter | default: 0.5 }}){% endcapture %}
+  <div id="main" role="main" style="background-image: linear-gradient({{ bg_filter_style }}, {{ bg_filter_style }}), url('{{ page.bg_image }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
 {% else %}
   <div id="main" role="main">
-    {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
-      {% include page__hero.html %}
-    {% endif %}
 {% endif %}
   <article class="splash" itemscope itemtype="http://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}   

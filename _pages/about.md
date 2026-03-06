@@ -4,11 +4,8 @@ permalink: /
 hidden: true
 redirect_from: 
   - /home
-header:
-  overlay_color: "#5e616c"
-  overlay_image: "https://spchai.github.io/images/home-page.jpg"
-  overlay_filter: true
-  fullscreen_bg: true
+bg_image: "https://spchai.github.io/images/home-page.jpg"
+bg_filter: 0.5
 recent_posts:
   - 2025-04-27-Conference-Chai_et_al_EGU25
   - 2024-11-20-Best_Student_Award
