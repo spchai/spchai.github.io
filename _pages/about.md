@@ -150,8 +150,8 @@ recent_posts:
 </div>
 
 <a href="/me/" class="scroll-indicator" title="About Me">
-  <img src="/images/icons/arrow-down.svg" alt="About Me" class="icon-light">
-  <img src="/images/icons/arrow-down_d.svg" alt="About Me" class="icon-dark">
+  <img src="/images/icons/arrow-down_d.svg" alt="About Me" class="icon-light">
+  <img src="/images/icons/arrow-down.svg" alt="About Me" class="icon-dark">
 </a>
 
 <script>
@@ -184,33 +184,3 @@ recent_posts:
   });
 })();
 </script>
-
-<!-- 
-header:
-  overlay_color: "#5e616c"
-  overlay_image: "https://spchai.github.io/images/home-page.jpg"
-
-<br />      
-    <div class="body-social-links">
-      <a href="mailto:shupeng.chai@connect.polyu.hk">
-        <img src="/images/icons/email.svg" alt="Email" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">
-        <img src="/images/icons/google-scholar.svg" alt="Google Scholar" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://orcid.org/0000-0003-3600-6132">
-        <img src="/images/icons/orcid.svg" alt="ORCID" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.researchgate.net/profile/Shupeng-Chai">
-        <img src="/images/icons/researchgate.svg" alt="ResearchGate" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.scopus.com/authid/detail.uri?authorId=57908582600">
-        <img src="/images/icons/scopus.svg" alt="Scopus" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://www.linkedin.com/in/chaishupeng/?locale=en_US">
-        <img src="/images/icons/linkedin.svg" alt="LinkedIn" class="icon-pad-right" style="height:32px;">
-      </a>
-      <a href="https://spchai.github.io/files/CV_Shupeng Chai.pdf">
-        <img src="/images/icons/cv.svg" alt="CV" class="icon-pad-right" style="height:32px;">
-      </a>
-    </div> -->
