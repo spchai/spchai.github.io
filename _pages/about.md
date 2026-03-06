@@ -8,8 +8,6 @@ header:
   overlay_color: "#5e616c"
   overlay_image: "https://spchai.github.io/images/home-page.jpg"
   overlay_filter: true
-  fullscreen: true
-  arrow_url: "/me/"
 excerpt: >
   <div class="profile-columns">
     <div class="profile-image">
@@ -47,58 +45,7 @@ recent:
     url: "https://spchai.github.io/posts/2023/Best_Poster_Award/"
 ---
 
-{% include base_path %}
-
-{% if include.id %}
-  {% assign recent = page.[include.id] %}
-{% else %}
-  {% assign recent = page.recent %}
-{% endif %}
-
-<div class="grid__wrapper">
-  {% for f in recent %}
-
-    {% if f.url contains "://" %}
-      {% capture f_url %}{{ f.url }}{% endcapture %}
-    {% else %}
-      {% capture f_url %}{{ f.url | prepend: base_path }}{% endcapture %}
-    {% endif %}
-
-    <div class="archive__item">
-      {% if f.image_path %}
-        <div class="archive__item-teaser">
-          <a href="{{ f_url }}">
-            <img 
-              style="height:270px;object-fit:cover;" 
-              src=
-              {% if f.image_path contains "://" %}
-                "{{ f.image_path }}"
-              {% else %}
-                "{{ f.image_path | prepend: "/images/" | prepend: base_path }}"
-              {% endif %}
-            alt="{% if f.alt %}{{ f.alt }}{% endif %}">
-          </a>
-        </div>
-      {% endif %}
-
-      <div class="archive__item-body">
-        {% if f.title %}
-          <h2 class="archive__item-title"><a href="{{ f_url }}">{{ f.title }}</a></h2>
-        {% endif %}
-
-        {% if f.excerpt %}
-          <div class="archive__item-excerpt">
-            {{ f.excerpt | markdownify }}
-          </div>
-        {% endif %}
-
-        <!-- {% if f.url %}
-          <p><a href="{{ f_url }}" class="btn {{ f.btn_class }}">{{ f.btn_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
-        {% endif %}  -->
-      </div>
-    </div>
-  {% endfor %}
-</div>
+{% include recent %}
 
 
 <!-- 

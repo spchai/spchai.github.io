@@ -24,11 +24,11 @@
   {% capture overlay_filter %}rgba(0, 0, 0, {{ page.header.overlay_filter }}){% endcapture %}
 {% endif %}
 
-<div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}{% if page.header.fullscreen %} page__hero--fullscreen{% endif %}"
+<div class="page__hero{% if page.header.overlay_color or page.header.overlay_image %}--overlay{% endif %}"
   style="{% if page.header.overlay_color %}background-color: {{ page.header.overlay_color | default: 'transparent' }};{% endif %} {% if overlay_img_path %}background-image: {% if overlay_filter %}linear-gradient(var(--overlay_filter_color), var(--overlay_filter_color)), {% endif %}url('{{ overlay_img_path }}');{% endif %}"
 >
   {% if page.header.overlay_color or page.header.overlay_image %}
-    <div class="wrapper{% if page.header.fullscreen %} hero-wrapper--centered{% endif %}">
+    <div class="wrapper">
       {% comment %}<!--  
       <h1 class="page__title" itemprop="headline">
         {% if paginator %}
@@ -48,14 +48,6 @@
         <p><a href="{{ cta_path }}" class="btn btn--light-outline btn--large">{{ page.header.cta_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}</a></p>
       {% endif %}
     </div>
-    
-    {% if page.header.fullscreen and page.header.arrow_url %}
-      <a href="{{ page.header.arrow_url }}" class="page__hero-arrow" title="Scroll down or click to continue">
-        <svg class="page__hero-arrow-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
-          <path d="M7 10l5 5 5-5z"/>
-        </svg>
-      </a>
-    {% endif %}
   {% else %}
     <img src="{{ img_path }}" alt="{{ page.title }}" class="page__hero-image">
   {% endif %}
