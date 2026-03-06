@@ -146,27 +146,37 @@ recent_posts:
 </a>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var indicator = document.querySelector('.scroll-indicator');
-    
-    // Click to navigate
-    indicator.addEventListener('click', function(e) {
-      e.preventDefault();
-      window.location.href = '/me/';
-    });
-    
-    // Scroll wheel to navigate
-    document.addEventListener('wheel', function(e) {
-      if(e.deltaY > 0) {
-        var rect = indicator.getBoundingClientRect();
-        // Check if user is scrolling near the indicator area (bottom 150px of viewport)
-        if(rect.top < window.innerHeight && rect.top > window.innerHeight - 150) {
-          e.preventDefault();
-          window.location.href = '/me/';
-        }
-      }
-    }, {passive: false});
+(function() {
+  var indicator = document.querySelector('.scroll-indicator');
+  if (!indicator) return;
+  
+  // 点击事件
+  indicator.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.location.href = '/me/';
   });
+  
+  // 滚轮事件 - 更可靠的方式
+  var scrollTimeout = null;
+  window.addEventListener('wheel', function(e) {
+    if (e.deltaY <= 0) return; // 只检测向下滚动
+    
+    // 清除之前的超时
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    
+    // 延迟执行，避免立即导航
+    scrollTimeout = setTimeout(function() {
+      window.location.href = '/me/';
+    }, 100);
+  }, {passive: true});
+  
+  // 也支持键盘 ArrowDown
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown') {
+      window.location.href = '/me/';
+    }
+  });
+})();
 </script>
 
 <!-- 
