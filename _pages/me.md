@@ -39,7 +39,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 * 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
 
-* 2025–2026 (expected), Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
+* 2025–2026, Visiting PhD student, [Nanyang Technological University](https://www.ntu.edu.sg/)
 
 * 2018–2020, MASc in Mineral Engineering, [University of Montreal (Polytechnique Montréal)](https://www.umontreal.ca/en/)
 
@@ -62,11 +62,11 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _Submitted to Geophysical Research Letters_.
 
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). Unveiling Stress Heterogeneity in Seismic Slip: A Review of Fault Shear Experiments. _Submitted to RMRE_.
+
 1. **Chai S**, Dal Zilio L, Hatzor Y H, Xia K, Zhao Q (2026). Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted to Geophysical Research Letters_.
 
 1. **Chai S**, Zhao Q (2026). Interplay between fault geometric roughness and mechanical properties in governing sliding instability. _To be submitted to Earth and Planetary Science Letters_.
-
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). Unveiling Stress Heterogeneity in Seismic Slip: A Review of Fault Shear Experiments. _To be submitted to RMRE_.
 
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults. _To be submitted_.
 
