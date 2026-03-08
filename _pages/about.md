@@ -6,7 +6,7 @@ redirect_from:
   - /home
 bg_image: "https://spchai.github.io/images/home-page.jpg"
 recent_posts:
-  - 2025-04-27-Conference-Chai_et_al_EGU25
+  - 2025-11-29-Paper-Chai_et_al_IJRMMS
   - 2024-11-20-Best_Student_Award
   - 2023-08-12-Best_Poster_Award
 ---
