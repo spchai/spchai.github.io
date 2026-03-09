@@ -336,6 +336,40 @@
   }
 }
 
+.author-social-links-homepage {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(30px, 1fr));
+  justify-items: center;
+  margin-left: auto;   
+  margin-right: auto;
+  padding-bottom: 1em;
+  width: 80%;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1px;
+  }
+
+  img {
+    height: 32px;      
+    width: auto;       
+    object-fit: contain; 
+  }
+
+  p {
+    font-size: .875rem;
+    line-height: 1rem;
+    font-weight: 600;
+    color: inherit;
+  }
+
+  i {
+    font-size: 32px; // 或 32px、40px，根据需要调整
+  }
+}
 
 /* 标签筛选器样式 */
 .filter-header {

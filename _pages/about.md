@@ -76,7 +76,7 @@ recent_posts:
     <div class="profile-image">
       <img src="/images/Shupeng.jpg" alt="Shupeng CHAI" style="max-width: 250px; border-radius: 50%;" >
     </div>
-    <div class="author-social-links-desktop">
+    <div class="author-social-links-homepage">
       {% if author.email %}
         <a href="mailto:{{ author.email }}">
           <img src="/images/icons/email.svg" alt="Email" class="icon-light icon-pad-right" style="height:36px;">
