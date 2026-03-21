@@ -32,8 +32,10 @@ research:
     children:
       - title: "In lab setups"
         url: /research/#in-lab-setups
+      - title: "Sliding stability"
+        url: /research/#sliding-stability
       - title: "Dilatancy patterns"
-        url: /research/#dilatancy-patterns
+        url: /research/#dilatancy-patterns        
       - title: "Staged rupture"
         url: /research/#staged-rupture
   - title: "Planetary science"
