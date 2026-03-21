@@ -1,7 +1,7 @@
 ---
 title: "Stress heterogeneity in ten laboratory shear configurations"
 excerpt: |
-  Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Instead, the average stress on rock joints was usually taken as an indicator. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors. We found that (1) Stress heterogeneity is quantified in numerical simulations and compared among eight types of laboratory shear tests. (2) More pronounced stress heterogeneity occurs in direct shear configurations than in inclined and rotary shear ones. (3) Configuration-related stress heterogeneity controls the rupture dynamics and damage patterns on planar laboratory faults.
+  Stress heterogeneity on rock discontinuities is critical in shear friction evolution and earthquake nucleation, whereas the local stress distribution has seldom been applied for shear analyses in laboratory shear tests. Thus, we investigated stress conditions on rock discontinuities in various laboratory shear tests numerically to account for the influence of stress heterogeneity on shear behaviors. We found that (1) Stress heterogeneity is quantified in numerical simulations and compared among eight types of laboratory shear tests. (2) More pronounced stress heterogeneity occurs in direct shear configurations than in inclined and rotary shear ones. (3) Configuration-related stress heterogeneity controls the rupture dynamics and damage patterns on planar laboratory faults.
 image_path: "/Research/RS_Stress_Cover.png"
 anchor: "in-lab-setups"
 collection: Research
@@ -45,7 +45,7 @@ The results indicated that stress heterogeneity generally exists in all laborato
 
 ### Related paper:
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q. Stress heterogeneity across faults during laboratory earthquakes.
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
 
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
 

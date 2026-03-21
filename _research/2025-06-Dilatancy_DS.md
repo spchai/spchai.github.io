@@ -20,4 +20,4 @@ In the stick phases, dilatancy behavior inferred from the asperity contacts agre
 
 ### Related paper:
 
-1. **Chai S**, Su B, Zou Y, Zhao Q. Fault roughness and contact evolution control the dilatancy and compaction during shear sliding.
+1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _Submitted to Geophysical Research Letters_.
