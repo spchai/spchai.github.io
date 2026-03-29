@@ -16,7 +16,7 @@ redirect_from:
     display: flex;
     justify-content: space-between;
     align-items: baseline;  
-    border-bottom: transparent;  
+    border-bottom: 1px solid #eee;  
   }
   .section-header-flex .right-link {
     font-size: 0.85em; 
@@ -25,7 +25,9 @@ redirect_from:
   }
 </style>
 
-# Overview
+<div class="section-header-flex">
+  <h1 id="Overview">Overview</h1>
+</div>
 
 Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong Kong Polytechnic University](https://www.polyu.edu.hk/). I am currently focusing on the **influences of fault roughness on rupture dynamics and stick-slip behavior** through integrated **laboratory experiments** and **numerical simulations**. My interdisciplinary academic foundation spanning geotechnical engineering, mining engineering, and geophysics, and two years of experience in university-level teaching bring a unique perspective to my research. 
 
@@ -43,7 +45,9 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 <br>
 
-# Education
+<div class="section-header-flex">
+  <h1 id="Education">Education</h1>
+</div>
 
 2023–2026 (expected), PhD in Geotechnical Engineering, [Hong Kong Polytechnic University](https://www.polyu.edu.hk/)
 
@@ -55,7 +59,9 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 <br>
 
-#  Professional Experience
+<div class="section-header-flex">
+  <h1 id="Professional Experience">Professional Experience</h1>
+</div>
 
 2024–Present, Teaching Assistant, The Hong Kong Polytechnic University
 
@@ -73,7 +79,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
   </span>
 </div>
 
-## (To be) Submitted
+_**(To be) Submitted**_
 
 1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _Submitted to Geophysical Research Letters_.
 
@@ -86,7 +92,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults. _To be submitted_.
 
 
-## Published
+_**Published**_
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
 
 1. **Chai S**, Zheng J*, and Li L (2023) Kink effect on the stress distribution in 2D backfilled stopes. _Geotechnical and Geological Engineering_. https://doi.org/10.1007/s10706-023-02434-4 ([Link](https://doi.org/10.1007/s10706-023-02434-4)).
@@ -114,7 +120,9 @@ Teaching
   {% endfor %}</ul>-->
 <br>
 
-# Honors & Awards
+<div class="section-header-flex">
+  <h1 id="Honors & Awards">Honors & Awards</h1>
+</div>
 
 * 11/2024: [Best Student Presentation Award](https://spchai.github.io/posts/2024/Best_Student_Award/) at the 2024 International Geomechanics Conference held on 18 – 20 November in Kuala Lumpur, Malaysia
 
