@@ -17,7 +17,6 @@ redirect_from:
     justify-content: space-between;
     align-items: baseline;  
     border-bottom: transparent;  
-    margin-bottom: 20px;
   }
   .section-header-flex .right-link {
     font-size: 0.85em; 
