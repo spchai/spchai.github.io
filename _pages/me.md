@@ -21,7 +21,7 @@ redirect_from:
   .section-header-flex .right-link {
     font-size: 0.85em; 
     font-weight: normal;
-    color: #666;
+    color: var(--global-base-color);
   }
 </style>
 
