@@ -12,19 +12,15 @@ redirect_from:
 {% include base_path %}
 
 <style>
-  #main p {
-    line-height: 1.5; 
-    margin-bottom: 1.3em; 
-  }
   .section-header-flex {
     display: flex;
     justify-content: space-between;
     align-items: baseline;  
-    border-bottom: 1px solid #eee;  
+    border-bottom: transparent;  
     margin-bottom: 20px;
   }
   .section-header-flex .right-link {
-    font-size: 0.6em; 
+    font-size: 0.85em; 
     font-weight: normal;
     color: #666;
   }
@@ -74,7 +70,7 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 <div class="section-header-flex">
   <h1 id="selected-publications" style="margin: 0; border: none;">Selected Publications</h1>
   <span class="right-link">
-    (See <a href="{{ base_path }}/publications/">full list</a> or via <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">Google Scholar</a>)
+    (See <a href="{{ base_path }}/publications/">full list</a> or via <a href="https://scholar.google.com/citations?hl=en&user=xyXuDXUAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a>)
   </span>
 </div>
 

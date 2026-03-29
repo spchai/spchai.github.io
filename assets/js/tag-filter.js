@@ -19,7 +19,6 @@
         return;
       }
       
-      // 深度清洗标签：解决 YAML 解析出的空格、换行符问题
       const postTags = (article.getAttribute('data-tags') || "")
         .split('|')
         .map(normalizeTag)
@@ -33,7 +32,6 @@
       article.style.display = isMatch ? 'block' : 'none';
     });
 
-    // 更新年份显示和计数
     sections.forEach(sec => {
       const items = Array.from(sec.querySelectorAll('.archive__item'));
       const visibleCount = items.filter(i => i.style.display !== 'none').length;
@@ -43,7 +41,6 @@
         const title = sec.querySelector('.archive__subtitle');
         if (title) {
           const year = sec.getAttribute('data-year');
-          // 仅更新括号内的数字，保留 ID 结构
           title.innerHTML = year +  ' <span style="font-size: 0.8em; opacity: 0.7;">(' +   visibleCount +   ')</span>';
         }
       } else {
@@ -52,7 +49,6 @@
     });
   }
 
-  // 监听点击：使用委托模式解决 AcademicPages 侧边栏重绘问题
   document.addEventListener('click', function(e) {
     const node = e.target.nodeType === 3 ? e.target.parentElement : e.target;
     const target = node.closest('.tag-value');
@@ -79,7 +75,6 @@
     }
   }, true);
 
-  // 状态守护：AcademicPages 切换主题时会清除 selected 类名，这里补回来
   setInterval(() => {
     if (selectedTags.size > 0) {
       document.querySelectorAll('.tag-value').forEach(el => {
