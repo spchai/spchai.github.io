@@ -3,6 +3,7 @@ title: 'MASc thesis on mining backfill'
 covertitle: MASc thesis
 date: 2020-05-20
 permalink: /posts/2022/MASc_Thesis/
+image_path: /Papers/2020_MasterThesis.png
 tags:
   - "Group: Experience"
   - "Topic: Backfill"

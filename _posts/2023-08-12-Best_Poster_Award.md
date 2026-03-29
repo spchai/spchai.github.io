@@ -36,7 +36,7 @@ Won **Best Poster Award** for the poster presentation entitled **Stress analyses
 Rock discontinuities including joints, fractures, faults, and bedding are dominant in determining the mechanical and hydraulic properties of rock mass[1-2]. Numerous laboratory experiments were performed in various apparatuses to investigate shear sliding on rock joints. However, the stress distribution on joint surfaces before and after shearing have seldom been specified clearly, which can significantly influence the accuracy of obtained shear properties. In this study, shearing on smooth rock joints in laboratory tests is simulated numerically to investigate the stress distribution.
 
 <div style="text-align: center;">
-  <img src='/images/Conferences/Chai2023_ARMAEastAsiaPoster.jpg' style="width: 100%;" />
+  <img src='/images/Conferences/2023_Chai_ARMAEastAsiaPoster.jpg' style="width: 100%;" />
   <p style="font-size: smaller">Poster</p>
 </div>
 

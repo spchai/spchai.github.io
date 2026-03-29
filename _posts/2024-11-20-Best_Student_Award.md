@@ -36,8 +36,8 @@ Won **Best Student Award** for the oral presentation entitled **New insights int
 </div>  
 
 <div style="text-align: center;line-height: 1.5;"> 
-  <a class="image-popup" href = '/images/Conferences/Chai2024_IGS.jpg'>
-    <img src='/images/Conferences/Chai2024_IGS.jpg' style="width: 80%;" />  
+  <a class="image-popup" href = '/images/Conferences/2024_Chai_IGS.jpg'>
+    <img src='/images/Conferences/2024_Chai_IGS.jpg' style="width: 80%;" />  
   </a>
   <p style="font-size: smaller">Presenting</p>
 </div>

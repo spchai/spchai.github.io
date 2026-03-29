@@ -11,11 +11,24 @@ redirect_from:
 
 {% include base_path %}
 
-<!-- 
-<div style="text-align: right">
-  <a href="https://spchai.github.io/files/CV_Shupeng Chai.pdf">Download CV</a>
-</div>
--->
+<style>
+  #main p {
+    line-height: 1.5; 
+    margin-bottom: 1.3em; 
+  }
+  .section-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;  
+    border-bottom: 1px solid #eee;  
+    margin-bottom: 20px;
+  }
+  .section-header-flex .right-link {
+    font-size: 0.6em; 
+    font-weight: normal;
+    color: #666;
+  }
+</style>
 
 # Overview
 
@@ -55,8 +68,15 @@ Hi, I'm Shupeng Chai. I am a PhD candidate in geotechnical engineering at [Hong 
 
 <br>
 
-# Selected Publications 
-(See [full list](https://spchai.github.io/publications/) or via [Google scholar](https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en))
+<!-- # Selected Publications 
+(See [full list](https://spchai.github.io/publications/) or via [Google scholar](https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en))-->
+
+<div class="section-header-flex">
+  <h1 id="selected-publications" style="margin: 0; border: none;">Selected Publications</h1>
+  <span class="right-link">
+    (See <a href="{{ base_path }}/publications/">full list</a> or via <a href="https://scholar.google.com/citations?user=xyXuDXUAAAAJ&hl=en">Google Scholar</a>)
+  </span>
+</div>
 
 ## (To be) Submitted
 
