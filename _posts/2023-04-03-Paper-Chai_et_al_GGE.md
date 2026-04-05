@@ -3,7 +3,7 @@ title: 'Paper: Kink effect on the stress distribution in 2D backfilled stopes'
 covertitle: Stress kink in backfill
 date: 2023-04-03
 permalink: /posts/2023/Chai_GGE/
-image_path: /Papers/2023_Chai_GGE.png
+image_path: /Research/2023_Chai_GGE.png
 tags:
   - "Group: Research"
   - "Topic: Backfill"

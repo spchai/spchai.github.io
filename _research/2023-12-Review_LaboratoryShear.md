@@ -16,6 +16,65 @@ Numerous laboratory shear tests have been conducted on rock discontinuities usin
 
 The results indicated that stress heterogeneity generally exists in all laboratory shear tests, and the local stress on the central portion of flat laboratory faults is almost uniform. More pronounced stress heterogeneity occurs in direct shear than in inclined and rotary shear configurations. The estimated average apparent friction coefficient across the shear interface was slightly higher than the dynamic friction coefficient of the material set in the numerical simulations but lower than the static friction coefficient. Calibrations of fault friction obtained from laboratory shear tests were suggested to eliminate the effects of other potential influencing forces such as equipment friction and jacket restraint. Moreover, the local shear stress significantly decreased as the rupture front propagated through, or in the following slip phase, during individual stick-slip cycles, resulting in a more uniform stress distribution in the slip phase than in the stick phase. 
 
+<div class="page__video">
+  <iframe 
+    width="100%" 
+    height="400" 
+    src="https://www.youtube.com/embed/Cdc-YdUDSjg?rel=0&vq=hd1080" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div style="text-align: center;line-height: 1.5;">
+  <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the direct shear (DS) test</p>
+</div>  
+
+<div class="page__video">
+  <iframe 
+    width="100%" 
+    height="400" 
+    src="https://www.youtube.com/embed/sI9OmvxYLNk?rel=0&vq=hd1080" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div style="text-align: center;line-height: 1.5;">
+  <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the triaxial shear (TS) test</p>
+</div>  
+
+<div class="page__video">
+  <iframe 
+    width="100%" 
+    height="400" 
+    src="https://www.youtube.com/embed/VbIXs3BnX04?rel=0&vq=hd1080" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
+
+<div style="text-align: center;line-height: 1.5;">
+  <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the rotary shear (RS) test</p>
+</div>  
+
+<br/>
+
+### Related paper:
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
+
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
+
+
+<!-- <div class="page__image">
+  <a class="image-popup" href = '/images/Research/RS_Stress.png'>
+    <img src='/images/Research/RS_Stress.png' style="width: 80%;" />  
+  </a>
+</div>  
 
 <video controls class="page__video">
   <source src="/images/Research/Review_DS.mp4" type="video/mp4">
@@ -40,18 +99,4 @@ The results indicated that stress heterogeneity generally exists in all laborato
 <div style="text-align: center;line-height: 1.5;">
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the rotary shear (RS) test</p>
 </div>  
-
-<br/>
-
-### Related paper:
-
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
-
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
-
-
-<!-- <div class="page__image">
-  <a class="image-popup" href = '/images/Research/RS_Stress.png'>
-    <img src='/images/Research/RS_Stress.png' style="width: 80%;" />  
-  </a>
-</div>   -->
+ -->
