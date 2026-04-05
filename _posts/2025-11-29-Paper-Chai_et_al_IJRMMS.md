@@ -4,7 +4,7 @@ covertitle: Lab fault heterogeneity
 date: 2025-11-29
 permalink: /posts/2025/Chai_et_al_IJRMMS/
 image_path: /Research/202511_IJRMMS_Stress_heterogeneity.jpg
-recent_path: /Research/202511_IJRMMS.jpg
+recent_path: /Research/202511_IJRMMS.png
 tags:
   - "Group: Research"
   - "Topic: Stick-slip"
@@ -23,10 +23,8 @@ New paper in _IJRMMS_. Numerical insights on the edge-related stress heterogenei
 ## Abstract
 Laboratory shear tests are widely used to investigate the evolution of first and second-order frictional behavior and rupture nucleation on rock discontinuities. Average stress across the sample, instead of spatial stress distributions, is typically assumed in analysis. We provide a thorough numerical investigation of eight common laboratory shear test configurations, considering a linear velocity-weakening friction law on a planar sliding surface, to quantify the temporal and spatial nonuniformity of stress both before shear and during stick-slip cycles. Our results indicate that non-uniform stress distribution resulting from the test configuration exists in all laboratory shear tests, with stress concentration occurring at the edges of the shear plane, while the stress in the central portion of laboratory faults remains almost uniform. Stress heterogeneity is more pronounced in direct shear than in inclined and rotary shear configurations. During stick-slip cycles, the local shear stress significantly dropped as the rupture front propagated through, resulting in a more uniform stress distribution in the slip phase than in the stick phase. Stress concentration near the sample edge governs the rupture process and the resulting localization of damage. These findings highlight the importance of considering stress heterogeneity in laboratory investigations of damage evaluation on rock discontinuities. We suggest that test configuration-related stress heterogeneity should be distinguished from surface roughness-induced stress heterogeneity, and utilizing average stress may lead to misinterpretation of the rupture dynamics and damage patterns. Our results provide a guide on quantitative analysis of the shear behavior of rock discontinuities, considering stress heterogeneity in laboratory experiments.
 
-<div class="page__video">
+<div class="video-container">
   <iframe 
-    width="100%" 
-    height="400" 
     src="https://www.youtube.com/embed/Cdc-YdUDSjg?rel=0&vq=hd1080" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -38,10 +36,8 @@ Laboratory shear tests are widely used to investigate the evolution of first and
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the direct shear (DS) test</p>
 </div>  
 
-<div class="page__video">
-  <iframe 
-    width="100%" 
-    height="400" 
+<div class="video-container">
+  <iframe  
     src="https://www.youtube.com/embed/sI9OmvxYLNk?rel=0&vq=hd1080" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -53,10 +49,8 @@ Laboratory shear tests are widely used to investigate the evolution of first and
   <p style="font-size: smaller">Variations of shear stress and friction angles during a stick-slip cycle in the triaxial shear (TS) test</p>
 </div>  
 
-<div class="page__video">
+<div class="video-container">
   <iframe 
-    width="100%" 
-    height="400" 
     src="https://www.youtube.com/embed/VbIXs3BnX04?rel=0&vq=hd1080" 
     frameborder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
