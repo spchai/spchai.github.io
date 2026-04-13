@@ -11,10 +11,18 @@ In the stick phases, dilatancy behavior inferred from the asperity contacts agre
 <div class="page__image">
   <img src='/images/Research/Dilatancy_DS.png' />  
 </div>  
-[Video, Click here to view via OneDrive](https://connectpolyu-my.sharepoint.com/:v:/g/personal/22124299r_connect_polyu_hk/EatUICLWpnRAsOfxRaNewvkBGh6phe_aO6eSG5fgFNZEkQ)
+
+<div class="video-container">
+  <iframe 
+    src="https://www.youtube.com/embed/MZiP9cbB2UE?rel=0&vq=hd1080" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 <div style="text-align: center;line-height: 1.5;">
-  <p style="font-size: smaller">Contact evolution in GS02</p>
+  <p style="font-size: smaller">Contact evolution in GS02 (<a href="https://connectpolyu-my.sharepoint.com/:v:/g/personal/22124299r_connect_polyu_hk/EatUICLWpnRAsOfxRaNewvkBGh6phe_aO6eSG5fgFNZEkQ" target="_blank" style="color: #2a7ae2;">View via OneDrive</a>)</p>
 </div>  
 
 

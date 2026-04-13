@@ -18,9 +18,20 @@ We observed staged friction/stress drop during the slip phases of stick-slip cyc
 
 <br/>
 
+<!--
 <video controls class="page__video">
   <source src="/images/Research/SH_rupture_R5.mp4" type="video/mp4">
-</video>
+</video> -->
+
+<div class="video-container">
+  <iframe 
+    src="https://www.youtube.com/embed/9j5noQ_uLlA?rel=0&vq=hd1080" 
+    style="width: 100%; aspect-ratio: 4 / 3; height: auto; border: none;"
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen>
+  </iframe>
+</div>
 
 <div style="text-align: center;line-height: 1.5;">
   <p style="font-size: smaller">Variation of local shear slip in the slip phase of a stick-slip event</p>
@@ -30,4 +41,4 @@ We observed staged friction/stress drop during the slip phases of stick-slip cyc
 
 ### Related paper:
 
-In preparation
+1. **Chai S**, Dal Zilio L, Hatzor Y H, Xia K, Zhao Q (2026). Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted to Geophysical Research Letters_.
