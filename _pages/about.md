@@ -6,9 +6,9 @@ redirect_from:
   - /home
 bg_image: "https://spchai.github.io/images/home-page.jpg"
 recent_posts:
+  - 2026-06-09-Paper-Chai_et_al_RMRE
   - 2025-11-29-Paper-Chai_et_al_IJRMMS
   - 2024-11-20-Best_Student_Award
-  - 2023-08-12-Best_Poster_Award
 ---
 
 {% include base_path %}

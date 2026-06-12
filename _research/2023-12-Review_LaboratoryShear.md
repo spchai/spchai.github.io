@@ -59,7 +59,7 @@ The results indicated that stress heterogeneity generally exists in all laborato
 
 ### Related paper:
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) The role of stress heterogeneity in seismic slip revealed through experiments on laboratory faults. _Rock Mechanics and Rock Engineering_ https://doi.org/10.1007/s00603-026-05663-0. ([Link](https://doi.org/10.1007/s00603-026-05663-0)).
 
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
 

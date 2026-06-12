@@ -15,7 +15,7 @@ redirect_from:
 
 ## (To be) Submitted
 
-1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _Submitted to Geophysical Research Letters_.
+1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _To be Submitted to Journal of Geophysical Research: solid Earth_.
 
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
 
@@ -26,6 +26,8 @@ redirect_from:
 1. **Chai S**, Zou Y, Zhang C, Chen G, Zhao Q. Possible seismicity and location inferred from lunar crater landslides and tectonic faults. _To be submitted_.
 
 ## Published
+1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026) The role of stress heterogeneity in seismic slip revealed through experiments on laboratory faults. _Rock Mechanics and Rock Engineering_ https://doi.org/10.1007/s00603-026-05663-0. ([Link](https://doi.org/10.1007/s00603-026-05663-0)).
+
 1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor YH, Zhao Q (2026). Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations. _International Journal of Rock Mechanics and Mining Sciences_ 197:106358. https://doi.org/10.1016/j.ijrmms.2025.106358. ([Link](https://doi.org/10.1016/j.ijrmms.2025.106358)).
 
 1. Liu S, Wu B, Krasilnikov S, Zhu J, Chen Z, **Chai S**, Zhao Q, Li Y, Michalski J (2025). Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting. _Scientific Reports_. 15(1): 25555. https://doi.org/10.1038/s41598-025-11171-y. ([Link](https://doi.org/10.1038/s41598-025-11171-y)).
