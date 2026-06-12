@@ -1,6 +1,6 @@
 ---
 title: 'New paper on stress heterogeneity on laboratory faults: Review'
-covertitle: Review on fault heterogeneity
+covertitle: Lab fault heterogeneity
 date: 2026-06-09
 permalink: /posts/2026/Chai_et_al_RMRE/
 image_path: /Research/202606_RMRE_Stress_heterogeneity.jpg
