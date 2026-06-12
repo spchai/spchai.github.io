@@ -17,8 +17,6 @@ redirect_from:
 
 1. **Chai S**, Su B, Zou Y, Dal Zilio L, Hatzor Y H, Zhao Q (2026). Fault roughness and contact evolution control the dilatancy and compaction during shear sliding. _To be Submitted to Journal of Geophysical Research: solid Earth_.
 
-1. **Chai S**, Zou Y, Wu H, Akbariforouz M, Su B, Grasselli G, Elsworth D, Hatzor Y H, Zhao Q (2026). The Role of Stress Heterogeneity in Seismic Slip Revealed through Experiments on Laboratory Faults. _Submitted to Rock Mechanics and Rock Engineering_.
-
 1. **Chai S**, Dal Zilio L, Hatzor Y H, Xia K, Zhao Q (2026). Staged coseismic behavior governed by heterogeneous stress concentrations. _To be submitted to Geophysical Research Letters_.
 
 1. **Chai S**, Zhao Q (2026). Interplay between fault geometric roughness and mechanical properties in governing sliding instability. _To be submitted to Earth and Planetary Science Letters_.
