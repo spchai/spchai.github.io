@@ -1,6 +1,6 @@
 ---
 title: 'New paper on stress heterogeneity on laboratory faults: Numerical insights'
-covertitle: Lab fault heterogeneity
+covertitle: Fault stress heterogeneity
 date: 2025-11-29
 permalink: /posts/2025/Chai_et_al_IJRMMS/
 image_path: /Research/202511_IJRMMS_Stress_heterogeneity.jpg
