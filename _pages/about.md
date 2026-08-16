@@ -118,7 +118,7 @@ recent_posts:
   <div class="profile-content">
     <h1 class="page__title" itemprop="headline"> Shupeng CHAI (柴术鹏) </h1>
     <div class="page__subtitle">
-      PhD candidate at the Hong Kong Polytechnic University <br /> 
+      PhD, the Hong Kong Polytechnic University <br /> 
     </div>
     <br /> 
     <div class="archive__item-body">
