@@ -13,6 +13,15 @@ redirect_from:
 
 <style>
   .pubs-page {
+    --pub-bg: var(--global-bg-color, #fff);
+    --pub-panel-bg: var(--global-bg-color, #fff);
+    --pub-border: var(--global-border-color, #e2e2e2);
+    --pub-text: var(--global-text-color, #2d2d2d);
+    --pub-text-light: var(--global-text-color-light, #888);
+    --pub-accent: var(--global-link-color, #c0876f);
+    --pub-accent-soft: color-mix(in srgb, var(--pub-accent) 18%, transparent);
+    --pub-muted-bg: var(--button-bg-color, #f0f0f0);
+
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -21,6 +30,7 @@ redirect_from:
     margin-left: 0;
     padding-left: 0;
     max-width: 1400px;
+    color: var(--pub-text);
   }
 
   .pubs-sidebar {
@@ -28,8 +38,8 @@ redirect_from:
     flex-shrink: 0;
     margin-left: 0;
     order: -1;
-    background: #fff;
-    border: 1px solid #e2e2e2;
+    background: var(--pub-panel-bg);
+    border: 1px solid var(--pub-border);
     border-radius: 10px;
     padding: 18px 16px;
     position: sticky;
@@ -40,13 +50,13 @@ redirect_from:
   .pubs-main {
     flex: 1;
     min-width: 0;
-    max-width: 760px;
+    max-width: 900px;
     margin-left: 0;
   }
 
   .filter-section {
-    background: #fff;
-    border: 1px solid #e2e2e2;
+    background: var(--pub-panel-bg);
+    border: 1px solid var(--pub-border);
     border-radius: 10px;
     padding: 16px 14px;
     margin-bottom: 18px;
@@ -54,12 +64,13 @@ redirect_from:
 
   .filter-section h3 {
     font-size: .8rem;
+    line-height: 1.2;
     text-transform: uppercase;
     letter-spacing: .08em;
-    color: #888;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #e2e2e2;
+    color: var(--pub-text-light);
+    margin: 0 0 10px;
+    padding: 0 0 6px;
+    border-bottom: 1px solid var(--pub-border);
   }
 
   .filter-section label {
@@ -71,9 +82,9 @@ redirect_from:
     font-size: .93rem;
   }
 
-  .filter-section label:hover { color: #c0876f; }
+  .filter-section label:hover { color: var(--pub-accent); }
   .filter-section input[type="checkbox"] {
-    accent-color: #c0876f;
+    accent-color: var(--pub-accent);
     width: 16px;
     height: 16px;
   }
@@ -96,11 +107,11 @@ redirect_from:
 
   .filter-section .year-input span { color: #888; font-size: .85rem; }
   .count-badge {
-    background: #f0f0f0;
+    background: var(--pub-muted-bg);
     border-radius: 10px;
     padding: 1px 7px;
     font-size: .78rem;
-    color: #888;
+    color: var(--pub-text-light);
     margin-left: auto;
   }
   .show-all-btn,
@@ -109,16 +120,16 @@ redirect_from:
     width: 100%;
     padding: 10px;
     margin-top: 4px;
-    background: #f0f0f0;
-    border: 1px solid #e2e2e2;
+    background: var(--pub-muted-bg);
+    border: 1px solid var(--pub-border);
     border-radius: 8px;
     cursor: pointer;
     font-size: .88rem;
-    color: #888;
+    color: var(--pub-text-light);
     transition: all .2s;
   }
   .show-all-btn:hover,
-  .reset-btn:hover { border-color: #c0876f; color: #c0876f; background: #fff; }
+  .reset-btn:hover { border-color: var(--pub-accent); color: var(--pub-accent); background: var(--pub-panel-bg); }
 
   .pubs-main .page-header {
     margin-bottom: 24px;
@@ -129,28 +140,28 @@ redirect_from:
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 6px;
-    color: #1a1a2e;
+    color: var(--global-text-color, #1a1a2e);
   }
   .pubs-main .subtitle {
-    color: #888;
+    color: var(--pub-text-light);
     font-size: .95rem;
     margin: 0;
   }
   .result-count {
     font-size: .88rem;
-    color: #888;
+    color: var(--pub-text-light);
     margin-bottom: 20px;
   }
   .no-results {
     text-align: center;
     padding: 60px 20px;
-    color: #888;
+    color: var(--pub-text-light);
     font-size: 1.05rem;
   }
 
   .pub-card {
-    background: #fff;
-    border: 1px solid #e2e2e2;
+    background: var(--pub-panel-bg);
+    border: 1px solid var(--pub-border);
     border-radius: 10px;
     padding: 22px 26px;
     margin-bottom: 18px;
@@ -160,7 +171,7 @@ redirect_from:
   .pub-title {
     font-size: 1.08rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: var(--global-text-color, #1a1a2e);
     line-height: 1.5;
     margin-bottom: 10px;
   }
@@ -169,20 +180,22 @@ redirect_from:
     text-decoration: none;
     transition: color .2s;
   }
-  .pub-title a:hover { color: #c0876f; }
+  .pub-title a:hover { color: var(--pub-accent); }
   .pub-authors {
     font-size: .95rem;
     margin-bottom: 8px;
     line-height: 1.55;
+    color: var(--global-text-color, #2d2d2d);
   }
-  .pub-authors .first-author {
-    color: #c0876f;
+  .pub-authors .first-author,
+  .pub-author-self {
+    color: var(--pub-accent);
     font-weight: 600;
   }
   .pub-meta {
     font-size: .9rem;
     font-style: italic;
-    color: #2d2d2d;
+    color: var(--global-text-color, #2d2d2d);
     margin-bottom: 6px;
   }
   .pub-tags {
@@ -195,9 +208,9 @@ redirect_from:
     font-size: .78rem;
     padding: 3px 10px;
     border-radius: 12px;
-    background: #f0f0f0;
-    color: #888;
-    border: 1px solid #e2e2e2;
+    background: var(--pub-muted-bg);
+    color: var(--pub-text-light);
+    border: 1px solid var(--pub-border);
   }
   .pub-tag.tag-dataset { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
   .pub-tag.tag-unpublished { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
@@ -212,15 +225,15 @@ redirect_from:
     gap: 5px;
     padding: 5px 14px;
     font-size: .82rem;
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--pub-border);
     border-radius: 6px;
-    background: #fff;
-    color: #2d2d2d;
+    background: var(--pub-panel-bg);
+    color: var(--global-text-color, #2d2d2d);
     cursor: pointer;
     text-decoration: none;
     transition: all .2s;
   }
-  .pub-btn:hover { border-color: #c0876f; color: #c0876f; }
+  .pub-btn:hover { border-color: var(--pub-accent); color: var(--pub-accent); }
   .pub-btn .icon { font-size: 1rem; }
 
   .modal-overlay {
@@ -302,7 +315,7 @@ redirect_from:
     </div>
     <div class="filter-section">
       <h3>First Author</h3>
-      <label><input type="checkbox" id="firstAuthorOnly"> First-author papers</label>
+      <label><input type="checkbox" id="firstAuthorOnly"> First-author publications</label>
     </div>
     <button class="show-all-btn" onclick="showAllPublications()">Show all</button>
     <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
@@ -375,7 +388,8 @@ function processAndRender() {
   Object.keys(typeMap).forEach(cat => {
     if (!typeCounts[cat]) return;
     const label = document.createElement('label');
-    label.innerHTML = `<input type="checkbox" data-type="${cat}" checked> ${typeMap[cat]} <span class="count-badge">${typeCounts[cat]}</span>`;
+    const isDefaultChecked = cat === 'Journal';
+    label.innerHTML = `<input type="checkbox" data-type="${cat}" ${isDefaultChecked ? 'checked' : ''}> ${typeMap[cat]} <span class="count-badge">${typeCounts[cat]}</span>`;
     typeFiltersDiv.appendChild(label);
   });
 
@@ -393,6 +407,10 @@ function processAndRender() {
 document.addEventListener('DOMContentLoaded', () => {
   const firstOnlyBox = document.getElementById('firstAuthorOnly');
   if (firstOnlyBox) firstOnlyBox.checked = true;
+  const typeCheckboxes = document.querySelectorAll('#typeFilters input');
+  typeCheckboxes.forEach(box => {
+    box.checked = (box.dataset.type === 'Journal');
+  });
   loadData();
 });
 
@@ -517,18 +535,24 @@ function render() {
   }
 
   pubListDiv.innerHTML = filtered.map((e, i) => {
-    let authorsHtml = '';
-    if (e.isFirst) {
-      const parts = e.authors.split(', ');
-      parts[0] = `<span class="first-author">${parts[0]}</span>`;
-      authorsHtml = parts.join(', ');
-    } else {
-      authorsHtml = e.authors;
+    let authorsHtml = e.authors;
+    if (e.authors) {
+      authorsHtml = e.authors.replace(/Shupeng Chai/g, '<span class="pub-author-self">Shupeng Chai</span>');
+      if (e.isFirst) {
+        const parts = e.authors.split(', ');
+        parts[0] = `<span class="first-author">${parts[0]}</span>`;
+        authorsHtml = parts.join(', ');
+      }
     }
 
-    let tagsHtml = `<span class="pub-tag">${e.category}</span>`;
-    if (e.category === 'Dataset') tagsHtml += '<span class="pub-tag tag-dataset">Dataset</span>';
-    if (e.category === 'Unpublished') tagsHtml += '<span class="pub-tag tag-unpublished">Unpublished</span>';
+    let tagsHtml = '';
+    if (e.category === 'Dataset') {
+      tagsHtml = '<span class="pub-tag tag-dataset">Dataset</span>';
+    } else if (e.category === 'Unpublished') {
+      tagsHtml = '<span class="pub-tag tag-unpublished">Unpublished</span>';
+    } else {
+      tagsHtml = `<span class="pub-tag">${e.category}</span>`;
+    }
     if (e.isFirst) tagsHtml += '<span class="pub-tag">First Author</span>';
 
     const venueParts = [];
@@ -585,7 +609,7 @@ function copyBibtex() {
 }
 
 function resetFilters() {
-  typeFiltersDiv.querySelectorAll('input').forEach(i => i.checked = true);
+  typeFiltersDiv.querySelectorAll('input').forEach(i => i.checked = (i.dataset.type === 'Journal'));
   document.getElementById('yearFrom').value = '';
   document.getElementById('yearTo').value = '';
   document.getElementById('firstAuthorOnly').checked = true;

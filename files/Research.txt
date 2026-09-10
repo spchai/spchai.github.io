@@ -82,7 +82,7 @@
 }
 
 @unpublished{RN1525,
-   author = {Chai, Shupeng and Qi, Zhao},
+   author = {Chai, Shupeng and Zhao, Qi},
    title = {Interplay between fault geometric roughness and mechanical properties in governing sliding instability},
    booktitle = {To be submitted to Earth and Planetary Science Letters},
    year = {2026},
