@@ -2,11 +2,11 @@
 layout: archive
 title: "Publications"
 titleshow: false
-permalink: /publications/
+permalink: /pubs/
 author_profile: false
 toc: true
 redirect_from:
-  - /publications
+  - /pubs
 ---
 
 {% include base_path %}

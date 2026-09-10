@@ -2,11 +2,11 @@
 layout: splash
 title: "Publications"
 titleshow: false
-permalink: /pubs/
+permalink: /publications/
 author_profile: false
 toc: false
 redirect_from:
-  - /pubs
+  - /publication
 ---
 
 {% include base_path %}
@@ -205,9 +205,9 @@ redirect_from:
   }
   .pub-tags {
     display: flex;
+    align-items: center;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 10px;
   }
   .pub-tag {
     font-size: .78rem;
@@ -221,9 +221,21 @@ redirect_from:
   .pub-tag.tag-unpublished { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
   .pub-actions {
     display: flex;
+    align-items: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 8px;
+  }
+  .pub-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .pub-info-separator {
+    color: var(--pub-text-light);
+    font-size: .82rem;
+    line-height: 1;
   }
   .pub-btn {
     display: inline-flex;
@@ -580,8 +592,11 @@ function render() {
         </div>
         <div class="pub-authors">${authorsHtml}</div>
         ${metaLine ? `<div class="pub-meta">${metaLine}</div>` : ''}
-        <div class="pub-tags">${tagsHtml}</div>
-        <div class="pub-actions">${actionsHtml}</div>
+        <div class="pub-info-row">
+          <div class="pub-tags">${tagsHtml}</div>
+          <span class="pub-info-separator" aria-hidden="true">|</span>
+          <div class="pub-actions">${actionsHtml}</div>
+        </div>
       </div>
     `;
   }).join('');
