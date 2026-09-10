@@ -393,22 +393,29 @@
 }
 
 .filter-section {
-  background: var(--filter-panel-bg);
+  background: transparent;
   border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 16px 14px;
+  border-radius: 0;
+  padding: 0;
   margin-top: 0.5rem;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  box-shadow: none;
 }
 
 .tag-filter-container {
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 .tag-group {
   margin-bottom: 16px;
-  padding: 0;
-  border-radius: 0;
+  padding: 16px 14px;
+  background: var(--filter-panel-bg);
+  border: 1px solid var(--filter-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.tag-group:last-child {
+  margin-bottom: 0;
 }
 
 .tag-group h4 {
