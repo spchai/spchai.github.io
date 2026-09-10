@@ -27,6 +27,7 @@ redirect_from:
     width: 340px;
     flex-shrink: 0;
     margin-left: 0;
+    order: -1;
     background: #fff;
     border: 1px solid #e2e2e2;
     border-radius: 10px;
@@ -102,6 +103,7 @@ redirect_from:
     color: #888;
     margin-left: auto;
   }
+  .show-all-btn,
   .reset-btn {
     display: block;
     width: 100%;
@@ -115,6 +117,7 @@ redirect_from:
     color: #888;
     transition: all .2s;
   }
+  .show-all-btn:hover,
   .reset-btn:hover { border-color: #c0876f; color: #c0876f; background: #fff; }
 
   .pubs-main .page-header {
@@ -284,15 +287,6 @@ redirect_from:
 </style>
 
 <div class="pubs-page">
-  <div class="pubs-main">
-    <div class="page-header">
-      <h1>Publications</h1>
-      <p class="subtitle">Shupeng CHAI — Academic Publications &amp; Datasets</p>
-    </div>
-    <div class="result-count" id="resultCount"></div>
-    <div id="pubList"></div>
-  </div>
-
   <aside class="pubs-sidebar">
     <div class="filter-section">
       <h3>Publication Type</h3>
@@ -310,8 +304,17 @@ redirect_from:
       <h3>First Author</h3>
       <label><input type="checkbox" id="firstAuthorOnly"> First-author papers</label>
     </div>
+    <button class="show-all-btn" onclick="showAllPublications()">Show all</button>
     <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
   </aside>
+
+  <div class="pubs-main">
+    <div class="page-header">
+      <h1>Publications</h1>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+    <div id="pubList"></div>
+  </div>
 </div>
 
 <div class="modal-overlay" id="bibtexModal">
@@ -387,7 +390,11 @@ function processAndRender() {
   render();
 }
 
-document.addEventListener('DOMContentLoaded', loadData);
+document.addEventListener('DOMContentLoaded', () => {
+  const firstOnlyBox = document.getElementById('firstAuthorOnly');
+  if (firstOnlyBox) firstOnlyBox.checked = true;
+  loadData();
+});
 
 function parseBibtex(raw) {
   const entries = [];
@@ -578,6 +585,14 @@ function copyBibtex() {
 }
 
 function resetFilters() {
+  typeFiltersDiv.querySelectorAll('input').forEach(i => i.checked = true);
+  document.getElementById('yearFrom').value = '';
+  document.getElementById('yearTo').value = '';
+  document.getElementById('firstAuthorOnly').checked = true;
+  render();
+}
+
+function showAllPublications() {
   typeFiltersDiv.querySelectorAll('input').forEach(i => i.checked = true);
   document.getElementById('yearFrom').value = '';
   document.getElementById('yearTo').value = '';
