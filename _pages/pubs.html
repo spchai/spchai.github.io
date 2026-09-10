@@ -4,7 +4,7 @@ title: "Publications"
 titleshow: false
 permalink: /pubs/
 author_profile: false
-toc: true
+toc: false
 redirect_from:
   - /pubs
 ---
@@ -326,11 +326,12 @@ async function loadData() {
   document.getElementById('resultCount').textContent = '';
 
   try {
-    const resp = await fetch('Research.txt?t=' + Date.now());
+    const researchUrl = '{{ "/Research.txt" | relative_url }}?t=' + Date.now();
+    const resp = await fetch(researchUrl);
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     rawBibtex = await resp.text();
   } catch (err) {
-    pubListDiv.innerHTML = `<div class="no-results">❌ Cannot load <code>Research.txt</code><br><small>${err.message}</small></div>`;
+    pubListDiv.innerHTML = `<div class="no-results">❌ Cannot load \`Research.txt\` ${err.message}</div>`;
     return;
   }
 
