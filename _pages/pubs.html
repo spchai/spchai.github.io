@@ -1,0 +1,579 @@
+---
+layout: archive
+title: "Publications"
+titleshow: false
+permalink: /pubs/
+author_profile: false
+toc: true
+redirect_from:
+  - /pubs
+---
+
+{% include base_path %}
+
+<style>
+  .pubs-page {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    margin-top: 1rem;
+  }
+
+  .pubs-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 18px 16px;
+    position: sticky;
+    top: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  }
+
+  .pubs-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .filter-section {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 16px 14px;
+    margin-bottom: 18px;
+  }
+
+  .filter-section h3 {
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #888;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e2e2;
+  }
+
+  .filter-section label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    cursor: pointer;
+    font-size: .93rem;
+  }
+
+  .filter-section label:hover { color: #c0876f; }
+  .filter-section input[type="checkbox"] {
+    accent-color: #c0876f;
+    width: 16px;
+    height: 16px;
+  }
+
+  .filter-section .year-input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .filter-section .year-input input {
+    width: 70px;
+    padding: 6px 8px;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    font-size: .9rem;
+    text-align: center;
+  }
+
+  .filter-section .year-input span { color: #888; font-size: .85rem; }
+  .count-badge {
+    background: #f0f0f0;
+    border-radius: 10px;
+    padding: 1px 7px;
+    font-size: .78rem;
+    color: #888;
+    margin-left: auto;
+  }
+  .reset-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    background: #f0f0f0;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .88rem;
+    color: #888;
+    transition: all .2s;
+  }
+  .reset-btn:hover { border-color: #c0876f; color: #c0876f; background: #fff; }
+
+  .pubs-main .page-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e2e2e2;
+  }
+  .pubs-main .page-header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: #1a1a2e;
+  }
+  .pubs-main .subtitle {
+    color: #888;
+    font-size: .95rem;
+    margin: 0;
+  }
+  .result-count {
+    font-size: .88rem;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    font-size: 1.05rem;
+  }
+
+  .pub-card {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 18px;
+    transition: box-shadow .25s;
+  }
+  .pub-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .pub-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .pub-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .pub-title a:hover { color: #c0876f; }
+  .pub-authors {
+    font-size: .95rem;
+    margin-bottom: 8px;
+    line-height: 1.55;
+  }
+  .pub-authors .first-author {
+    color: #c0876f;
+    font-weight: 600;
+  }
+  .pub-meta {
+    font-size: .9rem;
+    font-style: italic;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+  }
+  .pub-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .pub-tag {
+    font-size: .78rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: #f0f0f0;
+    color: #888;
+    border: 1px solid #e2e2e2;
+  }
+  .pub-tag.tag-dataset { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+  .pub-tag.tag-unpublished { background: #fff3e0; color: #e65100; border-color: #ffcc80; }
+  .pub-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 14px;
+    font-size: .82rem;
+    border: 1px solid #e2e2e2;
+    border-radius: 6px;
+    background: #fff;
+    color: #2d2d2d;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .pub-btn:hover { border-color: #c0876f; color: #c0876f; }
+  .pub-btn .icon { font-size: 1rem; }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 28px;
+    max-width: 680px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-box h3 { margin-bottom: 14px; font-size: 1.1rem; }
+  .modal-box pre {
+    background: #f8f8f8;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: .85rem;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 18px;
+    background: none; border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #888;
+  }
+  .modal-copy {
+    margin-top: 12px;
+    padding: 8px 18px;
+    background: #c0876f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: .88rem;
+  }
+
+  @media (max-width: 900px) {
+    .pubs-page {
+      display: block;
+    }
+    .pubs-sidebar {
+      width: 100%;
+      position: static;
+      margin-bottom: 18px;
+    }
+    .filter-section { margin-bottom: 12px; }
+  }
+</style>
+
+<div class="pubs-page">
+  <aside class="pubs-sidebar">
+    <div class="filter-section">
+      <h3>Publication Type</h3>
+      <div id="typeFilters"></div>
+    </div>
+    <div class="filter-section">
+      <h3>Year</h3>
+      <div class="year-input">
+        <input type="number" id="yearFrom" placeholder="From" min="2018" max="2030">
+        <span>–</span>
+        <input type="number" id="yearTo" placeholder="To" min="2018" max="2030">
+      </div>
+    </div>
+    <div class="filter-section">
+      <h3>First Author</h3>
+      <label><input type="checkbox" id="firstAuthorOnly"> First-author papers</label>
+    </div>
+    <button class="reset-btn" onclick="resetFilters()">Reset All Filters</button>
+  </aside>
+
+  <div class="pubs-main">
+    <div class="page-header">
+      <h1>Publications</h1>
+      <p class="subtitle">Shupeng CHAI — Academic Publications &amp; Datasets</p>
+    </div>
+    <div class="result-count" id="resultCount"></div>
+    <div id="pubList"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="bibtexModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <h3 id="modalTitle">BibTeX</h3>
+    <pre id="modalContent"></pre>
+    <button class="modal-copy" onclick="copyBibtex()">📋 Copy to Clipboard</button>
+  </div>
+</div>
+
+<script>
+let allEntries = [];
+let rawBibtex = '';
+
+async function loadData() {
+  const pubListDiv = document.getElementById('pubList');
+  pubListDiv.innerHTML = '<div class="no-results">⏳ Loading publications...</div>';
+  document.getElementById('resultCount').textContent = '';
+
+  try {
+    const resp = await fetch('Research.txt?t=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    rawBibtex = await resp.text();
+  } catch (err) {
+    pubListDiv.innerHTML = `<div class="no-results">❌ Cannot load <code>Research.txt</code><br><small>${err.message}</small></div>`;
+    return;
+  }
+
+  processAndRender();
+}
+
+function processAndRender() {
+  const typeFiltersDiv = document.getElementById('typeFilters');
+
+  allEntries = parseBibtex(rawBibtex).map(e => {
+    const cat = classifyType(e);
+    return {
+      ...e,
+      category: cat,
+      title: e.fields.title || 'Untitled',
+      authors: formatAuthors(e.fields.author),
+      year: parseInt(e.fields.year) || null,
+      venue: buildVenue(e.fields, e.type),
+      isFirst: isFirstAuthor(e.fields),
+      doi: e.fields.doi || null,
+      url: e.fields.url || (e.fields.doi ? `https://doi.org/${e.fields.doi}` : null),
+      bibtex: buildBibtexString(e)
+    };
+  }).sort((a, b) => (b.year || 0) - (a.year || 0));
+
+  typeFiltersDiv.innerHTML = '';
+  const typeCounts = {};
+  allEntries.forEach(e => {
+    typeCounts[e.category] = (typeCounts[e.category] || 0) + 1;
+  });
+  Object.keys(typeMap).forEach(cat => {
+    if (!typeCounts[cat]) return;
+    const label = document.createElement('label');
+    label.innerHTML = `<input type="checkbox" data-type="${cat}" checked> ${typeMap[cat]} <span class="count-badge">${typeCounts[cat]}</span>`;
+    typeFiltersDiv.appendChild(label);
+  });
+
+  typeFiltersDiv.addEventListener('change', render);
+  document.getElementById('yearFrom').addEventListener('input', render);
+  document.getElementById('yearTo').addEventListener('input', render);
+  document.getElementById('firstAuthorOnly').addEventListener('change', render);
+  document.getElementById('bibtexModal').addEventListener('click', e => {
+    if (e.target === document.getElementById('bibtexModal')) closeModal();
+  });
+
+  render();
+}
+
+document.addEventListener('DOMContentLoaded', loadData);
+
+function parseBibtex(raw) {
+  const entries = [];
+  const regex = /@(\w+)\{([^,]*),\s*([\s\S]*?)\n\}/g;
+  let m;
+  while ((m = regex.exec(raw)) !== null) {
+    const type = m[1];
+    const key = m[2].trim();
+    const body = m[3];
+    const fields = {};
+    const fieldRegex = /(\w+)\s*=\s*\{((?:[^{}]|\{[^{}]*\})*)\}/g;
+    let fm;
+    while ((fm = fieldRegex.exec(body)) !== null) {
+      fields[fm[1].toLowerCase()] = fm[2].trim();
+    }
+    const fieldRegex2 = /(\w+)\s*=\s*([^\s,{][^\s,]*)/g;
+    while ((fm = fieldRegex2.exec(body)) !== null) {
+      if (!fields[fm[1].toLowerCase()]) {
+        fields[fm[1].toLowerCase()] = fm[2].trim();
+      }
+    }
+    entries.push({ type, key, fields });
+  }
+  return entries;
+}
+
+function formatAuthors(authorStr) {
+  if (!authorStr) return '';
+  return authorStr.split(' and ').map(a => {
+    const parts = a.split(',').map(s => s.trim());
+    return parts.length >= 2 ? `${parts[1]} ${parts[0]}` : a.trim();
+  }).join(', ');
+}
+
+function isFirstAuthor(fields) {
+  if (!fields.author) return false;
+  const first = fields.author.split(' and ')[0].trim().toLowerCase();
+  return first.includes('chai');
+}
+
+function isDataset(entry) {
+  const t = (entry.fields.title || '').toLowerCase();
+  return t.includes('dataset') || (entry.fields.journal || '').toLowerCase() === 'zenodo';
+}
+
+function classifyType(entry) {
+  const t = entry.type.toLowerCase();
+  if (isDataset(entry)) return 'Dataset';
+  if (t === 'unpublished') return 'Unpublished';
+  if (t === 'inproceedings') return 'Conference';
+  if (t === 'phdthesis' || t === 'mastersthesis') return 'Thesis';
+  if (t === 'article') return 'Journal';
+  return 'Other';
+}
+
+function buildVenue(fields, type) {
+  const journal = fields.journal || '';
+  const booktitle = fields.booktitle || '';
+  const venue = journal || booktitle;
+  const parts = [venue];
+  if (fields.volume) parts[0] += ` ${fields.volume}`;
+  if (fields.number) parts[0] += `(${fields.number})`;
+  if (fields.pages) parts[0] += `: ${fields.pages}`;
+  return parts[0];
+}
+
+function buildBibtexString(entry) {
+  const f = entry.fields;
+  let s = `@${entry.type}{${entry.key},\n`;
+  if (f.author) s += `  author = {${f.author}},\n`;
+  if (f.title) s += `  title = {${f.title}},\n`;
+  if (f.journal) s += `  journal = {${f.journal}},\n`;
+  if (f.booktitle) s += `  booktitle = {${f.booktitle}},\n`;
+  if (f.volume) s += `  volume = {${f.volume}},\n`;
+  if (f.number) s += `  number = {${f.number}},\n`;
+  if (f.pages) s += `  pages = {${f.pages}},\n`;
+  if (f.year) s += `  year = {${f.year}},\n`;
+  if (f.doi) s += `  doi = {${f.doi}},\n`;
+  if (f.url) s += `  url = {${f.url}},\n`;
+  s += `}`;
+  return s;
+}
+
+const typeMap = {
+  'Journal': 'Journal Article',
+  'Conference': 'Conference',
+  'Thesis': 'Thesis',
+  'Dataset': 'Dataset',
+  'Unpublished': 'Unpublished'
+};
+
+const typeFiltersDiv = document.getElementById('typeFilters');
+const pubListDiv = document.getElementById('pubList');
+const resultCountDiv = document.getElementById('resultCount');
+
+function getActiveFilters() {
+  const checked = [...typeFiltersDiv.querySelectorAll('input:checked')].map(i => i.dataset.type);
+  const yearFrom = parseInt(document.getElementById('yearFrom').value) || null;
+  const yearTo = parseInt(document.getElementById('yearTo').value) || null;
+  const firstOnly = document.getElementById('firstAuthorOnly').checked;
+  return { checked, yearFrom, yearTo, firstOnly };
+}
+
+function render() {
+  const { checked, yearFrom, yearTo, firstOnly } = getActiveFilters();
+
+  const filtered = allEntries.filter(e => {
+    if (!checked.includes(e.category)) return false;
+    if (yearFrom && e.year && e.year < yearFrom) return false;
+    if (yearTo && e.year && e.year > yearTo) return false;
+    if (firstOnly && !e.isFirst) return false;
+    return true;
+  });
+
+  resultCountDiv.textContent = `Showing ${filtered.length} of ${allEntries.length} publications`;
+
+  if (filtered.length === 0) {
+    pubListDiv.innerHTML = '<div class="no-results">No publications match the current filters.</div>';
+    return;
+  }
+
+  pubListDiv.innerHTML = filtered.map((e, i) => {
+    let authorsHtml = '';
+    if (e.isFirst) {
+      const parts = e.authors.split(', ');
+      parts[0] = `<span class="first-author">${parts[0]}</span>`;
+      authorsHtml = parts.join(', ');
+    } else {
+      authorsHtml = e.authors;
+    }
+
+    let tagsHtml = `<span class="pub-tag">${e.category}</span>`;
+    if (e.category === 'Dataset') tagsHtml += '<span class="pub-tag tag-dataset">Dataset</span>';
+    if (e.category === 'Unpublished') tagsHtml += '<span class="pub-tag tag-unpublished">Unpublished</span>';
+    if (e.isFirst) tagsHtml += '<span class="pub-tag">First Author</span>';
+
+    const venueParts = [];
+    if (e.venue) venueParts.push(e.venue);
+    if (e.year) venueParts.push(e.year);
+    const metaLine = venueParts.join(' · ');
+
+    let actionsHtml = '';
+    if (e.url) {
+      actionsHtml += `<a href="${e.url}" target="_blank" class="pub-btn"><span class="icon">🔗</span> Paper</a>`;
+    }
+    actionsHtml += `<button class="pub-btn" onclick="showBibtex(${i})"><span class="icon">📖</span> BibTeX</button>`;
+
+    return `
+      <div class="pub-card">
+        <div class="pub-title">
+          ${e.url ? `<a href="${e.url}" target="_blank">${e.title}</a>` : e.title}
+        </div>
+        <div class="pub-authors">${authorsHtml}</div>
+        ${metaLine ? `<div class="pub-meta">${metaLine}</div>` : ''}
+        <div class="pub-tags">${tagsHtml}</div>
+        <div class="pub-actions">${actionsHtml}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function showBibtex(idx) {
+  const filtered = allEntries.filter(e => {
+    const { checked, yearFrom, yearTo, firstOnly } = getActiveFilters();
+    if (!checked.includes(e.category)) return false;
+    if (yearFrom && e.year && e.year < yearFrom) return false;
+    if (yearTo && e.year && e.year > yearTo) return false;
+    if (firstOnly && !e.isFirst) return false;
+    return true;
+  });
+  const e = filtered[idx];
+  document.getElementById('modalTitle').textContent = `BibTeX — ${e.title}`;
+  document.getElementById('modalContent').textContent = e.bibtex;
+  document.getElementById('bibtexModal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('bibtexModal').classList.remove('show');
+}
+
+function copyBibtex() {
+  const text = document.getElementById('modalContent').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.modal-copy');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy to Clipboard', 1500);
+  });
+}
+
+function resetFilters() {
+  typeFiltersDiv.querySelectorAll('input').forEach(i => i.checked = true);
+  document.getElementById('yearFrom').value = '';
+  document.getElementById('yearTo').value = '';
+  document.getElementById('firstAuthorOnly').checked = false;
+  render();
+}
+</script>

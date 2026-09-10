@@ -1,0 +1,319 @@
+@phdthesis{RN154,
+   author = {Chai, Shupeng},
+   title = {Analytical and numerical studies on the stresses in backfilled stopes and the stability of side-exposed backfill in inclined stopes},
+   university = {Polytechnique Montreal},
+   type = {Master Thesis},
+   url = {https://publications.polymtl.ca/5222/},
+   year = {2020},
+   type = {Thesis},
+   label = {main}
+}
+
+@article{RN383,
+   author = {Chai, Shupeng},
+   title = {Maximum height estimation for mine waste dumps},
+   journal = {Journal of the Southern African Institute of Mining and Metallurgy},
+   volume = {122},
+   number = {10},
+   pages = {579-586},
+   DOI = {10.17159/2411-9717/1947/2022},
+   year = {2022},
+   type = {Journal Article},
+   label = {main}
+}
+
+@inproceedings{RN495,
+   author = {Chai, Shupeng},
+   title = {Stability evaluation of slopes containing a weak layer using artificial neural networks},
+   booktitle = {2022 8th International Conference on Hydraulic and Civil Engineering: Deep Space Intelligent Development and Utilization Forum (ICHCE)},
+   pages = {150-153},
+   DOI = {10.1109/ICHCE57331.2022.10042656},
+   type = {Conference Proceedings},
+   label = {main}
+}
+
+@article{RN497,
+   author = {Chai, Shupeng},
+   title = {Two-wedge slope stability analysis considering a nonvertical wedge interface},
+   journal = {Bulletin of Engineering Geology and the Environment},
+   volume = {82},
+   number = {3},
+   pages = {89},
+   ISSN = {1435-9537},
+   DOI = {10.1007/s10064-023-03126-2},
+   url = {https://doi.org/10.1007/s10064-023-03126-2},
+   year = {2023},
+   type = {Journal Article},
+   label = {main}
+}
+
+@article{RN1558,
+   author = {Chai, Shupeng and Dal Zilio, Luca and Hatzor, Yossef H. and Xia, Kaiwen and Zhao, Qi},
+   title = {Dataset for Multi-stage coseismic slip controlled by fault roughness},
+   journal = {Zenodo},
+   DOI = {10.5281/zenodo.19536809},
+   year = {2026},
+   type = {Journal Article},
+
+}
+
+@unpublished{RN1528,
+   author = {Chai, Shupeng and Dal Zilio, Luca and Hatzor, Yossef H. and Xia, Kaiwen and Zhao, Qi},
+   title = {Stress-concentrated asperities control earthquake rupture stages},
+   booktitle = {To be submitted to Geophysical Research Letters},
+   year = {2026},
+   type = {Unpublished Work},
+
+}
+
+@article{RN442,
+   author = {Chai, Shupeng and Fan, Liujun and Liang, Hui},
+   title = {Required jacking force for deviation rectification of inclined structures supported with rigid piles},
+   journal = {Frontiers in Earth Science},
+   volume = {10},
+   pages = {998798},
+   ISSN = {2296-6463},
+   DOI = {10.3389/feart.2022.998798},
+   url = {https://www.frontiersin.org/articles/10.3389/feart.2022.998798},
+   year = {2022},
+   type = {Journal Article},
+   label = {main}
+}
+
+@unpublished{RN1525,
+   author = {Chai, Shupeng and Qi, Zhao},
+   title = {Interplay between fault geometric roughness and mechanical properties in governing sliding instability},
+   booktitle = {To be submitted to Earth and Planetary Science Letters},
+   year = {2026},
+   type = {Unpublished Work},
+
+}
+
+@unpublished{RN1527,
+   author = {Chai, Shupeng and Su, Boyang and Zou, Yuan and Dal Zilio, Luca and Hatzor, Yossef H. and Zhao, Qi},
+   title = {Fault roughness and contact evolution control dilation and contraction during shear sliding},
+   booktitle = {Submitted to Geophysical Research Letters},
+   year = {2026},
+   type = {Unpublished Work},
+
+}
+
+@inproceedings{RN1179,
+   author = {Chai, Shupeng and Su, Boyang and Zou, Yuan and Zhao, Qi},
+   title = {Dilation or compaction? Laboratory insights into the role of fault roughness},
+   booktitle = {EGU General Assembly Conference Abstracts},
+   pages = {EGU25-7873},
+   DOI = {10.5194/egusphere-egu25-7873},
+   url = {https://doi.org/10.5194/egusphere-egu25-7873},
+   year = {2025},
+   type = {Conference Proceedings},
+   label = {main}
+}
+
+@unpublished{RN1524,
+   author = {Chai, Shupeng and Yuan, Zou and Chenyang, Zhang and Guoxu, Chen and Qi, Zhao},
+   title = {Possible seismicity and location inferred from lunar crater landslides and tectonic faults},
+   booktitle = {To be submitted},
+   year = {2026},
+   type = {Unpublished Work},
+
+}
+
+@inproceedings{RN1516,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {New insights into stress conditions of laboratory shear tests},
+   booktitle = {The Greater Bay Earth & Environmental Sciences Young Scholars Symposium (GESS) 2023},
+   type = {Conference Proceedings},
+
+}
+
+@inproceedings{RN1515,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {Stress analyses of laboratory shear tests},
+   booktitle = {ARMA East Asia Geomechanics Workshop},
+   address = {Hong Kong},
+   volume = {ARMA East Asia Geomechanics Workshop},
+   year = {2023},
+   type = {Conference Proceedings},
+
+}
+
+@inproceedings{RN923,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {New insights for stress conditions of laboratory shear tests},
+   booktitle = {58th U.S. Rock Mechanics/Geomechanics Symposium},
+   volume = {58th U.S. Rock Mechanics/Geomechanics Symposium},
+   pages = {ARMA-2024-0715},
+   DOI = {10.56952/arma-2024-0715},
+   url = {https://doi.org/10.56952/ARMA-2024-0715},
+   year = {2024},
+   type = {Conference Proceedings},
+   label = {main}
+}
+
+@inproceedings{RN1518,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {New insights into stress conditions on rock discontinuities in laboratory shear tests},
+   booktitle = {International Geomechanics Conference 2024},
+   type = {Conference Proceedings},
+   label = {main}
+}
+
+@inproceedings{RN1517,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {实验室粘滑中的剪缩与剪胀研究},
+   booktitle = {中国地震科学实验场第六届学术年会暨国家地震科技创新工程“透明地壳”计划会议},
+   type = {Conference Proceedings},
+
+}
+
+@inproceedings{RN1519,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {断层滑移及地震中剪胀行为的实验室研究},
+   booktitle = {粤港澳大湾区地球与环境科学青年学者论坛 (GESS)},
+   type = {Conference Proceedings},
+
+}
+
+@article{RN1584,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {Dataset for laboratory shear experiments on various types of rock samples with planar and rough faults},
+   journal = {Zenodo},
+   DOI = {10.5281/zenodo.22012905},
+   year = {2026},
+   type = {Journal Article},
+
+}
+
+@article{RN1229,
+   author = {Chai, Shupeng and Zhao, Qi},
+   title = {Laboratory data for fault dilation (Dataset)},
+   journal = {Zenodo},
+   DOI = {10.5281/zenodo.18856670},
+   year = {2026},
+   type = {Journal Article},
+
+}
+
+@article{RN564,
+   author = {Chai, Shupeng and Zheng, Jian and Li, Li},
+   title = {Kink effect on the stress distribution in 2D backfilled stopes},
+   journal = {Geotechnical and Geological Engineering},
+   volume = {41},
+   number = {5},
+   pages = {3225-3238},
+   ISSN = {1573-1529},
+   DOI = {10.1007/s10706-023-02434-4},
+   url = {https://doi.org/10.1007/s10706-023-02434-4},
+   year = {2023},
+   type = {Journal Article},
+   label = {main}
+}
+
+@inproceedings{RN1520,
+   author = {Chai, Shupeng and Zou, Yuan and Chen, Guoxu and Zhao, Qi},
+   title = {Possible moonquakes and tectonic activities inferred from crater landslides},
+   booktitle = {AGU Fall Meeting Abstracts},
+   volume = {2024},
+   pages = {S43C-3443},
+   type = {Conference Proceedings},
+   label = {main}
+}
+
+@article{RN1208,
+   author = {Chai, Shupeng and Zou, Yuan and Wu, Huanyu and Akbariforouz, Mohammadreza and Su, Boyang and Grasselli, Giovanni and Elsworth, Derek and Hatzor, Yossef H. and Zhao, Qi},
+   title = {Influence of stress heterogeneity on shear behavior of rock discontinuities in laboratory experiments: New insights from numerical simulations},
+   journal = {International Journal of Rock Mechanics and Mining Sciences},
+   volume = {197},
+   pages = {106358},
+   ISSN = {1365-1609},
+   DOI = {10.1016/j.ijrmms.2025.106358},
+   url = {https://www.sciencedirect.com/science/article/pii/S1365160925003351},
+   year = {2026},
+   type = {Journal Article},
+   label = {main}
+}
+
+@article{RN1575,
+   author = {Chai, Shupeng and Zou, Yuan and Wu, Huanyu and Akbariforouz, Mohammadreza and Su, Boyang and Grasselli, Giovanni and Elsworth, Derek and Hatzor, Yossef H. and Zhao, Qi},
+   title = {The role of stress heterogeneity in seismic slip revealed through experiments on laboratory faults},
+   journal = {Rock Mechanics and Rock Engineering},
+   ISSN = {1434-453X},
+   DOI = {10.1007/s00603-026-05663-0},
+   url = {https://doi.org/10.1007/s00603-026-05663-0},
+   year = {2026},
+   type = {Journal Article},
+   label = {main}
+}
+
+@article{RN1578,
+   author = {Chai, Shupeng and Zou, Yuan and Zhang, Chenyang and Chen, Guoxu and Zhao, Qi},
+   title = {Dataset for Shallow moonquakes control directional crater landslides across the lunar surface},
+   journal = {Zenodo},
+   DOI = {10.5281/zenodo.21352525},
+   year = {2026},
+   type = {Journal Article},
+
+}
+
+@article{RN512,
+   author = {Li, Xiaomeng and Fan, Liujun and Chai, Shupeng},
+   title = {An experimental study on strengthening recycled aggregates considering dry mixing before slurry coating},
+   journal = {Coatings},
+   volume = {12},
+   number = {11},
+   pages = {1702},
+   ISSN = {2079-6412},
+   DOI = {10.3390/coatings12111702},
+   url = {https://www.mdpi.com/2079-6412/12/11/1702},
+   year = {2022},
+   type = {Journal Article},
+
+}
+
+@article{RN1523,
+   author = {Liu, Shuo and Wu, Bo and Krasilnikov, Sergey and Zhu, Jiaming and Chen, Zeyu and Chai, Shupeng and Zhao, Qi and Li, Yiliang and Michalski, Joseph},
+   title = {Time-series variations of recurring slope lineae on Mars compatible with contemporary water activity from bedrock aquifer melting},
+   journal = {Scientific Reports},
+   volume = {15},
+   number = {1},
+   pages = {25555},
+   ISSN = {2045-2322},
+   DOI = {10.1038/s41598-025-11171-y},
+   url = {https://doi.org/10.1038/s41598-025-11171-y},
+   year = {2025},
+   type = {Journal Article},
+
+}
+
+@article{RN962,
+   author = {Zou, Yuan and Wu, Huanyu and Chai, Shupeng and Yang, Wei and Ruan, Renhao and Zhao, Qi},
+   title = {Development and characterization of the PolyU-1 lunar regolith simulant based on Chang’e-5 returned samples},
+   journal = {International Journal of Mining Science and Technology},
+   ISSN = {2095-2686},
+   DOI = {10.1016/j.ijmst.2024.08.006},
+   url = {https://www.sciencedirect.com/science/article/pii/S2095268624001150},
+   year = {2024},
+   type = {Journal Article},
+
+}
+
+@inproceedings{RN1521,
+   author = {Zou, Yuan and Wu, Huanyu and Chai, Shupeng and Yang, Wei and Zhao, Qi},
+   title = {Mineral and Particle Morphology Analysis of Chang'e-5 Returned Lunar Basalt Clasts Using Micro-CT Imaging},
+   booktitle = {AGU Fall Meeting Abstracts},
+   volume = {2024},
+   pages = {P42B-03},
+   type = {Conference Proceedings},
+
+}
+
+@inproceedings{RN1522,
+   author = {Zou, Yuan and Wu, Huanyu and Chai, Shupeng and Yang, Wei and Zhao, Qi},
+   title = {Geomechanical Assessment of Chang'e-5 Lunar Regolith Using High-fidelity Simulant},
+   booktitle = {EGU General Assembly Conference Abstracts},
+   pages = {EGU25-9509},
+   type = {Conference Proceedings},
+
+}
+
