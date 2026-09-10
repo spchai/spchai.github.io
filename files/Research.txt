@@ -1,4 +1,4 @@
-@phdthesis{RN154,
+﻿@phdthesis{RN154,
    author = {Chai, Shupeng},
    title = {Analytical and numerical studies on the stresses in backfilled stopes and the stability of side-exposed backfill in inclined stopes},
    university = {Polytechnique Montreal},
@@ -28,6 +28,7 @@
    booktitle = {2022 8th International Conference on Hydraulic and Civil Engineering: Deep Space Intelligent Development and Utilization Forum (ICHCE)},
    pages = {150-153},
    DOI = {10.1109/ICHCE57331.2022.10042656},
+   year = {2022},
    type = {Conference Proceedings},
    label = {main}
 }
@@ -123,6 +124,7 @@
    author = {Chai, Shupeng and Zhao, Qi},
    title = {New insights into stress conditions of laboratory shear tests},
    booktitle = {The Greater Bay Earth & Environmental Sciences Young Scholars Symposium (GESS) 2023},
+   year = {2023},
    type = {Conference Proceedings},
 
 }
@@ -155,6 +157,7 @@
    author = {Chai, Shupeng and Zhao, Qi},
    title = {New insights into stress conditions on rock discontinuities in laboratory shear tests},
    booktitle = {International Geomechanics Conference 2024},
+   year = {2024},
    type = {Conference Proceedings},
    label = {main}
 }
@@ -163,6 +166,7 @@
    author = {Chai, Shupeng and Zhao, Qi},
    title = {实验室粘滑中的剪缩与剪胀研究},
    booktitle = {中国地震科学实验场第六届学术年会暨国家地震科技创新工程“透明地壳”计划会议},
+   year = {2024},
    type = {Conference Proceedings},
 
 }
@@ -171,6 +175,7 @@
    author = {Chai, Shupeng and Zhao, Qi},
    title = {断层滑移及地震中剪胀行为的实验室研究},
    booktitle = {粤港澳大湾区地球与环境科学青年学者论坛 (GESS)},
+   year = {2024},
    type = {Conference Proceedings},
 
 }
@@ -216,6 +221,7 @@
    booktitle = {AGU Fall Meeting Abstracts},
    volume = {2024},
    pages = {S43C-3443},
+   year = {2024},
    type = {Conference Proceedings},
    label = {main}
 }
@@ -304,6 +310,7 @@
    booktitle = {AGU Fall Meeting Abstracts},
    volume = {2024},
    pages = {P42B-03},
+   year = {2024},
    type = {Conference Proceedings},
 
 }
@@ -313,6 +320,8 @@
    title = {Geomechanical Assessment of Chang'e-5 Lunar Regolith Using High-fidelity Simulant},
    booktitle = {EGU General Assembly Conference Abstracts},
    pages = {EGU25-9509},
+   year = {2025},
    type = {Conference Proceedings},
 
 }
+
