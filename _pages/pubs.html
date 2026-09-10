@@ -100,13 +100,24 @@ redirect_from:
   .filter-section .year-input input {
     width: 70px;
     padding: 6px 8px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--pub-border);
     border-radius: 6px;
     font-size: .9rem;
     text-align: center;
+    color: var(--pub-text);
+    background: var(--pub-panel-bg);
+    color-scheme: light dark;
   }
 
-  .filter-section .year-input span { color: #888; font-size: .85rem; }
+  .filter-section .year-input input::placeholder {
+    color: var(--pub-text-light);
+    opacity: 1;
+  }
+
+  .filter-section .year-input span {
+    color: var(--pub-text-light);
+    font-size: .85rem;
+  }
   .count-badge {
     background: var(--pub-muted-bg);
     border-radius: 10px;
