@@ -26,10 +26,6 @@
   {% if page.filter %}
     <div class="sidebar-filter-wrapper">
       <div class="filter-section">
-        <div class="filter-header">
-          <h2 class="nav__title"> <i class="fa fa-filter"></i> FILTER </h2>
-          <button id="clear-filter" class="clear-filter-btn">  Clear All </button>    
-        </div>
         <div id="tag-filter" class="tag-filter-container">
           {% assign all_tags = site.posts | map: "tags" | join: "," | split: "," | uniq | sort_natural %}
           {%- assign ordered_groups = "Group,Topic,Method,Output" | split: "," -%}
@@ -78,6 +74,7 @@
             </div>
           {%- endif -%}
         </div>
+        <button id="clear-filter" class="clear-filter-btn">Reset All Filters</button>
       </div>
     </div>
   {% endif %}
